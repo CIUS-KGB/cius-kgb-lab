@@ -1,0 +1,49 @@
+Original PDF scans — placement and hosting
+============================================
+
+PROJECT ROOT
+  See your repo root (parent of this folder).
+
+THIS FOLDER (PDF tree root)
+  original_pdfs/
+
+LOCAL LAYOUT (default — html uses paths relative to data/output/)
+  original_pdfs/<document_id>/<filename>.pdf
+  or
+  original_pdfs/<document_id>.pdf
+
+  Subfolders match document_id in config/document_map.json.
+
+AFTER ADDING OR CHANGING PDFS
+  python run_report_only.py
+
+REMOTE / HTTPS (optional)
+  In config/pipeline_config.example.json (or your real pipeline config), under "documents":
+
+  "pdf_public_base_url": ""
+
+  Leave empty for local relative links.
+
+  When hosting PDFs at a stable HTTPS base (same paths as in the repo), set it to that base with no trailing slash.
+
+  For standalone HTML from run_report_only.py (no docs mirror): jsDelivr works:
+
+    https://cdn.jsdelivr.net/gh/OWNER/REPO@main
+
+  Avoid raw.githubusercontent.com for iframe embedding (frame denial / octet-stream).
+
+  For GitHub Pages: run scripts/build_github_pages_docs.py — it mirrors this folder into
+  docs/original_pdfs/ and uses same-origin paths so browsers show PDFs inline.
+
+  Generic absolute URL shape:
+
+    <pdf_public_base_url>/original_pdfs/<document_id>/file.pdf
+
+  Details:
+  - Run scripts/build_github_pages_docs.py on a full clone that contains the PDF files:
+    it copies original_pdfs/ -> docs/original_pdfs/ and embeds same-origin paths so scans display inline on Pages.
+  - Another HTTPS origin works too if you set pdf_public_base_url to that host (same path layout).
+
+CONFIG KEYS (documents section)
+  original_pdfs_dir      — relative to project root; default "original_pdfs"
+  pdf_public_base_url    — empty = local only; non-empty = absolute PDF URLs in the report

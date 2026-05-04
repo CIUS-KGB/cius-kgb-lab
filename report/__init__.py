@@ -289,17 +289,18 @@ def _pdf_href_for_report(
     *,
     config: Optional[Dict[str, Any]] = None,
 ) -> Optional[str]:
-    """Absolute PDF URL when documents.pdf_public_base_url is set.
+    """PDF URL for iframe embed and open-in-tab.
 
-    Use a host that allows iframe embedding and sends application/pdf (e.g. jsDelivr:
-    https://cdn.jsdelivr.net/gh/OWNER/REPO@branch). raw.githubusercontent.com sends
-    X-Frame-Options: deny and octet-stream, which breaks embedded viewers.
+    Magic pdf_public_base_url \"__SITE_RELATIVE__\": URL path only (same-origin as the
+    published HTML). Use when PDFs are deployed alongside the report (e.g.
+    docs/original_pdfs/ on GitHub Pages).
+
+    Otherwise use an absolute HTTPS base (e.g. jsDelivr). raw.githubusercontent.com
+    sends X-Frame-Options: deny and breaks embedded viewers.
     """
     doc_cfg = (config or {}).get("documents", {}) if config else {}
     pdf_root = _sanitize_pdf_root_rel(doc_cfg.get("original_pdfs_dir"))
-    public_base = (doc_cfg.get("pdf_public_base_url") or "").strip().rstrip("/")
-    if not public_base:
-        return None
+    raw_base = (doc_cfg.get("pdf_public_base_url") or "").strip()
 
     repo_rel = _pdf_repo_relative_path(doc, pdf_root=pdf_root)
     if not repo_rel:
@@ -307,6 +308,13 @@ def _pdf_href_for_report(
 
     segments = [s for s in repo_rel.split("/") if s != ""]
     encoded_rel = "/".join(quote(seg, safe="") for seg in segments)
+
+    if raw_base == "__SITE_RELATIVE__":
+        return encoded_rel
+
+    public_base = raw_base.rstrip("/")
+    if not public_base:
+        return None
     return f"{public_base}/{encoded_rel}"
 
 
@@ -1650,7 +1658,7 @@ def _taxonomy_reference_section(
 def _intro_tab() -> str:
     """Sidebar tab: introduction and project context (above Research Lab)."""
     return """
-<div class="tab-content" id="tab-intro">
+<div class="tab-content active" id="tab-intro">
 <div class="header"><h2 data-i18n="intro_landing_link">Introduction</h2></div>
 <div class="homepage-content">
   <section class="homepage-section">
@@ -1836,7 +1844,7 @@ def _homepage(
   </section>"""
 
     home_html = f"""
-<div class="tab-content active" id="tab-home">
+<div class="tab-content" id="tab-home">
 <div class="header"><h2 data-i18n="home">Research Lab</h2></div>
 <div class="homepage-content">
   {viz_section_markup}
@@ -1854,8 +1862,8 @@ def _sidebar(documents: List[Dict[str, Any]], comparison_by_doc: Dict[str, Dict[
     """Sidebar navigation: Introduction, Research Lab, documents, Glossary."""
     items = []
     items.append('<div class="sidebar-section-title" data-i18n="navigation">Navigation</div>')
-    items.append('<button class="sidebar-nav-item" onclick="showTab(\'tab-intro\')" data-i18n="intro_landing_link">Introduction</button>')
-    items.append('<button class="sidebar-nav-item active" onclick="showTab(\'tab-home\')" data-i18n="home">Research Lab</button>')
+    items.append('<button class="sidebar-nav-item active" onclick="showTab(\'tab-intro\')" data-i18n="intro_landing_link">Introduction</button>')
+    items.append('<button class="sidebar-nav-item" onclick="showTab(\'tab-home\')" data-i18n="home">Research Lab</button>')
     items.append('<button class="sidebar-nav-item" onclick="showTab(\'tab-glossary\')" data-i18n="glossary">Glossary</button>')
     items.append('<div class="sidebar-section-title" data-i18n="documents">Documents</div>')
     for doc in documents:

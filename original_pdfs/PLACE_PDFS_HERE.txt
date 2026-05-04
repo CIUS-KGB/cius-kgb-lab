@@ -26,17 +26,23 @@ REMOTE / HTTPS (optional)
 
   When hosting PDFs at a stable HTTPS base (same paths as in the repo), set it to that base with no trailing slash.
 
-  Recommended for embedded viewers (iframes + GitHub Pages): jsDelivr (paths mirror GitHub, branch pinned):
+  For standalone HTML from run_report_only.py (no docs mirror): jsDelivr works:
 
     https://cdn.jsdelivr.net/gh/OWNER/REPO@main
 
-  Avoid raw.githubusercontent.com for iframes: it typically sends X-Frame-Options: deny and application/octet-stream, which breaks embedding and may force downloads.
+  Avoid raw.githubusercontent.com for iframe embedding (frame denial / octet-stream).
 
-  The report then loads each PDF as:
+  For GitHub Pages: run scripts/build_github_pages_docs.py — it mirrors this folder into
+  docs/original_pdfs/ and uses same-origin paths so browsers show PDFs inline.
+
+  Generic absolute URL shape:
 
     <pdf_public_base_url>/original_pdfs/<document_id>/file.pdf
 
-  GitHub Pages or another static host with the same folder layout also works if you set pdf_public_base_url to that site origin.
+  Details:
+  - Run scripts/build_github_pages_docs.py on a full clone that contains the PDF files:
+    it copies original_pdfs/ -> docs/original_pdfs/ and embeds same-origin paths so scans display inline on Pages.
+  - Another HTTPS origin works too if you set pdf_public_base_url to that host (same path layout).
 
 CONFIG KEYS (documents section)
   original_pdfs_dir      — relative to project root; default "original_pdfs"

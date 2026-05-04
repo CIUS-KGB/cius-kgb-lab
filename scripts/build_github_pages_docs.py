@@ -3,9 +3,16 @@
 Build static files under docs/ for GitHub Pages (Deploy from branch → /docs).
 
 Writes index.html (main lab), lab_visualization.html, and .nojekyll.
+
+Mirrors original_pdfs/ into docs/original_pdfs/ and builds PDF links as same-origin
+paths (pdf_public_base_url = __SITE_RELATIVE__) so browser PDF embedding works on
+GitHub Pages (cross-origin raw CDN URLs are often blocked in iframes).
+
 Uses output.report_html = index.html so standalone viz links back to the site root.
 
 Requires comparison_results.json (run full pipeline or run_report_only.py first).
+
+Commit docs/original_pdfs/ with the HTML when deploying Pages so scans are reachable.
 
 Usage (from repo root):
   python scripts/build_github_pages_docs.py [path/to/comparison_results.json]
@@ -13,6 +20,7 @@ Usage (from repo root):
 from __future__ import annotations
 
 import json
+import shutil
 import sys
 from pathlib import Path
 from typing import Any, Dict
@@ -21,6 +29,18 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 DOCS_DIR = ROOT / "docs"
+
+
+def _sync_original_pdfs_into_docs() -> None:
+    """Copy project original_pdfs tree into docs/ for same-origin hosting on Pages."""
+    src = ROOT / "original_pdfs"
+    dst = DOCS_DIR / "original_pdfs"
+    if not src.is_dir():
+        print("Warning: original_pdfs/ missing — PDF sections will 404 on Pages.")
+        return
+    if dst.exists():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
 
 
 def load_config() -> dict:
@@ -76,6 +96,11 @@ def main() -> int:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     (DOCS_DIR / ".nojekyll").touch()
 
+    _sync_original_pdfs_into_docs()
+    config.setdefault("documents", {})
+    config["documents"] = dict(config["documents"])
+    config["documents"]["pdf_public_base_url"] = "__SITE_RELATIVE__"
+
     from ingest import run as ingest_run
 
     documents = ingest_run(config, ROOT)
@@ -87,8 +112,9 @@ def main() -> int:
 
     out_path = report_run(comparison_by_doc, documents, taxonomy, config)
     print(f"GitHub Pages docs written under: {DOCS_DIR}")
-    print(f"  Main (site root): {out_path.name}")
-    print(f"  Standalone viz: lab_visualization.html")
+    print(f"  Site root: {out_path.name} | standalone viz: lab_visualization.html")
+    print("  Mirrored original_pdfs -> docs/original_pdfs (same-origin PDF embedding).")
+    print("  Commit docs/index.html, docs/lab_visualization.html, and docs/original_pdfs/ for Pages.")
     print("Enable Pages: repo Settings -> Pages -> Deploy from branch /docs (this branch).")
     return 0
 

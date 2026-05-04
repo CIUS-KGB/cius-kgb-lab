@@ -37,7 +37,7 @@ Output: `data/output/manual_analysis_report.html` and `data/output/comparison_re
 
   Set **`documents.pdf_public_base_url`** to that value (see `config/pipeline_config.example.json`). URLs become `…/original_pdfs/<document_id>/<file>.pdf` under that base.
 
-- Alternatively host PDFs on **your GitHub Pages origin** and set **`pdf_public_base_url`** to that site root so files are same-origin with the HTML.
+- For **GitHub Pages** (`scripts/build_github_pages_docs.py`): the builder copies **`original_pdfs/` → `docs/original_pdfs/`** and emits **same-origin** PDF paths (no third-party iframe). **Commit `docs/original_pdfs/` with `docs/index.html`** when you deploy, or the embedded scans will 404.
 
 **CLI:** `python run.py --agent-assessments` (use `agent_assessments.json` instead of LLM); `python run.py --use-ollama` (use Ollama); `python run.py --report-only` (regenerate HTML from saved JSON). **Tests:** `pytest tests/ -v`
 
