@@ -5,10 +5,12 @@ Output: list of { document_id, display_name, path, raw_text?, raw_text_en? }.
 When documents.document_map_path and documents.input_dir_ru are set, Russian is primary:
 sync copies from dev/russian_originals into data/russian_originals, then documents
 are loaded from that directory (raw_text = Russian). English full text is loaded from
-``en_filename`` when set, otherwise from ``input_dir`` by trying ``<document_id>.txt``,
-spaced-id filenames (e.g. ``1262 28-32.txt``), then ``display_name``.
+``en_filename`` when set, otherwise ``input_dir`` (``<document_id>.txt``, spaced id, ``display_name``).
+If those are missing (e.g. CI: ``data/input`` not in repo), derive English filenames from ``rus_filename``
+and read from ``source_dir_en`` (``dev/english_translations``), which is committed.
 """
 import json
+import re
 import shutil
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Set
@@ -224,13 +226,55 @@ def _read_first_existing_text(paths: List[Path], encoding: str) -> str:
     return ""
 
 
+def _english_filenames_derived_from_rus(rus_filename: str) -> List[str]:
+    """Guess English translation filenames from Russian basename (matches ``dev/english_translations`` layout)."""
+    if not rus_filename or not isinstance(rus_filename, str):
+        return []
+    r = rus_filename.strip()
+    out: List[str] = []
+    taken: Set[str] = set()
+
+    def add(name: str) -> None:
+        if name and name not in taken:
+            taken.add(name)
+            out.append(name)
+
+    if r.endswith(" RUS.txt"):
+        stem = r[: -len(" RUS.txt")]
+        add(stem + " ENG.txt")
+        collapsed = re.sub(r"-0+(\d)", lambda m: "-" + m.group(1), stem)
+        if collapsed != stem:
+            add(collapsed + " ENG.txt")
+    if r.endswith(" RUS chunk-aligned.txt"):
+        stem = r[: -len(" RUS chunk-aligned.txt")]
+        add(stem + " ENG.txt")
+
+    if r.endswith("-Original_Rus.docx.txt"):
+        add(r[: -len("-Original_Rus.docx.txt")] + "-ENG.txt")
+    if r.endswith("-Original-Rus.docx.txt"):
+        add(r[: -len("-Original-Rus.docx.txt")] + "-ENG.txt")
+    if r.endswith("-Original_Rus.txt"):
+        add(r[: -len("-Original_Rus.txt")] + "-Eng.txt")
+    if r.endswith("-Rus.txt"):
+        add(r[: -len("-Rus.txt")] + "-ENG.txt")
+
+    if r.startswith("RUS - ") and r.endswith("_Rus.txt"):
+        middle = r[len("RUS - ") : -len("_Rus.txt")]
+        add(f"ENG - {middle}_ENG.txt")
+
+    if r.endswith("-Original-Verified.txt"):
+        add(r[: -len("-Original-Verified.txt")] + "-Eng.txt")
+
+    return out
+
+
 def run(config: Dict[str, Any], root: Optional[Path] = None) -> List[Dict[str, Any]]:
     """
     Discover and load documents. If document_map_path and input_dir_ru are set,
     sync Russian originals from dev into data/russian_originals, then load from there
     (raw_text = Russian). Optionally load raw_text_en from ``input_dir``:
-    ``en_filename`` + ``source_dir_en``, else first match among ``<document_id>.txt``,
-    spaced-id ``.txt``, and ``display_name`` (with optional ``.txt``).
+    ``en_filename`` + ``source_dir_en``, else ``input_dir`` candidates, then ``source_dir_en`` paths
+    derived from ``rus_filename`` when ``input_dir`` has no file (fresh clone / GitHub Actions).
     Otherwise discover from input_dir (legacy: raw_text = English).
     """
     if root is None:
@@ -288,6 +332,19 @@ def run(config: Dict[str, Any], root: Optional[Path] = None) -> List[Dict[str, A
                             _english_fulltext_candidates(en_dir, doc_id, display_name),
                             encoding,
                         )
+                        if not (entry["raw_text_en"] or "").strip():
+                            source_en_root = root / data.get(
+                                "source_dir_en", "dev/english_translations"
+                            )
+                            derived_paths = [
+                                source_en_root / fn
+                                for fn in _english_filenames_derived_from_rus(
+                                    item.get("rus_filename") or ""
+                                )
+                            ]
+                            entry["raw_text_en"] = _read_first_existing_text(
+                                derived_paths, encoding
+                            )
                     prp = item.get("pdf_relative_path")
                     if isinstance(prp, str) and prp.strip():
                         entry["pdf_relative_path"] = prp.strip()
