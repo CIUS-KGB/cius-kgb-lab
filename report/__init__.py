@@ -8,6 +8,7 @@ import json
 import os
 import re
 from pathlib import Path
+from urllib.parse import quote
 from typing import Dict, List, Any, Tuple, Optional, Set
 
 from ingest import _find_original_pdf, _sanitize_pdf_root_rel
@@ -301,7 +302,9 @@ def _pdf_href_for_report(
         return None
 
     if public_base:
-        return f"{public_base}/{repo_rel}"
+        segments = [s for s in repo_rel.split("/") if s != ""]
+        encoded_rel = "/".join(quote(seg, safe="") for seg in segments)
+        return f"{public_base}/{encoded_rel}"
 
     abs_pdf = (_REPORT_ROOT / repo_rel).resolve()
     if not abs_pdf.is_file():
