@@ -9,6 +9,7 @@ import json
 import re
 from pathlib import Path
 from urllib.parse import quote
+from collections import defaultdict
 from typing import Dict, List, Any, Tuple, Optional, Set
 
 from ingest import _find_original_pdf, _sanitize_pdf_root_rel
@@ -129,7 +130,6 @@ _UI_TRANSLATIONS = {
     "intro_deep_li_a": {"en": "Deep links: URLs with #tab-… open the right document or scroll to Lab sections (for example #lab-glossary after opening the Lab).", "uk": "Посилання з #tab-… відкривають документ або прокручують до розділів лабораторії (наприклад #lab-glossary)."},
     "intro_deep_li_b": {"en": "Standalone charts: open a single visualization in lab_visualization.html when your build provides it.", "uk": "Окремі діаграми: lab_visualization.html, якщо збірка його містить."},
     "intro_framework_heading": {"en": "Analytical framework", "uk": "Аналітична рамка"},
-    "intro_framework_para": {"en": "Plain-language names map to the pipeline: Specific Details = content data (categories). Ideological Layers = language data (framing). JSON and taxonomy IDs are unchanged — see docs/agents/UI_LABEL_MAP.md.", "uk": "Назви для людей відповідають пайплайну: конкретні деталі = контентні категорії; ідеологічні шари = фреймінг. JSON і ID таксономії без змін — див. docs/agents/UI_LABEL_MAP.md."},
     "intro_framework_visual_title": {"en": "Vozmezdie analytical framework", "uk": "Аналітична рамка Vozmezdie"},
     "intro_fw_specific_label": {"en": "Specific Details", "uk": "Конкретні деталі"},
     "intro_fw_specific_sub": {"en": "Content data · categories", "uk": "Контентні дані · категорії"},
@@ -613,6 +613,46 @@ def _normalize_segment_for_search(segment: str) -> str:
     return " ".join((segment or "").split())
 
 
+def _segment_occurrences(full_text: str, segment: str) -> List[Tuple[int, str]]:
+    """All non-overlapping occurrences of segment in full_text (left to right).
+
+    Tries exact substring, then whitespace-normalized substring, then flexible-regex
+    between words (same strategy as legacy first-match, but every occurrence).
+    """
+    seg = (segment or "").strip()
+    if not seg or not full_text:
+        return []
+    out: List[Tuple[int, str]] = []
+    pos = 0
+    while True:
+        idx = full_text.find(seg, pos)
+        if idx == -1:
+            break
+        out.append((idx, seg))
+        pos = idx + max(1, len(seg))
+    if out:
+        return out
+    norm = _normalize_segment_for_search(seg)
+    if norm and norm != seg:
+        pos = 0
+        while True:
+            idx = full_text.find(norm, pos)
+            if idx == -1:
+                break
+            out.append((idx, norm))
+            pos = idx + max(1, len(norm))
+    if out:
+        return out
+    try:
+        parts = norm.split()
+        pattern = r"\s+".join(re.escape(p) for p in parts) if parts else re.escape(norm)
+        for m in re.finditer(pattern, full_text, re.IGNORECASE):
+            out.append((m.start(), m.group(0)))
+    except Exception:
+        pass
+    return out
+
+
 def _normalize_term_key(s: str) -> str:
     """Normalize for term_synonyms lookup: strip, collapse whitespace."""
     if not s:
@@ -661,32 +701,30 @@ def _get_accepted_segments(
     entry_key: str,
 ) -> List[Tuple[int, int, str, Dict, int]]:
     """Return list of (idx, length, segment, row_dict, row_index) for segments that fit without overlap.
-    Shorter segments win when overlapping (e.g. 'arrived' preferred over 'delegation arrived' at same span).
-    Row index is position in aligned (so Eng and Rus can be matched)."""
+
+    Rows are matched to successive occurrences of the same substring (1st row → 1st ``foo``, 2nd → 2nd ``foo``),
+    so repeated English phrases do not all collapse onto the first hit (which made the EN panel look truncated
+    compared to Russian).
+
+    Shorter segments still win when spans overlap (e.g. ``arrived`` vs ``delegation arrived``).
+    Row index is position in aligned (so Eng and Rus panels pair by row).
+    """
     if not full_text or not aligned:
         return []
+    next_occurrence: Dict[str, int] = defaultdict(int)
     candidates: List[Tuple[int, int, str, Dict, int]] = []
     for row_index, r in enumerate(aligned):
         segment = (r.get(entry_key) or "").strip()
         if not segment:
             continue
-        norm = _normalize_segment_for_search(segment)
-        idx = full_text.find(segment, 0)
-        if idx == -1 and norm != segment:
-            idx = full_text.find(norm, 0)
-        if idx == -1:
-            try:
-                parts = norm.split()
-                pattern = r"\s+".join(re.escape(p) for p in parts) if parts else re.escape(norm)
-                m = re.search(pattern, full_text, re.IGNORECASE)
-                if m:
-                    idx = m.start()
-                    segment = m.group(0)
-            except Exception:
-                pass
-        if idx == -1:
+        occ_key = _normalize_segment_for_search(segment) or segment
+        occ_list = _segment_occurrences(full_text, segment)
+        k = next_occurrence[occ_key]
+        if k >= len(occ_list):
             continue
-        candidates.append((idx, len(segment), segment, r, row_index))
+        idx, matched = occ_list[k]
+        next_occurrence[occ_key] += 1
+        candidates.append((idx, len(matched), matched, r, row_index))
     candidates.sort(key=lambda x: (x[1], x[0]))
     accepted: List[Tuple[int, int, str, Dict, int]] = []
     for item in candidates:
@@ -1315,9 +1353,46 @@ body.standalone-viz-page #viz-open-new-tab { display: none !important; }
 .intro-fw-col { flex: 1 1 11rem; padding: 1rem; border-radius: 4px; border: 1px dashed rgba(139,115,85,0.5); background: #fffef9; }
 .intro-fw-col strong { display: block; font-size: 0.95rem; margin-bottom: 0.35rem; color: #2d3748; }
 .intro-fw-col span.tech { font-size: 0.8rem; color: #6b7280; font-family: 'JetBrains Mono', monospace; }
-.lab-glossary-root { margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid rgba(139,115,85,0.4); scroll-margin-top: 1rem; }
+.lab-glossary-root { margin-top: 2rem; padding-top: 0; border-top: 2px solid rgba(139,115,85,0.4); scroll-margin-top: 1rem; }
 .lab-glossary-root .header { margin-bottom: 1.25rem; }
-.lab-visualizations-inner .viz-controls { margin-top: 0; }
+.lab-glossary-collapsible-body > p:first-child { margin-top: 0; }
+.lab-visualizations-inner .viz-controls {
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.65rem 1rem;
+  align-items: end;
+}
+.lab-visualizations-inner .viz-controls > label[for="viz-select"] {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+.lab-visualizations-inner .viz-controls .viz-select {
+  grid-column: 1;
+  width: 100%;
+  max-width: 420px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.lab-visualizations-inner .viz-controls .viz-open-new-tab-btn {
+  grid-column: 2;
+  align-self: end;
+  white-space: nowrap;
+  margin-left: 0;
+}
+@media (max-width: 540px) {
+  .lab-visualizations-inner .viz-controls .viz-open-new-tab-btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+.lab-visualizations-inner .viz-controls .viz-config-panel {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin-top: 0;
+}
 .taxonomy-ref-body .taxonomy-ref-block:first-child { margin-top: 0; }
 .stat-summary { margin-bottom: 1rem; font-size: 1rem; }
 .stat-bars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
@@ -2504,7 +2579,6 @@ def _intro_tab() -> str:
   </section>
   <section class="homepage-section">
     <h3 data-i18n="intro_framework_heading">Analytical framework</h3>
-    <p style="color:#5a5348;margin-bottom:0.75rem;line-height:1.55;font-size:0.98rem;" data-i18n="intro_framework_para">Plain-language names map to the pipeline: Specific Details = content data (categories). Ideological Layers = language data (framing). JSON and taxonomy IDs are unchanged — see docs/agents/UI_LABEL_MAP.md.</p>
     <div class="intro-framework-visual">
       <h4 data-i18n="intro_framework_visual_title">Vozmezdie analytical framework</h4>
       <div class="intro-fw-columns">
@@ -3265,7 +3339,6 @@ def _glossary_tab(
 <summary><span id="lab-glossary-heading" data-i18n="glossary_of_terms">Glossary of Terms</span></summary>
 <div class="collapsible-body lab-glossary-collapsible-body">
 <p data-i18n="glossary_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">Definitions and examples for content categories and framing strategies used in document analysis.</p>
-<div style="background: #fffef9; padding: 2rem; border-radius: 4px; border: 1px solid #8b7355; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-top: 0;">
 <div class="glossary-controls">
 <div class="glossary-search-cyrillic-anchor">
 <input type="search" id="glossary-search" class="glossary-search" placeholder="Search glossary by name or definition..." data-i18n="glossary_search_placeholder" autocomplete="off"/>
@@ -3297,7 +3370,6 @@ def _glossary_tab(
 """
         + chr(10).join(fram_sections)
         + """
-</div>
 </div>
 </details>"""
     )
