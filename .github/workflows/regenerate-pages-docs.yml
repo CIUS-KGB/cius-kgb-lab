@@ -1,0 +1,53 @@
+﻿# Rebuild docs/index.html, docs/lab_visualization.html, docs/places_map.html when generator inputs change.
+# Pushes a docs-only commit (does not match workflow paths → no infinite loop).
+
+name: Regenerate Pages HTML
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'report/**'
+      - 'ingest/**'
+      - 'compare/**'
+      - 'ground_truth/**'
+      - 'llm/**'
+      - 'config/**'
+      - 'run.py'
+      - 'run_report_only.py'
+      - 'scripts/build_github_pages_docs.py'
+      - 'docs/fixtures/**'
+
+concurrency:
+  group: regenerate-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build GitHub Pages HTML
+        run: python scripts/build_github_pages_docs.py docs/fixtures/comparison_results.json
+
+      - name: Commit if HTML changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html docs/lab_visualization.html docs/places_map.html
+          if git diff --staged --quiet; then
+            echo "No HTML changes."
+          else
+            git commit -m "chore(docs): regenerate Pages HTML [skip ci]"
+            git push
+          fi

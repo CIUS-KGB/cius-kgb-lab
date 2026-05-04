@@ -1,0 +1,756 @@
+{
+  "places": [
+    {
+      "name": "Kyiv",
+      "count": 4518,
+      "coords": [
+        50.4501,
+        30.5234
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Kharkiv",
+      "count": 1402,
+      "coords": [
+        49.9935,
+        36.2304
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Odesa",
+      "count": 1348,
+      "coords": [
+        46.4825,
+        30.7233
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Donetsk",
+      "count": 956,
+      "coords": [
+        48.0159,
+        37.8029
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Lviv",
+      "count": 393,
+      "coords": [
+        49.8397,
+        24.0297
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Zaporizhzhia",
+      "count": 335,
+      "coords": [
+        47.8388,
+        35.1396
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Simferopol",
+      "count": 219,
+      "coords": [
+        44.9521,
+        34.1024
+      ],
+      "source": "static"
+    },
+    {
+      "name": "United States",
+      "count": 84,
+      "coords": [
+        39.8283,
+        -98.5795
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Luhansk",
+      "count": 46,
+      "coords": [
+        48.5671,
+        39.3171
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Dnipro",
+      "count": 33,
+      "coords": [
+        48.4647,
+        35.0462
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Canada",
+      "count": 27,
+      "coords": [
+        56.1304,
+        -106.3468
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Ivano-Frankivsk",
+      "count": 22,
+      "coords": [
+        48.9226,
+        24.7111
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Kropyvnytskyi",
+      "count": 22,
+      "coords": [
+        48.5132,
+        32.2597
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Ukraine",
+      "count": 9,
+      "coords": [
+        48.3794,
+        31.1656
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Germany",
+      "count": 8,
+      "coords": [
+        51.1657,
+        10.4515
+      ],
+      "source": "static"
+    },
+    {
+      "name": "France",
+      "count": 8,
+      "coords": [
+        46.2276,
+        2.2137
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Kherson",
+      "count": 6,
+      "coords": [
+        46.6354,
+        32.6169
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Illichivsk",
+      "count": 6,
+      "coords": [
+        46.305,
+        30.6545
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Moscow",
+      "count": 5,
+      "coords": [
+        55.7558,
+        37.6173
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Mariupol",
+      "count": 5,
+      "coords": [
+        47.0971,
+        37.5434
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Soviet Union",
+      "count": 5,
+      "coords": [
+        55.7558,
+        37.6173
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Toronto",
+      "count": 4,
+      "coords": [
+        43.6532,
+        -79.3832
+      ],
+      "source": "static"
+    },
+    {
+      "name": "United Kingdom",
+      "count": 4,
+      "coords": [
+        55.3781,
+        -3.436
+      ],
+      "source": "static"
+    },
+    {
+      "name": "England",
+      "count": 4,
+      "coords": [
+        52.3555,
+        -1.1743
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Japan",
+      "count": 3,
+      "coords": [
+        36.2048,
+        138.2529
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Zhytomyr",
+      "count": 3,
+      "coords": [
+        50.2547,
+        28.6587
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Khmelnytskyi",
+      "count": 3,
+      "coords": [
+        49.4228,
+        26.9871
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Vinnytsia",
+      "count": 3,
+      "coords": [
+        49.2328,
+        28.4681
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Yuzhne",
+      "count": 3,
+      "coords": [
+        46.6228,
+        31.1033
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Washington",
+      "count": 3,
+      "coords": [
+        38.9072,
+        -77.0369
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Australia",
+      "count": 3,
+      "coords": [
+        -25.2744,
+        133.7751
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Sokal Raion",
+      "count": 2,
+      "coords": [
+        50.4744,
+        24.2829
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Chernivtsi",
+      "count": 2,
+      "coords": [
+        48.2917,
+        25.9352
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Bilhorod-Dnistrovskyi",
+      "count": 2,
+      "coords": [
+        46.1952,
+        30.3502
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Yuzhny",
+      "count": 2,
+      "coords": [
+        46.6228,
+        31.1033
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Izmail",
+      "count": 2,
+      "coords": [
+        45.3492,
+        28.84
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Dnipropetrovsk Oblast",
+      "count": 2,
+      "coords": [
+        48.4647,
+        35.0462
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Sumy",
+      "count": 2,
+      "coords": [
+        50.9216,
+        34.8003
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Ivano-Frankivsk region",
+      "count": 2,
+      "coords": [
+        48.9152404,
+        24.7086412
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Yalta",
+      "count": 2,
+      "coords": [
+        44.5025,
+        34.1665
+      ],
+      "source": "static"
+    },
+    {
+      "name": "the Soviet Union",
+      "count": 2,
+      "coords": [
+        56.3456965,
+        43.844463
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "the village of Davydkivtsi",
+      "count": 1,
+      "coords": [
+        48.52,
+        26.48
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Munich",
+      "count": 1,
+      "coords": [
+        48.1351,
+        11.582
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Krasnosillia",
+      "count": 1,
+      "coords": [
+        48.1167,
+        24.7167
+      ],
+      "source": "static"
+    },
+    {
+      "name": "the yard of building No",
+      "count": 1,
+      "coords": [
+        39.8924512,
+        -75.1716976
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "the Dardanelles Strait",
+      "count": 1,
+      "coords": [
+        40.2167,
+        26.4
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Moldova",
+      "count": 1,
+      "coords": [
+        47.4116,
+        28.3699
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Ivano-Frankivsk Oblast",
+      "count": 1,
+      "coords": [
+        48.9226,
+        24.7111
+      ],
+      "source": "static"
+    },
+    {
+      "name": "the Dnister basin",
+      "count": 1,
+      "coords": [
+        48.5,
+        27.0
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Edmonton",
+      "count": 1,
+      "coords": [
+        53.5461,
+        -113.4938
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Montreal",
+      "count": 1,
+      "coords": [
+        45.5017,
+        -73.5673
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Poltava Oblast",
+      "count": 1,
+      "coords": [
+        49.5883,
+        34.5514
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Moldavian SSR",
+      "count": 1,
+      "coords": [
+        47.4116,
+        28.3699
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Volyn Oblast",
+      "count": 1,
+      "coords": [
+        50.7472,
+        25.3254
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Novovolynsk",
+      "count": 1,
+      "coords": [
+        50.5261,
+        24.1628
+      ],
+      "source": "static"
+    },
+    {
+      "name": "the administrative building",
+      "count": 1,
+      "coords": [
+        -33.7893449,
+        151.0775477
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Voroshilovhrad Oblast",
+      "count": 1,
+      "coords": [
+        48.5671,
+        39.3171
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Lutuhyne Raion",
+      "count": 1,
+      "coords": [
+        48.4,
+        39.2
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Jerusalem",
+      "count": 1,
+      "coords": [
+        31.7683,
+        35.2137
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Reni",
+      "count": 1,
+      "coords": [
+        45.4564,
+        28.2828
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Rivne",
+      "count": 1,
+      "coords": [
+        50.6199,
+        26.2516
+      ],
+      "source": "static"
+    },
+    {
+      "name": "New York",
+      "count": 1,
+      "coords": [
+        40.7127281,
+        -74.0060152
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Philadelphia",
+      "count": 1,
+      "coords": [
+        39.9527237,
+        -75.1635262
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Detroit",
+      "count": 1,
+      "coords": [
+        42.3315509,
+        -83.0466403
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Chicago",
+      "count": 1,
+      "coords": [
+        41.8755616,
+        -87.6244212
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Cleveland",
+      "count": 1,
+      "coords": [
+        41.4996574,
+        -81.6936772
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Pavlohrad",
+      "count": 1,
+      "coords": [
+        48.5333,
+        35.8667
+      ],
+      "source": "static"
+    },
+    {
+      "name": "(Pavlohrad)",
+      "count": 1,
+      "coords": [
+        48.5316759,
+        35.8703695
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Belgium",
+      "count": 1,
+      "coords": [
+        50.6402809,
+        4.6667145
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Argentina",
+      "count": 1,
+      "coords": [
+        -34.9964963,
+        -64.9672817
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Crimea region",
+      "count": 1,
+      "coords": [
+        44.7705724,
+        34.2293563
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Italy",
+      "count": 1,
+      "coords": [
+        42.6384261,
+        12.674297
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Cyprus",
+      "count": 1,
+      "coords": [
+        34.9174159,
+        32.8899027
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Panama",
+      "count": 1,
+      "coords": [
+        8.559559,
+        -81.1308434
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Novorossiysk",
+      "count": 1,
+      "coords": [
+        44.7235,
+        37.7685
+      ],
+      "source": "static"
+    },
+    {
+      "name": "republic",
+      "count": 1,
+      "coords": [
+        39.8266503,
+        -97.6580834
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Kovalchuk",
+      "count": 1,
+      "coords": [
+        49.3826254,
+        27.6401969
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Kyivan Rus’",
+      "count": 1,
+      "coords": [
+        50.0078437,
+        36.2482593
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Israel",
+      "count": 1,
+      "coords": [
+        30.8124247,
+        34.8594762
+      ],
+      "source": "cache"
+    },
+    {
+      "name": "Winnipeg",
+      "count": 1,
+      "coords": [
+        49.8954,
+        -97.1385
+      ],
+      "source": "static"
+    },
+    {
+      "name": "the bathroom",
+      "count": 2,
+      "coords": null,
+      "source": "skipped"
+    },
+    {
+      "name": "the parcel reception department",
+      "count": 1,
+      "coords": null,
+      "source": "skipped"
+    },
+    {
+      "name": "the apartment",
+      "count": 1,
+      "coords": null,
+      "source": "skipped"
+    },
+    {
+      "name": "through a broken window",
+      "count": 1,
+      "coords": null,
+      "source": "skipped"
+    },
+    {
+      "name": "Zhdanov ports",
+      "count": 1,
+      "coords": null,
+      "source": "skipped"
+    }
+  ],
+  "total_geocoded": 80,
+  "total_failed": 5
+}

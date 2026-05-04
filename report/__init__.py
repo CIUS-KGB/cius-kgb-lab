@@ -91,6 +91,8 @@ _UI_TRANSLATIONS = {
     "intro_cap_b": {"en": "Inspect specific details (what the segment is about) and ideological layers (how it is phrased).", "uk": "Переглядати конкретні деталі (про що сегмент) та ідеологічні шари (як це сформульовано)."},
     "intro_cap_c": {"en": "Open human vs AI comparison tables and optional scans (PDF) when configured.", "uk": "Відкривати таблиці порівняння людина проти ШІ та за потреби скани (PDF)."},
     "intro_cap_d": {"en": "Use the Research Lab for corpus-level charts, maps, and glossary-backed definitions.", "uk": "Використовувати дослідницьку лабораторію для графіків по корпусу, карт та визначень у глосарії."},
+    "intro_cap_e": {"en": "Use the on-screen Cyrillic keyboard: open any document tab or the glossary, click in an English or Russian search field — the keyboard pops up so you can type without switching system layouts.", "uk": "Екранна кирилична клавіатура: відкрийте вкладку документа або глосарій і натисніть у поле пошуку (англійською чи російською) — з’явиться спливаюча клавіатура."},
+    "intro_cap_f": {"en": "Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.", "uk": "Альтернативні мітки з таблиці порівняння — кнопка «+»: модальне вікно; пропозиції зберігаються в браузері й експортуються як JSON."},
     "analysis_by_head": {"en": "Analysis by", "uk": "Аналіз за"},
     "viz_standalone_full_report": {"en": "Open full Research Lab", "uk": "Відкрити повну дослідницьку лабораторію"},
     "viz_standalone_subtitle": {"en": "Single-chart view. Language and chart choice sync with the main lab when possible.", "uk": "Окремий перегляд діаграми. Мова та вибір графіка синхронізуються з основною лабораторією за можливості."},
@@ -809,6 +811,13 @@ def run(
 
     glossary_framings = _filter_framings_for_document_ui(glossary_framings, config)
 
+    from datetime import datetime, timezone
+
+    build_stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    build_meta = (
+        f'<meta name="vozmezdie-report-built" content="{html_module.escape(build_stamp, quote=True)}"/>'
+    )
+
     body_attrs = (
         f'data-main-report="{html_module.escape(html_name, quote=True)}" '
         f'data-lab-viz="{html_module.escape(viz_html_name, quote=True)}"'
@@ -824,7 +833,7 @@ def run(
         taxonomy_framings=framings_ui,
     )
     parts = [
-        _head(body_attrs=body_attrs),
+        _head(body_attrs=body_attrs, build_meta=build_meta),
         _master_header(),
         '<div class="app-container">',
         _sidebar(documents, comparison_by_doc),
@@ -905,7 +914,7 @@ def run(
     parts.append("</body></html>")
 
     standalone_parts = [
-        _head(body_attrs='class="standalone-viz-page"'),
+        _head(body_attrs='class="standalone-viz-page"', build_meta=build_meta),
         _master_header(link_href=html_name, link_i18n_key="viz_standalone_full_report"),
         '<div class="standalone-viz-wrap">',
         '<p class="viz-standalone-subtitle" data-i18n="viz_standalone_subtitle">Single-chart view. Language and chart choice sync with the main lab when possible.</p>',
@@ -921,14 +930,18 @@ def run(
     return out_path
 
 
-def _head(*, body_attrs: str = "") -> str:
+def _head(*, body_attrs: str = "", build_meta: str = "") -> str:
     body_open = "<body>" if not body_attrs.strip() else f"<body {body_attrs.strip()}>"
-    return """<!DOCTYPE html>
+    meta_extra = (build_meta.strip() + "\n") if build_meta.strip() else ""
+    return (
+        """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vozmezdie — Research Lab</title>
+"""
+        + meta_extra
+        + """<title>Vozmezdie — Research Lab</title>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.0.2/wordcloud2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1375,7 +1388,9 @@ body.standalone-viz-page #viz-open-new-tab { display: none !important; }
 .agreement-hidden { display: none !important; }
 </style>
 </head>
-""" + body_open
+"""
+        + body_open
+    )
 
 
 def _master_header(*, link_href: Optional[str] = None, link_i18n_key: Optional[str] = None) -> str:
@@ -1414,7 +1429,8 @@ def _places_map_data_dir(config: Dict[str, Any]) -> Path:
     """Directory containing places_geocoded.json (and places_extracted.json).
 
     GitHub Pages builds set output.dir to docs/; pipeline artifacts stay in data/output/.
-    Prefer configured dir when the file exists there, otherwise fall back to data/output.
+    Prefer configured dir when the file exists there, otherwise fall back to data/output,
+    then docs/fixtures/ (committed snapshot for CI and reproducible Pages builds).
     """
     configured = Path(config.get("output", {}).get("dir", "data/output"))
     primary = _REPORT_ROOT / configured
@@ -1423,6 +1439,9 @@ def _places_map_data_dir(config: Dict[str, Any]) -> Path:
     fallback = _REPORT_ROOT / "data" / "output"
     if (fallback / "places_geocoded.json").exists():
         return fallback
+    fixtures = _REPORT_ROOT / "docs" / "fixtures"
+    if (fixtures / "places_geocoded.json").exists():
+        return fixtures
     return primary
 
 
@@ -2331,6 +2350,8 @@ def _intro_tab() -> str:
       <li data-i18n="intro_cap_b">Inspect specific details (what the segment is about) and ideological layers (how it is phrased).</li>
       <li data-i18n="intro_cap_c">Open human vs AI comparison tables and optional scans (PDF) when configured.</li>
       <li data-i18n="intro_cap_d">Use the Research Lab for corpus-level charts, maps, and glossary-backed definitions.</li>
+      <li data-i18n="intro_cap_e">Use the on-screen Cyrillic keyboard: open any document tab or the glossary, click in an English or Russian search field — the keyboard pops up so you can type without switching system layouts.</li>
+      <li data-i18n="intro_cap_f">Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.</li>
     </ul>
   </section>
 </div>

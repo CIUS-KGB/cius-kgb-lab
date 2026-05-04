@@ -10,11 +10,11 @@ GitHub Pages (cross-origin raw CDN URLs are often blocked in iframes).
 
 Uses output.report_html = index.html so standalone viz links back to the site root.
 
-Places map: pipeline writes places_geocoded.json under data/output/. The report falls back to
-that directory when output.dir is docs/ so GitHub Pages builds still embed the map without
-copying JSON into docs/.
+Places map: the report loads places_geocoded.json from the configured output dir, then
+data/output/, then docs/fixtures/ (committed snapshot for CI).
 
-Requires comparison_results.json (run full pipeline or run_report_only.py first).
+Requires comparison_results.json: default data/output/..., or docs/fixtures/comparison_results.json
+when the former is missing (fresh clone / CI).
 
 Commit docs/original_pdfs/ with the HTML when deploying Pages so scans are reachable.
 
@@ -81,6 +81,11 @@ def main() -> int:
         out_dir = Path(config.get("output", {}).get("dir", "data/output"))
         json_name = config.get("output", {}).get("intermediate_json", "comparison_results.json")
         json_path = ROOT / out_dir / json_name
+        if not json_path.exists():
+            fb = ROOT / "docs" / "fixtures" / "comparison_results.json"
+            if fb.exists():
+                json_path = fb
+                print(f"Using fixture comparison JSON: {json_path.relative_to(ROOT)}")
 
     if not json_path.exists():
         print(f"Not found: {json_path}")
