@@ -740,7 +740,8 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .colour-legend-details > summary::-webkit-details-marker { display: none; }
 .colour-legend-details .colour-legend { margin-top: 0; border: none; background: transparent; }
 .pdf-external-wrap { margin: 0 0 0.5rem; font-size: 0.9rem; }
-.pdf-external-wrap .pdf-open-tab { color: #7c2d12; font-weight: 500; }
+.pdf-open-tab-btn { background: none; border: none; padding: 0; margin: 0; font: inherit; cursor: pointer; color: #7c2d12; font-weight: 500; text-decoration: underline; text-align: left; }
+.pdf-open-tab-btn:hover { color: #991b1b; }
 .pdf-view-section .pdf-view-wrap { margin-top: 0.5rem; border: 1px solid #8b7355; border-radius: 4px; overflow: hidden; background: #fffef9; min-height: 120px; }
 .pdf-view-section iframe { width: 100%; height: 72vh; min-height: 440px; border: none; display: block; }
 .pdf-view-placeholder { padding: 1.25rem; color: #6b7280; font-size: 0.95rem; line-height: 1.5; }
@@ -1971,8 +1972,8 @@ def _doc_tab(
         pdf_section = f"""<details class="collapsible-section pdf-view-section" id="doc-section-pdf-{doc_id}">
   <summary data-i18n="pdf_view_summary">PDF view</summary>
   <div class="collapsible-body">
-    <p class="pdf-external-wrap"><a class="pdf-open-tab" href="{esc_pdf}" target="_blank" rel="noopener noreferrer" data-i18n="pdf_open_new_tab">Open PDF in new tab</a></p>
-    <div class="pdf-view-wrap"><iframe class="pdf-deferred" data-pdf-src="{esc_pdf}" src="about:blank" title="Document PDF"></iframe></div>
+    <p class="pdf-external-wrap"><button type="button" class="pdf-open-tab-btn" data-pdf-src="{esc_pdf}" data-i18n="pdf_open_new_tab">Open PDF in new tab</button></p>
+    <div class="pdf-view-wrap pdf-view-mount" data-pdf-src="{esc_pdf}"></div>
   </div>
 </details>"""
     else:
@@ -3456,12 +3457,14 @@ function initViz() {
 }
 function ensurePdfIframeLoaded(detailsEl) {
   if (!detailsEl) return;
-  var iframe = detailsEl.querySelector('iframe.pdf-deferred[data-pdf-src]');
-  if (!iframe) return;
-  var url = iframe.getAttribute('data-pdf-src');
+  var mount = detailsEl.querySelector('.pdf-view-mount[data-pdf-src]');
+  if (!mount || mount.querySelector('iframe')) return;
+  var url = mount.getAttribute('data-pdf-src');
   if (!url) return;
-  var cur = iframe.getAttribute('src') || '';
-  if (cur === 'about:blank' || cur === '') iframe.setAttribute('src', url);
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('title', 'Document PDF');
+  iframe.setAttribute('src', url);
+  mount.appendChild(iframe);
 }
 function openDocumentSection(docId, section) {
   var map = { pdf: 'doc-section-pdf-', text: 'doc-section-text-', compare: 'doc-section-compare-' };
@@ -3495,6 +3498,12 @@ function applySavedReaderLayout() {
 }
 document.addEventListener('DOMContentLoaded', function() {
   setLanguage(UI_LANG);
+  document.body.addEventListener('click', function(e) {
+    var btn = e.target && e.target.closest ? e.target.closest('.pdf-open-tab-btn') : null;
+    if (!btn) return;
+    var url = btn.getAttribute('data-pdf-src');
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
+  });
   document.querySelectorAll('details.pdf-view-section').forEach(function(det) {
     det.addEventListener('toggle', function() {
       if (det.open) ensurePdfIframeLoaded(det);
