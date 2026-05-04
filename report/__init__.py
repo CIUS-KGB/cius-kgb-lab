@@ -1410,10 +1410,26 @@ _PLACES_HISTORICAL: Dict[str, str] = {
 }
 
 
+def _places_map_data_dir(config: Dict[str, Any]) -> Path:
+    """Directory containing places_geocoded.json (and places_extracted.json).
+
+    GitHub Pages builds set output.dir to docs/; pipeline artifacts stay in data/output/.
+    Prefer configured dir when the file exists there, otherwise fall back to data/output.
+    """
+    configured = Path(config.get("output", {}).get("dir", "data/output"))
+    primary = _REPORT_ROOT / configured
+    if (primary / "places_geocoded.json").exists():
+        return primary
+    fallback = _REPORT_ROOT / "data" / "output"
+    if (fallback / "places_geocoded.json").exists():
+        return fallback
+    return primary
+
+
 def _load_places_map_data(config: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """Load geocoded places from data/output/places_geocoded.json if it exists."""
-    out_dir = Path(config.get("output", {}).get("dir", "data/output"))
-    path = _REPORT_ROOT / out_dir / "places_geocoded.json"
+    """Load geocoded places from places_geocoded.json under output dir or data/output."""
+    base = _places_map_data_dir(config)
+    path = base / "places_geocoded.json"
     if not path.exists():
         return []
     try:
@@ -1432,11 +1448,11 @@ def _load_places_map_data(config: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 def _load_places_map_data_enriched(config: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Load geocoded places with segments, doc counts, doc names, and historical notes."""
-    base = _load_places_map_data(config)
-    if not base:
+    base_list = _load_places_map_data(config)
+    if not base_list:
         return []
-    out_dir = Path(config.get("output", {}).get("dir", "data/output"))
-    extracted_path = _REPORT_ROOT / out_dir / "places_extracted.json"
+    base_dir = _places_map_data_dir(config)
+    extracted_path = base_dir / "places_extracted.json"
     doc_map_path = _REPORT_ROOT / "config" / "document_map.json"
     doc_names: Dict[str, str] = {}
     if doc_map_path.exists():
@@ -1456,7 +1472,7 @@ def _load_places_map_data_enriched(config: Dict[str, Any]) -> List[Dict[str, Any
         except Exception:
             pass
     enriched: List[Dict[str, Any]] = []
-    for p in base:
+    for p in base_list:
         name = p["name"]
         segs = place_segments.get(name, [])
         doc_counts: Dict[str, int] = {}

@@ -10,6 +10,10 @@ GitHub Pages (cross-origin raw CDN URLs are often blocked in iframes).
 
 Uses output.report_html = index.html so standalone viz links back to the site root.
 
+Places map: pipeline writes places_geocoded.json under data/output/. The report falls back to
+that directory when output.dir is docs/ so GitHub Pages builds still embed the map without
+copying JSON into docs/.
+
 Requires comparison_results.json (run full pipeline or run_report_only.py first).
 
 Commit docs/original_pdfs/ with the HTML when deploying Pages so scans are reachable.
