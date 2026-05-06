@@ -162,7 +162,7 @@ _DEFAULT_VIZ_EXPERIMENT_LABELS = ("Human Segmented", "AI Segmented")
 
 
 def _nav_label(doc: Dict[str, Any]) -> str:
-    """Short label for sidebar, tabs, charts, glossary chrome; full ``display_name`` stays on document headers."""
+    """Short label for sidebar, tabs, charts, glossary chrome. Document page title uses ``bibliographic_title`` when set."""
     did = str(doc.get("document_id", "") or "")
     return str(doc.get("short_title") or doc.get("display_name") or did)
 
@@ -230,10 +230,6 @@ _UI_TRANSLATIONS = {
         "uk": "Спочатку модель сама будує проміжки, потім ставить мітки. Тож кількість рядків і вирівнювання можуть не збігатися з людинним прогоном.",
     },
     "intro_seg_vs": {"en": "vs", "uk": "проти"},
-    "intro_seg_footnote": {
-        "en": "When two alignment runs ship together, comparison tables may show both modes side by side (pair those views with Research Lab charts).",
-        "uk": "Якщо завантажено два прогони вирівнювання, у таблицях порівняння обидва режими можуть бути поруч (поєднуйте з графіками Дослідницької лабораторії).",
-    },
     "analysis_by_head": {"en": "Analysis by", "uk": "Аналіз за"},
     "viz_standalone_full_report": {"en": "Open full Research Lab", "uk": "Відкрити повну дослідницьку лабораторію"},
     "viz_standalone_subtitle": {"en": "Single-chart view. Language and chart choice sync with the main lab when possible.", "uk": "Окремий перегляд діаграми. Мова та вибір графіка синхронізуються з основною лабораторією за можливості."},
@@ -340,7 +336,6 @@ _UI_TRANSLATIONS = {
     "label_suggestion_cancel": {"en": "Cancel", "uk": "Скасувати"},
     "label_suggestion_download": {"en": "Download all suggestions (JSON)", "uk": "Завантажити всі пропозиції (JSON)"},
     "label_suggestion_saved_ok": {"en": "Suggestion saved locally.", "uk": "Пропозицію збережено локально."},
-    "label_suggestion_hidden_json_hint": {"en": "All suggestions are mirrored in the hidden JSON block at the bottom of this page (and in localStorage) for export.", "uk": "Усі пропозиції дублюються у прихованому JSON-блоці внизу сторінки (та в localStorage) для експорту."},
     "label_suggestion_document_id": {"en": "Document ID", "uk": "ID документа"},
     "label_suggestion_row_index": {"en": "Row index", "uk": "Індекс рядка"},
     "english": {"en": "English", "uk": "Англійська"},
@@ -473,7 +468,7 @@ _UI_TRANSLATIONS = {
     "viz_calc_segment_length_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mi>len</mi><mo>(</mo><mi>entry_eng</mi><mo>)</mo><mo>,</mo><mi>len</mi><mo>(</mo><mi>entry_rus</mi><mo>)</mo><mo>)</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo>=</mo><msub><mn>1</mn><mrow><mo>[</mo><mtext>both_match</mtext><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Range:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>accuracy</mi><mo>(</mo><mi>bin</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_in_bin</mi></mrow><mrow><mi>total_in_bin</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>&#x2265;</mo><mn>50</mn><mo>,</mo><mi>n</mi><mo>&#x2265;</mo><mn>15</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Single:</mtext><mspace width=\"0.5em\"/><mi>accuracy</mi><mo>(</mo><mi>len</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_at_len</mi></mrow><mrow><mi>total_at_len</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mtext>довжин</mtext><mo>)</mo><mo>;</mo><mi>y</mi><mo>=</mo><mn>1</mn><mtext> якщо збіг</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn><mo>;</mo><mi>accuracy</mi><mo>=</mo><mi>matched</mi><mo>/</mo><mi>total</mi></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Діапазон:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>15</mn><mo>,</mo><mi>len</mi><mo>&#x2265;</mo><mn>50</mn><mo>;</mo><mtext>одна довжина:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>"},
     "viz_calc_segment_length_technical": {"en": "length = max(len(entry_eng), len(entry_rus)): we take the longer of the two because both texts contribute to the classification. y = 1[both_match]: we count a segment as correct only when both category and framing agree. Bins of 25 chars avoid sparse data; excluding len < 50 removes noisy very-short segments. n ≥ 15 per bin (range) and n ≥ 5 (single length) ensure the \"most accurate\" stat is not driven by tiny samples.", "uk": "length = max(довжин): беремо довшу, бо обидва тексти впливають на класифікацію. y = 1[збіг]: правильний лише коли збігаються категорія й фреймінг. Біни 25 символів уникaють розріджених даних; len<50 виключаємо. n≥15 (діапазон) і n≥5 (одна довжина): щоб «найточніше» не базувалося на малих вибірках."},
     "viz_calc_radar_simple": {"en": "axis_value(cat) is the number of segments in the selected documents with category cat. In all mode, selected_docs = all documents.", "uk": "axis_value(cat): кількість сегментів з cat у вибраних doc. У режимі all: усі документи."},
-    "viz_calc_places_map_simple": {"en": "Places mentioned in Places-tagged segments are extracted, normalized, and geocoded. Marker size reflects how many segments mention each place. Run scripts/extract_places.py and scripts/geocode_places.py to refresh data.", "uk": "Місця з сегментів категорії Places екстрактуються, нормалізуються та геокодуються. Розмір маркера відображає кількість сегментів із згадкою місця."},
+    "viz_calc_places_map_simple": {"en": "Location names come from segments in your texts tagged as Places. We normalize them and plot coordinates when geocoding succeeds. Larger markers mean the place appears in more segments (each Russian / English slice counts once when present). Run scripts/extract_places.py and scripts/geocode_places.py to refresh data.", "uk": "Назви місць беруться з сегментів категорії Places у документах; нормалізуємо й ставимо на карту після геокодування. Більший маркер означає більше сегментів із згадкою місця (рахуємо кожний шматок тексту окремо, коли він є)."},
     "viz_calc_radar_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>axis_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><mtext>selected_docs</mtext><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>all mode:</mtext><mspace width=\"0.5em\"/><mtext>selected_docs = all documents</mtext></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>axis_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів з cat у вибраних doc</mtext></mrow></math>"},
     "viz_calc_radar_technical": {"en": "axis_value(cat) = |{s ∈ selected_docs : s.category = cat}|. Each axis shows one category's count so we can compare the shape of documents. In single mode, selected_docs = one document. In compare mode, multiple documents overlaid. In all mode, selected_docs = all documents so we see the aggregate profile.", "uk": "axis_value(cat) = |{s ∈ selected_docs : s.category = cat}|. Кожна вісь = одна категорія. All mode: selected_docs = усі документи."},
     "viz_calc_agreement_cat_simple": {"en": "We measure how often the LLM agrees with the human expert on each category. matched(cat) = segments where both chose cat. total(cat) = segments where the human chose cat (we use human as the denominator because we are measuring LLM accuracy against ground truth). agreement = 100 × matched / total. Why per category? Some categories may be easier or harder for the LLM.", "uk": "Вимірюємо згоду LLM з експертом по категоріях. matched = де обидва обрали cat; total = де human обрала cat. agreement = 100 × matched / total. total базується на human як еталоні."},
@@ -1075,6 +1070,7 @@ def run(
     for idx, doc in enumerate(documents):
         doc_id = doc.get("document_id", "")
         display_name = doc.get("display_name", doc_id)
+        page_heading = str(doc.get("bibliographic_title") or "").strip() or display_name
         comp = comparison_by_doc.get(doc_id, {})
         aligned = comp.get("aligned_rows", [])
         cat_pct = comp.get("category_accuracy_pct", 0)
@@ -1110,7 +1106,7 @@ def run(
         parts.append(
             _doc_tab(
                 doc_id,
-                display_name,
+                page_heading,
                 aligned,
                 cat_pct,
                 fram_pct,
@@ -1222,8 +1218,8 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 @media (max-width: 768px) { .sidebar { width: 100%; min-width: auto; } .app-container { flex-direction: column; } }
-.header { background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%); color: #f5f0e6; padding: 2rem; border-radius: 4px; margin-bottom: 2rem; border: 1px solid #8b7355; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
-.header h2 { font-family: 'Crimson Text', Georgia, serif; }
+.header { background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%); color: #f5f0e6; padding: 1.25rem 1.5rem; border-radius: 4px; margin-bottom: 2rem; border: 1px solid #8b7355; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.header h2 { font-family: 'Crimson Text', Georgia, serif; font-size: 1.05rem; line-height: 1.55; font-weight: 600; margin: 0; max-width: 100%; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
 .stat-card { background: #e8e4dc; padding: 1.5rem; border-radius: 4px; text-align: center; border: 1px solid #8b7355; }
 .stat-number { font-size: 2rem; font-weight: bold; color: #2d3748; font-family: 'JetBrains Mono', monospace; }
@@ -2315,6 +2311,7 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
     .demo-header h1 {{ margin: 0; font-size: 1.5rem; font-weight: 600; }}
     .demo-header .badge {{ display: inline-block; margin-left: 0.5rem; padding: 0.2rem 0.5rem; font-size: 0.75rem; background: #8b0000; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }}
     .demo-header p {{ margin: 0.5rem 0 0; font-size: 0.9rem; opacity: 0.9; }}
+    .demo-header .demo-header-tagline {{ margin: 0.35rem 0 0; font-size: 0.82rem; opacity: 0.85; font-style: italic; }}
     #map {{ height: calc(100vh - 100px); min-height: 400px; }}
     .leaflet-popup-content {{ margin: 0.5rem 0.75rem; font-family: 'Crimson Text', Georgia, serif; font-size: 0.9rem; max-width: 320px; max-height: 70vh; overflow-y: auto; }}
     .leaflet-popup-content strong {{ color: #8b0000; }}
@@ -2335,7 +2332,7 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
 <body>
   <div class="demo-header">
     <h1>Places Map <span class="badge">Declassified</span></h1>
-    <p>Places mentioned in the loaded documents (Places-tagged segments). Marker size reflects how many segments mention each place. The eyes of the KGB are upon you.</p>
+    <p class="demo-header-tagline">The eyes of the KGB are upon you.</p>
   </div>
   <div id="map"></div>
 
@@ -2985,7 +2982,6 @@ def _intro_tab() -> str:
           <p class="intro-seg-desc" data-i18n="intro_seg_ai_desc">The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the human-sliced run.</p>
         </div>
       </div>
-      <p class="intro-seg-footnote" data-i18n="intro_seg_footnote">When two alignment runs ship together, comparison tables may show both modes side by side (pair those views with Research Lab charts).</p>
     </div>
   </section>
   <section class="homepage-section intro-video-section">
@@ -3019,7 +3015,6 @@ def _label_suggestion_modal_html() -> str:
       <label for="label-suggestion-notes" data-i18n="label_suggestion_notes">Notes (optional)</label>
       <textarea id="label-suggestion-notes" rows="3" data-i18n-placeholder="label_suggestion_notes_placeholder" placeholder="Reasoning, citations, or other context…"></textarea>
     </div>
-    <p class="label-suggestion-hint" style="font-size:0.8rem;color:#6b7280;margin:0 0 0.5rem;line-height:1.4;" data-i18n="label_suggestion_hidden_json_hint"></p>
     <div id="label-suggestion-status" class="label-suggestion-status" role="status"></div>
     <div class="label-suggestion-actions">
       <button type="button" class="label-suggestion-save-btn" id="label-suggestion-save-btn" data-i18n="label_suggestion_save">Save suggestion</button>
@@ -3438,7 +3433,7 @@ def _document_text_panels_html_from_aligned(
 
 def _doc_tab(
     doc_id: str,
-    display_name: str,
+    page_heading: str,
     aligned: List[Dict],
     cat_pct: float,
     fram_pct: float,
@@ -3468,6 +3463,7 @@ def _doc_tab(
     viz_experiment_labels: Optional[Tuple[str, str]] = None,
     experiment_b_agent_rows: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
+    """One document tab: ``page_heading`` is the blue-gradient banner title (bibliographic citation when configured)."""
     active_class = " active" if active else ""
     dual_compare = comparison_secondary_aligned is not None
     aligned_b = comparison_secondary_aligned if dual_compare else []
@@ -3677,7 +3673,7 @@ def _doc_tab(
         )
     return f"""
 {tab_attrs}
-<div class="header"><h2>{display_name}</h2></div>
+<div class="header"><h2>{page_heading}</h2></div>
 {hidden_stats}
 {doc_text_runs_embed}
 {pdf_section}

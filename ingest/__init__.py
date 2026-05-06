@@ -317,6 +317,9 @@ def run(config: Dict[str, Any], root: Optional[Path] = None) -> List[Dict[str, A
                     stitle = item.get("short_title")
                     if isinstance(stitle, str) and stitle.strip():
                         entry["short_title"] = stitle.strip()
+                    bib_title = item.get("bibliographic_title")
+                    if isinstance(bib_title, str) and bib_title.strip():
+                        entry["bibliographic_title"] = bib_title.strip()
                     en_filename = item.get("en_filename")
                     if en_filename is None and "en_filename" in item:
                         entry["raw_text_en"] = ""

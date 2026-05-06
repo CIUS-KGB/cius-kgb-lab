@@ -13,6 +13,7 @@
     .demo-header h1 { margin: 0; font-size: 1.5rem; font-weight: 600; }
     .demo-header .badge { display: inline-block; margin-left: 0.5rem; padding: 0.2rem 0.5rem; font-size: 0.75rem; background: #8b0000; border-radius: 4px; font-family: 'JetBrains Mono', monospace; }
     .demo-header p { margin: 0.5rem 0 0; font-size: 0.9rem; opacity: 0.9; }
+    .demo-header .demo-header-tagline { margin: 0.35rem 0 0; font-size: 0.82rem; opacity: 0.85; font-style: italic; }
     #map { height: calc(100vh - 100px); min-height: 400px; }
     .leaflet-popup-content { margin: 0.5rem 0.75rem; font-family: 'Crimson Text', Georgia, serif; font-size: 0.9rem; max-width: 320px; max-height: 70vh; overflow-y: auto; }
     .leaflet-popup-content strong { color: #8b0000; }
@@ -33,7 +34,7 @@
 <body>
   <div class="demo-header">
     <h1>Places Map <span class="badge">Declassified</span></h1>
-    <p>Places mentioned in the loaded documents (Places-tagged segments). Marker size reflects how many segments mention each place. The eyes of the KGB are upon you.</p>
+    <p class="demo-header-tagline">The eyes of the KGB are upon you.</p>
   </div>
   <div id="map"></div>
 
