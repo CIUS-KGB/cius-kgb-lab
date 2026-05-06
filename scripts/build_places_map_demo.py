@@ -45,7 +45,7 @@ def main():
 <body>
   <div class="demo-header">
     <h1>Places Map <span class="badge">Declassified</span></h1>
-    <p>Places mentioned in KGB archival documents. Marker size = segment count. The eyes of the archive are upon you.</p>
+    <p>Places come from passages labelled Places in the documents. Larger markers mean more passages mention that spot. The eyes of the KGB are upon you.</p>
   </div>
   <div id="map"></div>
 
