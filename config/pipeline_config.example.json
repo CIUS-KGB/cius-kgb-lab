@@ -60,66 +60,66 @@
     "secondary_comparison_json": "docs/fixtures/comparison_results_experiment_b.json",
     "experiment_b_agent_assessments_json": "data/experiments/exp_b_free_segment/agent_assessments.json",
     "viz_experiment_labels": [
-      "Experiment A (human-aligned slices)",
-      "Experiment B (free segmentation)"
+      "Human Segmented (expert-aligned slices)",
+      "AI Segmented (model-proposed boundaries)"
     ],
     "document_ui_exclude_framings": ["Generic / Neutral Language"],
     "ui_translation_overrides": {
       "comparison_model_side_short": {
-        "en": "Experiment A",
-        "uk": "Експ. A"
+        "en": "Human Seg.",
+        "uk": "Люд. сегм."
       },
       "colour_by_llm": {
-        "en": "Colour by: Experiment A",
-        "uk": "Колір за: експ. A"
+        "en": "Colour by: Human Segmented run",
+        "uk": "Колір за: прогін «Людина-сегментація»"
       },
-      "colour_by_note": {
-        "en": "Colour by: Experiment A / Human / Both (agree). Specific-detail and ideological-layer colours apply only when that filter is not None.",
-        "uk": "Колір за: експ. A / Людина / Обидва (згода). Кольори застосовуються лише коли відповідний фільтр не Немає."
+      "document_text_legend_note": {
+        "en": "Dashed underlines mark segments with no aligned partner in the other column. Colour by (LLM / Human / Both) uses labels from the Human Segmented run unless you switch Comparison run to AI Segmented. Specific-detail and ideological-layer colours apply only when those filters are not None.",
+        "uk": "Пунктир позначає сегменти без вирівняного партнера. «Колір за» типово бере мітки з прогону «Людина-сегментація», доки не перемкнете Comparison run на «ШІ-сегментація». Кольори деталей і шарів — лише коли фільтри не «Немає»."
       },
       "comparison_table": {
-        "en": "Human ground truth vs Experiment A (human-aligned slices) — Comparison Table",
-        "uk": "Еталон експерта vs експеримент A (людинні зрізи) — таблиця порівняння"
+        "en": "Expert ground truth vs Human Segmented — Comparison Table",
+        "uk": "Еталон експерта vs людина-сегментація — таблиця порівняння"
       },
       "project_description": {
-        "en": "This Research Lab presents the main evaluation run for the Vozmezdie corpus: archival segments were coded under Experiment A (human-aligned slices; same boundaries as filtered expert ground truth, blind to sheet labels), then compared to retained expert labels on those slices. The interactive report adds bilingual text views, glossary-backed definitions, and corpus visualizations. Technical pipeline fields still use llm_* names internally.",
-        "uk": "Лабораторія показує основний еталонний прогін корпусу Vozmezdie: сегменти класифіковані за експериментом A (людинні зрізи; ті самі межі що й відфільтрований експертний GT), порівняно зі збереженими експертними мітками. Інтерактивний звіт: двомовний текст, глосарій, візуалізації. У технічних полях даних досі використовуються імена llm_*."
+        "en": "This Research Lab presents the main evaluation run for the Vozmezdie corpus: segments were coded under Human Segmented boundaries (same slices as filtered expert ground truth, blind to sheet labels), then compared to retained expert labels on those slices. The interactive report adds bilingual text views, glossary-backed definitions, and corpus visualizations. Technical pipeline fields still use llm_* names internally.",
+        "uk": "Лабораторія показує основний прогін корпусу Vozmezdie: сегменти за межами людина-сегментації (як у відфільтрованому експертному GT), порівняно з експертними мітками. Інтерактивний звіт: двомовний текст, глосарій, візуалізації. У даних досі використовуються імена llm_*."
       },
       "intro_cap_c": {
-        "en": "Open comparison tables of expert ground truth vs Experiment A and optional scans (PDF) when configured.",
-        "uk": "Відкривати таблиці порівняння еталону експерта з експериментом A та за потреби PDF."
+        "en": "Open comparison tables of expert ground truth vs Human Segmented and optional scans (PDF) when configured.",
+        "uk": "Таблиці порівняння еталону з людина-сегментацією та за потреби PDF."
       },
       "doc_text_cap_lab": {
-        "en": "Pair this view with the Research Lab charts to compare expert ground truth and Experiment A side by side.",
-        "uk": "Поєднуйте з графіками лабораторії для порівняння еталону та експерименту A."
+        "en": "Pair this view with Research Lab charts to compare Human Segmented and AI Segmented side by side.",
+        "uk": "Поєднуйте з графіками лабораторії для порівняння людина-сегментація та ШІ-сегментація."
       },
       "viz_sankey": {
-        "en": "Expert ground truth to Experiment A label flow",
-        "uk": "Потік міток: експерт → експ. A"
+        "en": "Expert ground truth to Human Segmented label flow",
+        "uk": "Потік міток: експерт → людина-сегментація"
       },
       "viz_calc_segment_length_simple": {
-        "en": "We test whether shorter or longer segments are easier for Experiment A codings to match expert ground truth. Each point is a segment: x = length (chars), y = 1 if both category and framing matched the expert, else 0. We use max(entry_eng, entry_rus). We bin by 25 chars; exclude lengths < 50; qualified bins need ≥15 segments (≥5 at a single length).",
-        "uk": "Чи довжина сегмента впливає на збіг з експертом для експ. A: X = довжина, Y = 1 якщо збіг категорії й фреймінгу з еталоном."
+        "en": "We test whether shorter or longer segments are easier for Human Segmented codings to match expert ground truth. Each point is a segment: x = length (chars), y = 1 if both category and framing matched the expert, else 0. We use max(entry_eng, entry_rus). We bin by 25 chars; exclude lengths < 50; qualified bins need ≥15 segments (≥5 at a single length).",
+        "uk": "Чи довжина сегмента впливає на збіг з експертом для людина-сегментації: X = довжина, Y = 1 якщо збіг категорії й фреймінгу з еталоном."
       },
       "viz_calc_agreement_cat_simple": {
-        "en": "How often Experiment A agrees with the expert on each category. matched(cat) = both chose cat; total(cat) = expert chose cat; agreement = 100 × matched / total.",
-        "uk": "Згода експ. A з експертом по категоріях: matched/total (total за експертом)."
+        "en": "How often Human Segmented agrees with the expert on each category. matched(cat) = both chose cat; total(cat) = expert chose cat; agreement = 100 × matched / total.",
+        "uk": "Згода людина-сегментація з експертом по категоріях: matched/total (total за експертом)."
       },
       "viz_calc_agreement_fram_simple": {
-        "en": "Same as agreement by category, but for framing: Experiment A vs expert.",
-        "uk": "Те саме для фреймінгу між експ. A та експертом."
+        "en": "Same as agreement by category, but for framing: Human Segmented vs expert.",
+        "uk": "Те саме для фреймінгу між людина-сегментація та експертом."
       },
       "viz_calc_confusion_cat_simple": {
-        "en": "How Experiment A category labels map to the expert's. Rows = expert, columns = Experiment A.",
-        "uk": "Матриця плутанини категорій: рядки = експерт, стовпці = експ. A."
+        "en": "How Human Segmented category labels map to the expert's. Rows = expert, columns = Human Segmented.",
+        "uk": "Матриця плутанини категорій: рядки = експерт, стовпці = людина-сегментація."
       },
       "viz_calc_confusion_fram_simple": {
-        "en": "Same for framing: expert rows vs Experiment A columns.",
-        "uk": "Матриця фреймінгу: експерт vs експ. A."
+        "en": "Same for framing: expert rows vs Human Segmented columns.",
+        "uk": "Матриця фреймінгу: експерт vs людина-сегментація."
       },
       "viz_calc_mismatch_simple": {
         "en": "Error buckets vs expert: both_match; cat_only; fram_only; both_mismatch.",
-        "uk": "Типи розбіжностей з еталоном експерта для експ. A."
+        "uk": "Типи розбіжностей з еталоном експерта для людина-сегментації."
       }
     }
   }
