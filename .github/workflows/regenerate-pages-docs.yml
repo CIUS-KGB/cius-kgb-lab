@@ -16,6 +16,7 @@ on:
       - 'run.py'
       - 'run_report_only.py'
       - 'scripts/build_github_pages_docs.py'
+      - 'scripts/sync_github_pages_fixtures.py'
       - 'docs/fixtures/**'
       - 'landing/**'
 

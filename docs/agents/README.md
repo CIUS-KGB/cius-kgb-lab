@@ -34,6 +34,7 @@ Essential documentation for AI agents and contributors. Start here.
 | **Ground truth from HTML (loading, contract, checklist)** | [INSTRUCTIONS_GROUND_TRUTH_HTML.md](INSTRUCTIONS_GROUND_TRUTH_HTML.md) |
 | **Document text view behaviour, dropdown/span fixes** | [TEXT_VIEW_ASSESSMENT.md](TEXT_VIEW_ASSESSMENT.md) |
 | **Places map (extraction, geocoding, report integration)** | [PLACES_MAP_REFERENCE.md](PLACES_MAP_REFERENCE.md) |
+| **GitHub Pages: sync fixtures, regenerate docs, fix HTML merge conflicts** | [PAGES_SYNC_AND_MERGE_CONFLICTS.md](PAGES_SYNC_AND_MERGE_CONFLICTS.md) |
 | **Taxonomy churn, report regen, viz/Cyrillic/word-cloud notes (Apr 2026)** | [REPORT_AND_TAXONOMY_UPDATES.md](REPORT_AND_TAXONOMY_UPDATES.md) |
 | **Baseline before per-document viz + dynamic taxonomy** | [PER_DOC_VIZ_BASELINE.md](PER_DOC_VIZ_BASELINE.md) |
 
@@ -56,3 +57,7 @@ Essential documentation for AI agents and contributors. Start here.
 | **INSTRUCTIONS_EXPERIMENT_NO_GENERIC_FRAMING.md** | Experiment: Cursor agent assesses framing without Generic / Neutral; new data files, no overwrite. |
 | **INSTRUCTIONS_GROUND_TRUTH_HTML.md** | How to load ground truth from HTML; contract and checklist. |
 | **TEXT_VIEW_ASSESSMENT.md** | Document text view: server-filled vs table-built, dropdown population, known fixes. |
+| **PLACES_MAP_REFERENCE.md** | Places pipeline, report integration, troubleshooting. |
+| **PAGES_SYNC_AND_MERGE_CONFLICTS.md** | Sync local JSON into `docs/fixtures/`, regenerate Pages HTML; fix merge conflicts without hand-editing generated HTML. |
+| **REPORT_AND_TAXONOMY_UPDATES.md** | Taxonomy churn notes, report regeneration, viz/Cyrillic/word cloud. |
+| **PER_DOC_VIZ_BASELINE.md** | Baseline before per-document viz + dynamic taxonomy. |
