@@ -314,6 +314,9 @@ def run(config: Dict[str, Any], root: Optional[Path] = None) -> List[Dict[str, A
                         "path": str(ru_path),
                         "raw_text": raw_text,
                     }
+                    stitle = item.get("short_title")
+                    if isinstance(stitle, str) and stitle.strip():
+                        entry["short_title"] = stitle.strip()
                     en_filename = item.get("en_filename")
                     if en_filename is None and "en_filename" in item:
                         entry["raw_text_en"] = ""
