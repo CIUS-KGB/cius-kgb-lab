@@ -158,6 +158,7 @@ _DEFAULT_PALETTE = [
     "#eab308", "#64748b", "#06b6d4", "#d946ef", "#78716c", "#fb923c",
     "#2dd4bf", "#c084fc", "#4ade80",
 ]
+_DEFAULT_VIZ_EXPERIMENT_LABELS = ("Human Segmented", "AI Segmented")
 # UI translations: en (English), uk (Ukrainian)
 _UI_TRANSLATIONS = {
     "declassified": {"en": "Declassified", "uk": "Розсекречено"},
@@ -174,9 +175,9 @@ _UI_TRANSLATIONS = {
     "intro_cap_f": {"en": "Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.", "uk": "Альтернативні мітки з таблиці порівняння — кнопка «+»: модальне вікно; пропозиції зберігаються в браузері й експортуються як JSON."},
     "intro_lead_para": {"en": "This page orients you to the project. Use the shortcuts below to open corpus tools in this same page, or watch the walkthrough at the end.", "uk": "Ця сторінка допомагає орієнтуватися в проєкті. Скорочення нижче відкривають інструменти корпусу на цій же сторінці; наприкінці — відеоогляд."},
     "intro_open_lab_heading": {"en": "Open the Research Lab", "uk": "Відкрити дослідницьку лабораторію"},
-    "intro_go_lab_btn": {"en": "Research Lab (charts & glossary)", "uk": "Лабораторія (діаграми й глосарій)"},
+    "intro_go_lab_btn": {"en": "Research Lab", "uk": "Дослідницька лабораторія"},
     "intro_jump_glossary_btn": {"en": "Jump to glossary", "uk": "Перейти до глосарію"},
-    "intro_open_lab_note": {"en": "You are already in the app; these buttons switch the main panel. The glossary sits at the bottom of the Research Lab tab.", "uk": "Ви вже в застосунку; ці кнопки перемикають основну панель. Глосарій — внизу вкладки «Дослідницька лабораторія»."},
+    "intro_open_lab_note": {"en": "Switch to the Research Lab tab for charts, maps, and the glossary at the bottom of that page.", "uk": "Перейдіть на вкладку лабораторії для діаграм, карти та глосарія внизу сторінки."},
     "intro_tools_heading": {"en": "Ways to interact with the data", "uk": "Як працювати з даними"},
     "intro_tools_lead": {"en": "Each capability lives in this Research Lab unless noted. Combine close reading with corpus-level patterns.", "uk": "Можливості нижче доступні в цій лабораторії. Поєднуйте читання тексту з оглядом корпусу."},
     "intro_tool_doc_tag": {"en": "Document tabs", "uk": "Вкладки документів"},
@@ -209,6 +210,10 @@ _UI_TRANSLATIONS = {
     "intro_fw_specific_sub": {"en": "Content data · categories", "uk": "Контентні дані · категорії"},
     "intro_fw_ideo_label": {"en": "Ideological Layers", "uk": "Ідеологічні шари"},
     "intro_fw_ideo_sub": {"en": "Language data · framing", "uk": "Мовні дані · фреймінг"},
+    "intro_framework_segmentation_note": {
+        "en": "Two segmentation modes appear in comparisons: Human Segmented uses the same paragraph boundaries as the expert reference (human-defined slices). AI Segmented lets the model propose its own boundaries before labelling—so segment counts and alignment can differ.",
+        "uk": "У порівняннях є два режими сегментації: «Людина-сегментація» зберігає межі абзаців як у експертному еталоні. «ШІ-сегментація» дає моделі самій запропонувати межі перед розміткою — тому кількість сегментів і вирівнювання можуть відрізнятися.",
+    },
     "analysis_by_head": {"en": "Analysis by", "uk": "Аналіз за"},
     "viz_standalone_full_report": {"en": "Open full Research Lab", "uk": "Відкрити повну дослідницьку лабораторію"},
     "viz_standalone_subtitle": {"en": "Single-chart view. Language and chart choice sync with the main lab when possible.", "uk": "Окремий перегляд діаграми. Мова та вибір графіка синхронізуються з основною лабораторією за можливості."},
@@ -228,25 +233,25 @@ _UI_TRANSLATIONS = {
     "reader_layout_split": {"en": "Side-by-side", "uk": "Поруч"},
     "reader_layout_stacked": {"en": "Stacked", "uk": "Стовпчиком"},
     "viz_open_new_tab": {"en": "Open this chart in new tab", "uk": "Відкрити цю діаграму в новій вкладці"},
-    "comparison_table": {"en": "Human-led vs AI-led Analysis — Comparison Table", "uk": "Людині проти ШІ — таблиця порівняння"},
+    "comparison_table": {"en": "Expert vs Human Segmented — Comparison Table", "uk": "Експерт vs людина-сегментація — таблиця порівняння"},
     "comparison_b_header_detail": {"en": "Model · specific detail", "uk": "Модель · конкретна деталь"},
     "comparison_b_header_framing": {"en": "Model · ideological layer", "uk": "Модель · ідеологічний шар"},
     "comparison_b_col_row_num": {"en": "#", "uk": "№"},
     "comparison_table_run_b_blurb": {
-        "en": "This is a separate experiment table (different segments and alignment than Experiment A). Cells emphasize the model; expert labels appear when they disagree.",
-        "uk": "Окрема експериментальна таблиця (інші сегменти й вирівнювання, ніж у експерименті A). Клітинки підкреслюють модель; мітки експерта показано лише за розбіжності.",
+        "en": "This table uses the AI Segmented run: different segment boundaries and alignment than Human Segmented. Cells emphasize the model; expert labels appear when they disagree.",
+        "uk": "Таблиця для режиму «ШІ-сегментація»: інші межі й вирівнювання, ніж у «Людина-сегментація». Клітинки підкреслюють модель; мітки експерта — лише за розбіжності.",
     },
     "exp_b_prelim_summary": {
-        "en": "Experiment B — assessor segments (no comparison)",
-        "uk": "Експеримент B — сегменти оцінювача (без порівняння)",
+        "en": "AI Segmented — assessor segments (no comparison)",
+        "uk": "ШІ-сегментація — сегменти оцінювача (без порівняння)",
     },
     "exp_b_prelim_intro": {
-        "en": "Rows come from the Experiment B agent assessments file (same source as preliminary_results.html): assessor-defined segments with category, framing, Russian and English text, and context. There are no expert or model comparison columns.",
-        "uk": "Рядки з файлу оцінок експерименту B (джерело як у preliminary_results.html): межі та мітки оцінювача; без стовпців порівняння з експертом чи моделлю.",
+        "en": "Rows come from the AI Segmented agent assessments file (same source as preliminary_results.html): assessor-defined segments with category, framing, Russian and English text, and context. There are no expert or model comparison columns.",
+        "uk": "Рядки з файлу оцінок режиму ШІ-сегментації (джерело як у preliminary_results.html): межі та мітки оцінювача; без стовпців порівняння з експертом чи моделлю.",
     },
     "exp_b_prelim_empty_doc": {
-        "en": "No assessor segments are recorded for this document in the configured Experiment B agent assessments file.",
-        "uk": "У налаштованому файлі оцінок експерименту B для цього документа немає сегментів.",
+        "en": "No assessor segments are recorded for this document in the configured AI Segmented agent assessments file.",
+        "uk": "У налаштованому файлі оцінок ШІ-сегментації для цього документа немає сегментів.",
     },
     "comparison_model_side_short": {"en": "LLM", "uk": "LLM"},
     "comparison_human_side_short": {"en": "Human", "uk": "Людина"},
@@ -261,6 +266,10 @@ _UI_TRANSLATIONS = {
     "framing_text_colour": {"en": "Ideological layer (text colour)", "uk": "Ідеологічний шар (колір тексту)"},
     "orphan_note": {"en": "Segments with a dashed underline have no corresponding segment in the other panel; hover for tooltip.", "uk": "Сегменти з пунктирною лінією не мають відповідного сегмента в іншій панелі; наведіть для підказки."},
     "colour_by_note": {"en": "Colour by: LLM / Human / Both (agree). Specific-detail and ideological-layer colours apply only when that filter is not None.", "uk": "Колір за: LLM / Людина / Обидва (згода). Кольори конкретних деталей і ідеологічних шарів застосовуються лише коли відповідний фільтр не Немає."},
+    "document_text_legend_note": {
+        "en": "Dashed underlines mark segments with no aligned partner in the other column. Colour by (LLM / Human / Both) chooses whose labels tint the text; specific-detail and ideological-layer colours apply only when those filters are not None. When both Human Segmented and AI Segmented runs are bundled, pick the alignment from Comparison run.",
+        "uk": "Пунктир підкреслення позначає сегменти без вирівняного партнера в іншій колонці. «Колір за» (LLM / Людина / Обидва) визначає, чиї мітки фарбують текст; кольори конкретних деталей і ідеологічних шарів діють лише коли відповідні фільтри не «Немає». Якщо завантажено обидва прогони — «Людина-сегментація» та «ШІ-сегментація» — оберіть вирівнювання у полі «Comparison run».",
+    },
     "search_placeholder": {"en": "Search in text (English or Russian)...", "uk": "Пошук у тексті (англійською або російською)..."},
     "table_search_placeholder": {"en": "Search in table...", "uk": "Пошук у таблиці..."},
     "none": {"en": "None", "uk": "Немає"},
@@ -278,7 +287,7 @@ _UI_TRANSLATIONS = {
     "doc_text_cap_search": {"en": "Search in text for specific information (such as date/time, place, people, etc.), in English and Russian.", "uk": "Шукати у тексті конкретну інформацію (дата/час, місце, особи тощо) англійською та російською."},
     "doc_text_cap_highlight": {"en": "Find and highlight different ideological layers in the text.", "uk": "Знаходити та виділяти різні ідеологічні шари в тексті."},
     "doc_text_cap_compare": {"en": "Compare how specific details and ideological layers intersect within segments.", "uk": "Порівнювати, як конкретні деталі та ідеологічні шари перетинаються в сегментах."},
-    "doc_text_cap_lab": {"en": "Pair this view with the Research Lab visualizations to compare human-led and AI-led analysis.", "uk": "Поєднуйте з візуалізаціями дослідницької лабораторії для порівняння аналізу людини та ШІ."},
+    "doc_text_cap_lab": {"en": "Pair this view with Research Lab charts to compare Human Segmented and AI Segmented outputs.", "uk": "Поєднуйте з графіками лабораторії для порівняння прогонів «Людина-сегментація» та «ШІ-сегментація»."},
     "cyrillic_keyboard_label": {"en": "Cyrillic keyboard", "uk": "Кирилична клавіатура"},
     "cyrillic_key_caps": {"en": "Caps Lock", "uk": "Caps Lock"},
     "cyrillic_key_shift": {"en": "⇧ Shift", "uk": "⇧ Shift"},
@@ -344,7 +353,7 @@ _UI_TRANSLATIONS = {
     "project_overview": {"en": "Project Overview", "uk": "Огляд проекту"},
     "taxonomy_reference": {"en": "How Specific Details and Ideological Layers Are Qualified", "uk": "Як кваліфікуються конкретні деталі та ідеологічні шари"},
     "taxonomy_reference_intro": {"en": "This report uses a reference taxonomy from Categories Explained. Segments carry labels for specific details (what is discussed; stored as content categories) and ideological layers (how it is phrased; stored as framing strategies). Below is how each is defined and qualified.", "uk": "Цей звіт використовує довідкову таксономію з Categories Explained. Сегменти мають мітки конкретних деталей (що обговорюється; зберігаються як категорії контенту) та ідеологічних шарів (як це сформульовано; зберігаються як стратегії фреймінгу). Нижче наведено визначення та критерії кваліфікації."},
-    "project_description": {"en": "Vozmezdie is a modular pipeline for expert-grounded LLM evaluation of declassified ex-KGB archival documents. Documents are ingested, processed by an LLM for extraction (specific details and ideological layers), and compared to human-coded ground truth. This Research Lab provides interactive analysis: document text view with bilingual highlighting, comparison tables, visualizations, and a glossary at the bottom of the Lab page.", "uk": "Vozmezdie — модульний конвеєр для експертної оцінки LLM щодо розсекречених архівних документів колишнього КДБ. Документи інгестуються, обробляються LLM для екстракції (конкретні деталі та ідеологічні шари) та порівнюються з експертно розміченими даними. Ця дослідницька лабораторія надає інтерактивний аналіз: перегляд тексту з двомовним виділенням, таблиці порівняння, візуалізації та глосарій внизу сторінки лабораторії."},
+    "project_description": {"en": "Vozmezdie is a modular pipeline for expert-grounded LLM evaluation of declassified documents. Text is ingested, processed by a model for extraction (specific details and ideological layers), and compared to human-coded ground truth. This Research Lab provides interactive analysis: document text view with bilingual highlighting, comparison tables, visualizations, and a glossary at the bottom of the Lab page.", "uk": "Vozmezdie — модульний конвеєр для експертної оцінки LLM щодо розсекречених документів. Текст інгестують, обробляють моделлю для екстракції (конкретні деталі та ідеологічні шари) та порівнюють із експертно розміченими даними. Ця дослідницька лабораторія дає інтерактивний аналіз: текст із двомовним виділенням, таблиці порівняння, візуалізації та глосарій внизу сторінки лабораторії."},
     "dataset_statistics": {"en": "Dataset Statistics", "uk": "Статистика набору даних"},
     "document": {"en": "Document", "uk": "Документ"},
     "segments": {"en": "Segments", "uk": "Сегменти"},
@@ -444,7 +453,7 @@ _UI_TRANSLATIONS = {
     "viz_calc_segment_length_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mi>len</mi><mo>(</mo><mi>entry_eng</mi><mo>)</mo><mo>,</mo><mi>len</mi><mo>(</mo><mi>entry_rus</mi><mo>)</mo><mo>)</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo>=</mo><msub><mn>1</mn><mrow><mo>[</mo><mtext>both_match</mtext><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Range:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>accuracy</mi><mo>(</mo><mi>bin</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_in_bin</mi></mrow><mrow><mi>total_in_bin</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>&#x2265;</mo><mn>50</mn><mo>,</mo><mi>n</mi><mo>&#x2265;</mo><mn>15</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Single:</mtext><mspace width=\"0.5em\"/><mi>accuracy</mi><mo>(</mo><mi>len</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_at_len</mi></mrow><mrow><mi>total_at_len</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mtext>довжин</mtext><mo>)</mo><mo>;</mo><mi>y</mi><mo>=</mo><mn>1</mn><mtext> якщо збіг</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn><mo>;</mo><mi>accuracy</mi><mo>=</mo><mi>matched</mi><mo>/</mo><mi>total</mi></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Діапазон:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>15</mn><mo>,</mo><mi>len</mi><mo>&#x2265;</mo><mn>50</mn><mo>;</mo><mtext>одна довжина:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>"},
     "viz_calc_segment_length_technical": {"en": "length = max(len(entry_eng), len(entry_rus)): we take the longer of the two because both texts contribute to the classification. y = 1[both_match]: we count a segment as correct only when both category and framing agree. Bins of 25 chars avoid sparse data; excluding len < 50 removes noisy very-short segments. n ≥ 15 per bin (range) and n ≥ 5 (single length) ensure the \"most accurate\" stat is not driven by tiny samples.", "uk": "length = max(довжин): беремо довшу, бо обидва тексти впливають на класифікацію. y = 1[збіг]: правильний лише коли збігаються категорія й фреймінг. Біни 25 символів уникaють розріджених даних; len<50 виключаємо. n≥15 (діапазон) і n≥5 (одна довжина): щоб «найточніше» не базувалося на малих вибірках."},
     "viz_calc_radar_simple": {"en": "axis_value(cat) is the number of segments in the selected documents with category cat. In all mode, selected_docs = all documents.", "uk": "axis_value(cat): кількість сегментів з cat у вибраних doc. У режимі all: усі документи."},
-    "viz_calc_places_map_simple": {"en": "Places mentioned in Places-tagged segments are extracted, normalized, and geocoded. Marker size reflects segment count. Run scripts/extract_places.py and scripts/geocode_places.py to refresh data.", "uk": "Місця з сегментів категорії Places екстрактуються, нормалізуються та геокодуються. Розмір маркера = кількість сегментів."},
+    "viz_calc_places_map_simple": {"en": "Places mentioned in Places-tagged segments are extracted, normalized, and geocoded. Marker size reflects how many segments mention each place. Run scripts/extract_places.py and scripts/geocode_places.py to refresh data.", "uk": "Місця з сегментів категорії Places екстрактуються, нормалізуються та геокодуються. Розмір маркера відображає кількість сегментів із згадкою місця."},
     "viz_calc_radar_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>axis_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><mtext>selected_docs</mtext><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>all mode:</mtext><mspace width=\"0.5em\"/><mtext>selected_docs = all documents</mtext></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>axis_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів з cat у вибраних doc</mtext></mrow></math>"},
     "viz_calc_radar_technical": {"en": "axis_value(cat) = |{s ∈ selected_docs : s.category = cat}|. Each axis shows one category's count so we can compare the shape of documents. In single mode, selected_docs = one document. In compare mode, multiple documents overlaid. In all mode, selected_docs = all documents so we see the aggregate profile.", "uk": "axis_value(cat) = |{s ∈ selected_docs : s.category = cat}|. Кожна вісь = одна категорія. All mode: selected_docs = усі документи."},
     "viz_calc_agreement_cat_simple": {"en": "We measure how often the LLM agrees with the human expert on each category. matched(cat) = segments where both chose cat. total(cat) = segments where the human chose cat (we use human as the denominator because we are measuring LLM accuracy against ground truth). agreement = 100 × matched / total. Why per category? Some categories may be easier or harder for the LLM.", "uk": "Вимірюємо згоду LLM з експертом по категоріях. matched = де обидва обрали cat; total = де human обрала cat. agreement = 100 × matched / total. total базується на human як еталоні."},
@@ -1007,7 +1016,7 @@ def run(
     if isinstance(labels_raw, list) and len(labels_raw) >= 2:
         viz_lab_a, viz_lab_b = str(labels_raw[0]), str(labels_raw[1])
     else:
-        viz_lab_a, viz_lab_b = "Experiment A (human-aligned slices)", "Experiment B (free segmentation)"
+        viz_lab_a, viz_lab_b = "Human Segmented", "AI Segmented"
 
     from_ce = bool(glossary_cats or glossary_fram)
     glossary_panel_html = _glossary_tab(
@@ -1037,7 +1046,7 @@ def run(
         _head(body_attrs=body_attrs, build_meta=build_meta),
         _master_header(**hdr_guide),
         '<div class="app-container">',
-        _sidebar(documents),
+        _sidebar(documents, _feedback_section_html(config)),
         '<div class="main-content" id="tab-contents">',
         _intro_tab(),
         home_html,
@@ -1179,6 +1188,12 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .sidebar-nav-item.active { background: rgba(139,0,0,0.2); color: #f5f0e6; border-left-color: #8b0000; }
 .sidebar-section-title { padding: 0.75rem 1.25rem 0.35rem; font-size: 0.7rem; font-weight: 600; color: #8b7355; text-transform: uppercase; letter-spacing: 0.08em; }
 .sidebar-doc-stat { font-size: 0.75rem; color: #8b7355; margin-left: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+.sidebar-divider { border: none; border-top: 1px solid rgba(139,115,85,0.35); margin: 1rem 1rem 0.75rem; padding: 0; height: 0; background: none; }
+.sidebar .sidebar-feedback-section { margin: 0 0.75rem 1rem; border-radius: 4px; overflow: hidden; border: 1px solid rgba(139,115,85,0.35); box-shadow: none; }
+.sidebar .sidebar-feedback-section > summary { padding: 0.55rem 1rem; background: rgba(0,0,0,0.28); color: #e8e4dc; border-bottom: 1px dashed rgba(139,115,85,0.35); font-size: 0.88rem; }
+.sidebar .sidebar-feedback-section .collapsible-body { padding: 0.75rem 1rem 1rem; background: #242424; color: #c4bfb4; font-size: 0.88rem; }
+.sidebar .sidebar-feedback-section .feedback-input,
+.sidebar .sidebar-feedback-section .feedback-textarea { background: #1a1a1a; color: #e8e4dc; border-color: #6b5344; }
 .main-content { flex: 1; padding: 2rem; overflow: auto; background: #f5f0e6; }
 .tabs { display: none; }
 .tab-button { padding: 0.75rem 1.5rem; background: #e8e4dc; border: 1px solid #8b7355; border-radius: 4px; cursor: pointer; font-size: 0.9rem; font-family: inherit; }
@@ -2133,7 +2148,7 @@ def _build_per_document_viz_section(
 
     places_html = _build_places_map_html(config, embedded=True, doc_id_filter=doc_id)
     places_fallback = '<p style="padding:2rem;color:#6b7280;">No places data for this document.</p>'
-    lab_a, lab_b = viz_experiment_labels if viz_experiment_labels else ("Experiment A", "Experiment B")
+    lab_a, lab_b = viz_experiment_labels if viz_experiment_labels else _DEFAULT_VIZ_EXPERIMENT_LABELS
 
     if comparison_secondary_by_doc:
         places_key_primary = f"{suffix}_v0"
@@ -2283,7 +2298,7 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
 <body>
   <div class="demo-header">
     <h1>Places Map <span class="badge">Declassified</span></h1>
-    <p>Places mentioned in KGB archival documents. Marker size = segment count. The eyes of the archive are upon you.</p>
+    <p>Places mentioned in the loaded documents (Places-tagged segments). Marker size reflects how many segments mention each place. The eyes of the KGB are upon you.</p>
   </div>
   <div id="map"></div>
 
@@ -2841,15 +2856,13 @@ def _intro_tab() -> str:
   <section class="homepage-section">
     <h3 data-i18n="project_overview">Project Overview</h3>
     <p class="intro-lead" data-i18n="intro_lead_para">This page orients you to the project. Use the shortcuts below to open corpus tools in this same page, or watch the walkthrough at the end.</p>
-    <p data-i18n="project_description">Vozmezdie is a modular pipeline for expert-grounded LLM evaluation of declassified ex-KGB archival documents. Documents are ingested, processed by an LLM for extraction (specific details and ideological layers), and compared to human-coded ground truth. This Research Lab provides interactive analysis: document text view with bilingual highlighting, comparison tables, visualizations, and a glossary at the bottom of the Lab page.</p>
+    <p data-i18n="project_description">Vozmezdie is a modular pipeline for expert-grounded LLM evaluation of declassified documents. Text is ingested, processed by a model for extraction (specific details and ideological layers), and compared to human-coded ground truth. This Research Lab provides interactive analysis: document text view with bilingual highlighting, comparison tables, visualizations, and a glossary at the bottom of the Lab page.</p>
   </section>
   <section class="homepage-section">
-    <h3 data-i18n="intro_open_lab_heading">Open the Research Lab</h3>
     <div class="intro-dual-cta">
-      <button type="button" class="intro-cta-btn" data-i18n="intro_go_lab_btn" onclick="showTab('tab-home');">Research Lab (charts & glossary)</button>
-      <button type="button" class="intro-cta-btn secondary" data-i18n="intro_jump_glossary_btn" onclick="showTab('tab-home');setTimeout(function(){var g=document.getElementById('lab-glossary');if(g&&g.tagName==='DETAILS')g.open=true;if(g)g.scrollIntoView({behavior:'smooth',block:'start'});},120);">Jump to glossary</button>
+      <button type="button" class="intro-cta-btn" data-i18n="intro_go_lab_btn" onclick="showTab('tab-home');">Research Lab</button>
     </div>
-    <p class="intro-cta-note" data-i18n="intro_open_lab_note">You are already in the app; these buttons switch the main panel. The glossary sits at the bottom of the Research Lab tab.</p>
+    <p class="intro-cta-note" data-i18n="intro_open_lab_note">Switch to the Research Lab tab for charts, maps, and the glossary at the bottom of that page.</p>
   </section>
   <section class="homepage-section">
     <h3 data-i18n="intro_tools_heading">Ways to interact with the data</h3>
@@ -2923,6 +2936,7 @@ def _intro_tab() -> str:
         </div>
       </div>
     </div>
+    <p class="intro-framework-segmentation-note" data-i18n="intro_framework_segmentation_note" style="margin-top:1rem;color:#5a5348;font-size:0.95rem;line-height:1.55;max-width:42rem;">Two segmentation modes appear in comparisons: Human Segmented uses the same paragraph boundaries as the expert reference (human-defined slices). AI Segmented lets the model propose its own boundaries before labelling—so segment counts and alignment can differ.</p>
   </section>
   <section class="homepage-section intro-video-section">
     <h3 data-i18n="intro_video_heading">How to use this site (video)</h3>
@@ -3061,6 +3075,32 @@ def _build_viz_payload_and_heatmap(
     return viz_data, heatmap_html
 
 
+def _feedback_section_html(config: Dict[str, Any]) -> str:
+    """Collapsible feedback block for sidebar bottom."""
+    feedback_url = config.get("feedback", {}).get("url", "")
+    feedback_email = config.get("feedback", {}).get("email", "")
+    feedback_form = ""
+    if feedback_url:
+        feedback_form = f'<form action="{html_module.escape(feedback_url)}" method="POST" target="_blank" class="feedback-form">'
+    elif feedback_email:
+        feedback_form = f'<form action="mailto:{html_module.escape(feedback_email)}" method="GET" class="feedback-form">'
+    else:
+        feedback_form = '<form class="feedback-form" onsubmit="return false;">'
+    feedback_form += """
+        <input type="text" name="feedback_type" id="feedback-type" placeholder="Type: general request / label suggestion" class="feedback-input"/>
+        <textarea name="message" id="feedback-message" placeholder="Your message or suggested label..." rows="3" class="feedback-textarea"></textarea>
+        <input type="hidden" name="source" value="vozmezdie_report"/>
+        <button type="submit" class="feedback-submit" data-i18n="submit_feedback">Submit</button>
+      </form>"""
+    return f"""  <details class="collapsible-section sidebar-feedback-section" id="sidebar-feedback">
+    <summary><span data-i18n="feedback">Feedback</span></summary>
+    <div class="collapsible-body">
+    <p data-i18n="feedback_intro">Submit general requests or suggest labels for tagged sections.</p>
+    {feedback_form}
+    </div>
+  </details>"""
+
+
 def _homepage(
     comparison_by_doc: Dict[str, Dict[str, Any]],
     documents: List[Dict[str, Any]],
@@ -3084,16 +3124,13 @@ def _homepage(
         glossary_framings,
         taxonomy_framings,
     )
-    feedback_url = config.get("feedback", {}).get("url", "")
-    feedback_email = config.get("feedback", {}).get("email", "")
-
     report_cfg = config.get("report") or {}
     sec_cbd = _load_secondary_comparison_by_doc(config)
     labels = report_cfg.get("viz_experiment_labels")
     if isinstance(labels, list) and len(labels) >= 2:
         lab_a, lab_b = str(labels[0]), str(labels[1])
     else:
-        lab_a, lab_b = "Experiment A (human-aligned slices)", "Experiment B (free segmentation)"
+        lab_a, lab_b = _DEFAULT_VIZ_EXPERIMENT_LABELS
 
     if sec_cbd:
         viz_b, heatmap_b = _build_viz_payload_and_heatmap(
@@ -3116,20 +3153,6 @@ def _homepage(
         viz_json = json.dumps(viz_bundle, ensure_ascii=False)
     else:
         viz_json = json.dumps(viz_primary, ensure_ascii=False)
-
-    feedback_form = ""
-    if feedback_url:
-        feedback_form = f'<form action="{html_module.escape(feedback_url)}" method="POST" target="_blank" class="feedback-form">'
-    elif feedback_email:
-        feedback_form = f'<form action="mailto:{html_module.escape(feedback_email)}" method="GET" class="feedback-form">'
-    else:
-        feedback_form = '<form class="feedback-form" onsubmit="return false;">'
-    feedback_form += """
-        <input type="text" name="feedback_type" id="feedback-type" placeholder="Type: general request / label suggestion" class="feedback-input"/>
-        <textarea name="message" id="feedback-message" placeholder="Your message or suggested label..." rows="3" class="feedback-textarea"></textarea>
-        <input type="hidden" name="source" value="vozmezdie_report"/>
-        <button type="submit" class="feedback-submit" data-i18n="submit_feedback">Submit</button>
-      </form>"""
 
     taxonomy_ref_html = _taxonomy_reference_section(
         glossary_categories or [],
@@ -3160,13 +3183,6 @@ def _homepage(
         f"{taxonomy_ref_html}</div></details>"
         if taxonomy_ref_html else ""
     )
-    feedback_section = f"""  <details class="collapsible-section homepage-feedback-section" id="lab-feature-feedback">
-    <summary><span data-i18n="feedback">Feedback</span></summary>
-    <div class="collapsible-body">
-    <p data-i18n="feedback_intro">Submit general requests or suggest labels for tagged sections.</p>
-    {feedback_form}
-    </div>
-  </details>"""
 
     home_html = f"""
 <div class="tab-content" id="tab-home">
@@ -3176,8 +3192,6 @@ def _homepage(
 
   {taxonomy_section}
 
-  {feedback_section}
-
   {glossary_panel_html}
 </div>
 </div>"""
@@ -3185,8 +3199,8 @@ def _homepage(
 
 
 
-def _sidebar(documents: List[Dict[str, Any]]) -> str:
-    """Sidebar navigation: Introduction, Research Lab, documents (glossary lives at bottom of Lab)."""
+def _sidebar(documents: List[Dict[str, Any]], feedback_html: str = "") -> str:
+    """Sidebar navigation: Introduction, Research Lab, documents; Feedback at bottom."""
     items = []
     items.append('<div class="sidebar-section-title" data-i18n="navigation">Navigation</div>')
     items.append('<button class="sidebar-nav-item active" onclick="showTab(\'tab-intro\')" data-i18n="intro_landing_link">Introduction</button>')
@@ -3196,7 +3210,10 @@ def _sidebar(documents: List[Dict[str, Any]]) -> str:
         doc_id = doc.get("document_id", "")
         display_name = doc.get("display_name", doc_id)
         items.append(f'<button class="sidebar-nav-item" onclick="showTab(\'tab-{doc_id}\')">{display_name}</button>')
-    return '<div class="sidebar" id="sidebar">' + "\n".join(items) + "</div>"
+    tail = ""
+    if feedback_html.strip():
+        tail = '<hr class="sidebar-divider" aria-hidden="true"/>\n' + feedback_html.strip()
+    return '<div class="sidebar" id="sidebar">' + "\n".join(items) + tail + "</div>"
 
 
 def _tabs(documents: List[Dict[str, Any]]) -> str:
@@ -3440,7 +3457,7 @@ def _doc_tab(
     exp_lab_a, exp_lab_b = (
         (viz_experiment_labels[0], viz_experiment_labels[1])
         if viz_experiment_labels
-        else ("Experiment A", "Experiment B")
+        else _DEFAULT_VIZ_EXPERIMENT_LABELS
     )
     eng_html, rus_html = _document_text_panels_html_from_aligned(
         full_text_eng, full_text_rus, aligned, cat_colours, fram_colours,
@@ -3547,7 +3564,7 @@ def _doc_tab(
             f'    <div id="comparison-table-panel-{doc_id}-1" class="comparison-run-table-panel comparison-run-table-panel-b" data-run-panel="1" style="display:none;">\n'
             f'      <div class="comparison-run-table-banner comparison-run-table-banner-b">{esc_banner_b}</div>\n'
             f'      <p class="comparison-run-table-blurb" data-i18n="comparison_table_run_b_blurb">'
-            f"This is a separate experiment table (different segments and alignment than Experiment A). "
+            f"This table uses the AI Segmented run: different segment boundaries and alignment than Human Segmented. "
             f"Cells emphasize the model; expert labels appear when they disagree.</p>\n"
             f'      <table class="comparison-table comparison-table-experiment-b">\n'
             f"    {thead_experiment_b}\n"
@@ -3585,14 +3602,14 @@ def _doc_tab(
         else:
             inner_tbl = (
                 '<p class="exp-b-prelim-empty" data-i18n="exp_b_prelim_empty_doc">'
-                "No assessor segments are recorded for this document in the configured Experiment B agent assessments file."
+                "No assessor segments are recorded for this document in the configured AI Segmented agent assessments file."
                 "</p>"
             )
         experiment_b_prelim_section = (
             f'<details class="collapsible-section exp-b-prelim-details" id="doc-section-exp-b-prelim-{esc_cmp}">\n'
-            '  <summary data-i18n="exp_b_prelim_summary">Experiment B — assessor segments (not compared)</summary>\n'
+            '  <summary data-i18n="exp_b_prelim_summary">AI Segmented — assessor segments (not compared)</summary>\n'
             '  <div class="collapsible-body">\n'
-            '    <p class="exp-b-prelim-intro" data-i18n="exp_b_prelim_intro">Rows come from the Experiment B agent assessments file (same source as preliminary_results.html): assessor-defined segments with category, framing, Russian and English text, and context. There are no expert or model comparison columns.</p>\n'
+            '    <p class="exp-b-prelim-intro" data-i18n="exp_b_prelim_intro">Rows come from the AI Segmented agent assessments file (same source as preliminary_results.html): assessor-defined segments with category, framing, Russian and English text, and context. There are no expert or model comparison columns.</p>\n'
             f"    {inner_tbl}\n"
             "  </div>\n"
             "</details>\n"
@@ -3690,10 +3707,7 @@ def _colour_legend(categories: List[Dict], framings: List[Dict]) -> str:
       <div class="colour-legend-items">{fram_html}</div>
     </div>
     <div class="colour-legend-section">
-      <div class="colour-legend-orphan-note" data-i18n="orphan_note">Segments with a dashed underline have no corresponding segment in the other panel; hover for tooltip.</div>
-    </div>
-    <div class="colour-legend-section">
-      <div class="colour-legend-orphan-note" data-i18n="colour_by_note">Colour by: LLM / Human / Both (agree). Category and framing colours apply only when their filter is not None. Use Comparison run (filters row) when Experiment A and B are both bundled.</div>
+      <div class="colour-legend-orphan-note" data-i18n="document_text_legend_note">Dashed underlines mark segments with no aligned partner in the other column. Colour by (LLM / Human / Both) chooses whose labels tint the text; specific-detail and ideological-layer colours apply only when those filters are not None. When both Human Segmented and AI Segmented runs are bundled, pick the alignment from Comparison run.</div>
     </div>
   </div>"""
     )
@@ -3712,8 +3726,8 @@ def _document_text_view(
     full_text_eng_html: str = "",
     full_text_rus_html: str = "",
     comparison_run_labels: Optional[Tuple[str, str]] = None,
-    experiment_label_a: str = "Experiment A",
-    experiment_label_b: str = "Experiment B",
+    experiment_label_a: str = _DEFAULT_VIZ_EXPERIMENT_LABELS[0],
+    experiment_label_b: str = _DEFAULT_VIZ_EXPERIMENT_LABELS[1],
 ) -> str:
     """Block: search, category/framing filters; two panels show full document text (with aligned segments as spans when provided)."""
     legend = _colour_legend(categories, framings)
@@ -3732,7 +3746,7 @@ def _document_text_view(
     else:
         experiment_ctl = f"""      <div class="ctl-group">
         <span class="document-text-filter-head">Comparison run</span>
-        <select id="doc-comparison-run-{esc_id}" class="document-comparison-run-locked" data-tab="{esc_id}" disabled title="Only one alignment is bundled. Add report.secondary_comparison_json when building the report for Experiment B.">
+        <select id="doc-comparison-run-{esc_id}" class="document-comparison-run-locked" data-tab="{esc_id}" disabled title="Only one alignment is bundled. Add report.secondary_comparison_json when building the report for the AI Segmented run.">
           <option value="0">{esc_la}</option>
         </select>
       </div>
@@ -3940,8 +3954,8 @@ def _glossary_tab(
     """Build glossary HTML embedded at the bottom of the Research Lab tab."""
     dual_exp = bool(comparison_secondary_by_doc)
     sec_map = comparison_secondary_by_doc or {}
-    lab_a = (viz_experiment_labels or ("Experiment A", "Experiment B"))[0]
-    lab_b = (viz_experiment_labels or ("Experiment A", "Experiment B"))[1]
+    lab_a = (viz_experiment_labels or _DEFAULT_VIZ_EXPERIMENT_LABELS)[0]
+    lab_b = (viz_experiment_labels or _DEFAULT_VIZ_EXPERIMENT_LABELS)[1]
     esc_lab_a = html_module.escape(lab_a)
     esc_lab_b = html_module.escape(lab_b)
 
@@ -4010,7 +4024,7 @@ def _glossary_tab(
         html_b, nb = _glossary_sorted_terms_block(terms_set_b, b_docs, b_locs, colour, doc_names)
         if not dual_exp:
             html_b = (
-                '<p style="color:#6b7280;font-size:0.9rem;">Experiment B comparison is not loaded. '
+                '<p style="color:#6b7280;font-size:0.9rem;">AI Segmented comparison is not loaded. '
                 "Add <code>report.secondary_comparison_json</code> when building the report.</p>"
             )
             nb = 0
@@ -4054,7 +4068,7 @@ def _glossary_tab(
         html_b, nb = _glossary_sorted_terms_block(terms_set_b, b_docs, b_locs, colour, doc_names)
         if not dual_exp:
             html_b = (
-                '<p style="color:#6b7280;font-size:0.9rem;">Experiment B comparison is not loaded. '
+                '<p style="color:#6b7280;font-size:0.9rem;">AI Segmented comparison is not loaded. '
                 "Add <code>report.secondary_comparison_json</code> when building the report.</p>"
             )
             nb = 0
@@ -4101,7 +4115,7 @@ def _glossary_tab(
 <hr style="margin: 3rem 0; border: none; border-top: 2px solid #dee2e6;"/>
 <h3 style="color: #4a5568; margin-bottom: 1.5rem; font-size: 1.5rem; margin-top: 3rem;" data-i18n="terms_found_summary">Terms Found in Documents - Summary</h3>
 <div style="background: #e8e4dc; padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem; border: 1px solid rgba(139,115,85,0.3);">
-<p style="margin-bottom: 0.65rem;"><strong data-i18n="total_unique_terms">Total unique terms extracted:</strong> {total_unique} <span style="color:#5a5348;">(primary comparison, Experiment A LLM slice)</span></p>
+<p style="margin-bottom: 0.65rem;"><strong data-i18n="total_unique_terms">Total unique terms extracted:</strong> {total_unique} <span style="color:#5a5348;">(Human Segmented run, model slice)</span></p>
 <p style="margin-bottom: 0.45rem;"><strong>Human-labelled segments (unique terms):</strong> {nh_all}</p>
 <p style="margin-bottom: 0.45rem;"><strong>{esc_lab_a} (LLM on primary alignment, unique terms):</strong> {na_all}</p>
 <p style="margin-bottom: 1rem;"><strong>{esc_lab_b} (LLM on secondary comparison, unique terms):</strong> {nb_line}</p>
@@ -4549,8 +4563,8 @@ function updateDocumentTextRunHint(docId, idx) {
   if (idx !== 1) idx = 0;
   var tab = document.getElementById('tab-' + docId);
   if (!tab || tab.getAttribute('data-comparison-dual') !== '1') return;
-  var l0 = tab.getAttribute('data-viz-exp-label-0') || 'Experiment A';
-  var l1 = tab.getAttribute('data-viz-exp-label-1') || 'Experiment B';
+  var l0 = tab.getAttribute('data-viz-exp-label-0') || 'Human Segmented';
+  var l1 = tab.getAttribute('data-viz-exp-label-1') || 'AI Segmented';
   var active = idx === 1 ? l1 : l0;
   var cb = document.getElementById('doc-colour-by-' + docId);
   if (cb) {
