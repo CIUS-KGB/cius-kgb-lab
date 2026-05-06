@@ -38,6 +38,23 @@
     .fw-col { flex: 1 1 11rem; padding: 1rem; border-radius: 4px; border: 1px dashed rgba(139,115,85,0.5); background: var(--cream); }
     .fw-col strong { display: block; font-size: 0.95rem; margin-bottom: 0.35rem; color: var(--ink); }
     .fw-col span.tech { font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .fw-seg-rule { height: 0; border: none; border-top: 1px dashed rgba(139,115,85,0.45); margin: 1.15rem 0 0.85rem; }
+    .fw-seg-band-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sepia); margin-bottom: 0.65rem; }
+    .fw-segmentation-split { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.65rem 0.75rem; align-items: stretch; text-align: left; max-width: 46rem; margin: 0 auto; }
+    .fw-seg-card { position: relative; padding: 0.95rem 1rem 1rem 1rem; border-radius: 6px; background: var(--cream); overflow: hidden; }
+    .fw-seg-human { border: 1px solid rgba(139,0,0,0.35); box-shadow: inset 3px 0 0 var(--red); }
+    .fw-seg-ai { border: 1px dashed rgba(13,148,136,0.55); box-shadow: inset 3px 0 0 #0d9488; }
+    .fw-seg-title { display: block; font-weight: 700; font-size: 0.92rem; color: var(--ink); letter-spacing: 0.02em; margin-bottom: 0.4rem; }
+    .fw-seg-human .fw-seg-title { color: #7f1d1d; }
+    .fw-seg-ai .fw-seg-title { color: #115e59; }
+    .fw-seg-desc { margin: 0; font-size: 0.88rem; line-height: 1.55; color: var(--muted); }
+    .fw-seg-connector { display: flex; align-items: center; justify-content: center; min-width: 2rem; }
+    .fw-seg-vs { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; color: var(--sepia); text-transform: uppercase; letter-spacing: 0.08em; padding: 0.35rem 0.45rem; border-radius: 4px; border: 1px solid rgba(139,115,85,0.35); background: rgba(245,240,230,0.85); }
+    .fw-seg-footnote { margin: 0.85rem auto 0; max-width: 42rem; font-size: 0.82rem; line-height: 1.5; color: var(--muted); font-style: italic; text-align: center; }
+    @media (max-width: 640px) {
+      .fw-segmentation-split { grid-template-columns: 1fr; }
+      .fw-seg-connector { min-height: auto; padding: 0.25rem 0; }
+    }
     .video-note { font-size: 0.95rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.55; }
     .video-section-narrow { max-width: 28rem; margin-left: auto; margin-right: auto; }
     .video-wrap { position: relative; width: 100%; max-width: 28rem; margin: 0 auto; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; border: 2px solid var(--sepia); background: #1a1a1a; box-shadow: 0 4px 18px rgba(0,0,0,0.12); }
@@ -127,8 +144,21 @@
             <span class="tech">Language data · framing</span>
           </div>
         </div>
+        <hr class="fw-seg-rule" aria-hidden="true"/>
+        <p class="fw-seg-band-label">Segmentation in comparisons</p>
+        <div class="fw-segmentation-split" role="group" aria-label="Segmentation modes">
+          <div class="fw-seg-card fw-seg-human">
+            <span class="fw-seg-title">Human Segmented</span>
+            <p class="fw-seg-desc">Slices follow the expert reference: each segment lines up with the same paragraph boundaries the human analysts used.</p>
+          </div>
+          <div class="fw-seg-connector" aria-hidden="true"><span class="fw-seg-vs">vs</span></div>
+          <div class="fw-seg-card fw-seg-ai">
+            <span class="fw-seg-title">AI Segmented</span>
+            <p class="fw-seg-desc">The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the human-sliced run.</p>
+          </div>
+        </div>
+        <p class="fw-seg-footnote">When two alignment runs ship together, comparison tables may show both modes side by side (pair those views with Research Lab charts).</p>
       </div>
-      <p style="color: var(--muted); margin-top: 1rem; font-size: 0.98rem; line-height: 1.55; max-width: 42rem;">Two segmentation modes appear in comparisons: <strong>Human Segmented</strong> keeps expert-aligned paragraph boundaries; <strong>AI Segmented</strong> lets the model propose its own slices before labelling, so counts and alignment can differ.</p>
     </section>
   </main>
   <footer>Vozmezdie framework · Introduction page · Regenerate report with <span style="font-family:'JetBrains Mono',monospace">python run_report_only.py</span></footer>

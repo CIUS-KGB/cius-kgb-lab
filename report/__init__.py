@@ -159,6 +159,14 @@ _DEFAULT_PALETTE = [
     "#2dd4bf", "#c084fc", "#4ade80",
 ]
 _DEFAULT_VIZ_EXPERIMENT_LABELS = ("Human Segmented", "AI Segmented")
+
+
+def _nav_label(doc: Dict[str, Any]) -> str:
+    """Short label for sidebar, tabs, charts, glossary chrome; full ``display_name`` stays on document headers."""
+    did = str(doc.get("document_id", "") or "")
+    return str(doc.get("short_title") or doc.get("display_name") or did)
+
+
 # UI translations: en (English), uk (Ukrainian)
 _UI_TRANSLATIONS = {
     "declassified": {"en": "Declassified", "uk": "Розсекречено"},
@@ -210,9 +218,21 @@ _UI_TRANSLATIONS = {
     "intro_fw_specific_sub": {"en": "Content data · categories", "uk": "Контентні дані · категорії"},
     "intro_fw_ideo_label": {"en": "Ideological Layers", "uk": "Ідеологічні шари"},
     "intro_fw_ideo_sub": {"en": "Language data · framing", "uk": "Мовні дані · фреймінг"},
-    "intro_framework_segmentation_note": {
-        "en": "Two segmentation modes appear in comparisons: Human Segmented uses the same paragraph boundaries as the expert reference (human-defined slices). AI Segmented lets the model propose its own boundaries before labelling—so segment counts and alignment can differ.",
-        "uk": "У порівняннях є два режими сегментації: «Людина-сегментація» зберігає межі абзаців як у експертному еталоні. «ШІ-сегментація» дає моделі самій запропонувати межі перед розміткою — тому кількість сегментів і вирівнювання можуть відрізнятися.",
+    "intro_seg_band_label": {"en": "Segmentation in comparisons", "uk": "Сегментація в порівняннях"},
+    "intro_seg_human_title": {"en": "Human Segmented", "uk": "Людина-сегментація"},
+    "intro_seg_human_desc": {
+        "en": "Slices follow the expert reference: each segment lines up with the same paragraph boundaries the human analysts used.",
+        "uk": "Зрізи збігаються з експертним еталоном: кожен сегмент має ті самі межі абзаців, що й у людських аналітиків.",
+    },
+    "intro_seg_ai_title": {"en": "AI Segmented", "uk": "ШІ-сегментація"},
+    "intro_seg_ai_desc": {
+        "en": "The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the human-sliced run.",
+        "uk": "Спочатку модель сама будує проміжки, потім ставить мітки. Тож кількість рядків і вирівнювання можуть не збігатися з людинним прогоном.",
+    },
+    "intro_seg_vs": {"en": "vs", "uk": "проти"},
+    "intro_seg_footnote": {
+        "en": "When two alignment runs ship together, comparison tables may show both modes side by side (pair those views with Research Lab charts).",
+        "uk": "Якщо завантажено два прогони вирівнювання, у таблицях порівняння обидва режими можуть бути поруч (поєднуйте з графіками Дослідницької лабораторії).",
     },
     "analysis_by_head": {"en": "Analysis by", "uk": "Аналіз за"},
     "viz_standalone_full_report": {"en": "Open full Research Lab", "uk": "Відкрити повну дослідницьку лабораторію"},
@@ -1533,6 +1553,23 @@ body.standalone-viz-page #viz-open-new-tab { display: none !important; }
 .intro-fw-col { flex: 1 1 11rem; padding: 1rem; border-radius: 4px; border: 1px dashed rgba(139,115,85,0.5); background: #fffef9; }
 .intro-fw-col strong { display: block; font-size: 0.95rem; margin-bottom: 0.35rem; color: #2d3748; }
 .intro-fw-col span.tech { font-size: 0.8rem; color: #6b7280; font-family: 'JetBrains Mono', monospace; }
+.intro-fw-rule { height: 0; border: none; border-top: 1px dashed rgba(139,115,85,0.45); margin: 1.15rem 0 0.85rem; }
+.intro-seg-band-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: #8b7355; margin-bottom: 0.65rem; }
+.intro-segmentation-split { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.65rem 0.75rem; align-items: stretch; text-align: left; max-width: 46rem; margin: 0 auto; }
+.intro-seg-card { position: relative; padding: 0.95rem 1rem 1rem 1rem; border-radius: 6px; background: #fffef9; overflow: hidden; }
+.intro-seg-card.intro-seg-human { border: 1px solid rgba(139,0,0,0.35); box-shadow: inset 3px 0 0 #8b0000; }
+.intro-seg-card.intro-seg-ai { border: 1px dashed rgba(13,148,136,0.55); box-shadow: inset 3px 0 0 #0d9488; }
+.intro-seg-title { display: block; font-weight: 700; font-size: 0.92rem; color: #2d3748; letter-spacing: 0.02em; margin-bottom: 0.4rem; }
+.intro-seg-human .intro-seg-title { color: #7f1d1d; }
+.intro-seg-ai .intro-seg-title { color: #115e59; }
+.intro-seg-desc { margin: 0; font-size: 0.88rem; line-height: 1.55; color: #4a5568; }
+.intro-seg-connector { display: flex; align-items: center; justify-content: center; min-width: 2rem; }
+.intro-seg-vs { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; color: #8b7355; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.35rem 0.45rem; border-radius: 4px; border: 1px solid rgba(139,115,85,0.35); background: rgba(245,240,230,0.85); }
+.intro-seg-footnote { margin: 0.85rem auto 0; max-width: 42rem; font-size: 0.82rem; line-height: 1.5; color: #6b7280; font-style: italic; text-align: center; }
+@media (max-width: 640px) {
+  .intro-segmentation-split { grid-template-columns: 1fr; }
+  .intro-seg-connector { min-height: auto; padding: 0.25rem 0; }
+}
 .lab-glossary-root { margin-top: 2rem; padding-top: 0; border-top: 2px solid rgba(139,115,85,0.4); scroll-margin-top: 1rem; }
 .lab-glossary-root .header { margin-bottom: 1.25rem; }
 .lab-glossary-collapsible-body > p:first-child { margin-top: 0; }
@@ -1906,7 +1943,7 @@ def _load_places_map_data_enriched(config: Dict[str, Any]) -> List[Dict[str, Any
             with open(doc_map_path, encoding="utf-8") as f:
                 dm = json.load(f)
             for d in dm.get("documents", []):
-                doc_names[d.get("document_id", "")] = d.get("display_name", d.get("document_id", ""))
+                doc_names[d.get("document_id", "")] = _nav_label(d)
         except Exception:
             pass
     place_segments: Dict[str, List[Dict[str, Any]]] = {}
@@ -2407,7 +2444,7 @@ def _compute_dataset_stats(
             total_segments += 1
         per_doc.append({
             "doc_id": doc_id,
-            "display_name": doc.get("display_name", doc_id),
+            "display_name": _nav_label(doc),
             "n_segments": len(aligned),
             "categories": dict(doc_cats),
             "framings": dict(doc_frams),
@@ -2632,7 +2669,7 @@ def _compute_vocab_diversity(
         n_tokens = len(tokens)
         ratio = types / n_tokens if n_tokens else 0
         result.append({
-            "display_name": doc.get("display_name", doc.get("document_id", "")),
+            "display_name": _nav_label(doc),
             "doc_id": doc.get("document_id", ""),
             "types": types,
             "tokens": n_tokens,
@@ -2647,7 +2684,7 @@ def _compute_segment_length_vs_accuracy(
 ) -> List[Dict[str, Any]]:
     """Scatter data: {length, doc_id, both_match, category_match, framing_match, display_name} per segment."""
     points: List[Dict[str, Any]] = []
-    doc_by_id = {d.get("document_id", ""): d.get("display_name", d.get("document_id", "")) for d in documents}
+    doc_by_id = {d.get("document_id", ""): _nav_label(d) for d in documents}
     for doc_id, comp in (comparison_by_doc or {}).items():
         display_name = doc_by_id.get(doc_id, doc_id)
         for r in comp.get("aligned_rows", []):
@@ -2676,7 +2713,7 @@ def _compute_trends(
 ) -> Dict[str, Any]:
     """Line chart: per-document category/framing counts. Returns {labels, catData, framData}."""
     from collections import Counter
-    labels = [d.get("display_name", d.get("document_id", "")) for d in documents]
+    labels = [_nav_label(d) for d in documents]
     cat_data = {c: [] for c in cat_order}
     fram_data = {f: [] for f in fram_order}
     for doc in documents:
@@ -2935,8 +2972,21 @@ def _intro_tab() -> str:
           <span class="tech" data-i18n="intro_fw_ideo_sub">Language data · framing</span>
         </div>
       </div>
+      <hr class="intro-fw-rule" aria-hidden="true"/>
+      <p class="intro-seg-band-label" data-i18n="intro_seg_band_label">Segmentation in comparisons</p>
+      <div class="intro-segmentation-split" role="group" aria-label="Segmentation modes">
+        <div class="intro-seg-card intro-seg-human">
+          <span class="intro-seg-title" data-i18n="intro_seg_human_title">Human Segmented</span>
+          <p class="intro-seg-desc" data-i18n="intro_seg_human_desc">Slices follow the expert reference: each segment lines up with the same paragraph boundaries the human analysts used.</p>
+        </div>
+        <div class="intro-seg-connector" aria-hidden="true"><span class="intro-seg-vs" data-i18n="intro_seg_vs">vs</span></div>
+        <div class="intro-seg-card intro-seg-ai">
+          <span class="intro-seg-title" data-i18n="intro_seg_ai_title">AI Segmented</span>
+          <p class="intro-seg-desc" data-i18n="intro_seg_ai_desc">The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the human-sliced run.</p>
+        </div>
+      </div>
+      <p class="intro-seg-footnote" data-i18n="intro_seg_footnote">When two alignment runs ship together, comparison tables may show both modes side by side (pair those views with Research Lab charts).</p>
     </div>
-    <p class="intro-framework-segmentation-note" data-i18n="intro_framework_segmentation_note" style="margin-top:1rem;color:#5a5348;font-size:0.95rem;line-height:1.55;max-width:42rem;">Two segmentation modes appear in comparisons: Human Segmented uses the same paragraph boundaries as the expert reference (human-defined slices). AI Segmented lets the model propose its own boundaries before labelling—so segment counts and alignment can differ.</p>
   </section>
   <section class="homepage-section intro-video-section">
     <h3 data-i18n="intro_video_heading">How to use this site (video)</h3>
@@ -3208,8 +3258,8 @@ def _sidebar(documents: List[Dict[str, Any]], feedback_html: str = "") -> str:
     items.append('<div class="sidebar-section-title" data-i18n="documents">Documents</div>')
     for doc in documents:
         doc_id = doc.get("document_id", "")
-        display_name = doc.get("display_name", doc_id)
-        items.append(f'<button class="sidebar-nav-item" onclick="showTab(\'tab-{doc_id}\')">{display_name}</button>')
+        nav = html_module.escape(_nav_label(doc))
+        items.append(f'<button class="sidebar-nav-item" onclick="showTab(\'tab-{doc_id}\')">{nav}</button>')
     tail = ""
     if feedback_html.strip():
         tail = '<hr class="sidebar-divider" aria-hidden="true"/>\n' + feedback_html.strip()
@@ -3220,9 +3270,9 @@ def _tabs(documents: List[Dict[str, Any]]) -> str:
     buttons = []
     for doc in documents:
         doc_id = doc.get("document_id", "")
-        display_name = doc.get("display_name", doc_id)
+        nav = html_module.escape(_nav_label(doc))
         active = " active" if doc == documents[0] else ""
-        buttons.append(f'<button class="tab-button{active}" onclick="showTab(\'tab-{doc_id}\')">{display_name}</button>')
+        buttons.append(f'<button class="tab-button{active}" onclick="showTab(\'tab-{doc_id}\')">{nav}</button>')
     return '<div class="tabs" id="tabs-container">' + "\n".join(buttons) + "</div>"
 
 
@@ -3691,7 +3741,7 @@ def _colour_legend(categories: List[Dict], framings: List[Dict]) -> str:
         <li data-i18n="doc_text_cap_search">Search in text for specific information (such as date/time, place, people, etc.), in English and Russian.</li>
         <li data-i18n="doc_text_cap_highlight">Find and highlight different ideological layers in the text.</li>
         <li data-i18n="doc_text_cap_compare">Compare how specific details and ideological layers intersect within segments.</li>
-        <li data-i18n="doc_text_cap_lab">Pair this view with the Research Lab visualizations to compare human-led and AI-led analysis.</li>
+        <li data-i18n="doc_text_cap_lab">Pair this view with Research Lab charts to compare Human Segmented and AI Segmented outputs.</li>
       </ul>
     </div>"""
     inner = (
@@ -3998,7 +4048,7 @@ def _glossary_tab(
     unique_by_fram = sum(len(s) for s in terms_by_fram.values())
     nh_all, na_all, nb_all = len(h_all), len(a_all), len(b_all)
     doc_names = {
-        d.get("document_id", ""): d.get("display_name", d.get("document_id", ""))
+        d.get("document_id", ""): _nav_label(d)
         for d in (documents or [])
         if d.get("document_id")
     }
@@ -4124,7 +4174,7 @@ def _glossary_tab(
 </div>"""
 
     doc_opts = "\n".join(
-        f'<option value="{html_module.escape(doc.get("document_id", ""))}">{html_module.escape(doc.get("display_name", doc.get("document_id", "")))}</option>'
+        f'<option value="{html_module.escape(doc.get("document_id", ""))}">{html_module.escape(_nav_label(doc))}</option>'
         for doc in (documents or [])
         if doc.get("document_id")
     )
