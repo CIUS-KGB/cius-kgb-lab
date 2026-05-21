@@ -5414,6 +5414,7 @@ function setLanguage(lang) {
     el.title = t(key, params);
   });
   if (typeof applyGlossaryFilters === 'function') applyGlossaryFilters();
+  if (typeof sortAllVizSelects === 'function') sortAllVizSelects();
   var vizSel = document.getElementById('viz-select');
   if (vizSel && typeof buildConfigPanel === 'function') {
     var dataEl = document.getElementById('viz-data');
@@ -6331,6 +6332,23 @@ function resolveInitialVizSelection(select) {
   if (select && select.querySelector('option[value="' + VIZ_DEFAULT_SELECTION + '"]')) return VIZ_DEFAULT_SELECTION;
   return (select && select.options.length) ? select.options[0].value : VIZ_DEFAULT_SELECTION;
 }
+function sortVizSelectOptions(select) {
+  if (!select || select.options.length <= 1) return;
+  var selected = select.value;
+  var opts = Array.prototype.slice.call(select.options);
+  var first = opts.filter(function(o) { return o.value === VIZ_DEFAULT_SELECTION; });
+  var rest = opts.filter(function(o) { return o.value !== VIZ_DEFAULT_SELECTION; });
+  var lang = (typeof UI_LANG !== 'undefined' && UI_LANG === 'uk') ? 'uk' : 'en';
+  rest.sort(function(a, b) {
+    return (a.textContent || '').localeCompare(b.textContent || '', lang, { sensitivity: 'base' });
+  });
+  while (select.firstChild) select.removeChild(select.firstChild);
+  first.concat(rest).forEach(function(o) { select.appendChild(o); });
+  if (selected) select.value = selected;
+}
+function sortAllVizSelects() {
+  document.querySelectorAll('select.viz-select').forEach(sortVizSelectOptions);
+}
 function getActiveVizPayloadFromDom() {
   var jsonEl = document.getElementById('viz-data');
   if (!jsonEl) return {};
@@ -7220,6 +7238,7 @@ function initDocViz(root) {
   if (sel) {
     var docInitial = resolveInitialVizSelection(sel);
     sel.value = docInitial;
+    sortVizSelectOptions(sel);
     sel.addEventListener('change', function() { showPanel(sel.value); });
     showPanel(docInitial);
   }
@@ -7533,6 +7552,7 @@ function initViz() {
   }
   if (select) {
     select.value = initialSelection;
+    sortVizSelectOptions(select);
     select.addEventListener('change', function() {
       var v = select.value;
       var cur = getVizConfig();
