@@ -422,7 +422,7 @@ _UI_TRANSLATIONS = {
     "english": {"en": "English", "uk": "Англійська"},
     "russian_original": {"en": "Russian (original)", "uk": "Російська (оригінал)"},
     "glossary_of_terms": {"en": "Terms", "uk": "Терміни"},
-    "glossary_intro": {"en": "Definitions and examples for specific details (content categories) and ideological layers (framing strategies) used in document analysis.", "uk": "Визначення та приклади конкретних деталей (категорії контенту) та ідеологічних шарів (стратегії фреймінгу), що використовуються в аналізі документів."},
+    "glossary_intro": {"en": "Terms extracted from document segments, grouped by specific detail and ideological layer. Category definitions are in How Categories and Framing Are Qualified above.", "uk": "Терміни з сегментів документів, згруповані за конкретною деталлю та ідеологічним шаром. Визначення категорій — у розділі «Як кваліфікуються категорії та фреймінг» вище."},
     "glossary_search_placeholder": {"en": "Search glossary by name or definition...", "uk": "Пошук у глосарії за назвою або визначенням..."},
     "glossary_how_search_summary": {"en": "How do I search?", "uk": "Як шукати?"},
     "glossary_how_search_html": {
@@ -5069,8 +5069,6 @@ def _glossary_tab(
         cid = c.get("id", "")
         if not cid:
             continue
-        desc = scrub_retired_multiword_category_labels((c.get("description") or c.get("label_en", "") or ""))
-        examples = scrub_retired_multiword_category_labels(str(c.get("examples", "") or ""))
         colour = cat_colours.get(cid, "#8b7355")
         terms_set_h = h_cat.get(cid) or h_cat.get(c.get("label_en", "")) or set()
         terms_set_a = a_cat.get(cid) or a_cat.get(c.get("label_en", "")) or set()
@@ -5091,16 +5089,11 @@ def _glossary_tab(
             f'<div class="glossary-terms-layer glossary-layer-hidden" data-glossary-layer="exp_b">{html_b}</div>'
             f"</div>"
         )
-        search_text = " ".join(filter(None, [cid, c.get("label_en", ""), desc, examples])).lower()
+        search_text = " ".join(filter(None, [cid, c.get("label_en", "")])).lower()
         params_summary = json.dumps({"n": nh})
-        ex_html = ""
-        if examples:
-            ex_html = f'<p style="color: #666;"><strong data-i18n="glossary_examples_label">Examples:</strong> {html_module.escape(examples)}</p>'
         cat_sections.append(f'''
 <div class="glossary-category-section glossary-searchable-section" data-text="{html_module.escape(search_text)}" style="margin-bottom: 2rem;">
 <h4 style="color: {colour}; margin-bottom: 0.5rem; font-size: 1.2rem;">{html_module.escape(c.get("label_en", cid))}</h4>
-<p style="margin-bottom: 0.5rem;"><strong data-i18n="glossary_purpose_label">Purpose:</strong> {html_module.escape(desc)}</p>
-{ex_html}
 <details style="margin-top: 0.75rem;">
 <summary style="cursor: pointer; font-weight: 500;" data-total-human="{nh}" data-total-exp-a="{na}" data-total-exp-b="{nb}" data-total="{nh}"><span class="glossary-terms-summary-label" data-i18n="glossary_terms_from_documents_count" data-i18n-params='{params_summary}'></span></summary>
 <div style="margin-top: 0.5rem;">{layers_inner}</div>
@@ -5112,8 +5105,6 @@ def _glossary_tab(
         fid = f.get("id", "")
         if not fid:
             continue
-        desc = scrub_retired_multiword_category_labels((f.get("description") or f.get("label_en", "") or ""))
-        examples = scrub_retired_multiword_category_labels(str(f.get("examples", "") or ""))
         colour = fram_colours.get(fid, "#8b7355")
         canon = _normalize_for_group(fid) or _normalize_for_group(f.get("label_en", ""))
         terms_set_h = h_fram.get(fid) or h_fram.get(canon) or h_fram.get(f.get("label_en", "")) or set()
@@ -5135,16 +5126,11 @@ def _glossary_tab(
             f'<div class="glossary-terms-layer glossary-layer-hidden" data-glossary-layer="exp_b">{html_b}</div>'
             f"</div>"
         )
-        search_text = " ".join(filter(None, [fid, f.get("label_en", ""), desc, examples])).lower()
+        search_text = " ".join(filter(None, [fid, f.get("label_en", "")])).lower()
         params_summary = json.dumps({"n": nh})
-        ex_html = ""
-        if examples:
-            ex_html = f'<p style="color: #666;"><strong data-i18n="glossary_examples_label">Examples:</strong> {html_module.escape(examples)}</p>'
         fram_sections.append(f'''
 <div class="glossary-framing-section glossary-searchable-section" data-text="{html_module.escape(search_text)}" style="margin-bottom: 2rem;">
 <h4 style="color: {colour}; margin-bottom: 0.5rem; font-size: 1.2rem;">{html_module.escape(f.get("label_en", fid))}</h4>
-<p style="margin-bottom: 0.5rem;"><strong data-i18n="glossary_function_label">Function:</strong> {html_module.escape(desc)}</p>
-{ex_html}
 <details style="margin-top: 0.75rem;">
 <summary style="cursor: pointer; font-weight: 500;" data-total-human="{nh}" data-total-exp-a="{na}" data-total-exp-b="{nb}" data-total="{nh}"><span class="glossary-terms-summary-label" data-i18n="glossary_terms_from_documents_count" data-i18n-params='{params_summary}'></span></summary>
 <div style="margin-top: 0.5rem;">{layers_inner}</div>
@@ -5189,7 +5175,7 @@ def _glossary_tab(
         """<details class="collapsible-section lab-glossary-root" id="lab-glossary" aria-labelledby="lab-glossary-heading">
 <summary><span id="lab-glossary-heading" data-i18n="glossary_of_terms">Terms</span></summary>
 <div class="collapsible-body lab-glossary-collapsible-body">
-<p data-i18n="glossary_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">Definitions and examples for content categories and framing strategies used in document analysis.</p>
+<p data-i18n="glossary_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">Terms extracted from document segments, grouped by specific detail and ideological layer. Category definitions are in How Categories and Framing Are Qualified above.</p>
 <div class="glossary-controls glossary-controls-search">
 <div class="glossary-search-cyrillic-anchor">
 <input type="search" id="glossary-search" class="glossary-search" placeholder="Search glossary by name or definition..." data-i18n="glossary_search_placeholder" autocomplete="off"/>
@@ -5218,13 +5204,11 @@ def _glossary_tab(
         + """
 </div>
 <h3 style="color: #4a5568; margin-bottom: 1.5rem; font-size: 1.5rem;" data-i18n="content_categories">Content Categories</h3>
-<p style="margin-bottom: 2rem; color: #4a5568; font-style: italic;" data-i18n="content_categories_desc">Specific details describe WHAT the text refers to at surface level (aligned with content-category labels in the data model). In technical materials these correspond to content categories.</p>
 """
         + chr(10).join(cat_sections)
         + summary_html
         + """
 <h3 style="color: #4a5568; margin-bottom: 1.5rem; font-size: 1.5rem; margin-top: 3rem;" data-i18n="framing_categories">Framing and Language Strategy Categories</h3>
-<p style="margin-bottom: 2rem; color: #4a5568; font-style: italic;" data-i18n="framing_categories_desc">Framing strategies describe HOW language is used: neutral, bureaucratic, ideological, or action-focused.</p>
 """
         + chr(10).join(fram_sections)
         + """
