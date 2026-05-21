@@ -421,7 +421,7 @@ _UI_TRANSLATIONS = {
     "label_suggestion_row_index": {"en": "Row index", "uk": "Індекс рядка"},
     "english": {"en": "English", "uk": "Англійська"},
     "russian_original": {"en": "Russian (original)", "uk": "Російська (оригінал)"},
-    "glossary_of_terms": {"en": "Glossary of Terms", "uk": "Глосарій термінів"},
+    "glossary_of_terms": {"en": "Terms", "uk": "Терміни"},
     "glossary_intro": {"en": "Definitions and examples for specific details (content categories) and ideological layers (framing strategies) used in document analysis.", "uk": "Визначення та приклади конкретних деталей (категорії контенту) та ідеологічних шарів (стратегії фреймінгу), що використовуються в аналізі документів."},
     "glossary_search_placeholder": {"en": "Search glossary by name or definition...", "uk": "Пошук у глосарії за назвою або визначенням..."},
     "glossary_how_search_summary": {"en": "How do I search?", "uk": "Як шукати?"},
@@ -3877,14 +3877,49 @@ def _dev_label_export_tab() -> str:
 </div>"""
 
 
+def _analytical_framework_collapsible() -> str:
+    """Research Lab dropdown: Specific Details / Ideological Layers framework (moved from Introduction)."""
+    return """
+  <details class="collapsible-section lab-framework-details" id="lab-analytical-framework">
+    <summary><span data-i18n="intro_framework_heading">Analytical framework</span></summary>
+    <div class="collapsible-body">
+      <div class="intro-framework-visual">
+        <h4 data-i18n="intro_framework_visual_title">Vozmezdie analytical framework</h4>
+        <div class="intro-fw-columns">
+          <div class="intro-fw-col">
+            <strong data-i18n="intro_fw_specific_label">Specific Details</strong>
+            <span class="tech" data-i18n="intro_fw_specific_sub">Content data · categories</span>
+          </div>
+          <div class="intro-fw-col">
+            <strong data-i18n="intro_fw_ideo_label">Ideological Layers</strong>
+            <span class="tech" data-i18n="intro_fw_ideo_sub">Language data · framing</span>
+          </div>
+        </div>
+        <hr class="intro-fw-rule" aria-hidden="true"/>
+        <p class="intro-seg-band-label" data-i18n="intro_seg_band_label">Segmentation in comparisons</p>
+        <div class="intro-segmentation-split" role="group" aria-label="Segmentation modes">
+          <div class="intro-seg-card intro-seg-human">
+            <span class="intro-seg-title" data-i18n="intro_seg_human_title">Human Segmented</span>
+            <p class="intro-seg-desc" data-i18n="intro_seg_human_desc">Slices follow the expert reference: each segment lines up with the same paragraph boundaries the human analysts used.</p>
+          </div>
+          <div class="intro-seg-connector" aria-hidden="true"><span class="intro-seg-vs" data-i18n="intro_seg_vs">vs</span></div>
+          <div class="intro-seg-card intro-seg-ai">
+            <span class="intro-seg-title" data-i18n="intro_seg_ai_title">AI Segmented</span>
+            <p class="intro-seg-desc" data-i18n="intro_seg_ai_desc">The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the human-sliced run.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>"""
+
+
 def _intro_tab() -> str:
     """Sidebar tab: introduction and project context (above Research Lab)."""
     return """
 <div class="tab-content active" id="tab-intro">
-<div class="header"><h2 data-i18n="intro_landing_link">Introduction</h2></div>
+<div class="header"><h2 data-i18n="intro_vozmezdie_title">KGB and the Ukrainian Diaspora: Operation Vozmezdie</h2></div>
 <div class="homepage-content">
   <section class="homepage-section">
-    <h3 data-i18n="intro_vozmezdie_title">KGB and the Ukrainian Diaspora: Operation Vozmezdie</h3>
     <p class="intro-lead" data-i18n="intro_vozmezdie_welcome">Welcome to the Vozmezdie Files</p>
     <p data-i18n="intro_vozmezdie_p1">This site presents a small selection of declassified documents from the former KGB archives of the Ukrainian SSR. KGB, or Komitet Gosudarstvennoi Bezopasnosti, translates as the State Security Committee and is commonly referred to in English as the Soviet security services.</p>
     <p data-i18n="intro_vozmezdie_p2">The files gathered here reveal how the Soviet security services monitored, described, and sought to undermine the Ukrainian diaspora in North America.</p>
@@ -3902,52 +3937,6 @@ def _intro_tab() -> str:
     <p class="intro-cta-note" data-i18n="intro_open_lab_note">Switch to the Research Lab tab for charts, maps, and the glossary at the bottom of that page.</p>
   </section>
   <section class="homepage-section">
-    <h3 data-i18n="intro_tools_heading">Ways to interact with the data</h3>
-    <p style="color:#5a5348;margin-bottom:0.25rem;font-size:1rem;line-height:1.55;" data-i18n="intro_tools_lead">Each capability lives in this Research Lab unless noted. Combine close reading with corpus-level patterns.</p>
-    <div class="intro-tools-grid">
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_doc_tag">Document tabs</span>
-        <h4 data-i18n="intro_tool_doc_h">Document Text Illuminator</h4>
-        <p data-i18n="intro_tool_doc_p">The Document Text Illuminator shows aligned English and Russian segments with scroll sync, search, and filters by category and framing. Toggle stacked or side-by-side layout.</p>
-      </article>
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_compare_tag">Same tab</span>
-        <h4 data-i18n="intro_tool_compare_h">Expert reference vs AI labels</h4>
-        <p data-i18n="intro_tool_compare_p">Each row pairs expert reference labels with AI labels on the same expert-drawn passage; click a section number to open the Document Text Illuminator there. Export aligned comparison as JSON where enabled.</p>
-      </article>
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_viz_tag">Research Lab</span>
-        <h4 data-i18n="intro_tool_viz_h">Corpus visualizations</h4>
-        <p data-i18n="intro_tool_viz_p">Word clouds, category and framing distributions, agreement summaries, mismatch views, and charts tied to loaded documents.</p>
-      </article>
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_map_tag">Research Lab</span>
-        <h4 data-i18n="intro_tool_map_h">Places map</h4>
-        <p data-i18n="intro_tool_map_p">Geocoded locations when place data is present; explore mentions from the map.</p>
-      </article>
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_gloss_tag">Bottom of Lab</span>
-        <h4 data-i18n="intro_tool_gloss_h">Glossary and terms</h4>
-        <p data-i18n="intro_tool_gloss_p">Taxonomy definitions plus corpus terms, search (including regex), document filter, and links to segment anchors.</p>
-      </article>
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_tax_tag">Intro & Lab</span>
-        <h4 data-i18n="intro_tool_tax_h">Taxonomy reference</h4>
-        <p data-i18n="intro_tool_tax_p">Collapsible reference on how categories and framing are qualified, aligned with Categories Explained where configured.</p>
-      </article>
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_suggest_tag">Comparison rows</span>
-        <h4 data-i18n="intro_tool_suggest_h">Label suggestions</h4>
-        <p data-i18n="intro_tool_suggest_p">In-page modal from the “+” control: propose alternate labels; persist in the browser and download JSON.</p>
-      </article>
-      <article class="intro-tool-card">
-        <span class="intro-tool-tag" data-i18n="intro_tool_ui_tag">Throughout</span>
-        <h4 data-i18n="intro_tool_ui_h">UI language & typing</h4>
-        <p data-i18n="intro_tool_ui_p">English / Ukrainian toggle where available. Cyrillic popup keyboard on search fields without switching OS layouts.</p>
-      </article>
-    </div>
-  </section>
-  <section class="homepage-section">
     <h3 data-i18n="intro_capabilities_heading">What you can do here</h3>
     <ul class="doc-controls-capabilities">
       <li data-i18n="intro_cap_a">Read aligned English and Russian segments side by side with search and filters.</li>
@@ -3957,35 +3946,6 @@ def _intro_tab() -> str:
       <li data-i18n="intro_cap_e">Use the on-screen Cyrillic keyboard: open any document tab or the glossary search on the Research Lab page, click in an English or Russian search field — the keyboard pops up so you can type without switching system layouts.</li>
       <li data-i18n="intro_cap_f">Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.</li>
     </ul>
-  </section>
-  <section class="homepage-section">
-    <h3 data-i18n="intro_framework_heading">Analytical framework</h3>
-    <div class="intro-framework-visual">
-      <h4 data-i18n="intro_framework_visual_title">Vozmezdie analytical framework</h4>
-      <div class="intro-fw-columns">
-        <div class="intro-fw-col">
-          <strong data-i18n="intro_fw_specific_label">Specific Details</strong>
-          <span class="tech" data-i18n="intro_fw_specific_sub">Content data · categories</span>
-        </div>
-        <div class="intro-fw-col">
-          <strong data-i18n="intro_fw_ideo_label">Ideological Layers</strong>
-          <span class="tech" data-i18n="intro_fw_ideo_sub">Language data · framing</span>
-        </div>
-      </div>
-      <hr class="intro-fw-rule" aria-hidden="true"/>
-      <p class="intro-seg-band-label" data-i18n="intro_seg_band_label">Segmentation in comparisons</p>
-      <div class="intro-segmentation-split" role="group" aria-label="Segmentation modes">
-        <div class="intro-seg-card intro-seg-human">
-          <span class="intro-seg-title" data-i18n="intro_seg_human_title">Human Segmented</span>
-          <p class="intro-seg-desc" data-i18n="intro_seg_human_desc">Slices follow the expert reference: each segment lines up with the same paragraph boundaries the human analysts used.</p>
-        </div>
-        <div class="intro-seg-connector" aria-hidden="true"><span class="intro-seg-vs" data-i18n="intro_seg_vs">vs</span></div>
-        <div class="intro-seg-card intro-seg-ai">
-          <span class="intro-seg-title" data-i18n="intro_seg_ai_title">AI Segmented</span>
-          <p class="intro-seg-desc" data-i18n="intro_seg_ai_desc">The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the human-sliced run.</p>
-        </div>
-      </div>
-    </div>
   </section>
   <section class="homepage-section intro-video-section">
     <h3 data-i18n="intro_video_heading">How to use this site (video)</h3>
@@ -4247,16 +4207,19 @@ def _homepage(
         f"{taxonomy_ref_html}</div></details>"
         if taxonomy_ref_html else ""
     )
+    framework_section = _analytical_framework_collapsible()
 
     home_html = f"""
 <div class="tab-content" id="tab-home">
 <div class="header"><h2 data-i18n="home">Research Lab</h2></div>
 <div class="homepage-content">
-  {viz_section_markup}
-
   {taxonomy_section}
 
+  {framework_section}
+
   {glossary_panel_html}
+
+  {viz_section_markup}
 </div>
 </div>"""
     return home_html, viz_json, heatmap_html, places_map_srcdoc
@@ -5224,7 +5187,7 @@ def _glossary_tab(
     glossary_cyr = _cyrillic_keyboard_html("glossary", logo_href=keyboard_logo_href)
     return (
         """<details class="collapsible-section lab-glossary-root" id="lab-glossary" aria-labelledby="lab-glossary-heading">
-<summary><span id="lab-glossary-heading" data-i18n="glossary_of_terms">Glossary of Terms</span></summary>
+<summary><span id="lab-glossary-heading" data-i18n="glossary_of_terms">Terms</span></summary>
 <div class="collapsible-body lab-glossary-collapsible-body">
 <p data-i18n="glossary_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">Definitions and examples for content categories and framing strategies used in document analysis.</p>
 <div class="glossary-controls glossary-controls-search">
@@ -6414,7 +6377,7 @@ function getActiveVizPayloadFromDom() {
 }
 function getVizConfig() {
   var jsonEl = document.getElementById('viz-data');
-  if (!jsonEl) return { selection: 'wordcloud', config: {} };
+  if (!jsonEl) return { selection: 'places-map', config: {} };
   var data = getActiveVizPayloadFromDom();
   var defaults = data.configDefaults || {};
   var stored;
@@ -6423,7 +6386,7 @@ function getVizConfig() {
   var segLenDefaults = (defaults && defaults.segment_length) ? defaults.segment_length : { scale: 100, x_tick_step: 0 };
   var chartTextDefaults = (defaults && defaults.chart_text) ? defaults.chart_text : { language: 'both' };
   return {
-    selection: stored.selection || 'wordcloud',
+    selection: stored.selection || 'places-map',
     config: {
       word_cloud: Object.assign({}, defaults.word_cloud, stored.config && stored.config.word_cloud),
       radar: Object.assign({}, radarDefaults, stored.config && stored.config.radar),
@@ -7279,14 +7242,14 @@ function initDocViz(root) {
       if (baseId === 'viz-chart-text-lang') c.config.chart_text.language = tgt.value || 'both';
       if (baseId && (/^viz-(max-words|weight-factor|language|stopwords-extra|text-source|wc-category|wc-framing|chart-text-lang)$/.test(baseId) || /^viz-radar-(mode|compare-count)$/.test(baseId) || /^viz-segment-(scale|x-step)$/.test(baseId))) {
         saveVizConfig(c.selection, c.config);
-        var vk = sel ? sel.value : 'wordcloud';
+        var vk = sel ? sel.value : 'places-map';
         renderDocVizPanel(root, vk, data);
       }
     });
   }
   if (sel) {
     sel.addEventListener('change', function() { showPanel(sel.value); });
-    showPanel(sel.value || 'wordcloud');
+    showPanel(sel.value || 'places-map');
   }
 }
 function setupDocVizTriggers() {
@@ -7311,7 +7274,7 @@ function buildConfigPanel(panelId, data, docCtx) {
   function persistDocViz() {
     if (!isDoc || !docCtx.root) return;
     var selEl = document.getElementById('viz-select-' + docCtx.suffix);
-    var vk = selEl ? selEl.value : 'wordcloud';
+    var vk = selEl ? selEl.value : 'places-map';
     renderDocVizPanel(docCtx.root, vk, data);
   }
   if (panelId === 'viz-wordcloud') {

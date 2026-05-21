@@ -1,5 +1,68 @@
 """HTML fragment for Research Lab visualizations (shared full report + standalone chart page)."""
 
+_DEFAULT_VIZ = "places-map"
+
+# (value, i18n key, English label for sort order)
+_DOC_VIZ_OPTIONS = [
+    ("wordcloud", "viz_wordcloud", "Word Cloud"),
+    ("heatmap", "viz_heatmap", "Category x Framing Heatmap"),
+    ("per-doc-cat", "viz_per_doc_cat", "Per-Document Categories"),
+    ("per-doc-fram", "viz_per_doc_fram", "Per-Document Framings"),
+    ("pie-cat", "viz_pie_cat", "Category Distribution"),
+    ("pie-fram", "viz_pie_fram", "Framing Distribution"),
+    ("terms-cat", "viz_terms_cat", "Top Terms by Category"),
+    ("terms-fram", "viz_terms_fram", "Top Terms by Framing"),
+    ("vocab-diversity", "viz_vocab_diversity", "Vocabulary Diversity"),
+    ("segment-length", "viz_segment_length", "Segment Length vs Accuracy"),
+    ("places-map", "viz_places_map", "Places Map"),
+    ("radar", "viz_radar", "Document Profile Radar"),
+    ("mismatch-flow", "viz_mismatch_flow", "Mismatch Flow"),
+    ("doc-fingerprint", "viz_doc_fingerprint", "Document Fingerprint"),
+    ("terms-by-framing", "viz_terms_by_framing", "Terms by Framing"),
+    ("term-framing-heatmap", "viz_term_framing_heatmap", "Term x Framing Heatmap"),
+]
+
+_LAB_VIZ_OPTIONS = [
+    ("wordcloud", "viz_wordcloud", "Word Cloud"),
+    ("heatmap", "viz_heatmap", "Category x Framing Heatmap"),
+    ("per-doc-cat", "viz_per_doc_cat", "Per-Document Categories"),
+    ("per-doc-fram", "viz_per_doc_fram", "Per-Document Framings"),
+    ("pie-cat", "viz_pie_cat", "Overall Category Distribution"),
+    ("pie-fram", "viz_pie_fram", "Overall Framing Distribution"),
+    ("terms-cat", "viz_terms_cat", "Top Terms by Category"),
+    ("terms-fram", "viz_terms_fram", "Top Terms by Framing"),
+    ("vocab-diversity", "viz_vocab_diversity", "Vocabulary Diversity"),
+    ("trends", "viz_trends", "Trends Across Documents"),
+    ("segment-length", "viz_segment_length", "Segment Length vs Accuracy"),
+    ("places-map", "viz_places_map", "Places Map"),
+    ("voyant", "viz_voyant", "Voyant Cirrus"),
+    ("voyant-links", "viz_voyant_links", "Voyant Links"),
+    ("voyant-bubblelines", "viz_voyant_bubblelines", "Voyant Bubblelines"),
+    ("voyant-constellations", "viz_voyant_constellations", "Voyant Constellations"),
+    ("radar", "viz_radar", "Document Profile Radar"),
+    ("mismatch-flow", "viz_mismatch_flow", "Mismatch Flow"),
+    ("doc-fingerprint", "viz_doc_fingerprint", "Document Fingerprint"),
+    ("doc-similarity", "viz_doc_similarity", "Document Similarity"),
+    ("terms-by-framing", "viz_terms_by_framing", "Terms by Framing"),
+    ("term-framing-heatmap", "viz_term_framing_heatmap", "Term x Framing Heatmap"),
+]
+
+
+def _viz_select_options_html(options: list, *, indent: str = "        ") -> str:
+    """Places Map first; remaining options A–Z by English label."""
+    first = [o for o in options if o[0] == _DEFAULT_VIZ]
+    rest = sorted(
+        [o for o in options if o[0] != _DEFAULT_VIZ],
+        key=lambda o: o[2].casefold(),
+    )
+    lines = []
+    for value, i18n_key, label in first + rest:
+        sel = " selected" if value == _DEFAULT_VIZ else ""
+        lines.append(
+            f'{indent}<option value="{value}" data-i18n="{i18n_key}"{sel}>{label}</option>'
+        )
+    return "\n".join(lines)
+
 
 def per_document_viz_section(
     dom_suffix: str,
@@ -39,22 +102,7 @@ def per_document_viz_section(
     <div class="viz-controls doc-viz-controls">
 {doc_exp_row}      <label for="viz-select-{sfx}" data-i18n="select_visualization">Select visualization:</label>
       <select id="viz-select-{sfx}" class="viz-select doc-viz-select">
-        <option value="wordcloud" data-i18n="viz_wordcloud">Word Cloud</option>
-        <option value="heatmap" data-i18n="viz_heatmap">Category x Framing Heatmap</option>
-        <option value="per-doc-cat" data-i18n="viz_per_doc_cat">Per-Document Categories</option>
-        <option value="per-doc-fram" data-i18n="viz_per_doc_fram">Per-Document Framings</option>
-        <option value="pie-cat" data-i18n="viz_pie_cat">Category Distribution</option>
-        <option value="pie-fram" data-i18n="viz_pie_fram">Framing Distribution</option>
-        <option value="terms-cat" data-i18n="viz_terms_cat">Top Terms by Category</option>
-        <option value="terms-fram" data-i18n="viz_terms_fram">Top Terms by Framing</option>
-        <option value="vocab-diversity" data-i18n="viz_vocab_diversity">Vocabulary Diversity</option>
-        <option value="segment-length" data-i18n="viz_segment_length">Segment Length vs Accuracy</option>
-        <option value="places-map" data-i18n="viz_places_map">Places Map</option>
-        <option value="radar" data-i18n="viz_radar">Document Profile Radar</option>
-        <option value="mismatch-flow" data-i18n="viz_mismatch_flow">Mismatch Flow</option>
-        <option value="doc-fingerprint" data-i18n="viz_doc_fingerprint">Document Fingerprint</option>
-        <option value="terms-by-framing" data-i18n="viz_terms_by_framing">Terms by Framing</option>
-        <option value="term-framing-heatmap" data-i18n="viz_term_framing_heatmap">Term x Framing Heatmap</option>
+{_viz_select_options_html(_DOC_VIZ_OPTIONS, indent="        ")}
       </select>
       <details class="viz-config-panel doc-viz-config-panel" id="viz-config-panel-{sfx}">
         <summary data-i18n="viz_config">Configuration</summary>
@@ -121,28 +169,7 @@ def viz_lab_visualizations_section(
     <div class="viz-controls">
 {lab_exp_row}      <label for="viz-select" data-i18n="select_visualization">Select visualization:</label>
       <select id="viz-select" class="viz-select">
-        <option value="wordcloud" data-i18n="viz_wordcloud">Word Cloud</option>
-        <option value="heatmap" data-i18n="viz_heatmap">Category x Framing Heatmap</option>
-        <option value="per-doc-cat" data-i18n="viz_per_doc_cat">Per-Document Categories</option>
-        <option value="per-doc-fram" data-i18n="viz_per_doc_fram">Per-Document Framings</option>
-        <option value="pie-cat" data-i18n="viz_pie_cat">Overall Category Distribution</option>
-        <option value="pie-fram" data-i18n="viz_pie_fram">Overall Framing Distribution</option>
-        <option value="terms-cat" data-i18n="viz_terms_cat">Top Terms by Category</option>
-        <option value="terms-fram" data-i18n="viz_terms_fram">Top Terms by Framing</option>
-        <option value="vocab-diversity" data-i18n="viz_vocab_diversity">Vocabulary Diversity</option>
-        <option value="trends" data-i18n="viz_trends">Trends Across Documents</option>
-        <option value="segment-length" data-i18n="viz_segment_length">Segment Length vs Accuracy</option>
-        <option value="places-map" data-i18n="viz_places_map">Places Map</option>
-        <option value="voyant" data-i18n="viz_voyant">Voyant Cirrus</option>
-        <option value="voyant-links" data-i18n="viz_voyant_links">Voyant Links</option>
-        <option value="voyant-bubblelines" data-i18n="viz_voyant_bubblelines">Voyant Bubblelines</option>
-        <option value="voyant-constellations" data-i18n="viz_voyant_constellations">Voyant Constellations</option>
-        <option value="radar" data-i18n="viz_radar">Document Profile Radar</option>
-        <option value="mismatch-flow" data-i18n="viz_mismatch_flow">Mismatch Flow</option>
-        <option value="doc-fingerprint" data-i18n="viz_doc_fingerprint">Document Fingerprint</option>
-        <option value="doc-similarity" data-i18n="viz_doc_similarity">Document Similarity</option>
-        <option value="terms-by-framing" data-i18n="viz_terms_by_framing">Terms by Framing</option>
-        <option value="term-framing-heatmap" data-i18n="viz_term_framing_heatmap">Term x Framing Heatmap</option>
+{_viz_select_options_html(_LAB_VIZ_OPTIONS, indent="        ")}
       </select>
       <details class="viz-config-panel" id="viz-config-panel">
         <summary data-i18n="viz_config">Configuration</summary>
