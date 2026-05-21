@@ -6319,6 +6319,18 @@ function getVizExperimentIndex() {
 function setVizExperimentIndex(idx) {
   try { sessionStorage.setItem('vozmezdie_viz_exp', String(idx)); } catch(e) {}
 }
+var VIZ_DEFAULT_SELECTION = 'places-map';
+function vizSelectionFromHash() {
+  var h = window.location.hash || '';
+  var m = h.match(/^#(?:tab-home-)?viz-(.+)$/);
+  return m ? m[1] : null;
+}
+function resolveInitialVizSelection(select) {
+  var fromHash = vizSelectionFromHash();
+  if (fromHash && select && select.querySelector('option[value="' + fromHash + '"]')) return fromHash;
+  if (select && select.querySelector('option[value="' + VIZ_DEFAULT_SELECTION + '"]')) return VIZ_DEFAULT_SELECTION;
+  return (select && select.options.length) ? select.options[0].value : VIZ_DEFAULT_SELECTION;
+}
 function getActiveVizPayloadFromDom() {
   var jsonEl = document.getElementById('viz-data');
   if (!jsonEl) return {};
@@ -6335,7 +6347,7 @@ function getActiveVizPayloadFromDom() {
 }
 function getVizConfig() {
   var jsonEl = document.getElementById('viz-data');
-  if (!jsonEl) return { selection: 'places-map', config: {} };
+  if (!jsonEl) return { selection: VIZ_DEFAULT_SELECTION, config: {} };
   var data = getActiveVizPayloadFromDom();
   var defaults = data.configDefaults || {};
   var stored;
@@ -6344,7 +6356,7 @@ function getVizConfig() {
   var segLenDefaults = (defaults && defaults.segment_length) ? defaults.segment_length : { scale: 100, x_tick_step: 0 };
   var chartTextDefaults = (defaults && defaults.chart_text) ? defaults.chart_text : { language: 'both' };
   return {
-    selection: stored.selection || 'places-map',
+    selection: stored.selection || VIZ_DEFAULT_SELECTION,
     config: {
       word_cloud: Object.assign({}, defaults.word_cloud, stored.config && stored.config.word_cloud),
       radar: Object.assign({}, radarDefaults, stored.config && stored.config.radar),
@@ -7206,8 +7218,10 @@ function initDocViz(root) {
     });
   }
   if (sel) {
+    var docInitial = resolveInitialVizSelection(sel);
+    sel.value = docInitial;
     sel.addEventListener('change', function() { showPanel(sel.value); });
-    showPanel(sel.value || 'places-map');
+    showPanel(docInitial);
   }
 }
 function setupDocVizTriggers() {
@@ -7504,10 +7518,27 @@ function initViz() {
     var hm = document.getElementById('viz-heatmap-mount');
     if (hm && ex && ex.heatmapHtml) hm.innerHTML = ex.heatmapHtml;
     destroyAllVizCharts();
-    var cur = getVizConfig();
-    syncPanelsAndRender(cur.selection);
+    var selEl = document.getElementById('viz-select');
+    var activeSel = (selEl && selEl.value) ? selEl.value : resolveInitialVizSelection(selEl);
+    syncPanelsAndRender(activeSel);
     var expSelLab = document.getElementById('viz-experiment-select');
     if (expSelLab) expSelLab.value = String(idx);
+  }
+  var cfg = getVizConfig();
+  var select = document.getElementById('viz-select');
+  var initialSelection = resolveInitialVizSelection(select);
+  if (!vizSelectionFromHash()) {
+    saveVizConfig(initialSelection, cfg.config);
+    cfg.selection = initialSelection;
+  }
+  if (select) {
+    select.value = initialSelection;
+    select.addEventListener('change', function() {
+      var v = select.value;
+      var cur = getVizConfig();
+      saveVizConfig(v, cur.config);
+      syncPanelsAndRender(v);
+    });
   }
   var idx0 = 0;
   if (multi) {
@@ -7548,18 +7579,7 @@ function initViz() {
     if (expSel) expSel.value = String(idx0);
     applyExperimentIndex(idx0);
   }
-  var cfg = getVizConfig();
-  var select = document.getElementById('viz-select');
-  if (select) {
-    select.value = cfg.selection;
-    select.addEventListener('change', function() {
-      var v = select.value;
-      var cur = getVizConfig();
-      saveVizConfig(v, cur.config);
-      syncPanelsAndRender(v);
-    });
-  }
-  if (!multi) syncPanelsAndRender(cfg.selection);
+  if (!multi) syncPanelsAndRender(initialSelection);
   if (labDet && labDet.tagName === 'DETAILS') {
     labDet.addEventListener('toggle', function() {
       if (!labDet.open) return;
@@ -7815,7 +7835,7 @@ document.addEventListener('DOMContentLoaded', function() {
     vizOpenBtn.addEventListener('click', function() {
       var sel = document.getElementById('viz-select');
       if (!sel) return;
-      var v = sel.value || 'wordcloud';
+      var v = sel.value || VIZ_DEFAULT_SELECTION;
       var lab = document.body.getAttribute('data-lab-viz');
       var base;
       if (lab && !(typeof STANDALONE_VIZ !== 'undefined' && STANDALONE_VIZ)) {
