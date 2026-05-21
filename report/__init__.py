@@ -5045,14 +5045,6 @@ def _glossary_tab(
     a_fram = _filter_fram_terms(a_fram)
     b_fram = _filter_fram_terms(b_fram)
 
-    terms_by_cat, terms_by_fram = a_cat, a_fram
-    all_terms = a_all
-    total_unique = len(all_terms)
-    n_cat_with_terms = len(terms_by_cat)
-    n_fram_with_terms = len(terms_by_fram)
-    unique_by_cat = sum(len(s) for s in terms_by_cat.values())
-    unique_by_fram = sum(len(s) for s in terms_by_fram.values())
-    nh_all, na_all, nb_all = len(h_all), len(a_all), len(b_all)
     doc_names = {
         d.get("document_id", ""): _nav_label(d)
         for d in (documents or [])
@@ -5148,23 +5140,6 @@ def _glossary_tab(
         f"</select></div>"
     )
 
-    summary_html = ""
-    if total_unique > 0 or nh_all > 0:
-        params_cat = json.dumps({"n_types": n_cat_with_terms, "n_inst": unique_by_cat})
-        params_fram = json.dumps({"n_types": n_fram_with_terms, "n_inst": unique_by_fram})
-        nb_line = str(nb_all) if dual_exp else "— (not loaded)"
-        summary_html = f"""
-<hr style="margin: 3rem 0; border: none; border-top: 2px solid #dee2e6;"/>
-<h3 style="color: #4a5568; margin-bottom: 1.5rem; font-size: 1.5rem; margin-top: 3rem;" data-i18n="terms_found_summary">Terms Found in Documents - Summary</h3>
-<div style="background: #e8e4dc; padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem; border: 1px solid rgba(139,115,85,0.3);">
-<p style="margin-bottom: 0.65rem;"><strong data-i18n="total_unique_terms">Total unique terms extracted:</strong> {total_unique} <span style="color:#5a5348;" data-i18n="terms_vocab_alignment_note">(Expert-drawn alignment · model-assigned labels)</span></p>
-<p style="margin-bottom: 0.45rem;"><strong data-i18n="glossary_expert_segments_terms">Expert coder segments (unique terms):</strong> {nh_all}</p>
-<p style="margin-bottom: 0.45rem;"><strong>{esc_lab_a} (LLM on primary alignment, unique terms):</strong> {na_all}</p>
-<p style="margin-bottom: 1rem;"><strong>{esc_lab_b} (LLM on secondary comparison, unique terms):</strong> {nb_line}</p>
-<p style="margin-bottom: 1rem;"><strong data-i18n="content_categories_stats">Content Categories:</strong> <span data-i18n="glossary_stats_cat_detail" data-i18n-params='{params_cat}'>{n_cat_with_terms} types · {unique_by_cat} term instances</span></p>
-<p style="margin-bottom: 1rem;"><strong data-i18n="framing_strategies_stats">Framing Strategies:</strong> <span data-i18n="glossary_stats_fram_detail" data-i18n-params='{params_fram}'>{n_fram_with_terms} types · {unique_by_fram} term instances</span></p>
-</div>"""
-
     doc_opts = "\n".join(
         f'<option value="{html_module.escape(doc.get("document_id", ""))}">{html_module.escape(_nav_label(doc))}</option>'
         for doc in (documents or [])
@@ -5206,7 +5181,6 @@ def _glossary_tab(
 <h3 style="color: #4a5568; margin-bottom: 1.5rem; font-size: 1.5rem;" data-i18n="content_categories">Content Categories</h3>
 """
         + chr(10).join(cat_sections)
-        + summary_html
         + """
 <h3 style="color: #4a5568; margin-bottom: 1.5rem; font-size: 1.5rem; margin-top: 3rem;" data-i18n="framing_categories">Framing and Language Strategy Categories</h3>
 """
