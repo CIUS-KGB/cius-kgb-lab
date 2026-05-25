@@ -209,16 +209,31 @@ def _nav_label(doc: Dict[str, Any]) -> str:
 # UI translations: en (English), uk (Ukrainian)
 _UI_TRANSLATIONS = {
     "declassified": {"en": "Declassified", "uk": "Розсекречено"},
-    "home": {"en": "Research Lab", "uk": "Дослідницька лабораторія"},
+    "home": {"en": "All Documents", "uk": "Усі документи"},
     "intro_landing_link": {"en": "Introduction", "uk": "Вступ"},
     "intro_capabilities_heading": {"en": "What you can do here", "uk": "Що ви можете зробити"},
-    "intro_cap_a": {"en": "Read aligned English and Russian segments side by side with search and filters.", "uk": "Читати вирівняні англійські та російські сегменти поруч із пошуком і фільтрами."},
-    "intro_cap_b": {"en": "Inspect specific details (what the segment is about) and ideological layers (how it is phrased).", "uk": "Переглядати конкретні деталі (про що сегмент) та ідеологічні шари (як це сформульовано)."},
-    "intro_cap_c": {"en": "Open expert-reference versus AI comparison tables and optional scans (PDF) when configured.", "uk": "Відкривати таблиці порівняння еталон експерта проти ШІ та за потреби скани (PDF)."},
-    "intro_cap_d": {"en": "Use the Research Lab for corpus-level charts, maps, and the glossary (at the bottom of the Lab page) for taxonomy-backed definitions.", "uk": "Використовуйте дослідницьку лабораторію для графіків по корпусу, карт і глосарія (внизу сторінки лабораторії) з визначеннями таксономії."},
-    "intro_cap_e": {"en": "Use the on-screen Cyrillic keyboard: open any document tab or the glossary search on the Research Lab page, click in an English or Russian search field — a Ukrainian-layout popup opens; extra Russian letters (ё, ы, э, ъ) sit on the bottom row when you need original spelling.", "uk": "Екранна кирилична клавіатура української розкладки: відкрийте вкладку документа або пошук глосарія й натисніть у полі пошуку — з’явиться клавіатура; додаткові російські літери (ё, ы, э, ъ) на нижньому ряду для орфографії оригіналів."},
+    "intro_cap_a": {
+        "en": "Compare how human experts and AI classified the same passages in each document's Human vs AI Comparison Table, including agreement and disagreement on specific details and ideological layers.",
+        "uk": "Порівнюйте, як експерти та ШІ класифікували ті самі уривки в таблиці «Людина проти ШІ» в кожному документі, зокрема збіги та розходження щодо конкретних деталей і ідеологічних шарів.",
+    },
+    "intro_cap_b": {
+        "en": "Use the Document Text Illuminator to read English and Russian side by side, highlight segments by category or framing, and search within a file.",
+        "uk": "Користуйтеся Ілюмінатором тексту: англійська та російська поруч, підсвітка сегментів за категорією чи фреймінгом і пошук у файлі.",
+    },
+    "intro_cap_c": {
+        "en": "On All Documents, explore corpus-wide charts, the places map, shared terms, and the framework that explains how passages are classified.",
+        "uk": "На сторінці «Усі документи» переглядайте графіки по корпусу, карту місць, спільні терміни та пояснення, як класифікують уривки.",
+    },
+    "intro_cap_d": {
+        "en": "Open any single document for its own illuminator, comparison table, visualizations, and Independent AI Assessment.",
+        "uk": "Відкрийте окремий документ: ілюмінатор, таблиця порівняння, візуалізації та незалежна оцінка ШІ.",
+    },
+    "intro_cap_e": {
+        "en": "View the Independent AI Assessment in a document when you want passages the model coded on its own, without a paired expert row in the comparison table.",
+        "uk": "Переглядайте «Незалежну оцінку ШІ» в документі, коли потрібні уривки, які модель розмітила самостійно, без парного рядка експерта в таблиці порівняння.",
+    },
     "intro_video_heading": {"en": "How to use this site (video)", "uk": "Як користуватися сайтом (відео)"},
-    "intro_video_note": {"en": "Short overview of the Research Lab layout and main tools.", "uk": "Короткий огляд інтерфейсу дослідницької лабораторії та основних інструментів."},
+    "intro_video_note": {"en": "A short walkthrough of the site layout and main analytical tools.", "uk": "Короткий огляд структури сайту та основних аналітичних інструментів."},
     "intro_cap_f": {"en": "Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.", "uk": "Альтернативні мітки з таблиці порівняння — кнопка «+»: модальне вікно; пропозиції зберігаються в браузері й експортуються як JSON."},
     "intro_vozmezdie_title": {"en": "KGB and the Ukrainian Diaspora: Operation Vozmezdie", "uk": "KGB and the Ukrainian Diaspora: Operation Vozmezdie"},
     "intro_vozmezdie_welcome": {"en": "Welcome to the Vozmezdie Files", "uk": "Welcome to the Vozmezdie Files"},
@@ -231,7 +246,8 @@ _UI_TRANSLATIONS = {
     "intro_vozmezdie_p7": {"en": "This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production.", "uk": "This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production."},
     "intro_vozmezdie_p8": {"en": "Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list.", "uk": "Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list."},
     "intro_open_lab_heading": {"en": "Open the Research Lab", "uk": "Відкрити дослідницьку лабораторію"},
-    "intro_go_lab_btn": {"en": "Research Lab", "uk": "Дослідницька лабораторія"},
+    "intro_go_lab_btn": {"en": "All Documents", "uk": "Усі документи"},
+    "intro_go_docs_btn": {"en": "Individual Documents", "uk": "Окремі документи"},
     "intro_jump_glossary_btn": {"en": "Jump to glossary", "uk": "Перейти до глосарію"},
     "intro_open_lab_note": {"en": "Switch to the Research Lab tab for charts, maps, and the glossary at the bottom of that page.", "uk": "Перейдіть на вкладку лабораторії для діаграм, карти та глосарія внизу сторінки."},
     "intro_tools_heading": {"en": "Ways to interact with the data", "uk": "Як працювати з даними"},
@@ -3929,24 +3945,23 @@ def _intro_tab() -> str:
   </section>
   <section class="homepage-section">
     <div class="intro-dual-cta">
-      <button type="button" class="intro-cta-btn" data-i18n="intro_go_lab_btn" onclick="showTab('tab-home');">Research Lab</button>
+      <button type="button" class="intro-cta-btn" data-i18n="intro_go_lab_btn" onclick="showTab('tab-home');">All Documents</button>
+      <button type="button" class="intro-cta-btn secondary" data-i18n="intro_go_docs_btn" onclick="openFirstDocumentTab();">Individual Documents</button>
     </div>
-    <p class="intro-cta-note" data-i18n="intro_open_lab_note">Switch to the Research Lab tab for charts, maps, and the glossary at the bottom of that page.</p>
   </section>
   <section class="homepage-section">
     <h3 data-i18n="intro_capabilities_heading">What you can do here</h3>
     <ul class="doc-controls-capabilities">
-      <li data-i18n="intro_cap_a">Read aligned English and Russian segments side by side with search and filters.</li>
-      <li data-i18n="intro_cap_b">Inspect specific details (what the segment is about) and ideological layers (how it is phrased).</li>
-      <li data-i18n="intro_cap_c">Open expert-reference versus AI comparison tables and optional scans (PDF) when configured.</li>
-      <li data-i18n="intro_cap_d">Use the Research Lab for corpus-level charts, maps, and the glossary (at the bottom of the Lab page) for taxonomy-backed definitions.</li>
-      <li data-i18n="intro_cap_e">Use the on-screen Cyrillic keyboard: open any document tab or the glossary search on the Research Lab page, click in an English or Russian search field — the keyboard pops up so you can type without switching system layouts.</li>
-      <li data-i18n="intro_cap_f">Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.</li>
+      <li data-i18n="intro_cap_a">Compare how human experts and AI classified the same passages in each document's Human vs AI Comparison Table, including agreement and disagreement on specific details and ideological layers.</li>
+      <li data-i18n="intro_cap_b">Use the Document Text Illuminator to read English and Russian side by side, highlight segments by category or framing, and search within a file.</li>
+      <li data-i18n="intro_cap_c">On All Documents, explore corpus-wide charts, the places map, shared terms, and the framework that explains how passages are classified.</li>
+      <li data-i18n="intro_cap_d">Open any single document for its own illuminator, comparison table, visualizations, and Independent AI Assessment.</li>
+      <li data-i18n="intro_cap_e">View the Independent AI Assessment in a document when you want passages the model coded on its own, without a paired expert row in the comparison table.</li>
     </ul>
   </section>
   <section class="homepage-section intro-video-section">
     <h3 data-i18n="intro_video_heading">How to use this site (video)</h3>
-    <p class="intro-video-note" data-i18n="intro_video_note">Short overview of the Research Lab layout and main tools.</p>
+    <p class="intro-video-note" data-i18n="intro_video_note">A short walkthrough of the site layout and main analytical tools.</p>
     <div class="intro-video-wrap" aria-label="YouTube video player">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/bHzHlSLhtmM?si=ZMpLZY3hgkpKi4tK" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
@@ -4208,7 +4223,7 @@ def _homepage(
 
     home_html = f"""
 <div class="tab-content" id="tab-home">
-<div class="header"><h2 data-i18n="home">Research Lab</h2></div>
+<div class="header"><h2 data-i18n="home">All Documents</h2></div>
 <div class="homepage-content">
   {taxonomy_section}
 
@@ -4228,7 +4243,7 @@ def _sidebar(documents: List[Dict[str, Any]], feedback_html: str = "") -> str:
     items = []
     items.append('<div class="sidebar-section-title" data-i18n="navigation">Navigation</div>')
     items.append('<button class="sidebar-nav-item active" onclick="showTab(\'tab-intro\')" data-i18n="intro_landing_link">Introduction</button>')
-    items.append('<button class="sidebar-nav-item" onclick="showTab(\'tab-home\')" data-i18n="home">Research Lab</button>')
+    items.append('<button class="sidebar-nav-item" onclick="showTab(\'tab-home\')" data-i18n="home">All Documents</button>')
     items.append('<div class="sidebar-section-title" data-i18n="documents">Documents</div>')
     for doc in documents:
         doc_id = doc.get("document_id", "")
@@ -5429,6 +5444,10 @@ function setLanguage(lang) {
     if (tid && typeof onDocumentTabShown === 'function') onDocumentTabShown(tid);
   }
   if (typeof refreshAllCyrillicKeyboards === 'function') refreshAllCyrillicKeyboards();
+}
+function openFirstDocumentTab() {
+  var first = document.querySelector('.tab-content[id^="tab-"]:not(#tab-intro):not(#tab-home):not(#tab-dev-label-export)');
+  if (first && first.id) showTab(first.id);
 }
 function showTab(tabId) {
   if (typeof closeAllCyrillicKeyboardPopups === 'function') closeAllCyrillicKeyboardPopups();
