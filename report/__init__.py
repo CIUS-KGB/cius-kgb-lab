@@ -148,7 +148,7 @@ def _comparison_axis_cell_html(
             '<div class="comparison-axis-cell comparison-axis-expert-pair">'
             '<div class="comparison-side-line"><strong><span data-i18n="comparison_model_side_short">AI</span>:</strong> '
             f"{llm_pill}</div>"
-            '<div class="comparison-side-line"><strong><span data-i18n="comparison_expert_side_short">Expert</span>:</strong> '
+            '<div class="comparison-side-line"><strong><span data-i18n="comparison_expert_side_short">Human</span>:</strong> '
             f"{human_pill}</div></div>"
         )
     bg = _hex_to_rgba_css(llm_hex, 0.17)
@@ -160,7 +160,7 @@ def _comparison_axis_cell_html(
         return f'<div class="comparison-axis-cell">{pill}</div>'
     note = (
         f'<div class="comparison-annotator-ref"><span class="comparison-annotator-tag" '
-        f'data-i18n="comparison_human_side_short">Expert</span>'
+        f'data-i18n="comparison_human_side_short">Human</span>'
         f'<span class="comparison-annotator-sep">·</span>'
         f'<span class="comparison-human-value" style="color:{human_hex}">{human_disp_esc}</span></div>'
     )
@@ -209,7 +209,7 @@ def _nav_label(doc: Dict[str, Any]) -> str:
 # UI translations: en (English), uk (Ukrainian)
 _UI_TRANSLATIONS = {
     "declassified": {"en": "Declassified", "uk": "Розсекречено"},
-    "home": {"en": "All Documents", "uk": "Усі документи"},
+    "home": {"en": "Research Lab", "uk": "Дослідницька лабораторія"},
     "intro_landing_link": {"en": "Introduction", "uk": "Вступ"},
     "intro_capabilities_heading": {"en": "What you can do here", "uk": "Що ви можете зробити"},
     "intro_cap_a": {
@@ -304,7 +304,9 @@ _UI_TRANSLATIONS = {
     "viz_standalone_full_report": {"en": "Open full Research Lab", "uk": "Відкрити повну дослідницьку лабораторію"},
     "viz_standalone_subtitle": {"en": "Single-chart view. Language and chart choice sync with the main lab when possible.", "uk": "Окремий перегляд діаграми. Мова та вибір графіка синхронізуються з основною лабораторією за можливості."},
     "navigation": {"en": "Navigation", "uk": "Навігація"},
-    "documents": {"en": "Documents", "uk": "Документи"},
+    "documents": {"en": "Reading Room", "uk": "Читальня"},
+    "doc_nav_prev": {"en": "Previous document", "uk": "Попередній документ"},
+    "doc_nav_next": {"en": "Next document", "uk": "Наступний документ"},
     "reference": {"en": "Reference", "uk": "Довідка"},
     "glossary": {"en": "Glossary", "uk": "Глосарій"},
     "accuracy_stats": {"en": "Accuracy stats", "uk": "Статистика точності"},
@@ -343,7 +345,7 @@ _UI_TRANSLATIONS = {
         "uk": "Для цього документа не завантажено уривків незалежної оцінки ШІ.",
     },
     "comparison_model_side_short": {"en": "AI", "uk": "ШІ"},
-    "comparison_human_side_short": {"en": "Expert", "uk": "Експерт"},
+    "comparison_human_side_short": {"en": "Human", "uk": "Людина"},
     "comparison_open_illuminator_tooltip": {
         "en": "Open the Document Text Illuminator and highlight this passage",
         "uk": "Відкрити Ілюмінатор тексту документа й виділити цей уривок",
@@ -363,7 +365,7 @@ _UI_TRANSLATIONS = {
         "en": "Expert coder segments (unique terms):",
         "uk": "Сегменти за мітками експерта-кодувальника (унікальні терміни):",
     },
-    "comparison_expert_side_short": {"en": "Expert", "uk": "Експерт"},
+    "comparison_expert_side_short": {"en": "Human", "uk": "Людина"},
     "section": {"en": "Section", "uk": "Розділ"},
     "entry_eng": {"en": "Entry (ENG)", "uk": "Запис (АНГЛ)"},
     "entry_rus": {"en": "Entry (RUS)", "uk": "Запис (РУС)"},
@@ -1294,6 +1296,10 @@ def run(
 
     parts.append(_dev_label_export_tab())
     parts.append("</div></div>")
+    doc_tab_order = [str(doc.get("document_id", "")) for doc in documents if doc.get("document_id")]
+    parts.append(
+        f'<script type="application/json" id="document-tab-order">{json.dumps(doc_tab_order)}</script>'
+    )
     parts.append(_label_suggestion_modal_html())
     term_synonyms = _load_term_synonyms()
     parts.append(_script(categories, framings_ui, term_synonyms, standalone_viz=False, ui_translations=ui_tr))
@@ -1418,6 +1424,13 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 @media (max-width: 768px) { .sidebar { width: 100%; min-width: auto; } .app-container { flex-direction: column; } }
 .header { background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%); color: #f5f0e6; padding: 1.25rem 1.5rem; border-radius: 4px; margin-bottom: 2rem; border: 1px solid #8b7355; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
 .header h2 { font-family: 'Crimson Text', Georgia, serif; font-size: 1.05rem; line-height: 1.55; font-weight: 600; margin: 0; max-width: 100%; overflow-wrap: anywhere; }
+.doc-page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.doc-page-header h2 { flex: 1; min-width: 0; }
+.doc-nav-arrows { display: flex; gap: 0.35rem; flex-shrink: 0; margin-top: 0.05rem; }
+.doc-nav-btn { display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; padding: 0; border: 1px solid #8b7355; border-radius: 4px; background: rgba(245, 240, 230, 0.12); color: #f5f0e6; font-size: 1.35rem; line-height: 1; cursor: pointer; font-family: inherit; transition: background 0.15s ease, border-color 0.15s ease; }
+.doc-nav-btn:hover:not(:disabled) { background: rgba(245, 240, 230, 0.22); border-color: #c4b8a8; }
+.doc-nav-btn:focus-visible { outline: 2px solid #c4b8a8; outline-offset: 2px; }
+.doc-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
 .stat-card { background: #e8e4dc; padding: 1.5rem; border-radius: 4px; text-align: center; border: 1px solid #8b7355; }
 .stat-number { font-size: 2rem; font-weight: bold; color: #2d3748; font-family: 'JetBrains Mono', monospace; }
@@ -1434,6 +1447,7 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .table-exp-b-prelim { margin-top: 0; }
 .table-exp-b-prelim.comparison-table { margin-top: 0; }
 .comparison-run-table-panel .comparison-table { margin-top: 0; border-radius: 0 0 4px 4px; }
+.comparison-run-table-panel.comparison-run-table-panel-no-top-banner .comparison-table { border-radius: 4px; }
 .comparison-run-table-banner { font-size: 0.95rem; font-weight: 700; padding: 0.5rem 0.75rem; border: 1px solid #8b7355; border-bottom: none; border-radius: 4px 4px 0 0; font-family: inherit; }
 .comparison-run-table-banner-a { background: #4a5568; color: #f5f0e6; }
 .comparison-run-table-banner-b { background: #5c4d3d; color: #f5f0e6; border-color: #6b5344; }
@@ -4223,7 +4237,7 @@ def _homepage(
 
     home_html = f"""
 <div class="tab-content" id="tab-home">
-<div class="header"><h2 data-i18n="home">All Documents</h2></div>
+<div class="header"><h2 data-i18n="home">Research Lab</h2></div>
 <div class="homepage-content">
   {taxonomy_section}
 
@@ -4243,8 +4257,8 @@ def _sidebar(documents: List[Dict[str, Any]], feedback_html: str = "") -> str:
     items = []
     items.append('<div class="sidebar-section-title" data-i18n="navigation">Navigation</div>')
     items.append('<button class="sidebar-nav-item active" onclick="showTab(\'tab-intro\')" data-i18n="intro_landing_link">Introduction</button>')
-    items.append('<button class="sidebar-nav-item" onclick="showTab(\'tab-home\')" data-i18n="home">All Documents</button>')
-    items.append('<div class="sidebar-section-title" data-i18n="documents">Documents</div>')
+    items.append('<button class="sidebar-nav-item" onclick="showTab(\'tab-home\')" data-i18n="home">Research Lab</button>')
+    items.append('<div class="sidebar-section-title" data-i18n="documents">Reading Room</div>')
     for doc in documents:
         doc_id = doc.get("document_id", "")
         nav = html_module.escape(_nav_label(doc))
@@ -4593,13 +4607,11 @@ def _doc_tab(
         '<th data-i18n="entry_rus">Entry (RUS)</th><th data-i18n="entry_eng">Entry (ENG)</th>'
         '</tr></thead>'
     )
-    esc_banner_a = html_module.escape(exp_lab_a)
     esc_banner_b = html_module.escape(exp_lab_b)
     if dual_compare:
         comparison_tables_markup = (
             f'<div class="comparison-run-stack">\n'
-            f'    <div id="comparison-table-panel-{doc_id}-0" class="comparison-run-table-panel comparison-run-table-panel-a" data-run-panel="0">\n'
-            f'      <div class="comparison-run-table-banner comparison-run-table-banner-a">{esc_banner_a}</div>\n'
+            f'    <div id="comparison-table-panel-{doc_id}-0" class="comparison-run-table-panel comparison-run-table-panel-a comparison-run-table-panel-no-top-banner" data-run-panel="0">\n'
             f'      <table class="comparison-table comparison-table-experiment-a">\n'
             f"    {thead_experiment_a}\n"
             f'    <tbody id="table-{doc_id}-run-0">{table_body}</tbody>\n'
@@ -4672,7 +4684,13 @@ def _doc_tab(
         )
     return f"""
 {tab_attrs}
-<div class="header"><h2>{html_module.escape(page_heading)}</h2></div>
+<div class="header doc-page-header">
+  <h2>{html_module.escape(page_heading)}</h2>
+  <div class="doc-nav-arrows" data-doc-id="{html_module.escape(doc_id)}">
+    <button type="button" class="doc-nav-btn doc-nav-prev" data-doc-nav="prev" data-i18n-title="doc_nav_prev" aria-label="Previous document" title="Previous document">&#8249;</button>
+    <button type="button" class="doc-nav-btn doc-nav-next" data-doc-nav="next" data-i18n-title="doc_nav_next" aria-label="Next document" title="Next document">&#8250;</button>
+  </div>
+</div>
 {hidden_stats}
 {doc_text_runs_embed}
 {pdf_section}
@@ -5449,6 +5467,34 @@ function openFirstDocumentTab() {
   var first = document.querySelector('.tab-content[id^="tab-"]:not(#tab-intro):not(#tab-home):not(#tab-dev-label-export)');
   if (first && first.id) showTab(first.id);
 }
+function getDocumentTabOrder() {
+  var el = document.getElementById('document-tab-order');
+  if (!el) return [];
+  try { return JSON.parse(el.textContent); } catch (e) { return []; }
+}
+function updateDocNavButtons() {
+  var order = getDocumentTabOrder();
+  var active = document.querySelector('.tab-content.active');
+  var curId = active && active.id ? active.id.replace('tab-', '') : '';
+  var idx = order.indexOf(curId);
+  document.querySelectorAll('.doc-nav-arrows').forEach(function(wrap) {
+    var prev = wrap.querySelector('[data-doc-nav="prev"]');
+    var next = wrap.querySelector('[data-doc-nav="next"]');
+    if (prev) prev.disabled = idx <= 0;
+    if (next) next.disabled = idx < 0 || idx >= order.length - 1;
+  });
+}
+function navigateDocumentTab(delta) {
+  var order = getDocumentTabOrder();
+  var active = document.querySelector('.tab-content.active');
+  if (!active || !active.id) return;
+  var curId = active.id.replace('tab-', '');
+  var idx = order.indexOf(curId);
+  if (idx < 0) return;
+  var nextIdx = idx + delta;
+  if (nextIdx < 0 || nextIdx >= order.length) return;
+  showTab('tab-' + order[nextIdx]);
+}
 function showTab(tabId) {
   if (typeof closeAllCyrillicKeyboardPopups === 'function') closeAllCyrillicKeyboardPopups();
   document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
@@ -5463,6 +5509,7 @@ function showTab(tabId) {
     var tid = tabId.replace('tab-', '');
     if (tid && typeof onDocumentTabShown === 'function') onDocumentTabShown(tid);
   }
+  if (typeof updateDocNavButtons === 'function') updateDocNavButtons();
 }
 var scrollSyncInitialized = {};
 function initScrollSyncForDoc(tid) {
@@ -7710,6 +7757,14 @@ document.addEventListener('DOMContentLoaded', function() {
   var btnDlDev = document.getElementById('dev-label-suggestion-download-btn');
   if (btnDlDev) btnDlDev.addEventListener('click', function() { downloadLabelSuggestionsJson(); });
   refreshAllCyrillicKeyboards();
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest && e.target.closest('[data-doc-nav]');
+    if (!btn || btn.disabled) return;
+    if (typeof navigateDocumentTab !== 'function') return;
+    var d = btn.getAttribute('data-doc-nav');
+    navigateDocumentTab(d === 'prev' ? -1 : 1);
+  });
+  if (typeof updateDocNavButtons === 'function') updateDocNavButtons();
   document.addEventListener('focusin', function(e) {
     var t = e.target;
     if (!t) return;
