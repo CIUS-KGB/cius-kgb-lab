@@ -77,8 +77,8 @@
         "uk": "Колір за: прогін «Людина-сегментація»"
       },
       "comparison_table": {
-        "en": "Expert ground truth vs Human Segmented — Comparison Table",
-        "uk": "Еталон експерта vs людина-сегментація — таблиця порівняння"
+        "en": "Human vs AI Comparison Table",
+        "uk": "Таблиця порівняння: людина проти ШІ"
       },
       "project_description": {
         "en": "This Research Lab presents the main evaluation run for the Vozmezdie corpus: segments were coded under Human Segmented boundaries (same slices as filtered expert ground truth, blind to sheet labels), then compared to retained expert labels on those slices. The interactive report adds bilingual text views, glossary-backed definitions, and corpus visualizations. Technical pipeline fields still use llm_* names internally.",

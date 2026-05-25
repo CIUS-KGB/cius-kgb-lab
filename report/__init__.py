@@ -272,7 +272,7 @@ _UI_TRANSLATIONS = {
         "en": "Slices follow the expert reference: each segment lines up with the same paragraph boundaries the human analysts used.",
         "uk": "Зрізи збігаються з експертним еталоном: кожен сегмент має ті самі межі абзаців, що й у людських аналітиків.",
     },
-    "intro_seg_ai_title": {"en": "AI Segmented", "uk": "ШІ-сегментація"},
+    "intro_seg_ai_title": {"en": "Independent AI Assessment", "uk": "Незалежна оцінка ШІ"},
     "intro_seg_ai_desc": {
         "en": "The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the expert-drawn pass.",
         "uk": "Спочатку модель сама будує проміжки, потім ставить мітки. Тож кількість рядків і вирівнювання можуть не збігатися з людинним прогоном.",
@@ -304,8 +304,8 @@ _UI_TRANSLATIONS = {
     "reader_layout_stacked": {"en": "Stacked", "uk": "Стовпчиком"},
     "viz_open_new_tab": {"en": "Open this chart in new tab", "uk": "Відкрити цю діаграму в новій вкладці"},
     "comparison_table": {
-        "en": "Comparison table: expert reference labels vs AI (expert-drawn passages)",
-        "uk": "Таблиця порівняння: еталон експерта проти ШІ (за експертними межами уривків)",
+        "en": "Human vs AI Comparison Table",
+        "uk": "Таблиця порівняння: людина проти ШІ",
     },
     "comparison_b_header_detail": {"en": "Model · specific detail", "uk": "Модель · конкретна деталь"},
     "comparison_b_header_framing": {"en": "Model · ideological layer", "uk": "Модель · ідеологічний шар"},
@@ -315,16 +315,16 @@ _UI_TRANSLATIONS = {
         "uk": "У верхній таблиці уривки за експертними межами: кодувальники задали межі зрізів, тож у кожному рядку еталон експерта поруч із мітками ШІ на тому самому тексті. У нижній таблиці уривки за межами моделі: текст розбито інакше, тому рядки можуть відрізнятися довжиною чи зміщенням — це не ті самі зрізи, що зверху. Стовпці конкретної деталі та ідеологічного шару насамперед показують вибір моделі; формулювання експерта з’являються поруч лише там, де вдалося вирівняти людську мітку з цим уривком моделі.",
     },
     "exp_b_prelim_summary": {
-        "en": "AI Segmented: labelled passages only (no expert-vs-AI comparison columns)",
-        "uk": "ШІ-сегментація: лише розмічені уривки (без колонок порівняння експерт проти ШІ)",
+        "en": "Independent AI Assessment",
+        "uk": "Незалежна оцінка ШІ",
     },
     "exp_b_prelim_intro": {
-        "en": "This optional block lists passages that were coded directly in the AI Segmented workflow. Each row shows the Russian and English text, the chosen specific detail and ideological layer, and any surrounding context we saved with it. You will not see side-by-side expert-versus-model comparison columns here. That pairing lives in the main comparison table for expert-drawn passages.",
-        "uk": "Цей блок показує уривки, які розмічували безпосередньо в режимі «ШІ-сегментація». У кожному рядку — російський і англійський текст, обрана конкретна деталь та ідеологічний шар і збережений контекст. Стовпці порівняння експерта з моделлю тут відсутні — вони в основній таблиці порівняння за експертними межами уривків.",
+        "en": "",
+        "uk": "",
     },
     "exp_b_prelim_empty_doc": {
-        "en": "No AI Segmented labelled passages are loaded for this document.",
-        "uk": "Для цього документа не завантажено жодного уривка з режиму «ШІ-сегментація».",
+        "en": "No Independent AI Assessment passages are loaded for this document.",
+        "uk": "Для цього документа не завантажено уривків незалежної оцінки ШІ.",
     },
     "comparison_model_side_short": {"en": "AI", "uk": "ШІ"},
     "comparison_human_side_short": {"en": "Expert", "uk": "Експерт"},
@@ -2598,7 +2598,7 @@ def _experiment_b_agent_only_table_rows_html(
     cat_colours: Dict[str, str],
     fram_colours: Dict[str, str],
 ) -> str:
-    """Single-axis assessor table: # · category · framing · RU · EN · context (no GT/model comparison)."""
+    """Single-axis assessor table: # · category · framing · RU · EN (no GT/model comparison)."""
     sorted_rows = sorted(rows, key=lambda r: r.get("section", 0))
     out: List[str] = []
     for i, r in enumerate(sorted_rows, start=1):
@@ -2608,10 +2608,8 @@ def _experiment_b_agent_only_table_rows_html(
         fr_hex = html_module.escape(_report_framing_colour(fr_raw, fram_colours))
         rus_plain = str(r.get("entry_rus") or "")
         eng_plain = str(r.get("entry_eng") or "")
-        ctx_plain = str(r.get("context") or "")
         rus_cell = html_module.escape(rus_plain).replace("\n", "<br />\n")
         eng_cell = html_module.escape(eng_plain).replace("\n", "<br />\n")
-        ctx_cell = html_module.escape(ctx_plain).replace("\n", "<br />\n")
         cc_esc = html_module.escape(cc_raw)
         fr_esc = html_module.escape(fr_raw)
         out.append(
@@ -2621,7 +2619,6 @@ def _experiment_b_agent_only_table_rows_html(
             f'<td><span class="exp-b-prelim-pill exp-b-prelim-pill-fram" style="border-color:{fr_hex};color:{fr_hex};">{fr_esc}</span></td>'
             f'<td class="comparison-cell-segment-rus">{rus_cell}</td>'
             f'<td class="comparison-cell-segment-eng">{eng_cell}</td>'
-            f'<td class="context-cell">{ctx_cell}</td>'
             "</tr>"
         )
     return "\n".join(out)
@@ -3904,7 +3901,7 @@ def _analytical_framework_collapsible() -> str:
           </div>
           <div class="intro-seg-connector" aria-hidden="true"><span class="intro-seg-vs" data-i18n="intro_seg_vs">vs</span></div>
           <div class="intro-seg-card intro-seg-ai">
-            <span class="intro-seg-title" data-i18n="intro_seg_ai_title">AI Segmented</span>
+            <span class="intro-seg-title" data-i18n="intro_seg_ai_title">Independent AI Assessment</span>
             <p class="intro-seg-desc" data-i18n="intro_seg_ai_desc">The model draws its own spans first, then assigns labels. Row counts and alignment therefore need not match the human-sliced run.</p>
           </div>
         </div>
@@ -4268,8 +4265,8 @@ def _comparison_table_rows_html(
     Secondary experiment rows (e.g. free segmentation) use ``False`` for compact model-first cells.
 
     ``segment_column_layout``:
-      - ``eng_then_rus`` — Section | ENG | RUS | category | framing | context (Experiment A).
-      - ``preliminary_b`` — Section | # | category | framing | Russian | English | context (Experiment B / preliminary HTML shape).
+      - ``eng_then_rus`` — Section | ENG | RUS | category | framing (Experiment A).
+      - ``preliminary_b`` — Section | # | category | framing | Russian | English (Experiment B / preliminary HTML shape).
     """
     rows_html: List[str] = []
     for row_idx, r in enumerate(aligned):
@@ -4302,7 +4299,6 @@ def _comparison_table_rows_html(
         human_fram = html_module.escape(human_fram_disp)
         ctx_plain = str(r.get("context") or "")
         context_attr = html_module.escape(ctx_plain, quote=True)
-        context_cell_inner = html_module.escape(ctx_plain).replace("\n", "<br />\n")
         table_layout_attr = "preliminary-b" if segment_column_layout == "preliminary_b" else "standard"
         data_attrs = (
             f' data-table-layout="{table_layout_attr}"'
@@ -4360,7 +4356,6 @@ def _comparison_table_rows_html(
                 f'<td class="{fram_cls}">{fram_cell_inner}</td>'
                 f"<td class=\"comparison-cell-segment-rus\">{rus_cell_inner}</td>"
                 f"<td class=\"comparison-cell-segment-eng\">{eng_cell_inner}</td>"
-                f"<td class=\"context-cell\">{context_cell_inner}</td>"
                 f"</tr>"
             )
         else:
@@ -4371,7 +4366,6 @@ def _comparison_table_rows_html(
                 f"<td>{entry_rus_cell}</td>"
                 f'<td class="{cat_cls}">{cat_cell_inner}</td>'
                 f'<td class="{fram_cls}">{fram_cell_inner}</td>'
-                f"<td class=\"context-cell\">{context_cell_inner}</td>"
                 f"</tr>"
             )
     return "\n".join(rows_html)
@@ -4574,7 +4568,7 @@ def _doc_tab(
     thead_experiment_a = (
         '<thead><tr><th data-i18n="section">Section</th><th data-i18n="entry_eng">Entry (ENG)</th>'
         '<th data-i18n="entry_rus">Entry (RUS)</th><th data-i18n="content_category">Specific detail</th>'
-        '<th data-i18n="framing">Ideological layer</th><th data-i18n="context">Context</th></tr></thead>'
+        '<th data-i18n="framing">Ideological layer</th></tr></thead>'
     )
     thead_experiment_b = (
         '<thead class="comparison-thead-run-b"><tr><th data-i18n="section">Section</th>'
@@ -4582,7 +4576,7 @@ def _doc_tab(
         '<th data-i18n="comparison_b_header_detail">Model · specific detail</th>'
         '<th data-i18n="comparison_b_header_framing">Model · ideological layer</th>'
         '<th data-i18n="entry_rus">Entry (RUS)</th><th data-i18n="entry_eng">Entry (ENG)</th>'
-        '<th data-i18n="context">Context</th></tr></thead>'
+        '</tr></thead>'
     )
     esc_banner_a = html_module.escape(exp_lab_a)
     esc_banner_b = html_module.escape(exp_lab_b)
@@ -4633,21 +4627,19 @@ def _doc_tab(
                 '<th data-i18n="framing">Ideological layer</th>'
                 '<th data-i18n="entry_rus">Entry (RUS)</th>'
                 '<th data-i18n="entry_eng">Entry (ENG)</th>'
-                '<th data-i18n="context">Context</th>'
                 "</tr></thead>\n"
                 f"<tbody>{tbody_agent}</tbody>\n</table>"
             )
         else:
             inner_tbl = (
                 '<p class="exp-b-prelim-empty" data-i18n="exp_b_prelim_empty_doc">'
-                "No AI Segmented labelled passages are loaded for this document."
+                "No Independent AI Assessment passages are loaded for this document."
                 "</p>"
             )
         experiment_b_prelim_section = (
             f'<details class="collapsible-section exp-b-prelim-details" id="doc-section-exp-b-prelim-{esc_cmp}">\n'
-            '  <summary data-i18n="exp_b_prelim_summary">AI Segmented: labelled passages only (no expert-vs-AI comparison columns)</summary>\n'
+            '  <summary data-i18n="exp_b_prelim_summary">Independent AI Assessment</summary>\n'
             '  <div class="collapsible-body">\n'
-            '    <p class="exp-b-prelim-intro" data-i18n="exp_b_prelim_intro">This optional block lists passages that were coded directly in the AI Segmented workflow. Each row shows the Russian and English text, the chosen specific detail and ideological layer, and any surrounding context we saved with it. You will not see side-by-side expert-versus-model comparison columns here. That pairing lives in the main comparison table for expert-drawn passages.</p>\n'
             f"    {inner_tbl}\n"
             "  </div>\n"
             "</details>\n"
@@ -4677,7 +4669,7 @@ def _doc_tab(
 </details>
 {doc_viz_section_html}
 <details class="collapsible-section" id="doc-section-compare-{doc_id}">
-  <summary data-i18n="comparison_table">Comparison table: expert reference labels vs AI (expert-drawn passages)</summary>
+  <summary data-i18n="comparison_table">Human vs AI Comparison Table</summary>
   <div class="collapsible-body">
     <div class="comparison-table-controls" data-tab="{doc_id}">
       <input type="text" id="table-search-{doc_id}" class="comparison-table-search" placeholder="Search in table..." data-tab="{doc_id}" data-i18n="table_search_placeholder"/>
