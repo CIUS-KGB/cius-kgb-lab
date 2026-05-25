@@ -29,7 +29,7 @@ _VIZ_LABELS_EN = {
 }
 
 # (value, i18n key)
-_SHARED_VIZ_OPTIONS = [
+_SHARED_VIZ_OPTIONS_ALL = [
     ("wordcloud", "viz_wordcloud"),
     ("heatmap", "viz_heatmap"),
     ("per-doc-cat", "viz_per_doc_cat"),
@@ -48,7 +48,7 @@ _SHARED_VIZ_OPTIONS = [
     ("term-framing-heatmap", "viz_term_framing_heatmap"),
 ]
 
-_LAB_ONLY_VIZ_OPTIONS = [
+_LAB_ONLY_VIZ_OPTIONS_ALL = [
     ("trends", "viz_trends"),
     ("voyant", "viz_voyant"),
     ("voyant-links", "viz_voyant_links"),
@@ -57,8 +57,17 @@ _LAB_ONLY_VIZ_OPTIONS = [
     ("doc-similarity", "viz_doc_similarity"),
 ]
 
-_DOC_VIZ_OPTIONS = list(_SHARED_VIZ_OPTIONS)
-_LAB_VIZ_OPTIONS = _SHARED_VIZ_OPTIONS + _LAB_ONLY_VIZ_OPTIONS
+_LAB_VIZ_EXCLUDE = frozenset({"per-doc-cat", "per-doc-fram", "vocab-diversity", "trends"})
+_DOC_VIZ_EXCLUDE = frozenset({
+    "per-doc-cat", "per-doc-fram", "pie-cat", "pie-fram",
+    "vocab-diversity", "doc-fingerprint",
+})
+
+_DOC_VIZ_OPTIONS = [o for o in _SHARED_VIZ_OPTIONS_ALL if o[0] not in _DOC_VIZ_EXCLUDE]
+_LAB_VIZ_OPTIONS = (
+    [o for o in _SHARED_VIZ_OPTIONS_ALL if o[0] not in _LAB_VIZ_EXCLUDE]
+    + [o for o in _LAB_ONLY_VIZ_OPTIONS_ALL if o[0] not in _LAB_VIZ_EXCLUDE]
+)
 
 
 def _viz_select_options_html(options: list, *, indent: str = "        ") -> str:

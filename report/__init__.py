@@ -175,29 +175,9 @@ _DEFAULT_PALETTE = [
 ]
 _DEFAULT_VIZ_EXPERIMENT_LABELS = ("Human Segmented", "AI Segmented")
 
-_DOCUMENT_TEXT_LEGEND_NOTE_EN = """<div class="legend-narrative-prose">
-<details class="legend-highlighting-details">
-<summary class="legend-highlighting-summary"><span class="legend-highlighting-summary-text">Highlighting &amp; Segmentation</span></summary>
-<div class="legend-note-tab-list">
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner"><strong>Analysis by</strong> answers a simple question: in the bilingual reader, <em>whose labels</em> should tint each passage? <strong>AI</strong> uses the model’s categories and framing. <strong>Expert coder labels</strong> (menu label “Human Segmented run”) apply the human reference coding. <strong>Both</strong> only highlights passages where AI and expert assignments agree. Which tint modes appear depends on how passages are split (<strong>Comparison run</strong>; next card).</div></div></div>
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner"><strong>Comparison run</strong> appears when a document ships two segmentation passes: <strong>expert-drawn passages</strong> (<em>Human Segmented</em> in menus) versus <strong>AI-drawn passages</strong> (<em>AI Segmented</em>). The toggle picks which slice map drives the reader, because each pass is a full alternate grid over the same text—you cannot honour both layouts at once without clashes. That choice also decides which tint modes make sense, so <strong>Analysis by</strong> only lists compatible options (<em>AI Segmented</em> locks highlights to that run’s labels; expert-drawn mode brings back AI labels, expert coder labels, or both-agree). The comparison table has its own Comparison run switch so you can read one segmentation in the illuminator while scanning rows tied to the other pass.</div></div></div>
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner">When <strong>Comparison run</strong> is <strong>AI Segmented</strong>, <strong>Analysis by</strong> stays on <strong>Labels: AI Segmented</strong> so highlights track model-drawn slices. Plain <strong>AI</strong>, <strong>expert coder labels</strong>, and <strong>Both</strong> are hidden because they assume expert-drawn slices. Choose <strong>Human Segmented</strong> (expert-drawn passages) to compare <strong>AI-assigned labels with expert reference labels on the same passages</strong>.</div></div></div>
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner"><strong>Specific detail</strong> (background wash) and <strong>Ideological layer</strong> (text colour) use the swatches above; leave both on <strong>None</strong> for neutral body text.</div></div></div>
-</div>
-</details>
-</div>"""
+_DOCUMENT_TEXT_LEGEND_NOTE_EN = """<div class="legend-narrative-prose"><p><strong>Specific detail</strong> (background wash) and <strong>Ideological layer</strong> (text colour) use the swatches above; leave both on <strong>None</strong> for neutral body text.</p></div>"""
 
-_DOCUMENT_TEXT_LEGEND_NOTE_UK = """<div class="legend-narrative-prose">
-<details class="legend-highlighting-details">
-<summary class="legend-highlighting-summary"><span class="legend-highlighting-summary-text">Підсвічування та сегментація</span></summary>
-<div class="legend-note-tab-list">
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner"><strong>Аналіз за</strong> відповідає на просте питання: у двомовному перегляді <em>чиї мітки</em> мають тонувати кожен уривок? <strong>ШІ</strong> бере категорії та фреймінг моделі. <strong>Мітки експерта-кодувальника</strong> (пункт меню «прогін Людина-сегментація») відповідають людському еталону. <strong>Обидва</strong> підсвічує лише там, де мітки ШІ й експерта збігаються. Які режими доступні, залежить від того, як розрізано текст (<strong>Прогін порівняння</strong>; наступна картка).</div></div></div>
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner"><strong>Прогін порівняння</strong> з’являється, коли для документа є два способи сегментації: <strong>уривки за межами експерта</strong> (у меню «Людина-сегментація») порівняно з <strong>уривками за межами моделі</strong> («ШІ-сегментація»). Перемикач задає, яка сітка зрізів живе в перегляді, бо обидва прогони — повні альтернативні карти одного тексту; сумістити їх одночасно без суперечностей неможливо. Від активного прогону залежить і набір режимів «Аналіз за»: на ШІ-сегментації лишаються мітки того прогону; на експертних межах знову доступні ШІ, мітки експерта-кодувальника або Обидва (див. наступну картку). У таблиці порівняння є окремий селектор прогону, щоб можна було читати одну сегментацію в ілюмінаторі й водночас дивитися рядки, прив’язані до іншого прогону.</div></div></div>
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner">Коли активний <strong>Прогін порівняння</strong> «<strong>ШІ-сегментація</strong>», «<strong>Аналіз за</strong>» лишається на <strong>Мітки: ШІ-сегментація</strong>, щоб кольори відповідали межам моделі. Звичайні режими <strong>ШІ</strong>, <strong>мітки експерта-кодувальника</strong> та <strong>Обидва</strong> тут недоступні, бо вони припускають експертні межі уривків. Оберіть «<strong>Людина-сегментація</strong>» (експертні межі), щоб на одних і тих самих уривках порівнювати <strong>мітки ШІ з еталоном експерта</strong>.</div></div></div>
-<div class="legend-note-tab"><div class="legend-note-tab-sheet"><div class="legend-note-tab-inner"><strong>Конкретна деталь</strong> (фон) та <strong>ідеологічний шар</strong> (колір тексту) беруть кольори зі смужок вище; для нейтрального тексту лишіть обидва на <strong>«Немає»</strong>.</div></div></div>
-</div>
-</details>
-</div>"""
+_DOCUMENT_TEXT_LEGEND_NOTE_UK = """<div class="legend-narrative-prose"><p><strong>Конкретна деталь</strong> (фон) та <strong>ідеологічний шар</strong> (колір тексту) беруть кольори зі смужок вище; для нейтрального тексту лишіть обидва на <strong>«Немає»</strong>.</p></div>"""
 
 
 def _nav_label(doc: Dict[str, Any]) -> str:
@@ -208,6 +188,7 @@ def _nav_label(doc: Dict[str, Any]) -> str:
 
 # UI translations: en (English), uk (Ukrainian)
 _UI_TRANSLATIONS = {
+    "site_title": {"en": "KGB and Ukrainian Diaspora", "uk": "КДБ та українська діаспора"},
     "declassified": {"en": "Declassified", "uk": "Розсекречено"},
     "home": {"en": "Research Lab", "uk": "Дослідницька лабораторія"},
     "intro_landing_link": {"en": "Introduction", "uk": "Вступ"},
@@ -374,17 +355,14 @@ _UI_TRANSLATIONS = {
     "context": {"en": "Context", "uk": "Контекст"},
     "content_category_highlight": {"en": "Specific detail (highlight)", "uk": "Конкретна деталь (виділення)"},
     "framing_text_colour": {"en": "Ideological layer (text colour)", "uk": "Ідеологічний шар (колір тексту)"},
-    "colour_by_note": {"en": "Tint using AI labels, expert coder labels, or both-agree (matching labels only). When Comparison run is AI Segmented, use Labels: AI Segmented. Specific-detail and ideological-layer colours apply only when those filters are not None.", "uk": "Тонування за мітками ШІ, мітками експерта-кодувальника або лише за збігом обох. Коли активний прогін «ШІ-сегментація», оберіть «Мітки: ШІ-сегментація». Кольори конкретних деталей і ідеологічних шарів застосовуються лише коли відповідний фільтр не Немає."},
+    "colour_by_note": {"en": "Tint passages using AI labels, human expert labels, or both (matching labels only). Specific-detail and ideological-layer colours apply only when those filters are not None.", "uk": "Тонування уривків за мітками ШІ, людськими мітками експерта або обома (лише збіг). Кольори конкретних деталей і ідеологічних шарів застосовуються лише коли відповідний фільтр не «Немає»."},
     "document_text_legend_note": {"en": _DOCUMENT_TEXT_LEGEND_NOTE_EN, "uk": _DOCUMENT_TEXT_LEGEND_NOTE_UK},
     "search_placeholder": {"en": "Search in text (English or Russian)...", "uk": "Пошук у тексті (англійською або російською)..."},
     "table_search_placeholder": {"en": "Search in table...", "uk": "Пошук у таблиці..."},
     "none": {"en": "None", "uk": "Немає"},
-    "colour_by_llm": {"en": "Colour by: AI", "uk": "Колір за: ШІ"},
-    "colour_by_human": {"en": "Colour by: expert coder labels", "uk": "Колір за: мітки експерта-кодувальника"},
-    "colour_by_both": {
-        "en": "Colour by: Both (only where AI & expert labels match)",
-        "uk": "Колір за: Обидва (лише де збігаються мітки ШІ й експерта)",
-    },
+    "colour_by_llm": {"en": "AI", "uk": "ШІ"},
+    "colour_by_human": {"en": "Human", "uk": "Людина"},
+    "colour_by_both": {"en": "Both", "uk": "Обидва"},
     "colour_by_ai_segmented": {
         "en": "Labels: AI Segmented",
         "uk": "Мітки: ШІ-сегментація",
@@ -440,7 +418,6 @@ _UI_TRANSLATIONS = {
     "english": {"en": "English", "uk": "Англійська"},
     "russian_original": {"en": "Russian (original)", "uk": "Російська (оригінал)"},
     "glossary_of_terms": {"en": "Terms", "uk": "Терміни"},
-    "glossary_intro": {"en": "Terms extracted from document segments, grouped by specific detail and ideological layer. Category definitions are in How Categories and Framing Are Qualified above.", "uk": "Терміни з сегментів документів, згруповані за конкретною деталлю та ідеологічним шаром. Визначення категорій — у розділі «Як кваліфікуються категорії та фреймінг» вище."},
     "glossary_search_placeholder": {"en": "Search glossary by name or definition...", "uk": "Пошук у глосарії за назвою або визначенням..."},
     "glossary_how_search_summary": {"en": "How do I search?", "uk": "Як шукати?"},
     "glossary_how_search_html": {
@@ -1341,7 +1318,7 @@ def _head(*, body_attrs: str = "", build_meta: str = "") -> str:
 <meta http-equiv="Cache-Control" content="max-age=0, must-revalidate"/>
 """
         + meta_extra
-        + """<title>Vozmezdie — Research Lab</title>
+        + """<title>KGB and Ukrainian Diaspora</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Fraunces:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.0.2/wordcloud2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1353,12 +1330,13 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .master-header-link:hover { color: #fff; }
 .master-header-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: center; margin-left: 1rem; }
 .master-header-links .master-header-link { margin-left: 0; }
-.master-header h1 { font-family: 'Crimson Text', Georgia, serif; font-weight: 700; letter-spacing: 0.02em; }
+.master-header-brand { display: flex; align-items: center; gap: 0.85rem 1.25rem; flex-wrap: wrap; }
+.master-header h1 { font-family: 'Crimson Text', Georgia, serif; font-weight: 700; letter-spacing: 0.02em; margin: 0; }
 .master-header-badge {
   display: inline-block;
   flex-shrink: 0;
   align-self: center;
-  margin-left: 0.4rem;
+  margin-left: 0;
   font-family: 'Stardos Stencil', 'Impact', sans-serif;
   font-size: 0.96rem;
   font-weight: 700;
@@ -2536,8 +2514,10 @@ def _master_header(
     extra = f'<span class="master-header-links">{"".join(links)}</span>' if links else ""
     return (
         '<div class="master-header">'
-        '<h1>Vozmezdie</h1>'
+        '<div class="master-header-brand">'
+        '<h1 data-i18n="site_title">KGB and Ukrainian Diaspora</h1>'
         '<span class="master-header-badge" data-i18n="declassified">Declassified</span>'
+        '</div>'
         + extra
         + '<div class="lang-toggle">'
         '<button type="button" class="lang-btn active" data-lang="en" title="English" aria-label="English">\U0001f1e8\U0001f1e6</button>'
@@ -4483,18 +4463,6 @@ def _doc_tab(
     table_body = _comparison_table_rows_html(
         doc_id, aligned, cat_colours, fram_colours, expert_ground_truth_compare=True,
     )
-    table_body_b = (
-        _comparison_table_rows_html(
-            doc_id,
-            aligned_b,
-            cat_colours,
-            fram_colours,
-            expert_ground_truth_compare=False,
-            segment_column_layout="preliminary_b",
-        )
-        if dual_compare
-        else ""
-    )
     doc_cyrillic_popup = (
         f'<div class="doc-tab-cyrillic-keyboard">'
         f'<div class="cyrillic-keyboard-popup-wrap doc-cyrillic-popup-floating" id="cyrillic-popup-{doc_id}" '
@@ -4520,25 +4488,12 @@ def _doc_tab(
     eng_html, rus_html = _document_text_panels_html_from_aligned(
         full_text_eng, full_text_rus, aligned, cat_colours, fram_colours,
     )
-    doc_text_runs_embed = ""
-    if dual_compare:
-        eng_html_b, rus_html_b = _document_text_panels_html_from_aligned(
-            full_text_eng, full_text_rus, aligned_b, cat_colours, fram_colours,
-        )
-        doc_text_runs_embed = (
-            f'<script type="application/json" id="doc-text-runs-{doc_id}" class="doc-text-runs-bundle">'
-            f"{_json_for_html_script({'runs': [{'eng': eng_html, 'rus': rus_html}, {'eng': eng_html_b, 'rus': rus_html_b}]})}"
-            f"</script>"
-        )
     text_view = _document_text_view(
         doc_id,
         categories,
         framings,
         full_text_eng_html=eng_html,
         full_text_rus_html=rus_html,
-        comparison_run_labels=viz_experiment_labels if dual_compare else None,
-        experiment_label_a=exp_lab_a,
-        experiment_label_b=exp_lab_b,
     )
     if dual_compare:
         sc = secondary_cat_pct if secondary_cat_pct is not None else 0
@@ -4599,46 +4554,13 @@ def _doc_tab(
         '<th data-i18n="entry_rus">Entry (RUS)</th><th data-i18n="content_category">Specific detail</th>'
         '<th data-i18n="framing">Ideological layer</th></tr></thead>'
     )
-    thead_experiment_b = (
-        '<thead class="comparison-thead-run-b"><tr><th data-i18n="section">Section</th>'
-        '<th data-i18n="comparison_b_col_row_num">#</th>'
-        '<th data-i18n="comparison_b_header_detail">Model · specific detail</th>'
-        '<th data-i18n="comparison_b_header_framing">Model · ideological layer</th>'
-        '<th data-i18n="entry_rus">Entry (RUS)</th><th data-i18n="entry_eng">Entry (ENG)</th>'
-        '</tr></thead>'
+    tbody_id = f"table-{doc_id}-run-0" if dual_compare else f"table-{doc_id}"
+    comparison_tables_markup = (
+        f'    <table class="comparison-table comparison-table-experiment-a">\n'
+        f"    {thead_experiment_a}\n"
+        f'    <tbody id="{tbody_id}">{table_body}</tbody>\n'
+        f"    </table>"
     )
-    esc_banner_b = html_module.escape(exp_lab_b)
-    if dual_compare:
-        comparison_tables_markup = (
-            f'<div class="comparison-run-stack">\n'
-            f'    <div id="comparison-table-panel-{doc_id}-0" class="comparison-run-table-panel comparison-run-table-panel-a comparison-run-table-panel-no-top-banner" data-run-panel="0">\n'
-            f'      <table class="comparison-table comparison-table-experiment-a">\n'
-            f"    {thead_experiment_a}\n"
-            f'    <tbody id="table-{doc_id}-run-0">{table_body}</tbody>\n'
-            f"      </table>\n"
-            f"    </div>\n"
-            f'    <div id="comparison-table-panel-{doc_id}-1" class="comparison-run-table-panel comparison-run-table-panel-b" data-run-panel="1" style="display:none;">\n'
-            f'      <div class="comparison-run-table-banner comparison-run-table-banner-b">{esc_banner_b}</div>\n'
-            f'      <p class="comparison-run-table-blurb" data-i18n="comparison_table_run_b_blurb">'
-            f"The upper table lists expert-drawn passages: human coders chose each slice’s boundaries, so every row pairs "
-            f"expert reference labels with AI labels on that same passage. This lower table lists AI-drawn passages: the "
-            f"model split the text differently, so rows may be shorter, longer, or shifted—you are not looking at the "
-            f"same slices as above. The category and framing columns foreground the model’s choices; expert wording "
-            f"appears beside them only when we could align an expert label to that model-sized passage.</p>\n"
-            f'      <table class="comparison-table comparison-table-experiment-b">\n'
-            f"    {thead_experiment_b}\n"
-            f'    <tbody id="table-{doc_id}-run-1">{table_body_b}</tbody>\n'
-            f"      </table>\n"
-            f"    </div>\n"
-            f"</div>"
-        )
-    else:
-        comparison_tables_markup = (
-            f'    <table class="comparison-table">\n'
-            f"    {thead_experiment_a}\n"
-            f'    <tbody id="table-{doc_id}">{table_body}</tbody>\n'
-            f"    </table>"
-        )
     esc_cmp = html_module.escape(doc_id)
     experiment_b_prelim_section = ""
     if experiment_b_agent_rows is not None:
@@ -4671,17 +4593,6 @@ def _doc_tab(
             "  </div>\n"
             "</details>\n"
         )
-    dual_run_ctl = ""
-    if dual_compare and viz_experiment_labels:
-        esc_tra = html_module.escape(viz_experiment_labels[0])
-        esc_trb = html_module.escape(viz_experiment_labels[1])
-        dual_run_ctl = (
-            f'<div class="ctl-group comparison-run-toolbar-group">'
-            f'<span class="document-text-filter-head" data-i18n="comparison_run_head">Comparison run</span>'
-            f'<select id="table-comparison-run-{doc_id}" class="table-comparison-run-select" '
-            f'data-tab="{html_module.escape(doc_id)}"><option value="0">{esc_tra}</option>'
-            f'<option value="1">{esc_trb}</option></select></div>'
-        )
     return f"""
 {tab_attrs}
 <div class="header doc-page-header">
@@ -4692,7 +4603,6 @@ def _doc_tab(
   </div>
 </div>
 {hidden_stats}
-{doc_text_runs_embed}
 {pdf_section}
 <details class="collapsible-section" id="doc-section-text-{doc_id}">
   <summary data-i18n="document_text_view">Document Text Illuminator</summary>
@@ -4715,7 +4625,6 @@ def _doc_tab(
           <span class="document-text-filter-head" data-i18n="ideological_layer_filter_head">Ideological Layers</span>
           <select id="table-fram-{doc_id}" class="comparison-table-fram" data-tab="{doc_id}"><option value="" data-i18n="table_all_framings">All ideological layers</option>{fram_opts}</select>
         </div>
-        {dual_run_ctl}
         <div class="comparison-toolbar-actions">
           <button type="button" class="comparison-export-json" data-doc-id="{html_module.escape(doc_id)}" data-i18n="export_comparison_json">Export JSON</button>
           <button type="button" class="comparison-table-clear" data-tab="{doc_id}" data-i18n="clear_filters">Clear filters</button>
@@ -4782,32 +4691,17 @@ def _colour_legend(categories: List[Dict], framings: List[Dict]) -> str:
 
 
 def _document_text_colour_by_select_html(doc_id_esc: str) -> str:
-    """Analysis by: label source for tinting. ``ai_segmented`` applies when Comparison run is AI Segmented (dual-run)."""
+    """Analysis by: Human, AI, or Both label tinting on human-segmented passages."""
     return (
         f'        <select id="doc-colour-by-{doc_id_esc}" class="document-colour-by" '
         f'data-tab="{doc_id_esc}" data-i18n-title="colour_by_select_title" '
         f'title="Whose labels tint each segment">\n'
-        '          <option value="llm" data-i18n="colour_by_llm">Colour by: AI</option>\n'
-        '          <option value="human" data-i18n="colour_by_human">Colour by: expert coder labels</option>\n'
-        '          <option value="both" data-i18n="colour_by_both">Colour by: Both (only where AI & expert labels match)</option>\n'
-        '          <option value="ai_segmented" data-i18n="colour_by_ai_segmented">Labels: AI Segmented</option>\n'
+        '          <option value="llm" data-i18n="colour_by_llm">AI</option>\n'
+        '          <option value="human" data-i18n="colour_by_human">Human</option>\n'
+        '          <option value="both" data-i18n="colour_by_both">Both</option>\n'
         "        </select>"
     )
 
-
-def _document_text_comparison_run_select_html(
-    doc_id_esc: str, *, label_a: str, label_b: str
-) -> str:
-    esc_la = html_module.escape(label_a)
-    esc_lb = html_module.escape(label_b)
-    return (
-        f'      <div class="ctl-group comparison-run-toolbar-group">\n'
-        f'        <span class="document-text-filter-head" data-i18n="comparison_run_head">Comparison run</span>\n'
-        f'        <select id="doc-comparison-run-{doc_id_esc}" class="doc-comparison-run-select" '
-        f'data-tab="{doc_id_esc}"><option value="0">{esc_la}</option>'
-        f'<option value="1">{esc_lb}</option></select>\n'
-        f"      </div>\n"
-    )
 
 
 def _document_text_view(
@@ -4817,20 +4711,11 @@ def _document_text_view(
     *,
     full_text_eng_html: str = "",
     full_text_rus_html: str = "",
-    comparison_run_labels: Optional[Tuple[str, str]] = None,
-    experiment_label_a: str = _DEFAULT_VIZ_EXPERIMENT_LABELS[0],
-    experiment_label_b: str = _DEFAULT_VIZ_EXPERIMENT_LABELS[1],
 ) -> str:
     """Block: search, category/framing filters; two panels show full document text (with aligned segments as spans when provided)."""
     legend = _colour_legend(categories, framings)
     esc_id = html_module.escape(doc_id)
-    dual = comparison_run_labels is not None
     colour_by_sel = _document_text_colour_by_select_html(esc_id)
-    doc_comparison_run_sel = ""
-    if dual:
-        doc_comparison_run_sel = _document_text_comparison_run_select_html(
-            esc_id, label_a=experiment_label_a, label_b=experiment_label_b
-        )
     return f"""
 <div class="document-text-view layout-split" data-tab-id="{esc_id}">
   <div class="document-text-controls-sticky">
@@ -4852,7 +4737,6 @@ def _document_text_view(
         <span class="document-text-filter-head" data-i18n="analysis_by_head">Analysis by</span>
 {colour_by_sel}
       </div>
-{doc_comparison_run_sel}
     </div>
     <div class="document-text-controls-actions">
       <div class="reader-layout-toggle" data-tab="{esc_id}">
@@ -5175,7 +5059,6 @@ def _glossary_tab(
         """<details class="collapsible-section lab-glossary-root" id="lab-glossary" aria-labelledby="lab-glossary-heading">
 <summary><span id="lab-glossary-heading" data-i18n="glossary_of_terms">Terms</span></summary>
 <div class="collapsible-body lab-glossary-collapsible-body">
-<p data-i18n="glossary_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">Terms extracted from document segments, grouped by specific detail and ideological layer. Category definitions are in How Categories and Framing Are Qualified above.</p>
 <div class="glossary-controls glossary-controls-search">
 <div class="glossary-search-cyrillic-anchor">
 <input type="search" id="glossary-search" class="glossary-search" placeholder="Search glossary by name or definition..." data-i18n="glossary_search_placeholder" autocomplete="off"/>
@@ -5655,64 +5538,24 @@ function getComparisonTbodyForRun(tid, idx) {
 function getActiveComparisonTbody(tid) {
   return getComparisonTbodyForRun(tid, getDocExperimentIndex(tid));
 }
-/** Enable/disable Analysis by options: on AI Segmented run only ``ai_segmented`` is valid; on Human run that option is disabled. */
+/** Analysis by: Human, AI, and Both on human-segmented passages. */
 function updateDocumentColourByOptionsForRun(docId, runIdx) {
-  if (runIdx !== 1) runIdx = 0;
-  var tab = document.getElementById('tab-' + docId);
-  if (!tab) return;
   var sel = document.getElementById('doc-colour-by-' + docId);
   if (!sel) return;
   var optLlm = sel.querySelector('option[value="llm"]');
   var optHum = sel.querySelector('option[value="human"]');
   var optBoth = sel.querySelector('option[value="both"]');
-  var optAi = sel.querySelector('option[value="ai_segmented"]');
-  var dual = tab.getAttribute('data-comparison-dual') === '1';
-  var titleKey = sel.getAttribute('data-i18n-title');
-  var baseTitle = '';
-  if (titleKey && typeof t === 'function') baseTitle = t(titleKey);
-  if (!baseTitle) baseTitle = sel.getAttribute('title') || '';
-  var extra = (typeof t === 'function') ? t('analysis_by_ai_run_hint') : '';
-  if (!dual) {
-    if (optLlm) optLlm.disabled = false;
-    if (optHum) optHum.disabled = false;
-    if (optBoth) optBoth.disabled = false;
-    if (optAi) optAi.disabled = true;
-    sel.setAttribute('data-ai-run-active', '0');
-    sel.title = baseTitle;
-    if (sel.value === 'ai_segmented') sel.value = 'llm';
-    return;
-  }
-  var aiMode = runIdx === 1;
-  if (optLlm) optLlm.disabled = aiMode;
-  if (optHum) optHum.disabled = aiMode;
-  if (optBoth) optBoth.disabled = aiMode;
-  if (optAi) optAi.disabled = !aiMode;
-  sel.setAttribute('data-ai-run-active', aiMode ? '1' : '0');
-  sel.title = (aiMode && extra) ? (baseTitle + ' — ' + extra) : baseTitle;
-  if (aiMode) {
-    sel.value = 'ai_segmented';
-  } else {
-    if (sel.value === 'ai_segmented') sel.value = 'llm';
-  }
+  if (optLlm) optLlm.disabled = false;
+  if (optHum) optHum.disabled = false;
+  if (optBoth) optBoth.disabled = false;
+  if (sel.value !== 'llm' && sel.value !== 'human' && sel.value !== 'both') sel.value = 'llm';
+  sel.setAttribute('data-ai-run-active', '0');
 }
 function syncDocumentComparisonRun(docId, idx) {
   if (idx !== 1) idx = 0;
   var tab = document.getElementById('tab-' + docId);
   if (!tab || tab.getAttribute('data-comparison-dual') !== '1') return;
   setDocExperimentIndex(docId, idx);
-  var panel0 = document.getElementById('comparison-table-panel-' + docId + '-0');
-  var panel1 = document.getElementById('comparison-table-panel-' + docId + '-1');
-  var tb0 = document.getElementById('table-' + docId + '-run-0');
-  var tb1 = document.getElementById('table-' + docId + '-run-1');
-  if (panel0 && panel1) {
-    panel0.style.display = idx === 0 ? '' : 'none';
-    panel1.style.display = idx === 1 ? '' : 'none';
-  } else if (tb0 && tb1) {
-    tb0.style.display = idx === 0 ? '' : 'none';
-    tb1.style.display = idx === 1 ? '' : 'none';
-  } else {
-    return;
-  }
   var hs0 = document.getElementById('hidden-stats-' + docId + '-run-0');
   var hs1 = document.getElementById('hidden-stats-' + docId + '-run-1');
   if (hs0) hs0.style.display = idx === 0 ? '' : 'none';
@@ -5725,29 +5568,18 @@ function syncDocumentComparisonRun(docId, idx) {
       main.textContent = JSON.stringify(cp.runs[idx]);
     } catch(e3) {}
   }
-  tab.querySelectorAll('.table-comparison-run-select, .doc-viz-experiment-select').forEach(function(sel) {
+  tab.querySelectorAll('.doc-viz-experiment-select').forEach(function(sel) {
     sel.value = String(idx);
   });
   if (typeof applyComparisonTableFilters === 'function') applyComparisonTableFilters(docId);
   syncDocVizForDocument(docId, idx);
-}
-function syncDocumentTextComparisonRun(docId, idx) {
-  if (idx !== 1) idx = 0;
-  var tab = document.getElementById('tab-' + docId);
-  if (!tab || tab.getAttribute('data-comparison-dual') !== '1') return;
-  setDocTextExperimentIndex(docId, idx);
-  var docSel = document.getElementById('doc-comparison-run-' + docId);
-  if (docSel) docSel.value = String(idx);
-  if (typeof updateDocumentColourByOptionsForRun === 'function') updateDocumentColourByOptionsForRun(docId, idx);
-  if (typeof buildDocumentTextView === 'function') buildDocumentTextView(docId);
-  if (typeof applyDocumentSearchAndFilter === 'function') applyDocumentSearchAndFilter(docId);
 }
 function initPerDocumentExperimentUIs() {
   document.querySelectorAll('.tab-content[data-comparison-dual="1"]').forEach(function(tab) {
     var tid = tab.id.replace(/^tab-/, '');
     if (!tid || tid === 'home' || tid === 'intro') return;
     syncDocumentComparisonRun(tid, getDocExperimentIndex(tid));
-    syncDocumentTextComparisonRun(tid, getDocTextExperimentIndex(tid));
+    if (typeof updateDocumentColourByOptionsForRun === 'function') updateDocumentColourByOptionsForRun(tid, 0);
   });
 }
 function syncDocVizForDocument(docId, idx) {
@@ -5779,33 +5611,10 @@ function buildDocumentTextView(tid) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
-  var dualDoc = tabEl.getAttribute('data-comparison-dual') === '1';
-  var textIdx = dualDoc && typeof getDocTextExperimentIndex === 'function' ? getDocTextExperimentIndex(tid) : 0;
-  var tbody = typeof getComparisonTbodyForRun === 'function' ? getComparisonTbodyForRun(tid, dualDoc ? textIdx : 0) : getActiveComparisonTbody(tid);
+  var tbody = typeof getComparisonTbodyForRun === 'function' ? getComparisonTbodyForRun(tid, 0) : getActiveComparisonTbody(tid);
   var catSelect = tabEl.querySelector('select.document-category-filter');
   var framSelect = tabEl.querySelector('select.document-framing-filter');
   var rows = tbody ? tbody.querySelectorAll('tr') : [];
-  /* Dual-run: prefer embedded SSR panels per experiment so full originals stay intact with gaps (avoid rebuilding from table rows only). */
-  var appliedFromRunsBundle = false;
-  var textRunsEl = document.getElementById('doc-text-runs-' + tid);
-  if (dualDoc && textRunsEl) {
-    try {
-      var trPayload = JSON.parse(textRunsEl.textContent);
-      var runsArr = trPayload.runs;
-      var ri = textIdx;
-      var rr = runsArr && runsArr[ri];
-      if (!rr && runsArr && runsArr.length) rr = runsArr[0];
-      if (rr && typeof rr.eng === 'string' && typeof rr.rus === 'string') {
-        containerEng.innerHTML = rr.eng;
-        containerRus.innerHTML = rr.rus;
-        appliedFromRunsBundle = true;
-      }
-    } catch (tre) {}
-  }
-  if (dualDoc && !appliedFromRunsBundle) {
-    while (containerEng.firstChild) containerEng.removeChild(containerEng.firstChild);
-    while (containerRus.firstChild) containerRus.removeChild(containerRus.firstChild);
-  }
   var hasPreFilled = containerEng.children.length > 0;
   if (!hasPreFilled && tbody) {
     var catFilter = catSelect ? catSelect.value : '';
@@ -6096,7 +5905,7 @@ function applyDocumentSearchAndFilter(tid) {
   var framEl = document.getElementById('doc-fram-' + tid);
   var colourByEl = document.getElementById('doc-colour-by-' + tid);
   var colourBy = (colourByEl && colourByEl.value) ? colourByEl.value : 'llm';
-  if (colourBy !== 'llm' && colourBy !== 'human' && colourBy !== 'both' && colourBy !== 'ai_segmented') colourBy = 'llm';
+  if (colourBy !== 'llm' && colourBy !== 'human' && colourBy !== 'both') colourBy = 'llm';
   var search = (searchEl && searchEl.value) ? searchEl.value.trim().toLowerCase() : '';
   var catFilter = catEl ? catEl.value : '';
   var framFilter = framEl ? framEl.value : '';
@@ -6208,7 +6017,7 @@ function pulseIlluminatorVignette(tid) {
     panels.classList.remove('illuminator-vignette-pulse');
   }, 1400);
 }
-function onSectionClickToView(tid, rowIndex) {
+function onSectionClickToView(tid, rowIndex, triggerEl) {
   var detailsEl = document.getElementById('doc-section-text-' + tid) || document.getElementById('doc-text-view-details-' + tid);
   if (!detailsEl) return;
   detailsEl.open = true;
@@ -6216,34 +6025,46 @@ function onSectionClickToView(tid, rowIndex) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
-  var rowIdxStr = String(rowIndex);
-  var spansEng = containerEng.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]');
-  var spansRus = containerRus.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]');
-  if (spansEng.length === 0 && spansRus.length === 0) {
-    var row = null;
-    var tbodyAct = getActiveComparisonTbody(tid);
-    if (tbodyAct) row = tbodyAct.querySelector('tr[data-row-index="' + rowIdxStr + '"]');
-    if (!row) row = document.querySelector('#table-' + tid + ' tr[data-row-index="' + rowIdxStr + '"]');
-    if (!row) {
-      var tb0f = document.getElementById('table-' + tid + '-run-0');
-      var tb1f = document.getElementById('table-' + tid + '-run-1');
-      if (tb0f) row = tb0f.querySelector('tr[data-row-index="' + rowIdxStr + '"]');
-      if (!row && tb1f) row = tb1f.querySelector('tr[data-row-index="' + rowIdxStr + '"]');
-    }
-    if (row) {
-      var entryEng = (row.getAttribute('data-entry-eng') || '').trim();
-      var entryRus = (row.getAttribute('data-entry-rus') || '').trim();
-      var norm = function(s) { return (s || '').replace(/\\s+/g, ' ').trim(); };
-      var engNorm = norm(entryEng), rusNorm = norm(entryRus);
-      var fallbackEng = [], fallbackRus = [];
+  var norm = function(s) { return (s || '').replace(/\\s+/g, ' ').trim(); };
+  var spansEng = [];
+  var spansRus = [];
+  if (triggerEl) {
+    var entryEngAttr = (triggerEl.getAttribute('data-entry-eng') || '').trim();
+    var entryRusAttr = (triggerEl.getAttribute('data-entry-rus') || '').trim();
+    if (entryEngAttr || entryRusAttr) {
+      var engNorm = norm(entryEngAttr), rusNorm = norm(entryRusAttr);
       containerEng.querySelectorAll('.doc-entry').forEach(function(el) {
-        if (norm(el.getAttribute('data-entry-eng')) === engNorm && norm(el.getAttribute('data-entry-rus')) === rusNorm) fallbackEng.push(el);
+        if (norm(el.getAttribute('data-entry-eng')) === engNorm && norm(el.getAttribute('data-entry-rus')) === rusNorm) spansEng.push(el);
       });
       containerRus.querySelectorAll('.doc-entry').forEach(function(el) {
-        if (norm(el.getAttribute('data-entry-eng')) === engNorm && norm(el.getAttribute('data-entry-rus')) === rusNorm) fallbackRus.push(el);
+        if (norm(el.getAttribute('data-entry-eng')) === engNorm && norm(el.getAttribute('data-entry-rus')) === rusNorm) spansRus.push(el);
       });
-      spansEng = fallbackEng;
-      spansRus = fallbackRus;
+    }
+  }
+  if (spansEng.length === 0 && spansRus.length === 0 && rowIndex >= 0) {
+    var rowIdxStr = String(rowIndex);
+    spansEng = Array.prototype.slice.call(containerEng.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
+    spansRus = Array.prototype.slice.call(containerRus.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
+    if (spansEng.length === 0 && spansRus.length === 0) {
+      var row = null;
+      var tbodyAct = getActiveComparisonTbody(tid);
+      if (tbodyAct) row = tbodyAct.querySelector('tr[data-row-index="' + rowIdxStr + '"]');
+      if (!row) row = document.querySelector('#table-' + tid + ' tr[data-row-index="' + rowIdxStr + '"]');
+      if (!row) {
+        var tb0f = document.getElementById('table-' + tid + '-run-0');
+        if (tb0f) row = tb0f.querySelector('tr[data-row-index="' + rowIdxStr + '"]');
+      }
+      if (row) {
+        var entryEng = (row.getAttribute('data-entry-eng') || '').trim();
+        var entryRus = (row.getAttribute('data-entry-rus') || '').trim();
+        var engNorm = norm(entryEng), rusNorm = norm(entryRus);
+        containerEng.querySelectorAll('.doc-entry').forEach(function(el) {
+          if (norm(el.getAttribute('data-entry-eng')) === engNorm && norm(el.getAttribute('data-entry-rus')) === rusNorm) spansEng.push(el);
+        });
+        containerRus.querySelectorAll('.doc-entry').forEach(function(el) {
+          if (norm(el.getAttribute('data-entry-eng')) === engNorm && norm(el.getAttribute('data-entry-rus')) === rusNorm) spansRus.push(el);
+        });
+      }
     }
   }
   var allSpans = [];
@@ -6258,11 +6079,7 @@ function onDocumentTabShown(tid) {
   buildDocumentTextView(tid);
   var tabEl = document.getElementById('tab-' + tid);
   if (tabEl && typeof updateDocumentColourByOptionsForRun === 'function') {
-    var ri = 0;
-    if (tabEl.getAttribute('data-comparison-dual') === '1' && typeof getDocTextExperimentIndex === 'function') {
-      ri = getDocTextExperimentIndex(tid);
-    }
-    updateDocumentColourByOptionsForRun(tid, ri);
+    updateDocumentColourByOptionsForRun(tid, 0);
   }
   applyDocumentSearchAndFilter(tid);
   applyComparisonTableFilters(tid);
@@ -7975,16 +7792,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (drid && typeof syncDocumentComparisonRun === 'function') syncDocumentComparisonRun(drid, parseInt(e.target.value, 10) || 0);
       return;
     }
-    if (e.target.classList && e.target.classList.contains('doc-comparison-run-select')) {
-      var tdxDocRun = e.target.getAttribute('data-tab');
-      if (tdxDocRun && typeof syncDocumentTextComparisonRun === 'function') syncDocumentTextComparisonRun(tdxDocRun, parseInt(e.target.value, 10) || 0);
-      return;
-    }
-    if (e.target.classList && e.target.classList.contains('table-comparison-run-select')) {
-      var tdx2 = e.target.getAttribute('data-tab');
-      if (tdx2 && typeof syncDocumentComparisonRun === 'function') syncDocumentComparisonRun(tdx2, parseInt(e.target.value, 10) || 0);
-      return;
-    }
     var tid = e.target.getAttribute('data-tab');
     if (!tid && e.target.id && /^doc-(?:search|cat|fram|colour-by)-(.+)$/.test(e.target.id)) tid = e.target.id.replace(/^doc-(?:search|cat|fram|colour-by)-/, '');
     if (!tid && e.target.id && /^table-(?:search|cat|fram)-(.+)$/.test(e.target.id)) tid = e.target.id.replace(/^table-(?:search|cat|fram)-/, '');
@@ -8092,10 +7899,12 @@ document.addEventListener('DOMContentLoaded', function() {
       openLabelSuggestionModal(suggestBtn);
       return;
     }
-    if (e.target.classList.contains('section-click-to-view')) {
-      var tid = e.target.getAttribute('data-tab');
-      var rowIndex = e.target.getAttribute('data-row-index');
-      if (tid && rowIndex !== null && rowIndex !== '') onSectionClickToView(tid, parseInt(rowIndex, 10));
+    var sectBtn = e.target.closest && e.target.closest('.section-click-to-view');
+    if (sectBtn) {
+      var tid = sectBtn.getAttribute('data-tab');
+      var rowIndex = sectBtn.getAttribute('data-row-index');
+      var ri = (rowIndex !== null && rowIndex !== '') ? parseInt(rowIndex, 10) : -1;
+      if (tid && typeof onSectionClickToView === 'function') onSectionClickToView(tid, isNaN(ri) ? -1 : ri, sectBtn);
       return;
     }
     if (e.target.classList.contains('document-clear-filters')) {

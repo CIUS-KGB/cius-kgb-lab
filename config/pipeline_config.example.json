@@ -69,8 +69,8 @@
     "document_ui_exclude_framings": ["Generic / Neutral Language"],
     "ui_translation_overrides": {
       "colour_by_human": {
-        "en": "Colour by: Human Segmented Run",
-        "uk": "Колір за: прогін «Людина-сегментація»"
+        "en": "Human",
+        "uk": "Людина"
       },
       "comparison_table": {
         "en": "Human vs AI Comparison Table",
