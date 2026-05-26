@@ -349,7 +349,7 @@ _UI_TRANSLATIONS = {
     "comparison_expert_side_short": {"en": "Human", "uk": "Людина"},
     "section": {"en": "Section", "uk": "Розділ"},
     "entry_eng": {"en": "Entry (ENG)", "uk": "Запис (АНГЛ)"},
-    "entry_rus": {"en": "Entry (RUS)", "uk": "Запис (РУС)"},
+    "entry_rus": {"en": "Entry (Original)", "uk": "Запис (оригінал)"},
     "content_category": {"en": "Specific detail", "uk": "Конкретна деталь"},
     "framing": {"en": "Ideological layer", "uk": "Ідеологічний шар"},
     "context": {"en": "Context", "uk": "Контекст"},
@@ -417,8 +417,8 @@ _UI_TRANSLATIONS = {
     "label_suggestion_row_index": {"en": "Row index", "uk": "Індекс рядка"},
     "english": {"en": "English", "uk": "Англійська"},
     "russian_original": {"en": "Russian (original)", "uk": "Російська (оригінал)"},
-    "glossary_of_terms": {"en": "Terms", "uk": "Терміни"},
-    "glossary_search_placeholder": {"en": "Search glossary by name or definition...", "uk": "Пошук у глосарії за назвою або визначенням..."},
+    "glossary_of_terms": {"en": "Terms Search", "uk": "Пошук термінів"},
+    "glossary_search_placeholder": {"en": "Search corpus terms (English, original language, or category)...", "uk": "Пошук термінів корпусу (англійською, мовою оригіналу або категорією)..."},
     "glossary_how_search_summary": {"en": "How do I search?", "uk": "Як шукати?"},
     "glossary_how_search_html": {
         "en": "<p><strong>Plain text</strong> matches titles and definitions anywhere (case-insensitive substring).</p>"
@@ -464,7 +464,7 @@ _UI_TRANSLATIONS = {
     "category": {"en": "Specific detail", "uk": "Конкретна деталь"},
     "no_definition": {"en": "No definition available", "uk": "Визначення недоступне"},
     "all": {"en": "All", "uk": "Усі"},
-    "taxonomy_reference": {"en": "How Specific Details and Ideological Layers Are Qualified", "uk": "Як кваліфікуються конкретні деталі та ідеологічні шари"},
+    "taxonomy_reference": {"en": "Terms Explained", "uk": "Терміни пояснені"},
     "taxonomy_reference_intro": {"en": "This report uses a reference taxonomy from Categories Explained. Segments carry labels for specific details (what is discussed; stored as content categories) and ideological layers (how it is phrased; stored as framing strategies). Below is how each is defined and qualified.", "uk": "Цей звіт використовує довідкову таксономію з Categories Explained. Сегменти мають мітки конкретних деталей (що обговорюється; зберігаються як категорії контенту) та ідеологічних шарів (як це сформульовано; зберігаються як стратегії фреймінгу). Нижче наведено визначення та критерії кваліфікації."},
     "dataset_statistics": {"en": "Dataset Statistics", "uk": "Статистика набору даних"},
     "document": {"en": "Document", "uk": "Документ"},
@@ -4207,21 +4207,17 @@ def _homepage(
     )
     taxonomy_section = (
         f'<details class="collapsible-section taxonomy-ref-details" id="lab-feature-taxonomy">'
-        f'<summary><span data-i18n="taxonomy_reference">How Categories and Framing Are Qualified</span></summary>'
+        f'<summary><span data-i18n="taxonomy_reference">Terms Explained</span></summary>'
         f'<div class="collapsible-body taxonomy-ref-body">'
         f'<p data-i18n="taxonomy_reference_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">This report uses a reference taxonomy from Categories Explained. Segments are classified by content category (what is discussed) and framing strategy (how it is phrased). Below is how each is defined and qualified.</p>'
         f"{taxonomy_ref_html}</div></details>"
         if taxonomy_ref_html else ""
     )
-    framework_section = _analytical_framework_collapsible()
-
     home_html = f"""
 <div class="tab-content" id="tab-home">
 <div class="header"><h2 data-i18n="home">Research Lab</h2></div>
 <div class="homepage-content">
   {taxonomy_section}
-
-  {framework_section}
 
   {glossary_panel_html}
 
@@ -4551,7 +4547,7 @@ def _doc_tab(
     tab_attrs += ">"
     thead_experiment_a = (
         '<thead><tr><th data-i18n="section">Section</th><th data-i18n="entry_eng">Entry (ENG)</th>'
-        '<th data-i18n="entry_rus">Entry (RUS)</th><th data-i18n="content_category">Specific detail</th>'
+        '<th data-i18n="entry_rus">Entry (Original)</th><th data-i18n="content_category">Specific detail</th>'
         '<th data-i18n="framing">Ideological layer</th></tr></thead>'
     )
     tbody_id = f"table-{doc_id}-run-0" if dual_compare else f"table-{doc_id}"
@@ -4574,7 +4570,7 @@ def _doc_tab(
                 '<th data-i18n="comparison_b_col_row_num">#</th>'
                 '<th data-i18n="content_category">Specific detail</th>'
                 '<th data-i18n="framing">Ideological layer</th>'
-                '<th data-i18n="entry_rus">Entry (RUS)</th>'
+                '<th data-i18n="entry_rus">Entry (Original)</th>'
                 '<th data-i18n="entry_eng">Entry (ENG)</th>'
                 "</tr></thead>\n"
                 f"<tbody>{tbody_agent}</tbody>\n</table>"
@@ -4876,6 +4872,8 @@ def _glossary_term_item(
 ) -> str:
     esc_eng = html_module.escape(eng or rus)
     esc_rus = html_module.escape(rus or eng)
+    search_blob = html_module.escape(f"{eng or ''} {rus or ''}".strip().lower())
+    data_search = f' data-search-text="{search_blob}"' if search_blob else ""
     data_docs = ""
     if doc_ids:
         data_docs = f' data-docs="{html_module.escape(",".join(sorted(doc_ids)))}"'
@@ -4893,7 +4891,7 @@ def _glossary_term_item(
         if link_parts:
             links_html = f'<div class="glossary-term-links" style="margin-top: 0.35rem; font-size: 0.85rem;"><span data-i18n="view_in_document">View in document:</span> ' + " | ".join(link_parts) + "</div>"
     return (
-        f'<div class="glossary-term-item"{data_docs} style="padding: 0.5rem; background: #e8e4dc; border-radius: 4px; border: 1px solid rgba(139,115,85,0.25); '
+        f'<div class="glossary-term-item"{data_search}{data_docs} style="padding: 0.5rem; background: #e8e4dc; border-radius: 4px; border: 1px solid rgba(139,115,85,0.25); '
         f'border-left: 3px solid {colour}; margin-bottom: 0.5rem;">'
         f'<div class="term-eng" style="font-weight: 500; margin-bottom: 0.25rem;">{esc_eng}</div>'
         f'<div class="term-rus" style="font-size: 0.9rem; color: #4a5568; font-style: italic;">{esc_rus}</div>'
@@ -5057,11 +5055,11 @@ def _glossary_tab(
     glossary_cyr = _cyrillic_keyboard_html("glossary", logo_href=keyboard_logo_href)
     return (
         """<details class="collapsible-section lab-glossary-root" id="lab-glossary" aria-labelledby="lab-glossary-heading">
-<summary><span id="lab-glossary-heading" data-i18n="glossary_of_terms">Terms</span></summary>
+<summary><span id="lab-glossary-heading" data-i18n="glossary_of_terms">Terms Search</span></summary>
 <div class="collapsible-body lab-glossary-collapsible-body">
 <div class="glossary-controls glossary-controls-search">
 <div class="glossary-search-cyrillic-anchor">
-<input type="search" id="glossary-search" class="glossary-search" placeholder="Search glossary by name or definition..." data-i18n="glossary_search_placeholder" autocomplete="off"/>
+<input type="search" id="glossary-search" class="glossary-search" placeholder="Search corpus terms (English, original language, or category)..." data-i18n="glossary_search_placeholder" autocomplete="off"/>
 <div class="cyrillic-keyboard-popup-wrap" id="cyrillic-popup-glossary" role="dialog" aria-modal="false" aria-hidden="true" aria-labelledby="cyrillic-popup-label-glossary">
 """
         + glossary_cyr
@@ -6142,6 +6140,14 @@ function applyGlossaryLabelLayers() {
   });
   applyGlossaryFilters();
 }
+function glossaryTermSearchBlob(itemEl) {
+  if (!itemEl) return '';
+  var blob = itemEl.getAttribute('data-search-text');
+  if (blob) return blob;
+  var eng = itemEl.querySelector('.term-eng');
+  var rus = itemEl.querySelector('.term-rus');
+  return ((eng && eng.textContent) || '') + ' ' + ((rus && rus.textContent) || '');
+}
 function applyGlossaryFilters() {
   var searchEl = document.getElementById('glossary-search');
   var filterEl = document.getElementById('glossary-doc-filter');
@@ -6150,12 +6156,13 @@ function applyGlossaryFilters() {
   var matchFn = glossarySearchMatcher(q);
   var sections = document.querySelectorAll('#lab-glossary .glossary-searchable-section');
   sections.forEach(function(s) {
-    var sectionBlob = s.getAttribute('data-text') || '';
+    var heading = s.querySelector('h4');
+    var sectionBlob = (s.getAttribute('data-text') || '') + ' ' + ((heading && heading.textContent) || '');
     var sectionMatchesSearch = !q || matchFn(sectionBlob);
     var layer = s.querySelector('.glossary-terms-layer:not(.glossary-layer-hidden)');
     var items = layer ? layer.querySelectorAll('.glossary-term-item') : s.querySelectorAll('.glossary-term-item');
     items.forEach(function(it) {
-      var termText = it.textContent || '';
+      var termText = glossaryTermSearchBlob(it);
       var termMatchesSearch = !q || matchFn(termText);
       var docs = (it.getAttribute('data-docs') || '').split(',').map(function(d) { return d.trim(); }).filter(Boolean);
       var docMatch = !docId || docs.indexOf(docId) !== -1;
@@ -7763,6 +7770,12 @@ document.addEventListener('DOMContentLoaded', function() {
     glossarySearch.addEventListener('input', applyGlossaryFilters);
     glossarySearch.addEventListener('search', applyGlossaryFilters);
   }
+  var labGlossaryRoot = document.getElementById('lab-glossary');
+  if (labGlossaryRoot) {
+    labGlossaryRoot.addEventListener('toggle', function() {
+      if (labGlossaryRoot.open && typeof applyGlossaryFilters === 'function') applyGlossaryFilters();
+    });
+  }
   var glossaryDocFilter = document.getElementById('glossary-doc-filter');
   if (glossaryDocFilter) {
     glossaryDocFilter.addEventListener('change', applyGlossaryFilters);
@@ -7778,6 +7791,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (tid) applyDocumentSearchAndFilter(tid);
   }, false);
   document.body.addEventListener('input', function(e) {
+    if (e.target && e.target.id === 'glossary-search') {
+      if (typeof applyGlossaryFilters === 'function') applyGlossaryFilters();
+      return;
+    }
     var tid = e.target.getAttribute('data-tab');
     if (!tid && e.target.id && /^doc-(?:search|cat|fram|colour-by)-(.+)$/.test(e.target.id)) tid = e.target.id.replace(/^doc-(?:search|cat|fram|colour-by)-/, '');
     if (!tid && e.target.id && /^table-search-(.+)$/.test(e.target.id)) tid = e.target.id.replace(/^table-search-/, '');
