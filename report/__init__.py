@@ -107,6 +107,54 @@ def _hex_to_rgba_css(hex_col: str, alpha: float = 0.18) -> str:
     return f"rgba({r},{g},{b},{alpha})"
 
 
+def _taxonomy_id_from_axis_raw(raw: str, *, framing: bool) -> str:
+    """Resolve stored category/framing label to taxonomy id for definition popovers."""
+    if not raw or not str(raw).strip():
+        return ""
+    if framing:
+        return _normalize_framing_label(str(raw).strip())
+    folded = display_content_category_for_ui(str(raw).strip())
+    return canonical_content_category_id(folded) or folded
+
+
+def _comparison_taxonomy_trigger_html(
+    inner_html: str,
+    *,
+    raw: str,
+    framing: bool,
+    title: str = "Click for definition",
+) -> str:
+    """Wrap comparison-table label markup in a button that opens the taxonomy definition popover."""
+    tax_id = _taxonomy_id_from_axis_raw(raw, framing=framing)
+    if not tax_id:
+        return inner_html
+    esc_id = html_module.escape(tax_id, quote=True)
+    kind = "framing" if framing else "category"
+    esc_title = html_module.escape(title, quote=True)
+    return (
+        f'<button type="button" class="comparison-taxonomy-trigger" '
+        f'data-taxonomy-id="{esc_id}" data-taxonomy-kind="{kind}" '
+        f'title="{esc_title}" aria-label="{esc_title}">'
+        f"{inner_html}</button>"
+    )
+
+
+def _comparison_taxonomy_pill_html(
+    *,
+    disp_esc: str,
+    raw: str,
+    hex_col: str,
+    bg_css: str,
+    pill_cls: str,
+    framing: bool,
+) -> str:
+    pill = (
+        f'<span class="{pill_cls}" style="border-color:{hex_col};color:{hex_col};background:{bg_css}">'
+        f"{disp_esc}</span>"
+    )
+    return _comparison_taxonomy_trigger_html(pill, raw=raw, framing=framing)
+
+
 def _comparison_axis_cell_html(
     *,
     match: bool,
@@ -136,13 +184,21 @@ def _comparison_axis_cell_html(
     if expert_compare:
         llm_bg = _hex_to_rgba_css(llm_hex, 0.17)
         hum_bg = _hex_to_rgba_css(human_hex, 0.17)
-        llm_pill = (
-            f'<span class="{pill_cls}" style="border-color:{llm_hex};color:{llm_hex};background:{llm_bg}">'
-            f"{llm_disp_esc}</span>"
+        llm_pill = _comparison_taxonomy_pill_html(
+            disp_esc=llm_disp_esc,
+            raw=llm_raw,
+            hex_col=llm_hex,
+            bg_css=llm_bg,
+            pill_cls=pill_cls,
+            framing=framing,
         )
-        human_pill = (
-            f'<span class="{pill_cls}" style="border-color:{human_hex};color:{human_hex};background:{hum_bg}">'
-            f"{human_disp_esc}</span>"
+        human_pill = _comparison_taxonomy_pill_html(
+            disp_esc=human_disp_esc,
+            raw=human_raw,
+            hex_col=human_hex,
+            bg_css=hum_bg,
+            pill_cls=pill_cls,
+            framing=framing,
         )
         return (
             '<div class="comparison-axis-cell comparison-axis-expert-pair">'
@@ -152,17 +208,27 @@ def _comparison_axis_cell_html(
             f"{human_pill}</div></div>"
         )
     bg = _hex_to_rgba_css(llm_hex, 0.17)
-    pill = (
-        f'<span class="{pill_cls}" style="border-color:{llm_hex};color:{llm_hex};background:{bg}">'
-        f"{llm_disp_esc}</span>"
+    pill = _comparison_taxonomy_pill_html(
+        disp_esc=llm_disp_esc,
+        raw=llm_raw,
+        hex_col=llm_hex,
+        bg_css=bg,
+        pill_cls=pill_cls,
+        framing=framing,
     )
     if match:
         return f'<div class="comparison-axis-cell">{pill}</div>'
+    human_inner = (
+        f'<span class="comparison-human-value" style="color:{human_hex}">{human_disp_esc}</span>'
+    )
+    human_value = _comparison_taxonomy_trigger_html(
+        human_inner, raw=human_raw, framing=framing
+    )
     note = (
         f'<div class="comparison-annotator-ref"><span class="comparison-annotator-tag" '
         f'data-i18n="comparison_human_side_short">Human</span>'
         f'<span class="comparison-annotator-sep">·</span>'
-        f'<span class="comparison-human-value" style="color:{human_hex}">{human_disp_esc}</span></div>'
+        f"{human_value}</div>"
     )
     return f'<div class="comparison-axis-cell">{pill}{note}</div>'
 
@@ -188,7 +254,7 @@ def _nav_label(doc: Dict[str, Any]) -> str:
 
 # UI translations: en (English), uk (Ukrainian)
 _UI_TRANSLATIONS = {
-    "site_title": {"en": "KGB and Ukrainian Diaspora", "uk": "КДБ та українська діаспора"},
+    "site_title": {"en": "KGB and the Ukrainian Diaspora", "uk": "KGB and the Ukrainian Diaspora"},
     "declassified": {"en": "Declassified", "uk": "Розсекречено"},
     "home": {"en": "Research Lab", "uk": "Дослідницька лабораторія"},
     "intro_landing_link": {"en": "Introduction", "uk": "Вступ"},
@@ -215,14 +281,14 @@ _UI_TRANSLATIONS = {
     },
     "intro_video_heading": {"en": "How to use this site (video)", "uk": "Як користуватися сайтом (відео)"},
     "intro_video_note": {"en": "A short walkthrough of the site layout and main analytical tools.", "uk": "Короткий огляд структури сайту та основних аналітичних інструментів."},
-    "intro_cap_f": {"en": "Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.", "uk": "Альтернативні мітки з таблиці порівняння — кнопка «+»: модальне вікно; пропозиції зберігаються в браузері й експортуються як JSON."},
+    "intro_cap_f": {"en": "Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.", "uk": "Альтернативні мітки з таблиці порівняння: кнопка «+»: модальне вікно; пропозиції зберігаються в браузері й експортуються як JSON."},
     "intro_vozmezdie_title": {"en": "KGB and the Ukrainian Diaspora: Operation Vozmezdie", "uk": "KGB and the Ukrainian Diaspora: Operation Vozmezdie"},
     "intro_vozmezdie_welcome": {"en": "Welcome to the Vozmezdie Files", "uk": "Welcome to the Vozmezdie Files"},
     "intro_vozmezdie_p1": {"en": "This site presents a small selection of declassified documents from the former KGB archives of the Ukrainian SSR. KGB, or Komitet Gosudarstvennoi Bezopasnosti, translates as the State Security Committee and is commonly referred to in English as the Soviet security services.", "uk": "This site presents a small selection of declassified documents from the former KGB archives of the Ukrainian SSR. KGB, or Komitet Gosudarstvennoi Bezopasnosti, translates as the State Security Committee and is commonly referred to in English as the Soviet security services."},
     "intro_vozmezdie_p2": {"en": "The files gathered here reveal how the Soviet security services monitored, described, and sought to undermine the Ukrainian diaspora in North America.", "uk": "The files gathered here reveal how the Soviet security services monitored, described, and sought to undermine the Ukrainian diaspora in North America."},
-    "intro_vozmezdie_p3": {"en": "As part of its broader effort to construct a single Soviet nation from the many peoples brought under Russian imperial and later Soviet rule, the USSR systematically suppressed dissent and resistance to this effort. Formed in North America before the establishment of the Soviet Union in 1922, the Ukrainian diaspora continued throughout the twentieth century to advocate for an independent and sovereign Ukraine. Soviet authorities increasingly viewed pro-independent Ukrainian diaspora activities as a threat to both domestic stability and Soviet foreign policy.", "uk": "As part of its broader effort to construct a single Soviet nation from the many peoples brought under Russian imperial and later Soviet rule, the USSR systematically suppressed dissent and resistance to this effort. Formed in North America before the establishment of the Soviet Union in 1922, the Ukrainian diaspora continued throughout the twentieth century to advocate for an independent and sovereign Ukraine. Soviet authorities increasingly viewed pro-independent Ukrainian diaspora activities as a threat to both domestic stability and Soviet foreign policy."},
-    "intro_vozmezdie_p4": {"en": "Following the Second World War, continued resistance to Soviet rule in Western Ukraine, combined with the displacement of hundreds of thousands of Ukrainians who refused repatriation to the USSR, intensified Soviet surveillance and operational activities targeting Ukrainians abroad. Some of these operations were conducted under the code name Vozmezdie.", "uk": "Following the Second World War, continued resistance to Soviet rule in Western Ukraine, combined with the displacement of hundreds of thousands of Ukrainians who refused repatriation to the USSR, intensified Soviet surveillance and operational activities targeting Ukrainians abroad. Some of these operations were conducted under the code name Vozmezdie."},
-    "intro_vozmezdie_p5": {"en": "Through this operation, the KGB sought to undermine émigré organizations, discredit institutions of Ukrainian studies abroad, and weaken public commemoration of the Holodomor. The Canadian Institute of Ukrainian Studies at the University of Alberta appears in these files by name.", "uk": "Through this operation, the KGB sought to undermine émigré organizations, discredit institutions of Ukrainian studies abroad, and weaken public commemoration of the Holodomor. The Canadian Institute of Ukrainian Studies at the University of Alberta appears in these files by name."},
+    "intro_vozmezdie_p3": {"en": "As part of its broader effort to construct a single Soviet nation from the many peoples brought under Russian imperial and later Soviet rule, the USSR systematically suppressed dissent and resistance to this effort. Formed in North America before the establishment of the Soviet Union in 1922, the Ukrainian diaspora continued to advocate for an independent and sovereign Ukraine throughout the twentieth century. Soviet authorities increasingly viewed pro-independent Ukrainian diaspora activities as a threat to Soviet domestic stability and foreign policy.", "uk": "As part of its broader effort to construct a single Soviet nation from the many peoples brought under Russian imperial and later Soviet rule, the USSR systematically suppressed dissent and resistance to this effort. Formed in North America before the establishment of the Soviet Union in 1922, the Ukrainian diaspora continued to advocate for an independent and sovereign Ukraine throughout the twentieth century. Soviet authorities increasingly viewed pro-independent Ukrainian diaspora activities as a threat to Soviet domestic stability and foreign policy."},
+    "intro_vozmezdie_p4": {"en": "Following the Second World War and the displacement of hundreds of thousands of Ukrainians who refused repatriation to the USSR, resistance to Soviet rule in Western Ukraine continued. As a result, Soviet surveillance and operational activities targeting Ukrainians abroad intensified. Some of these operations were conducted under the code name Vozmezdie.", "uk": "Following the Second World War and the displacement of hundreds of thousands of Ukrainians who refused repatriation to the USSR, resistance to Soviet rule in Western Ukraine continued. As a result, Soviet surveillance and operational activities targeting Ukrainians abroad intensified. Some of these operations were conducted under the code name Vozmezdie."},
+    "intro_vozmezdie_p5": {"en": "Through this operation, the KGB sought to undermine émigré organizations, discredit institutions of Ukrainian studies abroad, and weaken public commemoration of the Holodomor. The Canadian Institute of Ukrainian Studies at the University of Alberta also appears in these files.", "uk": "Through this operation, the KGB sought to undermine émigré organizations, discredit institutions of Ukrainian studies abroad, and weaken public commemoration of the Holodomor. The Canadian Institute of Ukrainian Studies at the University of Alberta also appears in these files."},
     "intro_vozmezdie_p6": {"en": "The sixteen documents presented on this site date primarily from the early 1980s and originate from a single archival fond held at the HDA SBU archive in Ukraine. We invite you to explore both the documents themselves and the analytical tools developed as part of this project.", "uk": "The sixteen documents presented on this site date primarily from the early 1980s and originate from a single archival fond held at the HDA SBU archive in Ukraine. We invite you to explore both the documents themselves and the analytical tools developed as part of this project."},
     "intro_vozmezdie_p7": {"en": "This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production.", "uk": "This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production."},
     "intro_vozmezdie_p8": {"en": "Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list.", "uk": "Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list."},
@@ -235,7 +301,7 @@ _UI_TRANSLATIONS = {
     "intro_tools_lead": {"en": "Each capability lives in this Research Lab unless noted. Combine close reading with corpus-level patterns.", "uk": "Можливості нижче доступні в цій лабораторії. Поєднуйте читання тексту з оглядом корпусу."},
     "intro_tool_doc_tag": {"en": "Document tabs", "uk": "Вкладки документів"},
     "intro_tool_doc_h": {"en": "Document Text Illuminator", "uk": "Ілюмінатор тексту документа"},
-    "intro_tool_doc_p": {"en": "The Document Text Illuminator shows aligned English and Russian segments with scroll sync, search, and filters by category and framing. Toggle stacked or side-by-side layout.", "uk": "Ілюмінатор тексту документа показує вирівняні англійські й російські сегменти з синхронним прокручуванням, пошуком і фільтрами за категорією та фреймінгом."},
+    "intro_tool_doc_p": {"en": "The Document Text Illuminator shows aligned English and Russian segments in independently scrollable panels, with search and filters by category and framing. Toggle stacked or side-by-side layout.", "uk": "Ілюмінатор тексту документа показує вирівняні англійські й російські сегменти в окремих панелях з незалежним прокручуванням, пошуком і фільтрами за категорією та фреймінгом."},
     "intro_tool_compare_tag": {"en": "Same tab", "uk": "Та сама вкладка"},
     "intro_tool_compare_h": {"en": "Expert reference vs AI labels", "uk": "Еталон експерта проти міток ШІ"},
     "intro_tool_compare_p": {"en": "Each row pairs expert reference labels with AI labels on the same expert-drawn passage; click a section number to open the Document Text Illuminator there. Export aligned comparison as JSON where enabled.", "uk": "У кожному рядку еталон експерта поруч із мітками ШІ на тому самому експертному уривку; клік по номеру розділу відкриває Ілюмінатор. Експорт JSON за підтримки."},
@@ -250,7 +316,7 @@ _UI_TRANSLATIONS = {
     "intro_tool_gloss_p": {"en": "Taxonomy definitions plus corpus terms, search (including regex), document filter, and links to segment anchors.", "uk": "Визначення таксономії та терміни корпусу, пошук (regex), фільтр документів і посилання на сегменти."},
     "intro_tool_tax_tag": {"en": "Intro & Lab", "uk": "Вступ і лабораторія"},
     "intro_tool_tax_h": {"en": "Taxonomy reference", "uk": "Довідка таксономії"},
-    "intro_tool_tax_p": {"en": "Collapsible reference on how categories and framing are qualified, aligned with Categories Explained where configured.", "uk": "Згортний блок про кваліфікацію категорій і фреймінгу, узгоджено з Categories Explained за наявності."},
+    "intro_tool_tax_p": {"en": "Collapsible reference on how categories and framing are qualified, drawn from Categories Explained.", "uk": "Згортний блок про кваліфікацію категорій і фреймінгу на основі Categories Explained."},
     "intro_tool_suggest_tag": {"en": "Comparison rows", "uk": "Рядки порівняння"},
     "intro_tool_suggest_h": {"en": "Label suggestions", "uk": "Пропозиції міток"},
     "intro_tool_suggest_p": {"en": "In-page modal from the “+” control: propose alternate labels; persist in the browser and download JSON.", "uk": "Модальне вікно через «+»: альтернативні мітки; збереження в браузері та завантаження JSON."},
@@ -310,8 +376,8 @@ _UI_TRANSLATIONS = {
     "comparison_b_header_framing": {"en": "Model · ideological layer", "uk": "Модель · ідеологічний шар"},
     "comparison_b_col_row_num": {"en": "#", "uk": "№"},
     "comparison_table_run_b_blurb": {
-        "en": "The upper table lists expert-drawn passages: human coders chose each slice’s boundaries, so every row pairs expert reference labels with AI labels on that same passage. This lower table lists AI-drawn passages: the model split the text differently, so rows may be shorter, longer, or shifted—you are not looking at the same slices as above. The category and framing columns foreground the model’s choices; expert wording appears beside them only when we could align an expert label to that model-sized passage.",
-        "uk": "У верхній таблиці уривки за експертними межами: кодувальники задали межі зрізів, тож у кожному рядку еталон експерта поруч із мітками ШІ на тому самому тексті. У нижній таблиці уривки за межами моделі: текст розбито інакше, тому рядки можуть відрізнятися довжиною чи зміщенням — це не ті самі зрізи, що зверху. Стовпці конкретної деталі та ідеологічного шару насамперед показують вибір моделі; формулювання експерта з’являються поруч лише там, де вдалося вирівняти людську мітку з цим уривком моделі.",
+        "en": "The upper table lists expert-drawn passages: human coders chose each slice’s boundaries, so every row pairs expert reference labels with AI labels on that same passage. This lower table lists AI-drawn passages: the model split the text differently, so rows may be shorter, longer, or shifted, so you are not looking at the same slices as above. The category and framing columns foreground the model’s choices; expert wording appears beside them only when we could align an expert label to that model-sized passage.",
+        "uk": "У верхній таблиці уривки за експертними межами: кодувальники задали межі зрізів, тож у кожному рядку еталон експерта поруч із мітками ШІ на тому самому тексті. У нижній таблиці уривки за межами моделі: текст розбито інакше, тому рядки можуть відрізнятися довжиною чи зміщенням; це не ті самі зрізи, що зверху. Стовпці конкретної деталі та ідеологічного шару насамперед показують вибір моделі; формулювання експерта з’являються поруч лише там, де вдалося вирівняти людську мітку з цим уривком моделі.",
     },
     "exp_b_prelim_summary": {
         "en": "Independent AI Assessment",
@@ -336,6 +402,8 @@ _UI_TRANSLATIONS = {
         "en": "Briefly dims panel edges when you open a passage from the comparison table (preference saved in this browser).",
         "uk": "Коротко затемнює краї панелей, коли відкриваєте уривок з таблиці порівняння (налаштування зберігаються в браузері).",
     },
+    "illuminator_panel_english": {"en": "English Translation", "uk": "English Translation"},
+    "illuminator_panel_original": {"en": "Original", "uk": "Original"},
     "terms_vocab_alignment_note": {
         "en": "(Expert-drawn alignment · model-assigned labels)",
         "uk": "(За експертними межами · мітки моделі)",
@@ -357,7 +425,7 @@ _UI_TRANSLATIONS = {
     "framing_text_colour": {"en": "Ideological layer (text colour)", "uk": "Ідеологічний шар (колір тексту)"},
     "colour_by_note": {"en": "Tint passages using AI labels, human expert labels, or both (matching labels only). Specific-detail and ideological-layer colours apply only when those filters are not None.", "uk": "Тонування уривків за мітками ШІ, людськими мітками експерта або обома (лише збіг). Кольори конкретних деталей і ідеологічних шарів застосовуються лише коли відповідний фільтр не «Немає»."},
     "document_text_legend_note": {"en": _DOCUMENT_TEXT_LEGEND_NOTE_EN, "uk": _DOCUMENT_TEXT_LEGEND_NOTE_UK},
-    "search_placeholder": {"en": "Search in text (English or Russian)...", "uk": "Пошук у тексті (англійською або російською)..."},
+    "search_placeholder": {"en": "Search in text (English or Original Language)...", "uk": "Пошук у тексті (англійською або мовою оригіналу)..."},
     "table_search_placeholder": {"en": "Search in table...", "uk": "Пошук у таблиці..."},
     "none": {"en": "None", "uk": "Немає"},
     "colour_by_llm": {"en": "AI", "uk": "ШІ"},
@@ -378,7 +446,7 @@ _UI_TRANSLATIONS = {
     "doc_text_cap_search": {"en": "Search in text for specific information (such as date/time, place, people, etc.), in English and Russian.", "uk": "Шукати у тексті конкретну інформацію (дата/час, місце, особи тощо) англійською та російською."},
     "doc_text_cap_highlight": {"en": "Find and highlight different ideological layers in the text.", "uk": "Знаходити та виділяти різні ідеологічні шари в тексті."},
     "doc_text_cap_compare": {"en": "Compare how specific details and ideological layers intersect within segments.", "uk": "Порівнювати, як конкретні деталі та ідеологічні шари перетинаються в сегментах."},
-    "doc_text_cap_lab": {"en": "Pair this illuminator with Research Lab charts—those charts reflect whichever segmentation pass is loaded (expert-drawn vs AI-drawn).", "uk": "Поєднуйте ілюмінатор із графіками лабораторії: на них видно дані за активним прогоном сегментації (експертні межі проти меж моделі)."},
+    "doc_text_cap_lab": {"en": "Pair this illuminator with Research Lab charts; those charts reflect whichever segmentation pass is loaded (expert-drawn vs AI-drawn).", "uk": "Поєднуйте ілюмінатор із графіками лабораторії: на них видно дані за активним прогоном сегментації (експертні межі проти меж моделі)."},
     "cyrillic_key_shift": {"en": "⇧ Shift", "uk": "⇧ Shift"},
     "cyrillic_key_space": {"en": "Space", "uk": "Пробіл"},
     "cyrillic_key_backspace": {"en": "⌫ Backspace", "uk": "⌫ Назад"},
@@ -405,14 +473,13 @@ _UI_TRANSLATIONS = {
     "label_suggestion_suggested_framing": {"en": "Suggested ideological layer", "uk": "Запропонований ідеологічний шар"},
     "label_suggestion_notes": {"en": "Notes (optional)", "uk": "Примітки (необов'язково)"},
     "label_suggestion_notes_placeholder": {"en": "Reasoning, citations, or other context…", "uk": "Обґрунтування, посилання або інший контекст…"},
-    "label_suggestion_optional_blank": {"en": "— Optional —", "uk": "— Необов'язково —"},
+    "label_suggestion_optional_blank": {"en": "(Optional)", "uk": "(Необов'язково)"},
     "label_suggestion_save": {"en": "Save suggestion", "uk": "Зберегти пропозицію"},
     "label_suggestion_cancel": {"en": "Cancel", "uk": "Скасувати"},
     "label_suggestion_download": {"en": "Download all suggestions (JSON)", "uk": "Завантажити всі пропозиції (JSON)"},
     "label_suggestion_saved_ok": {"en": "Suggestion saved locally.", "uk": "Пропозицію збережено локально."},
-    "dev_label_export_title": {"en": "Label suggestions export (developer)", "uk": "Експорт пропозицій міток (для розробника)"},
-    "dev_label_export_intro": {"en": "Saved suggestions live in your browser (localStorage) and are mirrored in a hidden JSON script tag at the end of this page (`label-suggestions-export-json`). That duplicate lets you copy or scrape exports without opening devtools.", "uk": "Збережені пропозиції зберігаються в браузері (localStorage) і дублюються в прихованому елементі JSON (`label-suggestions-export-json`) в кінці сторінки — щоб можна було скопіювати дані без інструментів розробника."},
-    "dev_label_export_link_hint": {"en": "Bookmark this view by adding `#tab-dev-label-export` to the report URL.", "uk": "Додайте `#tab-dev-label-export` до URL звіту, щоб відкривати цей екран напряму."},
+    "dev_label_export_title": {"en": "Download label suggestions", "uk": "Завантажити пропозиції міток"},
+    "dev_label_export_intro": {"en": "Label suggestions you save from comparison rows are kept in this browser. Use the button below to download them as a JSON file.", "uk": "Пропозиції міток, збережені з рядків порівняння, зберігаються в цьому браузері. Кнопка нижче завантажить їх як файл JSON."},
     "label_suggestion_document_id": {"en": "Document ID", "uk": "ID документа"},
     "label_suggestion_row_index": {"en": "Row index", "uk": "Індекс рядка"},
     "english": {"en": "English", "uk": "Англійська"},
@@ -425,38 +492,38 @@ _UI_TRANSLATIONS = {
         "<p><strong>Regex:</strong> wrap your pattern in forward slashes <code>/like this/</code>. The first <code>/</code> switches to pattern matching; you must type a <strong>closing</strong> <code>/</code>. Optional letters after the closing slash are regex flags (this glossary always applies Unicode-aware, case-insensitive matching on top of your pattern).</p>"
         "<p><strong>Example <code>/ukrain*/</code></strong> In regular expressions the asterisk <code>*</code> is a <strong>quantifier</strong>: it repeats the <strong>one character immediately before it</strong>, zero or more times. Here <code>*</code> repeats the letter <code>n</code> after <code>ukrai</code>, so it matches substrings such as <code>ukrai</code>, <code>ukrain</code>, <code>ukrainn</code>, and so on. It does <strong>not</strong> mean add any letters after <code>ukrain</code>. To match stems like <em>Ukraine</em> or <em>Ukrainian</em>, use something like <code>/ukrain/</code> or include <code>.</code> (see below).</p>"
         "<p><strong>Symbols used in these examples:</strong><br/>"
-        "<code>/</code> … <code>/</code> — boundary of the pattern (opening and closing slash).<br/>"
-        "<code>*</code> — zero or more repetitions of the character <em>just before</em> the star.<br/>"
-        "<code>.</code> — any single character.<br/>"
-        "<code>|</code> — OR between alternatives; example <code>/вітаю|привіт/</code>.<br/>"
-        "<code>[ ]</code> — match one character from the set inside the brackets; example <code>/операци[ия]/</code>.<br/>"
-        "<code>\\</code> — escape the next character; use <code>\\/</code> if you need a literal slash inside the pattern.<br/>"
-        "<code>\\b</code> — word boundary; example <code>/\\bOUN\\b/</code>.</p>"
+        "<code>/</code> … <code>/</code>: boundary of the pattern (opening and closing slash).<br/>"
+        "<code>*</code>: zero or more repetitions of the character <em>just before</em> the star.<br/>"
+        "<code>.</code>: any single character.<br/>"
+        "<code>|</code>: OR between alternatives; example <code>/вітаю|привіт/</code>.<br/>"
+        "<code>[ ]</code>: match one character from the set inside the brackets; example <code>/операци[ия]/</code>.<br/>"
+        "<code>\\</code>: escape the next character; use <code>\\/</code> if you need a literal slash inside the pattern.<br/>"
+        "<code>\\b</code>: word boundary; example <code>/\\bOUN\\b/</code>.</p>"
         "<p><strong>More examples:</strong> English <code>/Kyiv|Kiev/</code>; Russian <code>/ОУН/</code>; Ukrainian <code>/Радянськ/</code>; <code>/вітаю|привіт/</code>.</p>",
         "uk": "<p><strong>Звичайний текст</strong> знаходить збіг у заголовках і визначеннях будь-де (підрядок без урахування регістру).</p>"
-        "<p><strong>Regex:</strong> обгорніть шаблон у косі риски <code>/ось так/</code>. Перша <code>/</code> вмикає пошук за шаблоном; обов’язкова <strong>закривна</strong> <code>/</code>. Літери після закривної слеша — прапорці regex (глосарій додатково застосовує режим з Юнікодом і без урахування регістру).</p>"
-        "<p><strong>Приклад <code>/ukrain*/</code></strong> Зірочка <code>*</code> у regex — це <strong>квантифікатор</strong>: вона повторює <strong>один символ безпосередньо перед нею</strong> нуль або більше разів. Тут <code>*</code> стоїть після літери <code>n</code> у фрагменті <code>ukrai</code>, тож збігається з <code>ukrai</code>, <code>ukrain</code>, <code>ukrainn</code> тощо. Це <strong>не</strong> означає «будь-які літери після ukrain». Для коренів на кшталт <em>Ukraine</em> / <em>Ukrainian</em> краще <code>/ukrain/</code> або шаблон із <code>.</code> (див. нижче).</p>"
+        "<p><strong>Regex:</strong> обгорніть шаблон у косі риски <code>/ось так/</code>. Перша <code>/</code> вмикає пошук за шаблоном; обов’язкова <strong>закривна</strong> <code>/</code>. Літери після закривної слеша: прапорці regex (глосарій додатково застосовує режим з Юнікодом і без урахування регістру).</p>"
+        "<p><strong>Приклад <code>/ukrain*/</code></strong> Зірочка <code>*</code> у regex: <strong>квантифікатор</strong>, який повторює <strong>один символ безпосередньо перед нею</strong> нуль або більше разів. Тут <code>*</code> стоїть після літери <code>n</code> у фрагменті <code>ukrai</code>, тож збігається з <code>ukrai</code>, <code>ukrain</code>, <code>ukrainn</code> тощо. Це <strong>не</strong> означає «будь-які літери після ukrain». Для коренів на кшталт <em>Ukraine</em> / <em>Ukrainian</em> краще <code>/ukrain/</code> або шаблон із <code>.</code> (див. нижче).</p>"
         "<p><strong>Символи в цих прикладах:</strong><br/>"
-        "<code>/</code> … <code>/</code> — межі шаблону (відкривна та закривна коса риска).<br/>"
-        "<code>*</code> — «нуль або більше» повторів символу одразу перед зірочкою.<br/>"
-        "<code>.</code> — будь-який один символ.<br/>"
-        "<code>|</code> — АБО між варіантами; приклад <code>/вітаю|привіт/</code>.<br/>"
-        "<code>[ ]</code> — один символ із набору в дужках; приклад <code>/операци[ия]/</code>.<br/>"
-        "<code>\\</code> — екранує наступний символ; для літерального слеша в шаблоні використовуйте <code>\\/</code>.<br/>"
-        "<code>\\b</code> — межа слова; приклад <code>/\\bOUN\\b/</code>.</p>"
+        "<code>/</code> … <code>/</code>: межі шаблону (відкривна та закривна коса риска).<br/>"
+        "<code>*</code>: «нуль або більше» повторів символу одразу перед зірочкою.<br/>"
+        "<code>.</code>: будь-який один символ.<br/>"
+        "<code>|</code>: АБО між варіантами; приклад <code>/вітаю|привіт/</code>.<br/>"
+        "<code>[ ]</code>: один символ із набору в дужках; приклад <code>/операци[ия]/</code>.<br/>"
+        "<code>\\</code>: екранує наступний символ; для літерального слеша в шаблоні використовуйте <code>\\/</code>.<br/>"
+        "<code>\\b</code>: межа слова; приклад <code>/\\bOUN\\b/</code>.</p>"
         "<p><strong>Інші приклади:</strong> англійська <code>/Kyiv|Kiev/</code>; російська <code>/ОУН/</code>; українська <code>/Радянськ/</code>; <code>/вітаю|привіт/</code>.</p>",
     },
     "filter_by_document": {"en": "Filter by document:", "uk": "Фільтр за документом:"},
     "all_documents": {"en": "All documents", "uk": "Усі документи"},
     "view_in_document": {"en": "View in document", "uk": "Переглянути в документі"},
     "content_categories": {"en": "Specific Details", "uk": "Конкретні деталі"},
-    "content_categories_desc": {"en": "Specific details describe WHAT the text refers to at surface level (aligned with content-category labels in the data model). In technical materials these correspond to content categories.", "uk": "Конкретні деталі описують ДО ЧОГО стосується текст на поверхневому рівні (відповідають міткам категорій контенту в моделі даних). У технічних матеріалах це відповідає категоріям контенту."},
+    "content_categories_desc": {"en": "Specific details describe what the text refers to at surface level: people, places, events, documents, and similar concrete references.", "uk": "Конкретні деталі описують, до чого стосується текст на поверхневому рівні: люди, місця, події, документи та подібні конкретні згадки."},
     "terms_found_summary": {"en": "Terms Found in Documents - Summary", "uk": "Терміни з документів - Підсумок"},
     "total_unique_terms": {"en": "Total unique terms extracted:", "uk": "Всього унікальних термінів:"},
     "content_categories_stats": {"en": "Specific details:", "uk": "Конкретні деталі:"},
     "framing_strategies_stats": {"en": "Ideological layers:", "uk": "Ідеологічні шари:"},
     "framing_categories": {"en": "Ideological layers (definitions)", "uk": "Ідеологічні шари (визначення)"},
-    "framing_categories_desc": {"en": "Ideological layers describe HOW language positions the material: neutral, bureaucratic, ideological, or action-focused (aligned with framing labels in the data model). In technical materials these correspond to framing strategies.", "uk": "Ідеологічні шари описують ЯК мова позиціонує матеріал: нейтрально, бюрократично, ідеологічно або на дію (відповідають міткам фреймінгу в моделі даних). У технічних матеріалах це стратегії фреймінгу."},
+    "framing_categories_desc": {"en": "Ideological layers describe how language positions the material: neutral, bureaucratic, ideological, or action-focused.", "uk": "Ідеологічні шари описують, як мова позиціонує матеріал: нейтрально, бюрократично, ідеологічно або на дію."},
     "definition_en": {"en": "Definition (EN)", "uk": "Визначення (АНГЛ)"},
     "definition_ru": {"en": "Definition (RU)", "uk": "Визначення (РУС)"},
     "synonyms_en": {"en": "Synonyms (EN)", "uk": "Синоніми (АНГЛ)"},
@@ -465,7 +532,7 @@ _UI_TRANSLATIONS = {
     "no_definition": {"en": "No definition available", "uk": "Визначення недоступне"},
     "all": {"en": "All", "uk": "Усі"},
     "taxonomy_reference": {"en": "Terms Explained", "uk": "Терміни пояснені"},
-    "taxonomy_reference_intro": {"en": "This report uses a reference taxonomy from Categories Explained. Segments carry labels for specific details (what is discussed; stored as content categories) and ideological layers (how it is phrased; stored as framing strategies). Below is how each is defined and qualified.", "uk": "Цей звіт використовує довідкову таксономію з Categories Explained. Сегменти мають мітки конкретних деталей (що обговорюється; зберігаються як категорії контенту) та ідеологічних шарів (як це сформульовано; зберігаються як стратегії фреймінгу). Нижче наведено визначення та критерії кваліфікації."},
+    "taxonomy_reference_intro": {"en": "This site uses a reference taxonomy from Categories Explained. Segments are tagged for specific details (what is discussed) and ideological layers (how it is phrased). Below is how each is defined and qualified.", "uk": "На сайті використовується довідкова таксономія з Categories Explained. Сегменти позначаються конкретними деталями (що обговорюється) та ідеологічними шарами (як це сформульовано). Нижче наведено визначення та критерії кваліфікації."},
     "dataset_statistics": {"en": "Dataset Statistics", "uk": "Статистика набору даних"},
     "document": {"en": "Document", "uk": "Документ"},
     "segments": {"en": "Segments", "uk": "Сегменти"},
@@ -473,7 +540,7 @@ _UI_TRANSLATIONS = {
     "feedback": {"en": "Feedback", "uk": "Зворотний зв'язок"},
     "feedback_intro": {"en": "Submit general requests or suggest labels for tagged sections.", "uk": "Надішліть загальні запити або пропозиції щодо міток для розмічених секцій."},
     "submit_feedback": {"en": "Submit", "uk": "Надіслати"},
-    "wordcloud_intro": {"en": "Word cloud (most frequent words; bigger means more often):", "uk": "Хмара слів (найчастіші слова; більший розмір — частіше):"},
+    "wordcloud_intro": {"en": "Word cloud (most frequent words; bigger means more often):", "uk": "Хмара слів (найчастіші слова; більший розмір = частіше):"},
     "heatmap_intro": {"en": "Specific detail × ideological layer co-occurrence (segment counts):", "uk": "Співпідношення конкретна деталь × ідеологічний шар (кількість сегментів):"},
     "per_doc_intro": {"en": "Per-document distribution:", "uk": "Розподіл за документами:"},
     "select_visualization": {"en": "Select visualization:", "uk": "Оберіть візуалізацію:"},
@@ -495,12 +562,16 @@ _UI_TRANSLATIONS = {
     "viz_wc_filter_framing": {"en": "Limit to ideological layer (human label):", "uk": "Обмежити ідеологічним шаром (людська мітка):"},
     "viz_wc_filter_all_option": {"en": "All (no filter)", "uk": "Усі (без фільтра)"},
     "viz_config_apply": {"en": "Apply", "uk": "Застосувати"},
-    "viz_config_doc_radar_note": {"en": "This document view shows a single profile. Multi-document radar modes are available in the Research Lab.", "uk": "Тут показано профіль одного документа. Режими радару для кількох документів доступні в Дослідницькій лабораторії."},
+    "viz_config_doc_radar_note": {"en": "This view shows one document profile only.", "uk": "Тут показано профіль лише одного документа."},
     "viz_both": {"en": "Both", "uk": "Обидві"},
     "viz_config_chart_text_lang": {"en": "Segment text language:", "uk": "Мова тексту сегментів:"},
-    "viz_config_chart_text_lang_hint": {
-        "en": "For charts built from segment or whole-document words (top terms, vocabulary diversity, segment-length axis, term × framing). Word clouds use the Language control above.",
-        "uk": "Для діаграм із тексту сегментів або повних документів (топ термінів, різноманітність словника, вісь довжини сегмента, термін × фреймінг). Хмари слів мають окреме поле «Мова».",
+    "viz_config_label_source": {"en": "Count labels from:", "uk": "Підрахунки за мітками:"},
+    "viz_config_label_source_llm": {"en": "AI labels", "uk": "Мітки ШІ"},
+    "viz_config_label_source_human": {"en": "Human expert labels", "uk": "Мітки експерта"},
+    "viz_config_terms_top_n": {"en": "Top terms shown:", "uk": "Показати топ термінів:"},
+    "viz_config_external_tool_note": {
+        "en": "This view is hosted on voyant-tools.org. Options are controlled in the embedded tool, not in this report.",
+        "uk": "Цей перегляд на voyant-tools.org. Параметри задаються у вбудованому інструменті, а не в цьому звіті.",
     },
     "no_data": {"en": "No text data available.", "uk": "Немає текстових даних."},
     "viz_terms_cat": {"en": "Top Terms by Specific Detail", "uk": "Топ термінів за конкретною деталлю"},
@@ -513,6 +584,9 @@ _UI_TRANSLATIONS = {
     "viz_voyant_links": {"en": "Voyant Links", "uk": "Voyant Links"},
     "viz_voyant_bubblelines": {"en": "Voyant Bubblelines", "uk": "Voyant Bubblelines"},
     "viz_voyant_constellations": {"en": "Voyant Constellations", "uk": "Voyant Constellations"},
+    "places_map_no_data": {"en": "No places to show on the map yet.", "uk": "На карті поки немає місць для показу."},
+    "glossary_ai_segmented_unavailable": {"en": "Independent AI Assessment terms are not available in this view.", "uk": "Терміни незалежної оцінки ШІ недоступні в цьому перегляді."},
+    "viz_term_framing_no_data": {"en": "No term–framing data to show for the current selection.", "uk": "Немає даних «термін–фреймінг» для поточного вибору."},
     "places_map_open_btn": {"en": "Open map in new window", "uk": "Відкрити карту в новому вікні"},
     "viz_radar": {"en": "Document Profile Radar", "uk": "Радар профілю документа"},
     "viz_mismatch_flow": {"en": "Mismatch Flow", "uk": "Потік невідповідностей"},
@@ -542,61 +616,103 @@ _UI_TRANSLATIONS = {
     "viz_segment_single": {"en": "Single length", "uk": "Одна довжина"},
     "viz_segment_insufficient": {"en": "(insufficient data)", "uk": "(недостатньо даних)"},
     "viz_how_calculated": {"en": "How is this calculated?", "uk": "Як це обчислюється?"},
-    "viz_calc_wordcloud_simple": {"en": "We show which terms dominate the chosen text. count(w) is how often word w appears in that text; size(w) is proportional to count so more frequent words appear larger. Choose **full documents** to count over entire loaded English/Russian files, or **aligned segments** to count only segment snippets from the comparison rows (with optional filters on expert human labels). The weight_factor scales sizes; stopwords are excluded so common words like \"the\" do not dominate.", "uk": "Показуємо, які терміни домінують у обраному тексті. count(w) — частота слова w у цьому тексті; size(w) пропорційний count. Оберіть **повні документи** для підрахунку по всьому завантаженому EN/RU тексту або **вирівняні сегменти** лише для уривків з рядків порівняння (із опційними фільтрами за експертними мітками). weight_factor масштабує розмір; стоп-слова виключені, щоб не забивали графік."},
+    "viz_how_to_read": {"en": "How do I read this?", "uk": "Як це читати?"},
+    "viz_calc_wordcloud_simple": {"en": "Dominant terms in the chosen text. count(w) is how often word w appears in that text; size(w) is proportional to count so more frequent words appear larger. Choose full documents to count over entire loaded English/Russian files, or aligned segments to count only segment snippets from the comparison rows (with optional filters on expert human labels). The weight_factor scales sizes; stopwords are excluded so common words like \"the\" do not dominate.", "uk": "Показуємо, які терміни домінують у обраному тексті. count(w) = частота слова w у цьому тексті; size(w) пропорційний count. Оберіть повні документи для підрахунку по всьому завантаженому EN/RU тексту або вирівняні сегменти лише для уривків з рядків порівняння (із опційними фільтрами за експертними мітками). weight_factor масштабує розмір; стоп-слова виключені, щоб не забивали графік."},
     "viz_calc_wordcloud_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>count</mi><mo>(</mo><mi>w</mi><mo>)</mo><mo>=</mo><mtext>frequency of word w in corpus</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>size</mi><mo>(</mo><mi>w</mi><mo>)</mo><mo>&#x221D;</mo><mi>weight_factor</mi><mo>&#xD7;</mo><mi>count</mi><mo>(</mo><mi>w</mi><mo>)</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>count</mi><mo>(</mo><mi>w</mi><mo>)</mo><mo>=</mo><mtext>частота слова w</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>size</mi><mo>(</mo><mi>w</mi><mo>)</mo><mo>&#x221D;</mo><mi>weight_factor</mi><mo>&#xD7;</mo><mi>count</mi><mo>(</mo><mi>w</mi><mo>)</mo></mrow></math>"},
     "viz_calc_wordcloud_technical": {"en": "count(w) = frequency of word w in corpus. We use frequency because it reflects how central a term is. size(w) ∝ weight_factor × count(w): larger font for more frequent words so the eye is drawn to dominant terms. The weight_factor lets users adjust the scale when the default is too small or too large.", "uk": "count(w) = частота слова w. size(w) ∝ weight_factor × count(w). Частота показує важливість; weight_factor масштабує розмір."},
-    "viz_calc_heatmap_simple": {"en": "We show which category-framing combinations co-occur most. Each cell counts segments with that pair; we use category and framing together because they describe both what is discussed and how it is phrased. intensity is cell_value / max so relative density is visible: darker cells have more segments. Normalizing to [0, 1] makes it easy to compare across the matrix.", "uk": "Показуємо, які пари (категорія, фреймінг) найчастіші. Клітинка = кількість сегментів з парою. intensity = cell_value / max: темніші клітинки = більше сегментів. Нормалізація в [0, 1] дозволяє порівнювати."},
+    "viz_calc_heatmap_simple": {"en": "Category–framing pairs by segment count. Each cell counts segments with that pair; we use category and framing together because they describe both what is discussed and how it is phrased. intensity is cell_value / max so relative density is visible: darker cells have more segments. Normalizing to [0, 1] makes it easy to compare across the matrix.", "uk": "Показуємо, які пари (категорія, фреймінг) найчастіші. Клітинка = кількість сегментів з парою. intensity = cell_value / max: темніші клітинки = більше сегментів. Нормалізація в [0, 1] дозволяє порівнювати."},
     "viz_calc_heatmap_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>cat</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>&#x2227;</mo><mi>s</mi><mo>.</mo><mi>framing</mi><mo>=</mo><mi>fram</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>intensity</mi><mo>=</mo><mfrac><mrow><mi>cell_value</mi></mrow><mrow><mo>max</mo><mo>(</mo><mtext>all cells</mtext><mo>)</mo></mrow></mfrac><mo>&#x2208;</mo><mo>[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>]</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>cat</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>&#x2227;</mo><mi>s</mi><mo>.</mo><mi>framing</mi><mo>=</mo><mi>fram</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>intensity</mi><mo>=</mo><mfrac><mrow><mi>cell_value</mi></mrow><mrow><mi>max</mi></mrow></mfrac></mrow></math>"},
     "viz_calc_heatmap_technical": {"en": "cell(cat, fram) = |{s : s.category=cat ∧ s.framing=fram}|. We count both because content and framing are distinct dimensions. intensity = cell_value / max(all cells) ∈ [0, 1]: we normalize so the highest cell is full intensity and others scale proportionally, making it easy to spot dense vs sparse regions.", "uk": "cell(cat, fram) = |{s : s.category=cat ∧ s.framing=fram}|. intensity = cell_value / max ∈ [0, 1] для порівняння щільності."},
-    "viz_calc_per_doc_cat_simple": {"en": "We compare how each document distributes across content categories. Each bar is one document; stacked segments show the breakdown. Why per document? Because different documents may emphasize different topics. bar_height(doc, cat) counts segments per category; total_bar is the sum so we see both the mix and the total size of each document.", "uk": "Порівнюємо розподіл категорій по документах. Кожен стовпчик = документ; сегменти згруповані за категорією. bar_height(doc, cat) = кількість сегментів; total_bar = сума."},
+    "viz_calc_per_doc_cat_simple": {"en": "Category counts per document. Each bar is one document; stacked segments show the breakdown. Per-document counts show how topics differ. bar_height(doc, cat) counts segments per category; total_bar is the sum so we see both the mix and the total size of each document.", "uk": "Порівнюємо розподіл категорій по документах. Кожен стовпчик = документ; сегменти згруповані за категорією. bar_height(doc, cat) = кількість сегментів; total_bar = сума."},
     "viz_calc_per_doc_cat_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><mi>doc</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>total_bar</mi><mo>(</mo><mi>doc</mi><mo>)</mo><mo>=</mo><msub><mo>&#x2211;</mo><mi>cat</mi></msub><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>cat</mi><mo>)</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><mi>doc</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>total_bar</mi><mo>=</mo><msub><mo>&#x2211;</mo><mi>cat</mi></msub><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>cat</mi><mo>)</mo></mrow></math>"},
     "viz_calc_per_doc_cat_technical": {"en": "bar_height(doc, cat) = |{s ∈ doc : s.category = cat}|. We count per document because we want to see how each document differs. total_bar(doc) = Σ_cat bar_height(doc, cat): the sum gives the total segment count; stacking lets us compare both the mix and the size across documents.", "uk": "bar_height(doc, cat) = |{s ∈ doc : s.category = cat}|. total_bar = Σ_cat bar_height. Підрахунок по документу показує відмінності між документами."},
-    "viz_calc_per_doc_fram_simple": {"en": "Same as per-document categories, but for framing. We compare how each document uses language: some may be more bureaucratic, others more ideological. bar_height(doc, fram) counts segments per framing; total_bar shows the total. Why framing? Because how something is said matters as much as what is said.", "uk": "Те саме, але за фреймінгом. Порівнюємо, як кожен документ використовує мову. bar_height(doc, fram) = кількість; total_bar = сума."},
+    "viz_calc_per_doc_fram_simple": {"en": "Same as per-document categories, but for framing. Framing counts per document. bar_height(doc, fram) counts segments per framing; total_bar shows the total.", "uk": "Те саме, але за фреймінгом. Порівнюємо, як кожен документ використовує мову. bar_height(doc, fram) = кількість; total_bar = сума."},
     "viz_calc_per_doc_fram_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><mi>doc</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>framing</mi><mo>=</mo><mi>fram</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>total_bar</mi><mo>(</mo><mi>doc</mi><mo>)</mo><mo>=</mo><msub><mo>&#x2211;</mo><mi>fram</mi></msub><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>fram</mi><mo>)</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><mi>doc</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>framing</mi><mo>=</mo><mi>fram</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>total_bar</mi><mo>=</mo><msub><mo>&#x2211;</mo><mi>fram</mi></msub><mi>bar_height</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>fram</mi><mo>)</mo></mrow></math>"},
     "viz_calc_per_doc_fram_technical": {"en": "bar_height(doc, fram) = |{s ∈ doc : s.framing = fram}|. Framing is a separate dimension from content; we count per document to see how each document's language style varies. total_bar = Σ_fram bar_height gives the total.", "uk": "bar_height(doc, fram) = |{s ∈ doc : s.framing = fram}|. total_bar = Σ_fram bar_height. Фреймінг = окрема мірність від контенту."},
-    "viz_calc_pie_cat_simple": {"en": "We show the overall mix of content categories across all documents. slice_value(cat) counts how many segments have that category; we use the indicator 1[s.category=cat] (1 when true, 0 otherwise) to sum over segments. angle and pct scale by slice_value / total so each slice shows its share of the whole. Why aggregate? To see the corpus-wide distribution.", "uk": "Показуємо загальний розподіл категорій по всьому корпусу. slice_value(cat) = сума 1[s.category=cat]. Кут і відсоток = slice_value / total."},
+    "viz_calc_pie_cat_simple": {"en": "Corpus-wide category mix. slice_value(cat) counts how many segments have that category; we use the indicator 1[s.category=cat] (1 when true, 0 otherwise) to sum over segments. angle and pct scale by slice_value / total so each slice shows its share of the whole.", "uk": "Показуємо загальний розподіл категорій по всьому корпусу. slice_value(cat) = сума 1[s.category=cat]. Кут і відсоток = slice_value / total."},
     "viz_calc_pie_cat_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>slice_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>&#x2211;</mo><msub><mn>1</mn><mrow><mo>[</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>angle</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mn>360</mn><mo>&#xB0;</mo><mo>&#xD7;</mo><mfrac><mrow><mi>slice_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo></mrow><mrow><mi>total</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>pct</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mfrac><mrow><mi>slice_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo></mrow><mrow><mi>total</mi></mrow></mfrac></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>slice_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>&#x2211;</mo><msub><mn>1</mn><mrow><mo>[</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>pct</mi><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mfrac><mrow><mi>slice_value</mi></mrow><mrow><mi>total</mi></mrow></mfrac></mrow></math>"},
     "viz_calc_pie_cat_technical": {"en": "slice_value(cat) = Σ 1[s.category=cat]. The indicator counts each segment once when it matches. angle(cat) = 360° × slice_value / total so the pie sums to 360°. pct(cat) = 100 × slice_value / total for readable percentages. We aggregate across all documents to show corpus-level proportions.", "uk": "slice_value(cat) = Σ 1[s.category=cat]. angle = 360° × slice_value / total; pct = 100 × slice_value / total. Агрегація по всьому корпусу."},
-    "viz_calc_pie_fram_simple": {"en": "Same as category pie, but for framing. We show how the corpus uses language overall: what share is neutral, bureaucratic, ideological, etc. slice_value(fram) = Σ 1[s.framing=fram]; pct = 100 × slice_value / total. Why framing? To see the dominant language strategies across the archive.", "uk": "Те саме для фреймінгу. slice_value(fram) = Σ 1[s.framing=fram]; pct = 100 × slice_value / total. Показує домінуючі мовні стратегії."},
+    "viz_calc_pie_fram_simple": {"en": "Same as category pie, but for framing. Corpus-wide framing mix. slice_value(fram) = Σ 1[s.framing=fram]; pct = 100 × slice_value / total.", "uk": "Те саме для фреймінгу. slice_value(fram) = Σ 1[s.framing=fram]; pct = 100 × slice_value / total. Показує домінуючі мовні стратегії."},
     "viz_calc_pie_fram_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>slice_value</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>&#x2211;</mo><msub><mn>1</mn><mrow><mo>[</mo><mi>s</mi><mo>.</mo><mi>framing</mi><mo>=</mo><mi>fram</mi><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>pct</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mfrac><mrow><mi>slice_value</mi><mo>(</mo><mi>fram</mi><mo>)</mo></mrow><mrow><mi>total</mi></mrow></mfrac></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>slice_value</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>&#x2211;</mo><msub><mn>1</mn><mrow><mo>[</mo><mi>s</mi><mo>.</mo><mi>framing</mi><mo>=</mo><mi>fram</mi><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>pct</mi><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mfrac><mrow><mi>slice_value</mi></mrow><mrow><mi>total</mi></mrow></mfrac></mrow></math>"},
     "viz_calc_pie_fram_technical": {"en": "slice_value(fram) = Σ 1[s.framing=fram]. Same logic as pie_cat: we sum the indicator over segments. pct = 100 × slice_value / total. Framing is aggregated across documents to show which language strategies dominate the corpus.", "uk": "slice_value(fram) = Σ 1[s.framing=fram]. pct = 100 × slice_value / total. Агрегація фреймінгу по корпусу."},
-    "viz_calc_terms_cat_simple": {"en": "We show which terms (phrases) typify each content category. A term is (entry_eng, entry_rus) because we treat the bilingual pair as one unit. terms_in_cat(cat) collects unique terms from segments with that category; we use unique terms so repeated phrases do not inflate the count. bar_length(cat) = |terms_in_cat|. Why by category? To see which vocabulary is associated with each type of content.", "uk": "Показуємо, які терміни типічні для кожної категорії. term = (entry_eng, entry_rus). terms_in_cat = унікальні терміни з категорією cat; bar_length = їх кількість. Унікальність уникaє подвоєння."},
+    "viz_calc_terms_cat_simple": {"en": "Unique terms per content category. A term is (entry_eng, entry_rus) because we treat the bilingual pair as one unit. terms_in_cat(cat) collects unique terms from segments with that category; we use unique terms so repeated phrases do not inflate the count. bar_length(cat) = |terms_in_cat|.", "uk": "Показуємо, які терміни типічні для кожної категорії. term = (entry_eng, entry_rus). terms_in_cat = унікальні терміни з категорією cat; bar_length = їх кількість. Унікальність уникaє подвоєння."},
     "viz_calc_terms_cat_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>term</mi><mo>=</mo><mo>(</mo><mi>entry_eng</mi><mo>,</mo><mi>entry_rus</mi><mo>)</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>terms_in_cat</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>{</mo><mi>term</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>}</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_length</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mi>terms_in_cat</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>|</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>term</mi><mo>=</mo><mo>(</mo><mi>entry_eng</mi><mo>,</mo><mi>entry_rus</mi><mo>)</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_length</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mtext>унікальних термінів у cat</mtext><mo>|</mo></mrow></math>"},
     "viz_calc_terms_cat_technical": {"en": "term = (entry_eng, entry_rus): we use the pair because both languages define the segment. terms_in_cat(cat) = {term : s.category=cat}: the set gives unique terms, so the same phrase in multiple segments counts once. bar_length(cat) = |terms_in_cat|. Grouping by category shows which vocabulary characterizes each content type.", "uk": "term = (entry_eng, entry_rus). terms_in_cat = {term : s.category=cat}; bar_length = |terms_in_cat|. Множина дає унікальні терміни."},
-    "viz_calc_terms_fram_simple": {"en": "Same as terms by category, but grouped by framing. We show which phrases are associated with each language strategy: bureaucratic, ideological, neutral, etc. terms_in_fram(fram) = unique terms from segments with that framing; bar_length = |terms_in_fram|. Why framing? To see which vocabulary typifies each way of phrasing.", "uk": "Те саме за фреймінгом. terms_in_fram = унікальні терміни з фреймінгом fram; bar_length = їх кількість. Показує лексику, типічну для кожного стилю."},
+    "viz_calc_terms_fram_simple": {"en": "Same as terms by category, but grouped by framing. Unique terms per framing strategy. terms_in_fram(fram) = unique terms from segments with that framing; bar_length = |terms_in_fram|.", "uk": "Те саме за фреймінгом. terms_in_fram = унікальні терміни з фреймінгом fram; bar_length = їх кількість. Показує лексику, типічну для кожного стилю."},
     "viz_calc_terms_fram_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>terms_in_fram</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>{</mo><mi>term</mi><mo>:</mo><mi>s</mi><mo>.</mo><mi>framing</mi><mo>=</mo><mi>fram</mi><mo>}</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_length</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mi>terms_in_fram</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>|</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bar_length</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mtext>унікальних термінів з fram</mtext><mo>|</mo></mrow></math>"},
     "viz_calc_terms_fram_technical": {"en": "terms_in_fram(fram) = {term : s.framing=fram}. Same logic as terms_cat: we collect unique terms per framing. bar_length = |terms_in_fram|. Framing groups by how language is used, so we see which phrases appear in bureaucratic vs ideological vs neutral segments.", "uk": "terms_in_fram = {term : s.framing=fram}; bar_length = |terms_in_fram|. Групування за фреймінгом показує лексику за стилем."},
-    "viz_calc_vocab_diversity_simple": {"en": "We measure how diverse each document's vocabulary is. types(doc) = unique words (length ≥ min, excluding stopwords); we exclude stopwords because \"the\" and \"a\" do not add meaning. tokens = total word count. TTR = types / tokens: higher means more varied vocabulary. We multiply by 100 for readability. Why TTR? It is the standard lexical diversity metric; documents with repetitive language score lower.", "uk": "Вимірюємо різноманітність словника. types = унікальні слова (без стоп-слів, len ≥ min); tokens = всього слів. TTR = types / tokens; display = 100 × TTR. Вище = різноманітніше."},
+    "viz_calc_vocab_diversity_simple": {"en": "Vocabulary diversity per document. types(doc) = unique words (length ≥ min, excluding stopwords); we exclude stopwords because \"the\" and \"a\" do not add meaning. tokens = total word count. TTR = types / tokens: higher means more varied vocabulary. We multiply by 100 for readability. TTR is the standard type-token ratio.", "uk": "Вимірюємо різноманітність словника. types = унікальні слова (без стоп-слів, len ≥ min); tokens = всього слів. TTR = types / tokens; display = 100 × TTR. Вище = різноманітніше."},
     "viz_calc_vocab_diversity_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>types</mi><mo>(</mo><mi>doc</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>w</mi><mo>&#x2208;</mo><mi>doc</mi><mo>:</mo><mi>len</mi><mo>(</mo><mi>w</mi><mo>)</mo><mo>&#x2265;</mo><mi>min</mi><mo>&#x2227;</mo><mi>w</mi><mo>&#x2209;</mo><mtext>stopwords</mtext><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>tokens</mi><mo>(</mo><mi>doc</mi><mo>)</mo><mo>=</mo><mtext>total word count</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>TTR</mi><mo>(</mo><mi>doc</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>types</mi><mo>(</mo><mi>doc</mi><mo>)</mo></mrow><mrow><mi>tokens</mi><mo>(</mo><mi>doc</mi><mo>)</mo></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>display</mi><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mi>TTR</mi></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>types</mi><mo>=</mo><mo>|</mo><mo>{</mo><mi>w</mi><mo>&#x2208;</mo><mi>doc</mi><mo>:</mo><mi>len</mi><mo>&#x2265;</mo><mi>min</mi><mo>&#x2227;</mo><mi>w</mi><mo>&#x2209;</mo><mtext>stopwords</mtext><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>tokens</mi><mo>=</mo><mtext>всього слів</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>TTR</mi><mo>=</mo><mfrac><mrow><mi>types</mi></mrow><mrow><mi>tokens</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>display</mi><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mi>TTR</mi></mrow></math>"},
     "viz_calc_vocab_diversity_technical": {"en": "types(doc) = |{w ∈ doc : len(w) ≥ min ∧ w ∉ stopwords}|. We require len ≥ min (e.g. 3) to filter noise like single letters. Stopwords are excluded because they inflate token count without adding lexical variety. TTR = types / tokens is the standard type-token ratio. display = 100 × TTR so we see a percentage.", "uk": "types = |{w ∈ doc : len ≥ min ∧ w ∉ stopwords}|. min фільтрує шум; стоп-слова виключаємо. TTR = types / tokens; display = 100 × TTR."},
-    "viz_calc_trends_simple": {"en": "We show how each content category varies across documents. Each line is one category; each point is (document, count). y(doc_i, cat) = segments in doc_i with that category. Why line chart? To see trends: does a category rise or fall as we move through the document set? Documents are in dataset order, so we can spot patterns across the archive.", "uk": "Показуємо, як категорії змінюються по документах. Кожна лінія = категорія; точки = (документ, кількість). y(doc, cat) = кількість сегментів. Лінійна діаграма показує тренди."},
+    "viz_calc_trends_simple": {"en": "Category counts across documents. Each line is one category; each point is (document, count). y(doc_i, cat) = segments in doc_i with that category. Line charts show whether counts rise or fall across the document set. Documents are in dataset order, so we can spot patterns across the archive.", "uk": "Показуємо, як категорії змінюються по документах. Кожна лінія = категорія; точки = (документ, кількість). y(doc, cat) = кількість сегментів. Лінійна діаграма показує тренди."},
     "viz_calc_trends_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo>(</mo><msub><mi>doc</mi><mi>i</mi></msub><mo>,</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><msub><mi>doc</mi><mi>i</mi></msub><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>line plots</mtext><mo>(</mo><msub><mi>doc</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo><mo>,</mo><mo>(</mo><msub><mi>doc</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub><mo>)</mo><mo>,</mo><mo>...</mo><mtext>for each cat</mtext></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів у doc з cat</mtext></mrow></math>"},
     "viz_calc_trends_technical": {"en": "y(doc_i, cat) = |{s ∈ doc_i : s.category = cat}|. We count per document to see how each category's presence changes. Each line connects points (doc_1, y_1), (doc_2, y_2), ... so we can spot rising or falling trends. Document order matters: we use dataset order to preserve any sequence in the archive.", "uk": "y(doc, cat) = |{s ∈ doc : s.category = cat}|. Підрахунок по документу показує зміну категорії. Лінії з'єднують точки для виявлення трендів."},
-    "viz_calc_segment_length_simple": {"en": "We test whether shorter or longer segments are easier for the LLM to classify. Each point is a segment: x = length (chars), y = 1 if both category and framing matched human, else 0. We use max(entry_eng, entry_rus) because the segment is judged on both language versions. We bin by 25 chars to group similar lengths and get stable accuracy; we exclude lengths < 50 because very short segments are often ambiguous. Range stats need ≥15 segments per bin; single-length stats need ≥5 at that exact length, so small samples do not skew the \"most accurate\" result.", "uk": "Перевіряємо, чи коротші чи довші сегменти легше класифікувати. X = довжина (символів), Y = 1 якщо обидва збіги, інакше 0. max(entry_eng, entry_rus): бо сегмент оцінюється за обома мовами. Біни по 25 символів для стабільної точності; виключаємо len<50: дуже короткі часто неоднозначні. Діапазон: ≥15 сегментів у біні; одна довжина: ≥5."},
+    "viz_calc_segment_length_simple": {"en": "Segment length vs classification match. Each point is a segment: x = length (chars), y = 1 if both category and framing matched human, else 0. We use max(entry_eng, entry_rus) because the segment is judged on both language versions. We bin by 25 chars to group similar lengths and get stable accuracy; we exclude lengths < 50 because very short segments are often ambiguous. Range stats need ≥15 segments per bin; single-length stats need ≥5 at that exact length, so small samples do not skew the \"most accurate\" result.", "uk": "Перевіряємо, чи коротші чи довші сегменти легше класифікувати. X = довжина (символів), Y = 1 якщо обидва збіги, інакше 0. max(entry_eng, entry_rus): бо сегмент оцінюється за обома мовами. Біни по 25 символів для стабільної точності; виключаємо len<50: дуже короткі часто неоднозначні. Діапазон: ≥15 сегментів у біні; одна довжина: ≥5."},
     "viz_calc_segment_length_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mi>len</mi><mo>(</mo><mi>entry_eng</mi><mo>)</mo><mo>,</mo><mi>len</mi><mo>(</mo><mi>entry_rus</mi><mo>)</mo><mo>)</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo>=</mo><msub><mn>1</mn><mrow><mo>[</mo><mtext>both_match</mtext><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Range:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>accuracy</mi><mo>(</mo><mi>bin</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_in_bin</mi></mrow><mrow><mi>total_in_bin</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>&#x2265;</mo><mn>50</mn><mo>,</mo><mi>n</mi><mo>&#x2265;</mo><mn>15</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Single:</mtext><mspace width=\"0.5em\"/><mi>accuracy</mi><mo>(</mo><mi>len</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_at_len</mi></mrow><mrow><mi>total_at_len</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mtext>довжин</mtext><mo>)</mo><mo>;</mo><mi>y</mi><mo>=</mo><mn>1</mn><mtext> якщо збіг</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn><mo>;</mo><mi>accuracy</mi><mo>=</mo><mi>matched</mi><mo>/</mo><mi>total</mi></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Діапазон:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>15</mn><mo>,</mo><mi>len</mi><mo>&#x2265;</mo><mn>50</mn><mo>;</mo><mtext>одна довжина:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>"},
     "viz_calc_segment_length_technical": {"en": "length = max(len(entry_eng), len(entry_rus)): we take the longer of the two because both texts contribute to the classification. y = 1[both_match]: we count a segment as correct only when both category and framing agree. Bins of 25 chars avoid sparse data; excluding len < 50 removes noisy very-short segments. n ≥ 15 per bin (range) and n ≥ 5 (single length) ensure the \"most accurate\" stat is not driven by tiny samples.", "uk": "length = max(довжин): беремо довшу, бо обидва тексти впливають на класифікацію. y = 1[збіг]: правильний лише коли збігаються категорія й фреймінг. Біни 25 символів уникaють розріджених даних; len<50 виключаємо. n≥15 (діапазон) і n≥5 (одна довжина): щоб «найточніше» не базувалося на малих вибірках."},
     "viz_calc_radar_simple": {"en": "axis_value(cat) is the number of segments in the selected documents with category cat. In all mode, selected_docs = all documents.", "uk": "axis_value(cat): кількість сегментів з cat у вибраних doc. У режимі all: усі документи."},
-    "viz_calc_places_map_simple": {"en": "Place names are taken from text passages labelled Places in the documents. We tidy spelling variants, look up coordinates when geocoding works, and plot each spot on the map. Bigger circles mean that location shows up in more passages—each Russian or English slice counts separately when both appear. Run scripts/extract_places.py and scripts/geocode_places.py to refresh data.", "uk": "Назви місць беруть із текстових уривків, позначених як Places у документах; вирівнюємо варіанти написання, шукаємо координати після успішного геокодування й ставимо точку на карті. Більше коло означає, що місце згадано в більшій кількості уривків (рус / англ шматки рахуємо окремо, коли обидва є). Запустіть scripts/extract_places.py та scripts/geocode_places.py, щоб оновити дані."},
+    "viz_calc_places_map_simple": {"en": "Place names are taken from text passages labelled Places in the documents. Spelling variants are normalized, geocoded, and plotted. Bigger circles mean that location shows up in more passages; each Russian or English slice counts separately when both appear.", "uk": "Назви місць беруть із текстових уривків, позначених як Places у документах; вирівнюємо варіанти написання, шукаємо координати після успішного геокодування й ставимо точку на карті. Більше коло означає, що місце згадано в більшій кількості уривків (рус / англ шматки рахуємо окремо, коли обидва є)."},
+    "viz_calc_places_map_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>marker_size</mi><mo>(</mo><mi>place</mi><mo>)</mo><mo>&#x221D;</mo><mi>segment_mentions</mi><mo>(</mo><mi>place</mi><mo>)</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>marker_size</mi><mo>(</mo><mi>place</mi><mo>)</mo><mo>&#x221D;</mo><mi>segment_mentions</mi><mo>(</mo><mi>place</mi><mo>)</mo></mrow></math>"},
+    "viz_calc_places_map_technical": {"en": "Only segments whose content category is Places contribute. segment_mentions(place) counts how many such segments map to that geocoded location after normalization. marker_size scales with mentions so frequent locations stand out.", "uk": "Лише сегменти категорії Places. segment_mentions(place) = кількість сегментів для геокодованого місця після нормалізації. marker_size ∝ згадкам."},
+    "viz_calc_mismatch_flow_simple": {"en": "Table of human vs AI framing label pairs. Each cell counts aligned passages with that AI label (row) and human label (column). Only taxonomy framing labels are included. This compares the two label sets; it is not a single-label distribution.", "uk": "Таблиця пар фреймінгу ШІ та експерта. Кожна клітинка рахує уривки з міткою ШІ (рядок) та експерта (стовпець). Лише мітки фреймінгу з таксономії. Це порівняння двох наборів міток, а не розподіл однієї мітки."},
+    "viz_calc_mismatch_flow_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>flow</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_fram</mi><mo>=</mo><mi>h</mi><mo>&#x2227;</mo><mi>llm_fram</mi><mo>=</mo><mi>l</mi><mo>}</mo><mo>|</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>flow</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів</mtext></mrow></math>"},
+    "viz_calc_mismatch_flow_technical": {"en": "flow(h, l) = |{s : human_fram=h ∧ llm_fram=l}| over aligned comparison rows. Same counts as the framing confusion matrix: rows are AI labels, columns are human labels. Pairs outside the active framing taxonomy are omitted.", "uk": "flow(h,l) = |{s : human_fram=h ∧ llm_fram=l}|. Ті самі числа, що в матриці плутанини фреймінгу: рядки = мітки ШІ, стовпці = мітки експерта. Пари поза таксономією пропускаються."},
+    "viz_calc_doc_fingerprint_simple": {"en": "Each document is a stacked bar of framing counts: segment share per ideological layer. Bars are normalized to 100% within the document so you can compare shape, not raw length.", "uk": "Кожен документ: стовпчик із частками фреймінгу (ідеологічні шари). Нормалізація до 100% у межах документа для порівняння форми."},
+    "viz_calc_doc_fingerprint_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>share</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>count</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>fram</mi><mo>)</mo></mrow><mrow><msub><mo>&#x2211;</mo><mi>f</mi></msub><mi>count</mi><mo>(</mo><mi>doc</mi><mo>,</mo><mi>f</mi><mo>)</mo></mrow></mfrac></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>share</mi><mo>=</mo><mi>count</mi><mo>/</mo><mi>total</mi></mrow></math>"},
+    "viz_calc_doc_fingerprint_technical": {"en": "count(doc, fram) = segments in doc with that framing label. share(doc, fram) = count / Σ_f count(doc, f). Stacking shows the framing mix; normalization removes document length bias.", "uk": "count(doc, fram) за обраним джерелом міток. share = count / сума по фреймінгах. Нормалізація прибирає вплив довжини документа."},
+    "viz_calc_terms_by_framing_simple": {"en": "Most frequent segment phrases per framing strategy, grouped by the selected label source (AI or human expert).", "uk": "Для кожного фреймінгу: найчастіші фрази сегментів, згруповані за обраним джерелом міток (ШІ або експерт)."},
+    "viz_calc_terms_by_framing_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>count</mi><mo>(</mo><mi>term</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>phrase</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>term</mi><mo>&#x2227;</mo><mi>framing</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>fram</mi><mo>}</mo><mo>|</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>count</mi><mo>(</mo><mi>term</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів</mtext></mrow></math>"},
+    "viz_calc_terms_by_framing_technical": {"en": "phrase(s) is entry_eng, entry_rus, or both per the segment text language setting. Terms ranked by count(term, fram); top N is configurable.", "uk": "phrase(s): EN, RU або обидва. Ранжування за count(term, fram); топ N налаштовується."},
+    "viz_calc_term_framing_heatmap_simple": {"en": "Rows are frequent words tokenized from segment text; columns are framing strategies. Each cell counts how often that word appears in segments with that framing. Darker cells mean more co-occurrences.", "uk": "Рядки: часті слова з тексту сегментів; стовпці: фреймінг. Клітинка = скільки разів слово зустрічається в сегментах з цим фреймінгом."},
+    "viz_calc_term_framing_heatmap_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>word</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>&#x2211;</mo><msub><mn>1</mn><mrow><mo>[</mo><mi>word</mi><mo>&#x2208;</mo><mi>tokens</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>&#x2227;</mo><mi>framing</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>=</mo><mi>fram</mi><mo>]</mo></mrow></msub></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>word</mi><mo>,</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mtext>сума по сегментах</mtext></mrow></math>"},
+    "viz_calc_term_framing_heatmap_technical": {"en": "tokens(s) are word tokens from segment text (stopwords removed, min length 3). cell(word, fram) sums over segments where the word appears at least once and framing matches. Rows are the top N words by total count across framings.", "uk": "tokens(s): слова з тексту (без стоп-слів, min 3). cell = сума по сегментах. Рядки: топ N слів."},
+    "viz_calc_voyant_simple": {"en": "These panels embed Voyant Tools from voyant-tools.org on a fixed project corpus. Tokenization, stopwords, and chart layouts are handled inside Voyant.", "uk": "Панелі вбудовують Voyant Tools з voyant-tools.org на фіксованому корпусі проєкту. Токенізація, стоп-слова та макети діаграм задаються в Voyant."},
+    "viz_calc_voyant_equations": {"en": "<p style=\"margin:0;font-size:0.9rem;color:#4a5568;\">No equations (external tool).</p>", "uk": "<p style=\"margin:0;font-size:0.9rem;color:#4a5568;\">Без формул (зовнішній інструмент).</p>"},
+    "viz_calc_voyant_technical": {"en": "The corpus and tool settings are fixed for this project. Voyant runs on its own site; counts and layouts follow the controls inside each embedded view.", "uk": "Корпус і параметри інструментів зафіксовані для цього проєкту. Voyant працює на власному сайті; підрахунки та макети керуються елементами всередині кожного вбудованого перегляду."},
     "viz_calc_radar_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>axis_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>&#x2208;</mo><mtext>selected_docs</mtext><mo>:</mo><mi>s</mi><mo>.</mo><mi>category</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>all mode:</mtext><mspace width=\"0.5em\"/><mtext>selected_docs = all documents</mtext></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>axis_value</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів з cat у вибраних doc</mtext></mrow></math>"},
     "viz_calc_radar_technical": {"en": "axis_value(cat) = |{s ∈ selected_docs : s.category = cat}|. Each axis shows one category's count so we can compare the shape of documents. In single mode, selected_docs = one document. In compare mode, multiple documents overlaid. In all mode, selected_docs = all documents so we see the aggregate profile.", "uk": "axis_value(cat) = |{s ∈ selected_docs : s.category = cat}|. Кожна вісь = одна категорія. All mode: selected_docs = усі документи."},
-    "viz_calc_agreement_cat_simple": {"en": "We measure how often the LLM agrees with the human expert on each category. matched(cat) = segments where both chose cat. total(cat) = segments where the human chose cat (we use human as the denominator because we are measuring LLM accuracy against ground truth). agreement = 100 × matched / total. Why per category? Some categories may be easier or harder for the LLM.", "uk": "Вимірюємо згоду LLM з експертом по категоріях. matched = де обидва обрали cat; total = де human обрала cat. agreement = 100 × matched / total. total базується на human як еталоні."},
+    "viz_calc_agreement_cat_simple": {"en": "Agreement between AI and human expert by category. matched(cat) = segments where both chose cat. total(cat) = segments where the human chose cat (we use human as the denominator because we are measuring LLM accuracy against ground truth). agreement = 100 × matched / total.", "uk": "Вимірюємо згоду LLM з експертом по категоріях. matched = де обидва обрали cat; total = де human обрала cat. agreement = 100 × matched / total. total базується на human як еталоні."},
     "viz_calc_agreement_cat_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>matched</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_cat</mi><mo>=</mo><mi>cat</mi><mo>&#x2227;</mo><mi>llm_cat</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>total</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_cat</mi><mo>=</mo><mi>cat</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>agreement</mi><mo>(</mo><mi>cat</mi><mo>)</mo><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mfrac><mrow><mi>matched</mi><mo>(</mo><mi>cat</mi><mo>)</mo></mrow><mrow><mi>total</mi><mo>(</mo><mi>cat</mi><mo>)</mo></mrow></mfrac></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>matched</mi><mo>=</mo><mtext>сегменти де human=llm=cat</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>agreement</mi><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mi>matched</mi><mo>/</mo><mi>total</mi></mrow></math>"},
-    "viz_calc_agreement_cat_technical": {"en": "matched(cat) = |{s : human_cat=cat ∧ llm_cat=cat}|. total(cat) = |{s : human_cat=cat}|. We use human as the reference: total counts only segments the human labeled with that category, so we measure \"of the segments the human said were cat, what share did the LLM get right?\" agreement = 100 × matched / total.", "uk": "matched = |{s : human_cat=cat ∧ llm_cat=cat}|. total = |{s : human_cat=cat}|. human = еталон; agreement = 100 × matched / total."},
-    "viz_calc_agreement_fram_simple": {"en": "Same as agreement by category, but for framing. We measure how often the LLM matches the human on language strategy. matched(fram) = segments where both chose that framing. total(fram) = segments where human chose it. agreement = 100 × matched / total. Why framing separately? Category and framing are independent; the LLM may do well on one and poorly on the other.", "uk": "Те саме для фреймінгу. matched = де обидва обрали fram; total = де human обрала. agreement = 100 × matched / total. Категорія й фреймінг оцінюються окремо."},
+    "viz_calc_agreement_cat_technical": {"en": "matched(cat) = |{s : human_cat=cat ∧ llm_cat=cat}|. total(cat) = |{s : human_cat=cat}|. We use human as the reference: total counts only segments the human labelled with that category, so we measure \"of the segments the human said were cat, what share did the LLM get right?\" agreement = 100 × matched / total.", "uk": "matched = |{s : human_cat=cat ∧ llm_cat=cat}|. total = |{s : human_cat=cat}|. human = еталон; agreement = 100 × matched / total."},
+    "viz_calc_agreement_fram_simple": {"en": "Same as agreement by category, but for framing. Agreement between AI and human expert by framing. matched(fram) = segments where both chose that framing. total(fram) = segments where human chose it. agreement = 100 × matched / total. Category and framing are scored separately.", "uk": "Те саме для фреймінгу. matched = де обидва обрали fram; total = де human обрала. agreement = 100 × matched / total. Категорія й фреймінг оцінюються окремо."},
     "viz_calc_agreement_fram_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>matched</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_fram</mi><mo>=</mo><mi>fram</mi><mo>&#x2227;</mo><mi>llm_fram</mi><mo>=</mo><mi>fram</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>total</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_fram</mi><mo>=</mo><mi>fram</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>agreement</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mfrac><mrow><mi>matched</mi><mo>(</mo><mi>fram</mi><mo>)</mo></mrow><mrow><mi>total</mi><mo>(</mo><mi>fram</mi><mo>)</mo></mrow></mfrac></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>agreement</mi><mo>(</mo><mi>fram</mi><mo>)</mo><mo>=</mo><mn>100</mn><mo>&#xD7;</mo><mi>matched</mi><mo>/</mo><mi>total</mi></mrow></math>"},
-    "viz_calc_agreement_fram_technical": {"en": "matched(fram) = |{s : human_fram=fram ∧ llm_fram=fram}|. total(fram) = |{s : human_fram=fram}|. Same logic as agreement_cat: human is the reference. We count framing separately because it is a distinct labeling dimension; the LLM may confuse framings (e.g. bureaucratic vs ideological) even when it gets categories right.", "uk": "matched = |{s : human_fram=fram ∧ llm_fram=fram}|. total = |{s : human_fram=fram}|. human = еталон; фреймінг оцінюється окремо."},
-    "viz_calc_confusion_cat_simple": {"en": "We show how the LLM's category predictions map to the human's. Rows = human label, columns = LLM label. cell(h, l) = segments where human said h and LLM said l. The diagonal cell(c, c) is correct: both agreed. Off-diagonal cells are confusions: e.g. cell(events, actors) means the LLM said \"actors\" when the human said \"events\". Why a matrix? To see which categories the LLM tends to confuse.", "uk": "Показуємо відповідність між human і LLM. Рядки = human; стовпці = LLM. cell(h, l) = де human=h, llm=l. Діагональ = правильні; поза діагоналлю = плутанина. Матриця показує, які категорії LLM плутає."},
+    "viz_calc_agreement_fram_technical": {"en": "matched(fram) = |{s : human_fram=fram ∧ llm_fram=fram}|. total(fram) = |{s : human_fram=fram}|. Same logic as agreement_cat: human is the reference. We count framing separately because it is a distinct labelling dimension; the LLM may confuse framings (e.g. bureaucratic vs ideological) even when it gets categories right.", "uk": "matched = |{s : human_fram=fram ∧ llm_fram=fram}|. total = |{s : human_fram=fram}|. human = еталон; фреймінг оцінюється окремо."},
+    "viz_calc_confusion_cat_simple": {"en": "Human vs AI category labels. Rows = human label, columns = LLM label. cell(h, l) = segments where human said h and LLM said l. The diagonal cell(c, c) is correct: both agreed. Off-diagonal cells are confusions: e.g. cell(events, actors) means the LLM said \"actors\" when the human said \"events\".", "uk": "Показуємо відповідність між human і LLM. Рядки = human; стовпці = LLM. cell(h, l) = де human=h, llm=l. Діагональ = правильні; поза діагоналлю = плутанина. Матриця показує, які категорії LLM плутає."},
     "viz_calc_confusion_cat_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_cat</mi><mo>=</mo><mi>h</mi><mo>&#x2227;</mo><mi>llm_cat</mi><mo>=</mo><mi>l</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>diagonal:</mtext><mspace width=\"0.5em\"/><mi>cell</mi><mo>(</mo><mi>c</mi><mo>,</mo><mi>c</mi><mo>)</mo><mo>=</mo><mtext>correct predictions</mtext></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_cat</mi><mo>=</mo><mi>h</mi><mo>&#x2227;</mo><mi>llm_cat</mi><mo>=</mo><mi>l</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>діагональ:</mtext><mspace width=\"0.5em\"/><mi>cell</mi><mo>(</mo><mi>c</mi><mo>,</mo><mi>c</mi><mo>)</mo><mo>=</mo><mtext>правильні</mtext></mrow></math>"},
     "viz_calc_confusion_cat_technical": {"en": "cell(h, l) = |{s : human_cat=h ∧ llm_cat=l}|. Rows index human, columns index LLM, so we see the full mapping. Diagonal cell(c, c) = correct: human and LLM agreed. Off-diagonal = confusions. The matrix format reveals systematic errors: e.g. if cell(events, actors) is large, the LLM often confuses those two.", "uk": "cell(h, l) = |{s : human_cat=h ∧ llm_cat=l}|. Діагональ = правильні; поза діагоналлю = плутанина. Матриця виявляє систематичні помилки."},
-    "viz_calc_confusion_fram_simple": {"en": "Same as category confusion, but for framing. Rows = human framing, columns = LLM framing. cell(h, l) = segments where human said h and LLM said l. Why framing? The LLM may confuse language strategies (e.g. bureaucratic vs ideological) even when it gets content right. The matrix shows which framings are mixed up.", "uk": "Те саме для фреймінгу. Рядки = human; стовпці = LLM. cell(h, l) = де human=h, llm=l. Показує, які фреймінги LLM плутає."},
+    "viz_calc_confusion_fram_simple": {"en": "Same as category confusion, but for framing. Rows = human framing, columns = LLM framing. cell(h, l) = segments where human said h and LLM said l. The matrix shows which framings are mixed up.", "uk": "Те саме для фреймінгу. Рядки = human; стовпці = LLM. cell(h, l) = де human=h, llm=l. Показує, які фреймінги LLM плутає."},
     "viz_calc_confusion_fram_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_fram</mi><mo>=</mo><mi>h</mi><mo>&#x2227;</mo><mi>llm_fram</mi><mo>=</mo><mi>l</mi><mo>}</mo><mo>|</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cell</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів</mtext></mrow></math>"},
     "viz_calc_confusion_fram_technical": {"en": "cell(h, l) = |{s : human_fram=h ∧ llm_fram=l}|. Same structure as confusion_cat: rows = human, columns = LLM. Framing confusions matter because they reflect how well the LLM captures language style, not just content. Off-diagonal cells show which framings are systematically confused.", "uk": "cell(h, l) = |{s : human_fram=h ∧ llm_fram=l}|. Структура як confusion_cat. Поза діагоналлю = плутанина фреймінгу."},
-    "viz_calc_mismatch_simple": {"en": "We break down error types. both_match = segments where human and LLM agree on both category and framing. cat_only = category right, framing wrong (LLM got content but not style). fram_only = framing right, category wrong. both_mismatch = both wrong. Why four buckets? To see where the LLM fails: does it tend to get content right but framing wrong, or vice versa? This guides where to improve.", "uk": "Розбиваємо типи помилок. both_match = обидва збіги. cat_only = категорія вірна, фреймінг ні. fram_only = фреймінг вірний, категорія ні. both_mismatch = обидва не збігаються. Чотири групи показують, де LLM помиляється."},
+    "viz_calc_mismatch_simple": {"en": "Error types by category and framing. both_match = segments where human and LLM agree on both category and framing. cat_only = category right, framing wrong (LLM got content but not style). fram_only = framing right, category wrong. both_mismatch = both wrong. The four buckets show whether errors fall on category, framing, or both.", "uk": "Розбиваємо типи помилок. both_match = обидва збіги. cat_only = категорія вірна, фреймінг ні. fram_only = фреймінг вірний, категорія ні. both_mismatch = обидва не збігаються. Чотири групи показують, де LLM помиляється."},
     "viz_calc_mismatch_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>both_match</mi><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>cat_match</mi><mo>&#x2227;</mo><mi>fram_match</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>cat_only</mi><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>cat_match</mi><mo>&#x2227;</mo><mo>&#xAC;</mo><mi>fram_match</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>fram_only</mi><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>fram_match</mi><mo>&#x2227;</mo><mo>&#xAC;</mo><mi>cat_match</mi><mo>}</mo><mo>|</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>both_mismatch</mi><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mo>&#xAC;</mo><mi>cat_match</mi><mo>&#x2227;</mo><mo>&#xAC;</mo><mi>fram_match</mi><mo>}</mo><mo>|</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>both_match</mi><mo>=</mo><mi>cat</mi><mo>&#x2227;</mo><mi>fram</mi><mo>;</mo><mi>cat_only</mi><mo>=</mo><mi>cat</mi><mo>&#x2227;</mo><mo>&#xAC;</mo><mi>fram</mi></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>fram_only</mi><mo>=</mo><mi>fram</mi><mo>&#x2227;</mo><mo>&#xAC;</mo><mi>cat</mi><mo>;</mo><mi>both_mismatch</mi><mo>=</mo><mo>&#xAC;</mo><mi>cat</mi><mo>&#x2227;</mo><mo>&#xAC;</mo><mi>fram</mi></mrow></math>"},
     "viz_calc_mismatch_technical": {"en": "both_match = |{s : cat_match ∧ fram_match}|. cat_only = |{s : cat_match ∧ ¬fram_match}|: category correct but framing wrong. fram_only = |{s : fram_match ∧ ¬cat_match}|: framing correct but category wrong. both_mismatch = |{s : ¬cat_match ∧ ¬fram_match}|. We split by category and framing because they are independent; a segment can be right on one and wrong on the other. The breakdown shows which error type dominates.", "uk": "both_match = |{s : cat_match ∧ fram_match}|. cat_only = категорія вірна, фреймінг ні. fram_only = фреймінг вірний, категорія ні. both_mismatch = обидва не збігаються. Розбивка показує домінуючий тип помилки."},
-    "viz_calc_doc_similarity_simple": {"en": "Each document is represented by its framing profile: the proportion of segments in each framing category. We compare documents using cosine similarity. Values range from 0 to 1. A score of 1 means two documents have identical framing profiles (same mix of Institutional, Ideological, Action-Focused, etc.), even if they are different documents. The diagonal (document vs itself) is shown as — since it would always be 1.", "uk": "Кожен документ представлений профілем фреймінгу: частка сегментів у кожній категорії. Порівняння — косинусна схожість. Значення від 0 до 1. 1 означає ідентичні профілі фреймінгу (той самий розподіл Institutional, Ideological тощо). Діагональ (документ з собою) показана як —."},
+    "viz_calc_doc_similarity_simple": {"en": "Each document is represented by its framing profile: the proportion of segments in each framing category. Documents compared with cosine similarity. Values range from 0 to 1. A score of 1 means two documents have identical framing profiles (same mix of Institutional, Ideological, Action-Focused, etc.), even if they are different documents. The diagonal (document vs itself) is shown blank (it would always be 1).", "uk": "Кожен документ представлений профілем фреймінгу: частка сегментів у кожній категорії. Порівняння: косинусна схожість. Значення від 0 до 1. 1 означає ідентичні профілі фреймінгу (той самий розподіл Institutional, Ideological тощо). Діагональ (документ з собою) показана порожньою."},
     "viz_calc_doc_similarity_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>doc</mi></msub><mo>(</mo><mi>f</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mtext>segments in doc with framing </mtext><mi>f</mi></mrow><mrow><mtext>total segments in doc</mtext></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>cos</mtext><mo>(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>A</mi><mo>&#x22C5;</mo><mi>B</mi></mrow><mrow><mo>&#x2016;</mo><mi>A</mi><mo>&#x2016;</mo><mo>&#x00D7;</mo><mo>&#x2016;</mo><mi>B</mi><mo>&#x2016;</mo></mrow></mfrac><mo>&#x2208;</mo><mo>[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>]</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msub><mi>v</mi><mi>doc</mi></msub><mo>(</mo><mi>f</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mtext>сегменти з фреймінгом </mtext><mi>f</mi></mrow><mrow><mtext>всього сегментів</mtext></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>cos</mtext><mo>(</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>A</mi><mo>&#x22C5;</mo><mi>B</mi></mrow><mrow><mo>&#x2016;</mo><mi>A</mi><mo>&#x2016;</mo><mo>&#x00D7;</mo><mo>&#x2016;</mo><mi>B</mi><mo>&#x2016;</mo></mrow></mfrac></mrow></math>"},
     "viz_calc_doc_similarity_technical": {"en": "v_doc(f) = proportion of segments in doc with framing f. Each document is a vector over framing categories, normalized so components sum to 1. Cosine similarity cos(A, B) = (A·B)/(||A|| ||B||) measures the angle between vectors: 1 when identical (or proportional), 0 when orthogonal. Two different documents can have similarity 1 if they share the same framing distribution.", "uk": "v_doc(f) = частка сегментів з фреймінгом f. Документ = вектор по категоріях фреймінгу. cos(A,B) = (A·B)/(||A|| ||B||). 1 = ідентичні профілі; 0 = ортогональні. Різні документи можуть мати 1, якщо мають однаковий розподіл."},
+    "viz_read_wordcloud": {"en": "Larger words appear more often in the selected text. Compare the English and Russian clouds side by side when both are shown.", "uk": "Більші слова з’являються частіше у вибраному тексті. Порівнюйте англійську та російську хмари, коли обидві видно."},
+    "viz_read_heatmap": {"en": "Each cell counts passages that combine a content topic (rows) with a writing style (columns). Darker teal means more passages. Look for the darkest cells to see common topic and tone pairings.", "uk": "Кожна клітинка рахує уривки з певною темою (рядки) та стилем (стовпці). Темніший бірюзовий колір означає більше уривків. Шукайте найтемніші клітинки для типових поєднань теми й тону."},
+    "viz_read_per_doc_cat": {"en": "Each bar is one document. Bar height shows how many passages use a given content topic in that file. Taller bars mean the topic appears more often there. Compare colours across documents to spot differences.", "uk": "Кожен стовпчик — один документ. Висота показує, скільки уривків мають дану тему. Вищі стовпчики означають частішу тему. Порівнюйте кольори між документами."},
+    "viz_read_per_doc_fram": {"en": "Each bar is one document. Bar height shows how many passages use a given writing style in that file. Taller bars mean that style is more common there.", "uk": "Кожен стовпчик — один документ. Висота показує, скільки уривків мають даний стиль. Вищі стовпчики означають частіший стиль у цьому файлі."},
+    "viz_read_pie_cat": {"en": "Each slice is a share of all passages by content topic. Bigger slices mean that topic takes up more of the selected material. Colours match the glossary legend.", "uk": "Кожен сектор — частка усіх уривків за темою змісту. Більші сектори означають частішу тему. Кольори відповідають легенді глосарію."},
+    "viz_read_pie_fram": {"en": "Each slice is a share of all passages by writing style. Bigger slices mean that style is more common overall. Colours match the glossary legend.", "uk": "Кожен сектор — частка уривків за стилем. Більші сектори означають частіший стиль. Кольори відповідають легенді глосарію."},
+    "viz_read_terms_cat": {"en": "Each bar is one content topic. Bar length is the count of unique segment phrases labelled with that topic.", "uk": "Кожна смуга — одна тема змісту. Довжина показує кількість унікальних фраз сегментів з цією міткою."},
+    "viz_read_terms_fram": {"en": "Each bar is one writing style. Bar length is the count of unique segment phrases labelled with that style.", "uk": "Кожна смуга — один стиль. Довжина показує кількість унікальних фраз сегментів з цією міткою."},
+    "viz_read_vocab_diversity": {"en": "Each point is one document. Higher on the chart means the document uses more distinct words relative to its length. Documents far apart differ in how varied their vocabulary is.", "uk": "Кожна точка — один документ. Вище на графіку означає більше різних слів відносно довжини. Віддалені точки мають різну різноманітність словника."},
+    "viz_read_trends": {"en": "Lines track how often each label appears from one document to the next in archive order. A rising line means that label becomes more common later in the set.", "uk": "Лінії показують, як часто кожна мітка з’являється від документа до документа в порядку архіву. Зростаюча лінія означає частішу мітку далі в наборі."},
+    "viz_read_segment_length": {"en": "The box above the chart highlights which passage length range gets the best agreement between human and AI labels. Each dot is one passage: left to right is length, and position shows whether category and framing both matched.", "uk": "Блок над графіком показує діапазон довжини з найкращою згодою між експертом і ШІ. Кожна крапка — один уривок: вліво-вправо довжина, положення показує збіг категорії та стилю."},
+    "viz_read_places_map": {"en": "Pins mark place names found in the text. Click a pin to see the name and which passages mention it. The count at the top is the number of passages with at least one place, not the total number of mentions.", "uk": "Мітки позначають назви місць у тексті. Клацніть мітку, щоб побачити назву та уривки. Лічильник зверху — кількість уривків із хоча б одним місцем, а не загальна кількість згадок."},
+    "viz_read_voyant": {"en": "These panels embed Voyant Tools from another site. They show patterns in a fixed project corpus and do not change when you switch documents in this site.", "uk": "Ці панелі вбудовують Voyant Tools з іншого сайту. Вони показують закономірності у фіксованому корпусі проєкту і не змінюються, коли ви перемикаєте документи тут."},
+    "viz_read_radar": {"en": "Each axis is one content topic. The shape shows how many passages in the selected document or documents use each topic. A bulge outward means that topic is common. Overlay multiple documents to compare profiles.", "uk": "Кожна вісь — одна тема змісту. Форма показує, скільки уривків мають кожну тему у вибраних документах. Випинання назовні означає частішу тему. Накладіть кілька документів для порівняння."},
+    "viz_read_mismatch_flow": {"en": "Rows show what the AI labelled each passage. Columns show what the human expert labelled it. The number in a cell is how many passages had that pair. Diagonal cells (same label on both sides) are agreements. Other filled cells are mismatches. The list above the table calls out the largest mismatch pairs.", "uk": "Рядки показують мітку ШІ для уривка. Стовпці показують мітку експерта. Число в клітинці показує, скільки уривків мали таку пару. Клітинки на діагоналі (однакова мітка) це збіги. Інші заповнені клітинки це розбіжності. Список над таблицею виділяє найбільші пари розбіжностей."},
+    "viz_read_doc_fingerprint": {"en": "Each row is a document. Coloured blocks show the mix of content topics or writing styles in order through the file. Similar stripe patterns suggest similar internal structure.", "uk": "Кожен ряд — один документ. Кольорові блоки показують чергування тем або стилів у файлі. Схожі смуги означають схожу внутрішню структуру."},
+    "viz_read_doc_similarity": {"en": "Each cell compares two documents. Darker green means their overall writing-style mix is more alike. The diagonal is blank because a document compared to itself would always be a perfect match.", "uk": "Кожна клітинка порівнює два документи. Темніший зелений означає схожіший розподіл стилів. Діагональ порожня, бо документ із собою завжди дав би повний збіг."},
+    "viz_read_terms_by_framing": {"en": "Each group lists common words for one writing style. Longer bars mean the word appears more often in passages with that style. Scan groups side by side to see which words belong to which tone.", "uk": "Кожна група — часті слова одного стилю. Довші смуги означають частіше слово в уривках цього стилю. Порівнюйте групи, щоб побачити слова кожного тону."},
+    "viz_read_term_framing_heatmap": {"en": "Rows are words and columns are writing styles. Darker cells mean the word appears more often in passages with that style. Look down a column for words tied to one tone, or across a row for where one word shows up.", "uk": "Рядки — слова, стовпці — стилі. Темніші клітинки означають частіше слово в уривках цього стилю. Дивіться вниз по стовпцю для слів одного тону або вздовж рядка для одного слова."},
+    "viz_read_agreement_cat": {"en": "Each bar is one content topic. Height shows what share of human-labelled passages the AI got right for that topic. Lower bars flag topics where the model struggles.", "uk": "Кожен стовпчик — одна тема. Висота показує частку правильних міток ШІ для цієї теми. Нижчі стовпчики позначають теми, де модель часто помиляється."},
+    "viz_read_agreement_fram": {"en": "Each bar is one writing style. Height shows what share of human-labelled passages the AI matched for that style. Lower bars flag styles the model often misses.", "uk": "Кожен стовпчик — один стиль. Висота показує частку збігів ШІ для цього стилю. Нижчі стовпчики позначають стилі, які модель часто пропускає."},
+    "viz_read_confusion_cat": {"en": "Rows are human labels and columns are AI labels. Darker cells mean more passages landed in that pairing. Look off the diagonal to see common mislabels.", "uk": "Рядки — мітки експерта, стовпці — мітки ШІ. Темніші клітинки означають більше уривків у цій парі. Поза діагоналлю видно типові помилки."},
+    "viz_read_confusion_fram": {"en": "Rows are human writing styles and columns are AI styles. Darker cells mean more passages were paired that way. Cells off the diagonal show where the AI picked a different style.", "uk": "Рядки — стилі експерта, стовпці — стилі ШІ. Темніші клітинки означають більше таких пар. Поза діагоналлю видно, де ШІ обрав інший стиль."},
+    "viz_read_mismatch": {"en": "Bars split mismatches into four types: both labels wrong, category only wrong, framing only wrong, or both correct. See which error type is largest to know what to improve first.", "uk": "Стовпчики ділять розбіжності на чотири типи: обидві мітки невірні, лише категорія, лише стиль, або обидві вірні. Найбільший тип помилки показує, з чого почати покращення."},
 }
 
 
@@ -1279,7 +1395,14 @@ def run(
     )
     parts.append(_label_suggestion_modal_html())
     term_synonyms = _load_term_synonyms()
-    parts.append(_script(categories, framings_ui, term_synonyms, standalone_viz=False, ui_translations=ui_tr))
+    parts.append(_script(
+        categories,
+        framings_ui,
+        term_synonyms,
+        standalone_viz=False,
+        ui_translations=ui_tr,
+        taxonomy_definitions=_build_taxonomy_definitions(glossary_categories, glossary_framings),
+    ))
     parts.append("</body></html>")
 
     standalone_parts = [
@@ -1296,7 +1419,14 @@ def run(
             experiment_label_b=viz_lab_b,
         ),
         "</div>",
-        _script(categories, framings_ui, term_synonyms, standalone_viz=True, ui_translations=ui_tr),
+        _script(
+            categories,
+            framings_ui,
+            term_synonyms,
+            standalone_viz=True,
+            ui_translations=ui_tr,
+            taxonomy_definitions=_build_taxonomy_definitions(glossary_categories, glossary_framings),
+        ),
         "</body></html>",
     ]
     viz_out_path.write_text("\n".join(standalone_parts), encoding="utf-8")
@@ -1318,7 +1448,7 @@ def _head(*, body_attrs: str = "", build_meta: str = "") -> str:
 <meta http-equiv="Cache-Control" content="max-age=0, must-revalidate"/>
 """
         + meta_extra
-        + """<title>KGB and Ukrainian Diaspora</title>
+        + """<title>KGB and the Ukrainian Diaspora</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Fraunces:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.0.2/wordcloud2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1378,10 +1508,10 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .lang-btn.active { background: rgba(139,0,0,0.3); border-color: #8b0000; }
 .app-container { display: flex; min-height: calc(100vh - 70px); }
 .sidebar { width: 240px; min-width: 240px; background: #2a2a2a; color: #e8e4dc; padding: 1rem 0; flex-shrink: 0; border-right: 1px solid #4a5568; overflow: visible; align-self: stretch; }
-.sidebar-nav-item { display: block; width: 100%; padding: 0.6rem 1.25rem; border: none; background: none; color: #c4bfb4; text-align: left; cursor: pointer; font-size: 0.9rem; font-family: inherit; border-left: 3px solid transparent; }
+.sidebar-nav-item { display: block; width: 100%; padding: 0.65rem 1.25rem; border: none; background: none; color: #c4bfb4; text-align: left; cursor: pointer; font-size: 1.05rem; line-height: 1.4; font-family: inherit; border-left: 3px solid transparent; }
 .sidebar-nav-item:hover { background: rgba(255,255,255,0.06); color: #f5f0e6; }
 .sidebar-nav-item.active { background: rgba(139,0,0,0.2); color: #f5f0e6; border-left-color: #8b0000; }
-.sidebar-section-title { padding: 0.75rem 1.25rem 0.35rem; font-size: 0.7rem; font-weight: 600; color: #8b7355; text-transform: uppercase; letter-spacing: 0.08em; }
+.sidebar-section-title { padding: 0.75rem 1.25rem 0.35rem; font-size: 0.78rem; font-weight: 600; color: #8b7355; text-transform: uppercase; letter-spacing: 0.08em; }
 .sidebar-doc-stat { font-size: 0.75rem; color: #8b7355; margin-left: 0.5rem; font-family: 'JetBrains Mono', monospace; }
 .sidebar-divider { border: none; border-top: 1px solid rgba(139,115,85,0.35); margin: 1rem 1rem 0.75rem; padding: 0; height: 0; background: none; }
 .sidebar .sidebar-feedback-section { margin: 0 0.75rem 1rem; border-radius: 3px; border: 2px solid #9a855c; box-shadow: 3px 4px 0 rgba(45,34,20,0.12); background: #e8dcc8; overflow: hidden; }
@@ -1474,6 +1604,23 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .category-mismatch, .framing-mismatch { background: transparent; box-shadow: inset 3px 0 0 rgba(180, 55, 55, 0.42); }
 .comparison-axis-cell { vertical-align: top; }
 .comparison-pill { display: inline-block; padding: 0.12rem 0.48rem; border-radius: 3px; font-size: 0.74rem; line-height: 1.35; font-weight: 600; white-space: nowrap; border: 1px solid; max-width: 100%; box-sizing: border-box; vertical-align: middle; }
+.comparison-taxonomy-trigger {
+  display: inline; margin: 0; padding: 0; border: none; background: transparent; cursor: pointer;
+  font: inherit; color: inherit; vertical-align: middle; line-height: inherit; max-width: 100%;
+}
+.comparison-taxonomy-trigger:hover .comparison-pill,
+.comparison-taxonomy-trigger:hover .exp-b-prelim-pill,
+.comparison-taxonomy-trigger:hover .comparison-human-value,
+.comparison-taxonomy-trigger:focus-visible .comparison-pill,
+.comparison-taxonomy-trigger:focus-visible .exp-b-prelim-pill,
+.comparison-taxonomy-trigger:focus-visible .comparison-human-value {
+  text-decoration: underline;
+}
+.comparison-taxonomy-trigger:focus-visible { outline: none; }
+.comparison-taxonomy-trigger:focus-visible .comparison-pill,
+.comparison-taxonomy-trigger:focus-visible .exp-b-prelim-pill {
+  box-shadow: 0 0 0 2px rgba(139,115,85,0.35);
+}
 .comparison-annotator-ref { margin-top: 0.32rem; font-size: 0.68rem; line-height: 1.35; color: #64748b; max-width: 22rem; }
 .comparison-annotator-tag { font-weight: 600; color: #94a3b8; }
 .comparison-annotator-sep { margin: 0 0.28rem; color: #cbd5e1; font-weight: 400; }
@@ -1481,7 +1628,8 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .comparison-axis-expert-pair .comparison-side-line { margin-top: 0.28rem; line-height: 1.45; }
 .comparison-axis-expert-pair .comparison-side-line:first-child { margin-top: 0; }
 .context-cell { max-width: 300px; font-size: 0.85rem; color: #4a5568; }
-.document-text-view { margin-bottom: 2rem; }
+.document-text-view { margin-bottom: 2rem; scroll-margin-top: 1rem; }
+details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
 .document-text-controls { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; margin-bottom: 0.75rem; }
 .document-text-controls input, .document-text-controls select { padding: 0.5rem; border: 1px solid #8b7355; border-radius: 4px; font-size: 0.9rem; background: #fff; max-width: 100%; box-sizing: border-box; }
 .document-text-controls-row1 { margin-bottom: 0.25rem; }
@@ -1654,6 +1802,14 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .colour-legend-section-title { font-weight: 700; color: #2d3748; margin-bottom: 0.5rem; font-size: 1rem; letter-spacing: 0.02em; }
 .colour-legend-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem 1.25rem; }
 .colour-legend-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0; }
+.colour-legend-trigger {
+  display: flex; align-items: center; gap: 0.5rem; width: 100%; margin: 0; padding: 0.35rem 0.45rem;
+  border: none; border-radius: 4px; background: transparent; cursor: pointer; text-align: left;
+  font: inherit; color: inherit;
+}
+.colour-legend-trigger:hover, .colour-legend-trigger:focus-visible {
+  background: rgba(139,115,85,0.14); outline: 2px solid rgba(139,115,85,0.35); outline-offset: 1px;
+}
 .colour-swatch { width: 16px; height: 16px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.25); flex-shrink: 0; }
 .colour-legend-narrative-block { font-size: 0.85rem; color: #5a5348; margin-top: 0.5rem; line-height: 1.5; }
 .legend-narrative-prose { margin-bottom: 0.35rem; max-width: 54rem; }
@@ -1771,9 +1927,11 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
   .tab-content:not(#tab-intro):not(#tab-dev-label-export) .legend-highlighting-details[open] > .legend-highlighting-summary::after,
   .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-config-panel[open] > summary::after,
   .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-calculated[open] > summary::after,
+  .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-to-read[open] > summary::after,
   .tab-content:not(#tab-intro):not(#tab-dev-label-export) .glossary-how-search-details[open] > summary::after,
   body.standalone-viz-page .viz-config-panel[open] > summary::after,
-  body.standalone-viz-page .viz-how-calculated[open] > summary::after {
+  body.standalone-viz-page .viz-how-calculated[open] > summary::after,
+  body.standalone-viz-page .viz-how-to-read[open] > summary::after {
     animation: none !important;
     opacity: 0.94;
     transform: translateY(-50%) rotate(-2.5deg);
@@ -2015,7 +2173,7 @@ body.standalone-viz-page #viz-open-new-tab { display: none !important; }
 .viz-standalone-subtitle { font-size: 0.95rem; color: #5a5348; margin: -0.5rem 0 1.25rem; max-width: 52rem; line-height: 1.55; }
 .document-text-panel { display: flex; flex-direction: column; min-width: 0; }
 .document-text-panel-label { font-weight: 600; font-size: 0.85rem; color: #4a5568; margin-bottom: 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid #8b7355; font-family: 'JetBrains Mono', monospace; }
-.document-text-content { line-height: 1.8; padding: 1rem; background: #fffef9; border-radius: 4px; border: 1px solid #8b7355; min-height: 80px; overflow: auto; white-space: pre-wrap; box-shadow: inset 0 1px 2px rgba(0,0,0,0.03); }
+.document-text-content { line-height: 1.8; padding: 1rem; background: #fffef9; border-radius: 4px; border: 1px solid #8b7355; min-height: 80px; max-height: min(70vh, 720px); overflow: auto; white-space: pre-wrap; box-shadow: inset 0 1px 2px rgba(0,0,0,0.03); }
 .document-text-content .doc-entry { margin-right: 0.25em; padding: 0 1px; border-radius: 2px; }
 .document-text-content .doc-entry.doc-gap { margin-right: 0; }
 .document-text-content .doc-entry.dimmed { color: #999 !important; opacity: 0.4 !important; }
@@ -2111,9 +2269,11 @@ body.standalone-viz-page #viz-open-new-tab { display: none !important; }
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .legend-highlighting-details > .legend-highlighting-summary,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-config-panel > summary,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-calculated > summary,
+.tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-to-read > summary,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .glossary-how-search-details > summary,
 body.standalone-viz-page .viz-config-panel > summary,
-body.standalone-viz-page .viz-how-calculated > summary {
+body.standalone-viz-page .viz-how-calculated > summary,
+body.standalone-viz-page .viz-how-to-read > summary {
   position: relative;
   display: flex;
   align-items: center;
@@ -2126,9 +2286,11 @@ body.standalone-viz-page .viz-how-calculated > summary {
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .legend-highlighting-details > .legend-highlighting-summary::before,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-config-panel > summary::before,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-calculated > summary::before,
+.tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-to-read > summary::before,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .glossary-how-search-details > summary::before,
 body.standalone-viz-page .viz-config-panel > summary::before,
-body.standalone-viz-page .viz-how-calculated > summary::before {
+body.standalone-viz-page .viz-how-calculated > summary::before,
+body.standalone-viz-page .viz-how-to-read > summary::before {
   content: "";
   display: inline-block;
   width: 1rem;
@@ -2143,9 +2305,11 @@ body.standalone-viz-page .viz-how-calculated > summary::before {
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .legend-highlighting-details[open] > .legend-highlighting-summary::before,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-config-panel[open] > summary::before,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-calculated[open] > summary::before,
+.tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-to-read[open] > summary::before,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .glossary-how-search-details[open] > summary::before,
 body.standalone-viz-page .viz-config-panel[open] > summary::before,
-body.standalone-viz-page .viz-how-calculated[open] > summary::before {
+body.standalone-viz-page .viz-how-calculated[open] > summary::before,
+body.standalone-viz-page .viz-how-to-read[open] > summary::before {
   background: radial-gradient(circle at 30% 30%, #2d5a27, #1a3518);
   border-color: #1a3518;
 }
@@ -2155,9 +2319,11 @@ body.standalone-viz-page .viz-how-calculated[open] > summary::before {
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .legend-highlighting-details > .legend-highlighting-summary,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-config-panel > summary,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-calculated > summary,
+.tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-to-read > summary,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .glossary-how-search-details > summary,
 body.standalone-viz-page .viz-config-panel > summary,
-body.standalone-viz-page .viz-how-calculated > summary {
+body.standalone-viz-page .viz-how-calculated > summary,
+body.standalone-viz-page .viz-how-to-read > summary {
   padding-right: 7.25rem;
 }
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .collapsible-section:not([open]) > summary::after,
@@ -2165,9 +2331,11 @@ body.standalone-viz-page .viz-how-calculated > summary {
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .legend-highlighting-details:not([open]) > .legend-highlighting-summary::after,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-config-panel:not([open]) > summary::after,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-calculated:not([open]) > summary::after,
+.tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-to-read:not([open]) > summary::after,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .glossary-how-search-details:not([open]) > summary::after,
 body.standalone-viz-page .viz-config-panel:not([open]) > summary::after,
-body.standalone-viz-page .viz-how-calculated:not([open]) > summary::after {
+body.standalone-viz-page .viz-how-calculated:not([open]) > summary::after,
+body.standalone-viz-page .viz-how-to-read:not([open]) > summary::after {
   content: "CLASSIFIED";
   position: absolute;
   top: 50%;
@@ -2196,9 +2364,11 @@ body.standalone-viz-page .viz-how-calculated:not([open]) > summary::after {
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .legend-highlighting-details[open] > .legend-highlighting-summary::after,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-config-panel[open] > summary::after,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-calculated[open] > summary::after,
+.tab-content:not(#tab-intro):not(#tab-dev-label-export) .viz-how-to-read[open] > summary::after,
 .tab-content:not(#tab-intro):not(#tab-dev-label-export) .glossary-how-search-details[open] > summary::after,
 body.standalone-viz-page .viz-config-panel[open] > summary::after,
-body.standalone-viz-page .viz-how-calculated[open] > summary::after {
+body.standalone-viz-page .viz-how-calculated[open] > summary::after,
+body.standalone-viz-page .viz-how-to-read[open] > summary::after {
   content: "DECLASSIFIED";
   position: absolute;
   top: 50%;
@@ -2240,8 +2410,7 @@ body.standalone-viz-page .viz-how-calculated[open] > summary::after {
 }
 /* Sticky document text controls */
 .document-text-controls-sticky { position: sticky; top: 0; z-index: 10; background: #f5f0e6; padding: 0.75rem 0; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(139,115,85,0.3); }
-/* Clickable segments: definition popover */
-.document-text-content .doc-entry { cursor: pointer; }
+/* Segment spans in illuminator (no click popover) */
 .term-definition-popover { position: fixed; z-index: 1000; max-width: 420px; background: #fffef9; border: 1px solid #8b7355; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 1rem 1.25rem; font-size: 0.9rem; line-height: 1.5; color: #4a5568; }
 .term-definition-popover .term-def-title { font-weight: 600; color: #2d3748; margin-bottom: 0.5rem; font-size: 0.85rem; }
 .term-definition-popover .term-def-section { margin-bottom: 0.75rem; }
@@ -2258,7 +2427,9 @@ body.standalone-viz-page .viz-how-calculated[open] > summary::after {
 .intro-video-section { max-width: 28rem; margin-left: auto; margin-right: auto; }
 .intro-video-wrap { position: relative; width: 100%; max-width: 28rem; margin: 0 auto; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; border: 1px solid #8b7355; background: #1a1a1a; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
 .intro-video-wrap iframe { display: block; width: 100%; height: 100%; border: 0; }
-.intro-lead { font-size: 1.02rem; color: #5a5348; line-height: 1.6; margin: 0 0 1rem 0; }
+.intro-lead { font-size: 1.28rem; color: #4a4038; line-height: 1.65; margin: 0 0 1.25rem 0; font-weight: 600; }
+#tab-intro .homepage-section p { font-size: 1.12rem; line-height: 1.78; color: #4a4038; margin: 0 0 1.1rem 0; }
+#tab-intro .homepage-section p:last-child { margin-bottom: 0; }
 .intro-dual-cta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: stretch; margin: 1rem 0 0.5rem; }
 .intro-cta-btn { display: inline-block; padding: 0.75rem 1.35rem; background: #8b0000; color: #f5f0e6; text-decoration: none; font-weight: 600; border-radius: 4px; border: 1px solid #6b0000; cursor: pointer; font-family: inherit; font-size: 1rem; text-align: center; flex: 1 1 12rem; max-width: 22rem; }
 .intro-cta-btn:hover { background: #6b0000; color: #f5f0e6; }
@@ -2472,9 +2643,10 @@ body.standalone-viz-page .viz-how-calculated[open] > summary::after {
 @media (max-width: 800px) { .charts-row { grid-template-columns: 1fr; } }
 .chart-wrap { position: relative; height: 280px; margin: 1rem 0; }
 .chart-wrap canvas { max-width: 100%; }
-.viz-how-calculated { margin-top: 1rem; border: 1px solid rgba(139,115,85,0.4); border-radius: 4px; background: #f8f6f2; }
-.viz-how-calculated summary { padding: 0.5rem 1rem; cursor: pointer; font-weight: 500; color: #4a5568; }
-.viz-how-calculated .viz-calculation-desc { padding: 1rem; font-size: 0.9rem; line-height: 1.5; color: #4a5568; }
+.viz-how-calculated, .viz-how-to-read { margin-top: 1rem; border: 1px solid rgba(139,115,85,0.4); border-radius: 4px; background: #f8f6f2; }
+.viz-how-calculated summary, .viz-how-to-read summary { padding: 0.5rem 1rem; cursor: pointer; font-weight: 500; color: #4a5568; }
+.viz-how-calculated .viz-calculation-desc, .viz-how-to-read .viz-read-desc { padding: 1rem; font-size: 0.9rem; line-height: 1.5; color: #4a5568; }
+.viz-read-body { margin: 0; }
 .viz-calc-simple { margin: 0 0 0.75rem 0; }
 .viz-calc-equations { margin: 0 0 0.75rem 0; padding: 0.75rem; background: #fff; border: 1px solid rgba(139,115,85,0.3); border-radius: 4px; overflow-x: auto; }
 .viz-calc-equations math { font-size: 1rem; }
@@ -2517,7 +2689,7 @@ def _master_header(
     return (
         '<div class="master-header">'
         '<div class="master-header-brand">'
-        '<h1 data-i18n="site_title">KGB and Ukrainian Diaspora</h1>'
+        '<h1 data-i18n="site_title">KGB and the Ukrainian Diaspora</h1>'
         '<span class="master-header-badge" data-i18n="declassified">Declassified</span>'
         '</div>'
         + extra
@@ -2622,13 +2794,31 @@ def _experiment_b_agent_only_table_rows_html(
         eng_plain = str(r.get("entry_eng") or "")
         rus_cell = html_module.escape(rus_plain).replace("\n", "<br />\n")
         eng_cell = html_module.escape(eng_plain).replace("\n", "<br />\n")
-        cc_esc = html_module.escape(cc_raw)
-        fr_esc = html_module.escape(fr_raw)
+        cc_disp = display_content_category_for_ui(cc_raw) or cc_raw
+        fr_disp = _normalize_framing_label(fr_raw) or fr_raw
+        cc_esc = html_module.escape(cc_disp)
+        fr_esc = html_module.escape(fr_disp)
+        cc_pill = _comparison_taxonomy_pill_html(
+            disp_esc=cc_esc,
+            raw=cc_raw,
+            hex_col=cc_hex,
+            bg_css="rgba(255,255,255,0.85)",
+            pill_cls="exp-b-prelim-pill exp-b-prelim-pill-cat",
+            framing=False,
+        )
+        fr_pill = _comparison_taxonomy_pill_html(
+            disp_esc=fr_esc,
+            raw=fr_raw,
+            hex_col=fr_hex,
+            bg_css="rgba(255,255,255,0.85)",
+            pill_cls="exp-b-prelim-pill exp-b-prelim-pill-fram",
+            framing=True,
+        )
         out.append(
             "<tr>"
             f'<td class="comparison-row-index-num">{i}</td>'
-            f'<td><span class="exp-b-prelim-pill exp-b-prelim-pill-cat" style="border-color:{cc_hex};color:{cc_hex};">{cc_esc}</span></td>'
-            f'<td><span class="exp-b-prelim-pill exp-b-prelim-pill-fram" style="border-color:{fr_hex};color:{fr_hex};">{fr_esc}</span></td>'
+            f"<td>{cc_pill}</td>"
+            f"<td>{fr_pill}</td>"
             f'<td class="comparison-cell-segment-rus">{rus_cell}</td>'
             f'<td class="comparison-cell-segment-eng">{eng_cell}</td>'
             "</tr>"
@@ -2873,12 +3063,23 @@ def _build_per_document_viz_section(
     segment_length_vs_accuracy = _compute_segment_length_vs_accuracy(comp_one, docs_one)
     mismatch_flow = _compute_mismatch_flow(comp_one, fram_order)
     doc_fingerprint = _compute_document_fingerprint(stats, fram_order)
-    terms_by_framing_detailed = _compute_terms_by_framing_detailed(comp_one, fram_order, language="both")
-    terms_by_framing_detailed_en = _compute_terms_by_framing_detailed(comp_one, fram_order, language="en")
-    terms_by_framing_detailed_ru = _compute_terms_by_framing_detailed(comp_one, fram_order, language="ru")
-    term_framing_heatmap = _compute_term_framing_heatmap(comp_one, fram_order)
-    term_framing_heatmap_en = _compute_term_framing_heatmap(comp_one, fram_order, language="en")
-    term_framing_heatmap_ru = _compute_term_framing_heatmap(comp_one, fram_order, language="ru")
+    terms_by_framing_detailed = _compute_terms_by_framing_detailed(
+        comp_one, fram_order, language="both", top_n=30,
+    )
+    terms_by_framing_detailed_en = _compute_terms_by_framing_detailed(
+        comp_one, fram_order, language="en", top_n=30,
+    )
+    terms_by_framing_detailed_ru = _compute_terms_by_framing_detailed(
+        comp_one, fram_order, language="ru", top_n=30,
+    )
+    term_framing_heatmap = _compute_term_framing_heatmap(comp_one, fram_order, top_n_terms=30)
+    term_framing_heatmap_en = _compute_term_framing_heatmap(
+        comp_one, fram_order, top_n_terms=30, language="en",
+    )
+    term_framing_heatmap_ru = _compute_term_framing_heatmap(
+        comp_one, fram_order, top_n_terms=30, language="ru",
+    )
+    label_variants = _build_viz_label_variants(comp_one, docs_one, config, cat_ids, fram_order)
 
     fram_colours_for_viz = _fram_colours_for_viz_order(fram_order, fram_colours)
 
@@ -2919,9 +3120,12 @@ def _build_per_document_viz_section(
         "termFramingHeatmap": term_framing_heatmap,
         "termFramingHeatmapEn": term_framing_heatmap_en,
         "termFramingHeatmapRu": term_framing_heatmap_ru,
+        "labelVariants": label_variants,
         "configDefaults": {
             "word_cloud": _word_cloud_config_defaults(wc_cfg),
             "chart_text": {"language": "both"},
+            "label_source": "llm",
+            "terms_top_n": 10,
             "segment_length": {"scale": 100, "x_tick_step": 0},
         },
     }
@@ -2945,12 +3149,25 @@ def _build_per_document_viz_section(
         segment_length_vs_accuracy_b = _compute_segment_length_vs_accuracy(comp_one_b, docs_one)
         mismatch_flow_b = _compute_mismatch_flow(comp_one_b, fram_order_b)
         doc_fingerprint_b = _compute_document_fingerprint(stats_b, fram_order_b)
-        terms_by_framing_detailed_b = _compute_terms_by_framing_detailed(comp_one_b, fram_order_b, language="both")
-        terms_by_framing_detailed_en_b = _compute_terms_by_framing_detailed(comp_one_b, fram_order_b, language="en")
-        terms_by_framing_detailed_ru_b = _compute_terms_by_framing_detailed(comp_one_b, fram_order_b, language="ru")
-        term_framing_heatmap_b = _compute_term_framing_heatmap(comp_one_b, fram_order_b)
-        term_framing_heatmap_en_b = _compute_term_framing_heatmap(comp_one_b, fram_order_b, language="en")
-        term_framing_heatmap_ru_b = _compute_term_framing_heatmap(comp_one_b, fram_order_b, language="ru")
+        terms_by_framing_detailed_b = _compute_terms_by_framing_detailed(
+            comp_one_b, fram_order_b, language="both", top_n=30,
+        )
+        terms_by_framing_detailed_en_b = _compute_terms_by_framing_detailed(
+            comp_one_b, fram_order_b, language="en", top_n=30,
+        )
+        terms_by_framing_detailed_ru_b = _compute_terms_by_framing_detailed(
+            comp_one_b, fram_order_b, language="ru", top_n=30,
+        )
+        term_framing_heatmap_b = _compute_term_framing_heatmap(comp_one_b, fram_order_b, top_n_terms=30)
+        term_framing_heatmap_en_b = _compute_term_framing_heatmap(
+            comp_one_b, fram_order_b, top_n_terms=30, language="en",
+        )
+        term_framing_heatmap_ru_b = _compute_term_framing_heatmap(
+            comp_one_b, fram_order_b, top_n_terms=30, language="ru",
+        )
+        label_variants_b = _build_viz_label_variants(
+            comp_one_b, docs_one, config, cat_ids_b, fram_order_b,
+        )
         fram_colours_for_viz_b = _fram_colours_for_viz_order(fram_order_b, fram_colours)
         word_cloud_presets_b = _word_cloud_presets_from_comparison(
             comp_one_b,
@@ -2996,9 +3213,12 @@ def _build_per_document_viz_section(
             "termFramingHeatmap": term_framing_heatmap_b,
             "termFramingHeatmapEn": term_framing_heatmap_en_b,
             "termFramingHeatmapRu": term_framing_heatmap_ru_b,
+            "labelVariants": label_variants_b,
             "configDefaults": {
                 "word_cloud": _word_cloud_config_defaults(wc_cfg),
                 "chart_text": {"language": "both"},
+                "label_source": "llm",
+                "terms_top_n": 10,
                 "segment_length": {"scale": 100, "x_tick_step": 0},
             },
         }
@@ -3065,7 +3285,7 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Places Map — Vozmezdie</title>
+  <title>Places Map | Vozmezdie</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
@@ -3170,9 +3390,28 @@ def _write_places_map_html(config: Dict[str, Any], out_dir: Path) -> None:
         (out_dir / "places_map.html").write_text(html, encoding="utf-8")
 
 
+def _row_category_and_framing(
+    r: Dict[str, Any],
+    label_source: str = "llm",
+) -> Tuple[Optional[str], str]:
+    """Resolved canonical category id and framing label for one aligned row."""
+    if label_source == "human":
+        cat_raw = r.get("human_category") or r.get("llm_category") or ""
+        fram_raw = r.get("human_framing") or r.get("llm_framing") or ""
+    else:
+        cat_raw = r.get("llm_category") or r.get("human_category") or ""
+        fram_raw = r.get("llm_framing") or r.get("human_framing") or ""
+    cat_fold = display_content_category_for_ui(cat_raw.strip()) if cat_raw else ""
+    cat = canonical_content_category_id(cat_fold) if cat_fold else None
+    fram_n = _normalize_framing_label(str(fram_raw)) if fram_raw else ""
+    return cat, fram_n
+
+
 def _compute_dataset_stats(
     comparison_by_doc: Dict[str, Dict[str, Any]],
     documents: List[Dict[str, Any]],
+    *,
+    label_source: str = "llm",
 ) -> Dict[str, Any]:
     """Compute proportional stats for whole dataset and per document."""
     from collections import Counter
@@ -3188,11 +3427,7 @@ def _compute_dataset_stats(
         doc_cats: Counter = Counter()
         doc_frams: Counter = Counter()
         for r in aligned:
-            cat_raw = r.get("llm_category") or r.get("human_category") or ""
-            fram_raw = r.get("llm_framing") or r.get("human_framing") or ""
-            cat_fold = display_content_category_for_ui(cat_raw.strip()) if cat_raw else ""
-            cat = canonical_content_category_id(cat_fold) if cat_fold else None
-            fram_n = _normalize_framing_label(str(fram_raw)) if fram_raw else ""
+            cat, fram_n = _row_category_and_framing(r, label_source)
             if cat:
                 cat_counts[cat] += 1
                 doc_cats[cat] += 1
@@ -3289,16 +3524,22 @@ def _compute_agreement_stats(
 
 def _compute_terms_counts_for_viz(
     comparison_by_doc: Dict[str, Dict[str, Any]],
+    *,
+    label_source: str = "llm",
 ) -> Tuple[Dict[str, int], Dict[str, int]]:
     """Returns (terms_by_cat, terms_by_fram): unique bilingual pair count per category/framing."""
-    terms_by_cat, terms_by_fram, _, _, _ = _collect_terms_from_comparison(comparison_by_doc)
+    terms_by_cat, terms_by_fram, _, _, _ = _collect_terms_from_comparison(
+        comparison_by_doc, label_source=label_source,
+    )
     return {c: len(s) for c, s in terms_by_cat.items()}, {f: len(s) for f, s in terms_by_fram.items()}
 
 
 def _terms_counts_for_viz_by_language(
     comparison_by_doc: Dict[str, Dict[str, Any]],
+    *,
+    label_source: str = "llm",
 ) -> Tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
-    """Unique segment strings per EN-only / RU-only slices (same llm_category / llm_framing grouping as pair charts)."""
+    """Unique segment strings per EN-only / RU-only slices (grouped by category/framing from label_source)."""
     from collections import defaultdict
 
     en_cat: Dict[str, Set[str]] = defaultdict(set)
@@ -3309,10 +3550,8 @@ def _terms_counts_for_viz_by_language(
         for r in comp.get("aligned_rows", []):
             eng = (r.get("entry_eng") or "").strip()
             rus = (r.get("entry_rus") or "").strip()
-            cat_raw = (r.get("llm_category") or "").strip()
-            cat_fold = display_content_category_for_ui(cat_raw) if cat_raw else ""
-            cat = canonical_content_category_id(cat_fold) if cat_fold else ""
-            fram = _normalize_for_group(r.get("llm_framing") or "")
+            cat, fram = _row_category_and_framing(r, label_source)
+            cat = cat or ""
             if eng:
                 if cat:
                     en_cat[cat].add(eng)
@@ -3402,15 +3641,18 @@ def _compute_terms_by_framing_detailed(
     fram_order: List[str],
     *,
     language: str = "both",
+    label_source: str = "llm",
+    top_n: int = 30,
 ) -> Dict[str, List[Tuple[str, int]]]:
     """Framing -> [(term, count), ...]. ``language``: en | ru | both (preferred phrase for both)."""
     from collections import Counter
     fram_set = set(fram_order)
     fram_terms: Dict[str, Counter] = {}
     lang = (language or "both").strip().lower()
+    cap = max(1, int(top_n or 30))
     for comp in (comparison_by_doc or {}).values():
         for r in comp.get("aligned_rows", []):
-            fram = _normalize_for_group(r.get("llm_framing") or "")
+            _, fram = _row_category_and_framing(r, label_source)
             if not fram or fram not in fram_set:
                 continue
             eng = (r.get("entry_eng") or "").strip()
@@ -3426,17 +3668,18 @@ def _compute_terms_by_framing_detailed(
     result: Dict[str, List[Tuple[str, int]]] = {}
     for fram in fram_order:
         c = fram_terms.get(fram, Counter())
-        result[fram] = c.most_common(10)
+        result[fram] = c.most_common(cap)
     return result
 
 
 def _compute_term_framing_heatmap(
     comparison_by_doc: Dict[str, Dict[str, Any]],
     fram_order: List[str],
-    top_n_terms: int = 15,
+    top_n_terms: int = 30,
     min_word_len: int = 3,
     *,
     language: str = "both",
+    label_source: str = "llm",
 ) -> Dict[str, Dict[str, int]]:
     """Term -> framing -> count. Token source depends on ``language`` (en | ru | both)."""
     from collections import Counter
@@ -3464,9 +3707,10 @@ def _compute_term_framing_heatmap(
             out.append(wl)
         return out
 
+    cap = max(1, int(top_n_terms or 30))
     for comp in (comparison_by_doc or {}).values():
         for r in comp.get("aligned_rows", []):
-            fram = _normalize_for_group(r.get("llm_framing") or "")
+            _, fram = _row_category_and_framing(r, label_source)
             if fram not in fram_set:
                 continue
             for word in tokens_from_row(r):
@@ -3474,7 +3718,7 @@ def _compute_term_framing_heatmap(
     all_terms = sorted(
         set(t for t, _ in term_fram.keys()),
         key=lambda t: -sum(term_fram.get((t, f), 0) for f in fram_order),
-    )[:top_n_terms]
+    )[:cap]
     result: Dict[str, Dict[str, int]] = {}
     for term in all_terms:
         result[term] = {f: term_fram.get((term, f), 0) for f in fram_order}
@@ -3561,6 +3805,8 @@ def _compute_trends(
     documents: List[Dict[str, Any]],
     cat_order: List[str],
     fram_order: List[str],
+    *,
+    label_source: str = "llm",
 ) -> Dict[str, Any]:
     """Line chart: per-document category/framing counts. Returns {labels, catData, framData}."""
     from collections import Counter
@@ -3574,11 +3820,7 @@ def _compute_trends(
         doc_cats: Counter = Counter()
         doc_frams: Counter = Counter()
         for r in aligned:
-            cat_raw = r.get("llm_category") or r.get("human_category") or ""
-            fram_raw = r.get("llm_framing") or r.get("human_framing") or ""
-            cat_fold = display_content_category_for_ui(cat_raw.strip()) if cat_raw else ""
-            cat = canonical_content_category_id(cat_fold) if cat_fold else None
-            fram_n = _normalize_framing_label(str(fram_raw)) if fram_raw else ""
+            cat, fram_n = _row_category_and_framing(r, label_source)
             if cat:
                 doc_cats[cat] += 1
             if fram_n:
@@ -3833,7 +4075,7 @@ def _taxonomy_reference_section(
     if categories:
         parts.append('<div class="taxonomy-ref-block" style="margin-bottom: 2rem;">')
         parts.append('<h4 style="color: #4a5568; margin-bottom: 1rem; font-size: 1.1rem;" data-i18n="content_categories">Content Categories</h4>')
-        parts.append('<p style="margin-bottom: 1rem; font-size: 0.95rem; color: #4a5568;" data-i18n="content_categories_desc">Specific details describe WHAT the text refers to at surface level (aligned with content-category labels in the data model). In technical materials these correspond to content categories.</p>')
+        parts.append('<p style="margin-bottom: 1rem; font-size: 0.95rem; color: #4a5568;" data-i18n="content_categories_desc">Specific details describe what the text refers to at surface level: people, places, events, documents, and similar concrete references.</p>')
         for c in categories:
             cid = c.get("id", "")
             label = c.get("label_en", cid)
@@ -3852,7 +4094,7 @@ def _taxonomy_reference_section(
     if framings:
         parts.append('<div class="taxonomy-ref-block" style="margin-bottom: 2rem;">')
         parts.append('<h4 style="color: #4a5568; margin-bottom: 1rem; font-size: 1.1rem;" data-i18n="framing_categories">Framing and Language Strategy Categories</h4>')
-        parts.append('<p style="margin-bottom: 1rem; font-size: 0.95rem; color: #4a5568;" data-i18n="framing_categories_desc">Ideological layers describe HOW language positions the material: neutral, bureaucratic, ideological, or action-focused (aligned with framing labels in the data model). In technical materials these correspond to framing strategies.</p>')
+        parts.append('<p style="margin-bottom: 1rem; font-size: 0.95rem; color: #4a5568;" data-i18n="framing_categories_desc">Ideological layers describe how language positions the material: neutral, bureaucratic, ideological, or action-focused.</p>')
         for f in framings:
             fid = f.get("id", "")
             label = f.get("label_en", fid)
@@ -3875,11 +4117,10 @@ def _dev_label_export_tab() -> str:
     """Hidden-by-navigation tab: export notes + JSON download (open via URL `#tab-dev-label-export`)."""
     return """
 <div class="tab-content" id="tab-dev-label-export">
-<div class="header"><h2 data-i18n="dev_label_export_title">Label suggestions export (developer)</h2></div>
+<div class="header"><h2 data-i18n="dev_label_export_title">Download label suggestions</h2></div>
 <div class="homepage-content">
   <section class="homepage-section">
-    <p style="color:#5a5348;line-height:1.55;margin-bottom:0.75rem;" data-i18n="dev_label_export_intro">Saved suggestions live in your browser (localStorage) and are mirrored in a hidden JSON script tag at the end of this page (`label-suggestions-export-json`). That duplicate lets you copy or scrape exports without opening devtools.</p>
-    <p style="color:#5a5348;line-height:1.55;margin-bottom:1rem;" data-i18n="dev_label_export_link_hint">Bookmark this view by adding `#tab-dev-label-export` to the report URL.</p>
+    <p style="color:#5a5348;line-height:1.55;margin-bottom:1rem;" data-i18n="dev_label_export_intro">Label suggestions you save from comparison rows are kept in this browser. Use the button below to download them as a JSON file.</p>
     <button type="button" class="comparison-export-json" id="dev-label-suggestion-download-btn" data-i18n="label_suggestion_download">Download all suggestions (JSON)</button>
   </section>
 </div>
@@ -3932,9 +4173,9 @@ def _intro_tab() -> str:
     <p class="intro-lead" data-i18n="intro_vozmezdie_welcome">Welcome to the Vozmezdie Files</p>
     <p data-i18n="intro_vozmezdie_p1">This site presents a small selection of declassified documents from the former KGB archives of the Ukrainian SSR. KGB, or Komitet Gosudarstvennoi Bezopasnosti, translates as the State Security Committee and is commonly referred to in English as the Soviet security services.</p>
     <p data-i18n="intro_vozmezdie_p2">The files gathered here reveal how the Soviet security services monitored, described, and sought to undermine the Ukrainian diaspora in North America.</p>
-    <p data-i18n="intro_vozmezdie_p3">As part of its broader effort to construct a single Soviet nation from the many peoples brought under Russian imperial and later Soviet rule, the USSR systematically suppressed dissent and resistance to this effort. Formed in North America before the establishment of the Soviet Union in 1922, the Ukrainian diaspora continued throughout the twentieth century to advocate for an independent and sovereign Ukraine. Soviet authorities increasingly viewed pro-independent Ukrainian diaspora activities as a threat to both domestic stability and Soviet foreign policy.</p>
-    <p data-i18n="intro_vozmezdie_p4">Following the Second World War, continued resistance to Soviet rule in Western Ukraine, combined with the displacement of hundreds of thousands of Ukrainians who refused repatriation to the USSR, intensified Soviet surveillance and operational activities targeting Ukrainians abroad. Some of these operations were conducted under the code name Vozmezdie.</p>
-    <p data-i18n="intro_vozmezdie_p5">Through this operation, the KGB sought to undermine émigré organizations, discredit institutions of Ukrainian studies abroad, and weaken public commemoration of the Holodomor. The Canadian Institute of Ukrainian Studies at the University of Alberta appears in these files by name.</p>
+    <p data-i18n="intro_vozmezdie_p3">As part of its broader effort to construct a single Soviet nation from the many peoples brought under Russian imperial and later Soviet rule, the USSR systematically suppressed dissent and resistance to this effort. Formed in North America before the establishment of the Soviet Union in 1922, the Ukrainian diaspora continued to advocate for an independent and sovereign Ukraine throughout the twentieth century. Soviet authorities increasingly viewed pro-independent Ukrainian diaspora activities as a threat to Soviet domestic stability and foreign policy.</p>
+    <p data-i18n="intro_vozmezdie_p4">Following the Second World War and the displacement of hundreds of thousands of Ukrainians who refused repatriation to the USSR, resistance to Soviet rule in Western Ukraine continued. As a result, Soviet surveillance and operational activities targeting Ukrainians abroad intensified. Some of these operations were conducted under the code name Vozmezdie.</p>
+    <p data-i18n="intro_vozmezdie_p5">Through this operation, the KGB sought to undermine émigré organizations, discredit institutions of Ukrainian studies abroad, and weaken public commemoration of the Holodomor. The Canadian Institute of Ukrainian Studies at the University of Alberta also appears in these files.</p>
     <p data-i18n="intro_vozmezdie_p6">The sixteen documents presented on this site date primarily from the early 1980s and originate from a single archival fond held at the HDA SBU archive in Ukraine. We invite you to explore both the documents themselves and the analytical tools developed as part of this project.</p>
     <p data-i18n="intro_vozmezdie_p7">This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production.</p>
     <p data-i18n="intro_vozmezdie_p8">Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list.</p>
@@ -4039,12 +4280,25 @@ def _build_viz_payload_and_heatmap(
     mismatch_flow = _compute_mismatch_flow(comparison_by_doc, fram_order)
     doc_fingerprint = _compute_document_fingerprint(stats, fram_order)
     doc_similarity = _compute_document_similarity(stats, fram_order)
-    terms_by_framing_detailed = _compute_terms_by_framing_detailed(comparison_by_doc, fram_order, language="both")
-    terms_by_framing_detailed_en = _compute_terms_by_framing_detailed(comparison_by_doc, fram_order, language="en")
-    terms_by_framing_detailed_ru = _compute_terms_by_framing_detailed(comparison_by_doc, fram_order, language="ru")
-    term_framing_heatmap = _compute_term_framing_heatmap(comparison_by_doc, fram_order)
-    term_framing_heatmap_en = _compute_term_framing_heatmap(comparison_by_doc, fram_order, language="en")
-    term_framing_heatmap_ru = _compute_term_framing_heatmap(comparison_by_doc, fram_order, language="ru")
+    terms_by_framing_detailed = _compute_terms_by_framing_detailed(
+        comparison_by_doc, fram_order, language="both", top_n=30,
+    )
+    terms_by_framing_detailed_en = _compute_terms_by_framing_detailed(
+        comparison_by_doc, fram_order, language="en", top_n=30,
+    )
+    terms_by_framing_detailed_ru = _compute_terms_by_framing_detailed(
+        comparison_by_doc, fram_order, language="ru", top_n=30,
+    )
+    term_framing_heatmap = _compute_term_framing_heatmap(comparison_by_doc, fram_order, top_n_terms=30)
+    term_framing_heatmap_en = _compute_term_framing_heatmap(
+        comparison_by_doc, fram_order, top_n_terms=30, language="en",
+    )
+    term_framing_heatmap_ru = _compute_term_framing_heatmap(
+        comparison_by_doc, fram_order, top_n_terms=30, language="ru",
+    )
+    label_variants = _build_viz_label_variants(
+        comparison_by_doc, documents, config, cat_ids, fram_order,
+    )
 
     fram_colours_for_viz = _fram_colours_for_viz_order(fram_order, fram_colours)
 
@@ -4089,9 +4343,12 @@ def _build_viz_payload_and_heatmap(
         "termFramingHeatmap": term_framing_heatmap,
         "termFramingHeatmapEn": term_framing_heatmap_en,
         "termFramingHeatmapRu": term_framing_heatmap_ru,
+        "labelVariants": label_variants,
         "configDefaults": {
             "word_cloud": _word_cloud_config_defaults(wc_cfg),
             "chart_text": {"language": "both"},
+            "label_source": "llm",
+            "terms_top_n": 10,
             "radar": {
                 "mode": "single",
                 "compare_count": 3,
@@ -4197,7 +4454,7 @@ def _homepage(
     if places_map_html:
         places_map_srcdoc = _places_map_lab_embed_markup(places_map_html)
     else:
-        places_map_srcdoc = '<p style="padding:2rem;color:#6b7280;">No places data. Run scripts/extract_places.py and scripts/geocode_places.py to generate places_geocoded.json.</p>'
+        places_map_srcdoc = '<p style="padding:2rem;color:#6b7280;" data-i18n="places_map_no_data">No places to show on the map yet.</p>'
 
     viz_section_markup = _viz_lab_visualizations_section(
         viz_json,
@@ -4211,7 +4468,7 @@ def _homepage(
         f'<details class="collapsible-section taxonomy-ref-details" id="lab-feature-taxonomy">'
         f'<summary><span data-i18n="taxonomy_reference">Terms Explained</span></summary>'
         f'<div class="collapsible-body taxonomy-ref-body">'
-        f'<p data-i18n="taxonomy_reference_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">This report uses a reference taxonomy from Categories Explained. Segments are classified by content category (what is discussed) and framing strategy (how it is phrased). Below is how each is defined and qualified.</p>'
+        f'<p data-i18n="taxonomy_reference_intro" style="margin: 0 0 1rem; color: #4a5568; line-height: 1.55;">This site uses a reference taxonomy from Categories Explained. Segments are tagged for specific details (what is discussed) and ideological layers (how it is phrased). Below is how each is defined and qualified.</p>'
         f"{taxonomy_ref_html}</div></details>"
         if taxonomy_ref_html else ""
     )
@@ -4637,21 +4894,57 @@ def _doc_tab(
 </div>"""
 
 
+def _build_taxonomy_definitions(
+    categories: List[Dict[str, Any]],
+    framings: List[Dict[str, Any]],
+) -> Dict[str, Dict[str, str]]:
+    """Map taxonomy id → label, description, examples for legend popovers."""
+    defs: Dict[str, Dict[str, str]] = {}
+    for c in categories:
+        cid = (c.get("id") or "").strip()
+        if not cid:
+            continue
+        defs[cid] = {
+            "kind": "category",
+            "label": (c.get("label_en") or cid).strip(),
+            "description": scrub_retired_multiword_category_labels(c.get("description") or ""),
+            "examples": scrub_retired_multiword_category_labels(c.get("examples") or ""),
+        }
+    for f in framings:
+        fid = (f.get("id") or "").strip()
+        if not fid:
+            continue
+        defs[fid] = {
+            "kind": "framing",
+            "label": (f.get("label_en") or fid).strip(),
+            "description": scrub_retired_multiword_category_labels(f.get("description") or ""),
+            "examples": scrub_retired_multiword_category_labels(f.get("examples") or ""),
+        }
+    return defs
+
+
 def _colour_legend(categories: List[Dict], framings: List[Dict]) -> str:
     """HTML for colour legend: content categories and framing strategies with swatches."""
-    def items_html(items: List[Dict], label_key: str = "label_en") -> str:
+    def items_html(items: List[Dict], kind: str) -> str:
         out = []
         for c in items:
+            cid = (c.get("id") or "").strip()
+            if not cid:
+                continue
             colour = c.get("colour", "#333")
-            label = c.get(label_key, c.get("id", ""))
-            out.append('<div class="colour-legend-item"><span class="colour-swatch" style="background:')
-            out.append(colour)
-            out.append('"></span><span class="colour-legend-label">')
-            out.append(html_module.escape(label))
-            out.append("</span></div>")
+            label = c.get("label_en", cid)
+            esc_id = html_module.escape(cid, quote=True)
+            out.append(
+                f'<button type="button" class="colour-legend-item colour-legend-trigger" '
+                f'data-taxonomy-id="{esc_id}" data-taxonomy-kind="{kind}" '
+                f'title="Click for definition">'
+                f'<span class="colour-swatch" style="background:{colour}"></span>'
+                f'<span class="colour-legend-label">{html_module.escape(label)}</span>'
+                f"</button>"
+            )
         return "".join(out)
-    cat_html = items_html(categories) if categories else ""
-    fram_html = items_html(framings) if framings else ""
+    cat_html = items_html(categories, "category") if categories else ""
+    fram_html = items_html(framings, "framing") if framings else ""
     caps_intro = """
     <div class="colour-legend-section document-text-intro-block">
       <p data-i18n="doc_text_capabilities_intro">In the Document Text Illuminator you can:</p>
@@ -4659,7 +4952,7 @@ def _colour_legend(categories: List[Dict], framings: List[Dict]) -> str:
         <li data-i18n="doc_text_cap_search">Search in text for specific information (such as date/time, place, people, etc.), in English and Russian.</li>
         <li data-i18n="doc_text_cap_highlight">Find and highlight different ideological layers in the text.</li>
         <li data-i18n="doc_text_cap_compare">Compare how specific details and ideological layers intersect within segments.</li>
-        <li data-i18n="doc_text_cap_lab">Pair this illuminator with Research Lab charts—those charts reflect whichever segmentation pass is loaded (expert-drawn vs AI-drawn).</li>
+        <li data-i18n="doc_text_cap_lab">Pair this illuminator with Research Lab charts; those charts reflect whichever segmentation pass is loaded (expert-drawn vs AI-drawn).</li>
       </ul>
     </div>"""
     inner = (
@@ -4717,7 +5010,7 @@ def _document_text_view(
   <div class="document-text-controls-sticky">
     <div class="document-search-cyrillic-anchor">
       <div class="document-text-controls document-text-controls-row1">
-        <input type="text" id="doc-search-{esc_id}" class="document-search" placeholder="Search in text (English or Russian)..." data-tab="{esc_id}" data-i18n="search_placeholder" autocomplete="off"/>
+        <input type="text" id="doc-search-{esc_id}" class="document-search" placeholder="Search in text (English or Original Language)..." data-tab="{esc_id}" data-i18n="search_placeholder" autocomplete="off"/>
       </div>
     </div>
     <div class="document-text-controls document-text-controls-filters">
@@ -4749,11 +5042,11 @@ def _document_text_view(
 {legend}
   <div class="document-text-panels">
     <div class="document-text-panel">
-      <div class="document-text-panel-label" data-i18n="english">English</div>
+      <div class="document-text-panel-label" data-i18n="illuminator_panel_english">English Translation</div>
       <div class="document-text-content" id="doc-text-eng-{esc_id}">{full_text_eng_html}</div>
     </div>
     <div class="document-text-panel">
-      <div class="document-text-panel-label" data-i18n="russian_original">Russian (original)</div>
+      <div class="document-text-panel-label" data-i18n="illuminator_panel_original">Original</div>
       <div class="document-text-content" id="doc-text-rus-{esc_id}">{full_text_rus_html}</div>
     </div>
   </div>
@@ -4829,6 +5122,8 @@ def _collect_terms_from_comparison_fields(
 
 def _collect_terms_from_comparison(
     comparison_by_doc: Dict[str, Dict[str, Any]],
+    *,
+    label_source: str = "llm",
 ) -> Tuple[
     Dict[str, Set[Tuple[str, str]]],
     Dict[str, Set[Tuple[str, str]]],
@@ -4836,10 +5131,95 @@ def _collect_terms_from_comparison(
     Dict[Tuple[str, str], Set[str]],
     Dict[Tuple[str, str], List[Tuple[str, int]]],
 ]:
-    """Extract unique (entry_eng, entry_rus) terms by LLM content category and framing from aligned rows."""
+    """Extract unique (entry_eng, entry_rus) terms by content category and framing from aligned rows."""
+    if label_source == "human":
+        return _collect_terms_from_comparison_fields(
+            comparison_by_doc, "human_category", "human_framing",
+        )
     return _collect_terms_from_comparison_fields(
         comparison_by_doc, "llm_category", "llm_framing",
     )
+
+
+def _build_viz_label_variants(
+    comparison_by_doc: Dict[str, Dict[str, Any]],
+    documents: List[Dict[str, Any]],
+    config: Dict[str, Any],
+    cat_ids: Set[str],
+    fram_order: List[str],
+) -> Dict[str, Dict[str, Any]]:
+    """Per-label-source slices for charts that count segments by category/framing."""
+    out: Dict[str, Dict[str, Any]] = {}
+    for src in ("llm", "human"):
+        stats = _compute_dataset_stats(comparison_by_doc, documents, label_source=src)
+        terms_by_cat, terms_by_fram = _compute_terms_counts_for_viz(
+            comparison_by_doc, label_source=src,
+        )
+        tc_eng_cat, tc_rus_cat, tc_eng_fram, tc_rus_fram = _terms_counts_for_viz_by_language(
+            comparison_by_doc, label_source=src,
+        )
+        trends = _compute_trends(
+            comparison_by_doc, documents, list(stats["categories"].keys()), fram_order,
+            label_source=src,
+        )
+        doc_fp = _compute_document_fingerprint(stats, fram_order)
+        tbf = _compute_terms_by_framing_detailed(
+            comparison_by_doc, fram_order, language="both", label_source=src, top_n=30,
+        )
+        tbf_en = _compute_terms_by_framing_detailed(
+            comparison_by_doc, fram_order, language="en", label_source=src, top_n=30,
+        )
+        tbf_ru = _compute_terms_by_framing_detailed(
+            comparison_by_doc, fram_order, language="ru", label_source=src, top_n=30,
+        )
+        tfh = _compute_term_framing_heatmap(
+            comparison_by_doc, fram_order, top_n_terms=30, label_source=src,
+        )
+        tfh_en = _compute_term_framing_heatmap(
+            comparison_by_doc, fram_order, top_n_terms=30, language="en", label_source=src,
+        )
+        tfh_ru = _compute_term_framing_heatmap(
+            comparison_by_doc, fram_order, top_n_terms=30, language="ru", label_source=src,
+        )
+        out[src] = {
+            "categories": stats["categories"],
+            "framings": _filter_framing_counts_dict_for_report_ui(
+                dict(stats["framings"]), cat_ids, config,
+            ),
+            "perDoc": [
+                {
+                    "doc_id": pd["doc_id"],
+                    "display_name": pd["display_name"],
+                    "categories": pd["categories"],
+                    "framings": _filter_framing_counts_dict_for_report_ui(
+                        pd.get("framings", {}), cat_ids, config,
+                    ),
+                }
+                for pd in stats["per_doc"]
+            ],
+            "heatmap": stats["heatmap"],
+            "termsByCat": terms_by_cat,
+            "termsByCatEng": tc_eng_cat,
+            "termsByCatRus": tc_rus_cat,
+            "termsByFram": _filter_framing_counts_dict_for_report_ui(
+                dict(terms_by_fram), cat_ids, config,
+            ),
+            "termsByFramEng": _filter_framing_counts_dict_for_report_ui(
+                dict(tc_eng_fram), cat_ids, config,
+            ),
+            "termsByFramRus": _filter_framing_counts_dict_for_report_ui(
+                dict(tc_rus_fram), cat_ids, config,
+            ),
+            "trends": trends,
+            "docFingerprint": doc_fp,
+            "termsByFramingDetailed": tbf,
+            "termsByFramingDetailedEn": tbf_en,
+            "termsByFramingDetailedRu": tbf_ru,
+            "termFramingHeatmap": tfh,
+            "termFramingHeatmapEn": tfh_en,
+            "termFramingHeatmapRu": tfh_ru,
+        }
+    return out
 
 
 def _glossary_sorted_terms_block(
@@ -4977,8 +5357,8 @@ def _glossary_tab(
         html_b, nb = _glossary_sorted_terms_block(terms_set_b, b_docs, b_locs, colour, doc_names)
         if not dual_exp:
             html_b = (
-                '<p style="color:#6b7280;font-size:0.9rem;">AI Segmented comparison is not loaded. '
-                "Add <code>report.secondary_comparison_json</code> when building the report.</p>"
+                '<p style="color:#6b7280;font-size:0.9rem;" data-i18n="glossary_ai_segmented_unavailable">'
+                "Independent AI Assessment terms are not available in this view.</p>"
             )
             nb = 0
         layers_inner = (
@@ -5014,8 +5394,8 @@ def _glossary_tab(
         html_b, nb = _glossary_sorted_terms_block(terms_set_b, b_docs, b_locs, colour, doc_names)
         if not dual_exp:
             html_b = (
-                '<p style="color:#6b7280;font-size:0.9rem;">AI Segmented comparison is not loaded. '
-                "Add <code>report.secondary_comparison_json</code> when building the report.</p>"
+                '<p style="color:#6b7280;font-size:0.9rem;" data-i18n="glossary_ai_segmented_unavailable">'
+                "Independent AI Assessment terms are not available in this view.</p>"
             )
             nb = 0
         layers_inner = (
@@ -5104,6 +5484,7 @@ def _script(
     *,
     standalone_viz: bool = False,
     ui_translations: Optional[Dict[str, Any]] = None,
+    taxonomy_definitions: Optional[Dict[str, Dict[str, str]]] = None,
 ) -> str:
     cat_ids = [c.get("id", "") for c in categories if c.get("id")]
     fram_ids = [f.get("id", "") for f in framings if f.get("id")]
@@ -5112,6 +5493,7 @@ def _script(
     cat_redirect_json = json.dumps(GROUND_TRUTH_CONTENT_CATEGORY_REDIRECT, ensure_ascii=False)
     term_synonyms = term_synonyms or {}
     term_synonyms_json = json.dumps(term_synonyms, ensure_ascii=False)
+    taxonomy_defs_json = json.dumps(taxonomy_definitions or {}, ensure_ascii=False)
     tr_src = ui_translations if ui_translations is not None else _UI_TRANSLATIONS
     ui_translations_json = json.dumps(tr_src, ensure_ascii=False)
     standalone_js = "var STANDALONE_VIZ = true;\n" if standalone_viz else "var STANDALONE_VIZ = false;\n"
@@ -5122,6 +5504,7 @@ def _script(
         "var TAXONOMY_ALL_FRAMINGS = " + fram_json + ";\n"
         "var CATEGORY_LABEL_REDIRECT = " + cat_redirect_json + ";\n"
         "var TERM_SYNONYMS = " + term_synonyms_json + ";\n"
+        "var TAXONOMY_DEFINITIONS = " + taxonomy_defs_json + ";\n"
         "var UI_TRANSLATIONS = " + ui_translations_json + ";\n"
     )
     return prefix + """
@@ -5392,23 +5775,56 @@ function showTab(tabId) {
   }
   if (typeof updateDocNavButtons === 'function') updateDocNavButtons();
 }
-var scrollSyncInitialized = {};
-function initScrollSyncForDoc(tid) {
-  if (scrollSyncInitialized[tid]) return;
-  var eng = document.getElementById('doc-text-eng-' + tid);
-  var rus = document.getElementById('doc-text-rus-' + tid);
-  if (!eng || !rus) return;
-  scrollSyncInitialized[tid] = true;
-  var syncing = false;
-  function syncScroll(source, target) {
-    if (syncing) return;
-    syncing = true;
-    target.scrollTop = source.scrollTop;
-    target.scrollLeft = source.scrollLeft;
-    requestAnimationFrame(function() { syncing = false; });
+function scrollIlluminatorPanelToSpan(container, span) {
+  if (!container || !span || !container.contains(span)) return;
+  var cRect = container.getBoundingClientRect();
+  var sRect = span.getBoundingClientRect();
+  var targetTop = container.scrollTop + (sRect.top - cRect.top) - (container.clientHeight - sRect.height) / 2;
+  if (targetTop < 0) targetTop = 0;
+  var maxTop = container.scrollHeight - container.clientHeight;
+  if (targetTop > maxTop) targetTop = maxTop;
+  container.scrollTo({ top: targetTop, behavior: 'smooth' });
+}
+function showTaxonomyDefinitionPopover(taxonomyId, anchorEl) {
+  if (!taxonomyId || !anchorEl) return;
+  var info = (typeof TAXONOMY_DEFINITIONS !== 'undefined' && TAXONOMY_DEFINITIONS) ? TAXONOMY_DEFINITIONS[taxonomyId] : null;
+  var pop = document.getElementById('term-definition-popover');
+  if (!pop) {
+    pop = document.createElement('div');
+    pop.id = 'term-definition-popover';
+    pop.className = 'term-definition-popover';
+    pop.style.display = 'none';
+    document.body.appendChild(pop);
   }
-  eng.addEventListener('scroll', function() { syncScroll(eng, rus); });
-  rus.addEventListener('scroll', function() { syncScroll(rus, eng); });
+  var label = info && info.label ? info.label : taxonomyId;
+  var desc = info && info.description ? info.description : '';
+  var examples = info && info.examples ? info.examples : '';
+  var purposeLbl = (typeof t === 'function' ? t('glossary_purpose_label') : 'Purpose:');
+  var examplesLbl = (typeof t === 'function' ? t('glossary_examples_label') : 'Examples:');
+  var noDef = (typeof t === 'function' ? t('no_definition') : 'No definition available');
+  var html = '<div class="term-def-title">' + escapeHtmlLS(label) + '</div>';
+  if (desc) html += '<div class="term-def-section"><div class="term-def-label">' + purposeLbl + '</div><div>' + escapeHtmlLS(desc) + '</div></div>';
+  if (examples) html += '<div class="term-def-section"><div class="term-def-label">' + examplesLbl + '</div><div style="font-style:italic;">' + escapeHtmlLS(examples) + '</div></div>';
+  if (!desc && !examples) html += '<div class="term-def-fallback">' + escapeHtmlLS(noDef) + '</div>';
+  pop.innerHTML = html;
+  pop.style.display = 'block';
+  var rect = anchorEl.getBoundingClientRect();
+  pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - pop.offsetWidth - 8)) + 'px';
+  pop.style.top = (rect.bottom + 6) + 'px';
+  var closePop = function(ev) {
+    if (ev && ev.target && (pop.contains(ev.target) || (anchorEl.contains && anchorEl.contains(ev.target)))) return;
+    pop.style.display = 'none';
+    document.removeEventListener('click', closePop);
+    document.removeEventListener('keydown', escClose);
+  };
+  var escClose = function(ev) {
+    if (ev.key === 'Escape') {
+      pop.style.display = 'none';
+      document.removeEventListener('click', closePop);
+      document.removeEventListener('keydown', escClose);
+    }
+  };
+  setTimeout(function() { document.addEventListener('click', closePop); document.addEventListener('keydown', escClose); }, 0);
 }
 function hexToRgba(hex, a) {
   if (!hex || hex.indexOf('rgb') === 0) return hex || 'transparent';
@@ -6069,7 +6485,11 @@ function onSectionClickToView(tid, rowIndex, triggerEl) {
   for (var i = 0; i < spansEng.length; i++) allSpans.push(spansEng[i]);
   for (var j = 0; j < spansRus.length; j++) allSpans.push(spansRus[j]);
   allSpans.forEach(function(s) { s.classList.add('doc-entry-highlight-brief'); });
-  if (allSpans.length > 0) allSpans[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(function() {
+    if (detailsEl) detailsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (spansEng.length > 0) scrollIlluminatorPanelToSpan(containerEng, spansEng[0]);
+    if (spansRus.length > 0) scrollIlluminatorPanelToSpan(containerRus, spansRus[0]);
+  }, 80);
   setTimeout(function() { allSpans.forEach(function(s) { s.classList.remove('doc-entry-highlight-brief'); }); }, 2100);
   pulseIlluminatorVignette(tid);
 }
@@ -6081,7 +6501,6 @@ function onDocumentTabShown(tid) {
   }
   applyDocumentSearchAndFilter(tid);
   applyComparisonTableFilters(tid);
-  if (typeof initScrollSyncForDoc === 'function') initScrollSyncForDoc(tid);
   if (tabEl) {
     var detOpen = tabEl.querySelector('details.doc-viz-details[open]');
     if (detOpen) {
@@ -6255,13 +6674,17 @@ function getVizConfig() {
   var radarDefaults = (defaults && defaults.radar) ? defaults.radar : { mode: 'single', compare_count: 3, selected_indices: [] };
   var segLenDefaults = (defaults && defaults.segment_length) ? defaults.segment_length : { scale: 100, x_tick_step: 0 };
   var chartTextDefaults = (defaults && defaults.chart_text) ? defaults.chart_text : { language: 'both' };
+  var labelSourceDefault = (defaults && defaults.label_source) ? defaults.label_source : 'llm';
+  var termsTopNDefault = (defaults && defaults.terms_top_n != null) ? defaults.terms_top_n : 10;
   return {
     selection: stored.selection || VIZ_DEFAULT_SELECTION,
     config: {
       word_cloud: Object.assign({}, defaults.word_cloud, stored.config && stored.config.word_cloud),
       radar: Object.assign({}, radarDefaults, stored.config && stored.config.radar),
       segment_length: Object.assign({}, segLenDefaults, stored.config && stored.config.segment_length),
-      chart_text: Object.assign({}, chartTextDefaults, stored.config && stored.config.chart_text)
+      chart_text: Object.assign({}, chartTextDefaults, stored.config && stored.config.chart_text),
+      label_source: (stored.config && stored.config.label_source) ? stored.config.label_source : labelSourceDefault,
+      terms_top_n: (stored.config && stored.config.terms_top_n != null) ? stored.config.terms_top_n : termsTopNDefault
     }
   };
 }
@@ -6368,8 +6791,88 @@ function vizSegmentLenAxis(p, tvLang) {
   if (tvLang === 'ru') return (p.length_rus != null) ? p.length_rus : 0;
   return p.length || 0;
 }
+function mergeVizLabelSource(data, cfg) {
+  var src = (cfg.config && cfg.config.label_source) ? cfg.config.label_source : 'llm';
+  var lv = data.labelVariants;
+  if (!lv || !lv[src]) return data;
+  var slice = lv[src];
+  var out = Object.assign({}, data);
+  ['categories','framings','perDoc','termsByCat','termsByCatEng','termsByCatRus','termsByFram','termsByFramEng','termsByFramRus','trends','docFingerprint','termsByFramingDetailed','termsByFramingDetailedEn','termsByFramingDetailedRu','termFramingHeatmap','termFramingHeatmapEn','termFramingHeatmapRu'].forEach(function(k) {
+    if (slice[k] != null) out[k] = slice[k];
+  });
+  out._heatmapSlice = slice;
+  return out;
+}
+function vizSliceTermsTopN(detailed, topN) {
+  if (!detailed || !topN) return detailed || {};
+  var cap = Math.max(1, parseInt(topN, 10) || 10);
+  var out = {};
+  Object.keys(detailed).forEach(function(fram) {
+    out[fram] = (detailed[fram] || []).slice(0, cap);
+  });
+  return out;
+}
+function vizSliceTermHeatmapRows(heatmap, topN) {
+  if (!heatmap || !topN) return heatmap || {};
+  var cap = Math.max(1, parseInt(topN, 10) || 10);
+  var scored = Object.keys(heatmap).map(function(t) {
+    var row = heatmap[t] || {};
+    var total = 0;
+    Object.keys(row).forEach(function(f) { total += row[f] || 0; });
+    return { t: t, total: total };
+  });
+  scored.sort(function(a, b) { return b.total - a.total; });
+  var out = {};
+  scored.slice(0, cap).forEach(function(x) { out[x.t] = heatmap[x.t]; });
+  return out;
+}
+function vizHeatmapCellColour(intensity) {
+  if (intensity <= 0) return '#fffef9';
+  if (intensity < 0.2) return '#f0fdfa';
+  if (intensity < 0.4) return '#99f6e4';
+  if (intensity < 0.6) return '#2dd4bf';
+  if (intensity < 0.8) return '#0f766e';
+  return '#134e4a';
+}
+function vizEscapeHtml(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function renderCategoryFramingHeatmap(mountEl, statsSlice, catOrder, framOrder) {
+  if (!mountEl || !statsSlice) return;
+  var heatmap = {};
+  (statsSlice.heatmap || []).forEach(function(h) { heatmap[h.cat + '|' + h.fram] = h.count; });
+  var cats = (catOrder && catOrder.length) ? catOrder.slice() : Object.keys(statsSlice.categories || {}).sort(function(a, b) { return (statsSlice.categories[b] || 0) - (statsSlice.categories[a] || 0); });
+  var frams = (framOrder && framOrder.length) ? framOrder.slice() : Object.keys(statsSlice.framings || {}).sort(function(a, b) { return (statsSlice.framings[b] || 0) - (statsSlice.framings[a] || 0); });
+  if (!cats.length || !frams.length) {
+    mountEl.innerHTML = '<p class="viz-intro" data-i18n="no_data">No data available.</p>';
+    return;
+  }
+  var maxVal = 0;
+  cats.forEach(function(cat) {
+    frams.forEach(function(fram) {
+      var v = heatmap[cat + '|' + fram] || 0;
+      if (v > maxVal) maxVal = v;
+    });
+  });
+  maxVal = maxVal || 1;
+  var header = '<tr><th></th>' + frams.map(function(f) { return '<th>' + vizEscapeHtml(f) + '</th>'; }).join('') + '</tr>';
+  var body = cats.map(function(cat) {
+    var cells = frams.map(function(fram) {
+      var cnt = heatmap[cat + '|' + fram] || 0;
+      var intensity = cnt / maxVal;
+      var bg = vizHeatmapCellColour(intensity);
+      var textColour = intensity < 0.5 ? '#134e4a' : '#f0fdfa';
+      return '<td class="heatmap-cell" style="background:' + bg + ';color:' + textColour + '" title="' + vizEscapeHtml(cat) + ' x ' + vizEscapeHtml(fram) + ': ' + cnt + '">' + cnt + '</td>';
+    }).join('');
+    return '<tr><th>' + vizEscapeHtml(cat) + '</th>' + cells + '</tr>';
+  }).join('');
+  var legend = '<div class="heatmap-legend"><span class="heatmap-legend-label">0</span><div class="heatmap-legend-bar"></div><span class="heatmap-legend-label">' + maxVal + '</span></div>';
+  mountEl.innerHTML = legend + '<table class="heatmap-table"><thead>' + header + '</thead><tbody>' + body + '</tbody></table>';
+}
 function renderVizPanel(panelId, data) {
   var cfg = getVizConfig();
+  data = mergeVizLabelSource(data, cfg);
+  var termsTopN = Math.max(1, parseInt((cfg.config && cfg.config.terms_top_n != null) ? cfg.config.terms_top_n : 10, 10) || 10);
   var catOrder = data.catOrder || [];
   var framOrder = data.framOrder || [];
   var catCols = data.catColours || {};
@@ -6389,7 +6892,10 @@ function renderVizPanel(panelId, data) {
     });
   }
   if (vizChartInstances[panelId]) { vizChartInstances[panelId].destroy(); vizChartInstances[panelId] = null; }
-  if (panelId === 'viz-wordcloud' && typeof WordCloud !== 'undefined') {
+  if (panelId === 'viz-heatmap') {
+    var hmMount = document.getElementById('viz-heatmap-mount');
+    if (hmMount && data._heatmapSlice) renderCategoryFramingHeatmap(hmMount, data._heatmapSlice, catOrder, framOrder);
+  } else if (panelId === 'viz-wordcloud' && typeof WordCloud !== 'undefined') {
     var engWrap = document.getElementById('wc-eng-wrap');
     var rusWrap = document.getElementById('wc-rus-wrap');
     if (engWrap) engWrap.classList.toggle('hidden', lang === 'ru');
@@ -6526,7 +7032,7 @@ function renderVizPanel(panelId, data) {
       var dataMax = Math.max.apply(null, sla.map(function(p){ return vizSegmentLenAxis(p, tvLang); })) || 500;
       var xMax = dataMax * (100 / scale);
       var xTicks = xTickStep > 0 ? { stepSize: xTickStep } : { maxTicksLimit: 80 };
-      var xAxisTitle = tvLang === 'en' ? 'Segment length — English (chars)' : (tvLang === 'ru' ? 'Segment length — Russian (chars)' : 'Segment length (max EN/RU chars)');
+      var xAxisTitle = tvLang === 'en' ? 'Segment length, English (chars)' : (tvLang === 'ru' ? 'Segment length, Russian (chars)' : 'Segment length (max EN/RU chars)');
       var xScale = { title: { display: true, text: xAxisTitle }, min: 0, max: Math.max(xMax, 50), ticks: xTicks };
       vizChartInstances[panelId] = new Chart(el9, { type: 'scatter', data: { datasets: [{ label: 'Match', data: matchPts, backgroundColor: 'rgba(21,128,61,0.5)', pointRadius: 3 }, { label: 'Mismatch', data: noMatchPts, backgroundColor: 'rgba(220,38,38,0.5)', pointRadius: 3 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true } }, scales: { x: xScale, y: { min: -0.2, max: 1.2, ticks: { callback: function(v){ return v>=0.9?'Match':v<=0.1?'Mismatch':''; } } } } } });
     }
@@ -6620,7 +7126,7 @@ function renderVizPanel(panelId, data) {
     }
   } else if (panelId === 'viz-terms-by-framing') {
     var tbf = document.getElementById('terms-by-framing-container');
-    var tbfData = vizPickTermsByFramingDetailed(data, tvLang);
+    var tbfData = vizSliceTermsTopN(vizPickTermsByFramingDetailed(data, tvLang), termsTopN);
     var fo = data.framOrder || [];
     var framCols = data.framColours || {};
     if (tbf && fo.length > 0) {
@@ -6634,7 +7140,7 @@ function renderVizPanel(panelId, data) {
     }
   } else if (panelId === 'viz-term-framing-heatmap') {
     var thEl = document.getElementById('term-framing-heatmap-table');
-    var thData = vizPickTermFramingHeatmap(data, tvLang);
+    var thData = vizSliceTermHeatmapRows(vizPickTermFramingHeatmap(data, tvLang), termsTopN);
     var fo = data.framOrder || [];
     var terms = Object.keys(thData);
     if (thEl) {
@@ -6651,7 +7157,7 @@ function renderVizPanel(panelId, data) {
         }).join('');
         thEl.innerHTML = header + '<tbody>' + body + '</tbody>';
       } else {
-        thEl.innerHTML = '<tbody><tr><td colspan="10" style="padding: 2rem; text-align: center; color: #6b7280;">No term-framing data available. Ensure segments have framing labels and extractable words (min 3 chars, excluding stopwords).</td></tr></tbody>';
+        thEl.innerHTML = '<tbody><tr><td colspan="10" style="padding: 2rem; text-align: center; color: #6b7280;">' + (typeof t === 'function' ? t('viz_term_framing_no_data') : 'No term–framing data to show for the current selection.') + '</td></tr></tbody>';
       }
     }
   } else if (panelId === 'viz-radar' && typeof Chart !== 'undefined') {
@@ -6787,6 +7293,8 @@ function renderDocVizPanel(root, vizKind, data) {
   var ck = docVizChartKey(suffix, vizKind);
   docVizDestroyChart(suffix, vizKind);
   var cfg = getVizConfig();
+  data = mergeVizLabelSource(data, cfg);
+  var termsTopN = Math.max(1, parseInt((cfg.config && cfg.config.terms_top_n != null) ? cfg.config.terms_top_n : 10, 10) || 10);
   var catOrder = data.catOrder || [];
   var framOrder = data.framOrder || [];
   var catCols = data.catColours || {};
@@ -6823,7 +7331,11 @@ function renderDocVizPanel(root, vizKind, data) {
     }
     return;
   }
-  if (vizKind === 'heatmap') return;
+  if (vizKind === 'heatmap') {
+    var hmMountDoc = root.querySelector('.doc-viz-heatmap-mount');
+    if (hmMountDoc && data._heatmapSlice) renderCategoryFramingHeatmap(hmMountDoc, data._heatmapSlice, catOrder, framOrder);
+    return;
+  }
   if (vizKind === 'places-map') {
     var mapWrap = root.querySelector('.doc-viz-places-embed-wrap');
     if (mapWrap) {
@@ -6945,7 +7457,7 @@ function renderDocVizPanel(root, vizKind, data) {
       var dataMax = Math.max.apply(null, sla.map(function(p){ return vizSegmentLenAxis(p, tvLang); })) || 500;
       var xMax = dataMax * (100 / scale);
       var xTicks = xTickStep > 0 ? { stepSize: xTickStep } : { maxTicksLimit: 80 };
-      var xAxisTitle = tvLang === 'en' ? 'Segment length — English (chars)' : (tvLang === 'ru' ? 'Segment length — Russian (chars)' : 'Segment length (max EN/RU chars)');
+      var xAxisTitle = tvLang === 'en' ? 'Segment length, English (chars)' : (tvLang === 'ru' ? 'Segment length, Russian (chars)' : 'Segment length (max EN/RU chars)');
       var xScale = { title: { display: true, text: xAxisTitle }, min: 0, max: Math.max(xMax, 50), ticks: xTicks };
       vizChartInstances[ck] = new Chart(el9, { type: 'scatter', data: { datasets: [{ label: 'Match', data: matchPts, backgroundColor: 'rgba(21,128,61,0.5)', pointRadius: 3 }, { label: 'Mismatch', data: noMatchPts, backgroundColor: 'rgba(220,38,38,0.5)', pointRadius: 3 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: true } }, scales: { x: xScale, y: { min: -0.2, max: 1.2, ticks: { callback: function(v){ return v>=0.9?'Match':v<=0.1?'Mismatch':''; } } } } } });
     }
@@ -7014,7 +7526,7 @@ function renderDocVizPanel(root, vizKind, data) {
     }
   } else if (vizKind === 'terms-by-framing') {
     var tbf = docVizHost(root, 'terms-by-framing');
-    var tbfData = vizPickTermsByFramingDetailed(data, tvLang);
+    var tbfData = vizSliceTermsTopN(vizPickTermsByFramingDetailed(data, tvLang), termsTopN);
     var fo = data.framOrder || [];
     var framCols3 = data.framColours || {};
     if (tbf && fo.length > 0) {
@@ -7028,7 +7540,7 @@ function renderDocVizPanel(root, vizKind, data) {
     }
   } else if (vizKind === 'term-framing-heatmap') {
     var thEl = docVizHost(root, 'term-framing-heatmap');
-    var thData = vizPickTermFramingHeatmap(data, tvLang);
+    var thData = vizSliceTermHeatmapRows(vizPickTermFramingHeatmap(data, tvLang), termsTopN);
     var fo = data.framOrder || [];
     var terms = Object.keys(thData);
     if (thEl) {
@@ -7045,7 +7557,7 @@ function renderDocVizPanel(root, vizKind, data) {
         }).join('');
         thEl.innerHTML = header + '<tbody>' + body + '</tbody>';
       } else {
-        thEl.innerHTML = '<tbody><tr><td colspan="10" style="padding: 2rem; text-align: center; color: #6b7280;">No term-framing data available. Ensure segments have framing labels and extractable words (min 3 chars, excluding stopwords).</td></tr></tbody>';
+        thEl.innerHTML = '<tbody><tr><td colspan="10" style="padding: 2rem; text-align: center; color: #6b7280;">' + (typeof t === 'function' ? t('viz_term_framing_no_data') : 'No term–framing data to show for the current selection.') + '</td></tr></tbody>';
       }
     }
   }
@@ -7110,10 +7622,13 @@ function initDocViz(root) {
       if (baseId === 'viz-segment-scale') c.config.segment_length.scale = parseInt(tgt.value, 10) || 100;
       if (baseId === 'viz-segment-x-step') c.config.segment_length.x_tick_step = parseInt(tgt.value, 10);
       if (baseId === 'viz-chart-text-lang') c.config.chart_text.language = tgt.value || 'both';
-      if (baseId && (/^viz-(max-words|weight-factor|language|stopwords-extra|text-source|wc-category|wc-framing|chart-text-lang)$/.test(baseId) || /^viz-radar-(mode|compare-count)$/.test(baseId) || /^viz-segment-(scale|x-step)$/.test(baseId))) {
+      if (baseId === 'viz-label-source') c.config.label_source = tgt.value || 'llm';
+      if (baseId === 'viz-terms-top-n') c.config.terms_top_n = parseInt(tgt.value, 10) || 10;
+      if (baseId && (/^viz-(max-words|weight-factor|language|stopwords-extra|text-source|wc-category|wc-framing|chart-text-lang|label-source|terms-top-n)$/.test(baseId) || /^viz-radar-(mode|compare-count)$/.test(baseId) || /^viz-segment-(scale|x-step)$/.test(baseId))) {
         saveVizConfig(c.selection, c.config);
         var vk = sel ? sel.value : 'places-map';
         renderDocVizPanel(root, vk, data);
+        if (typeof buildConfigPanel === 'function') buildConfigPanel('viz-' + vk, data, docCtx);
       }
     });
   }
@@ -7293,7 +7808,7 @@ function buildConfigPanel(panelId, data, docCtx) {
       var note = document.createElement('p');
       note.className = 'viz-config-doc-note';
       note.setAttribute('data-i18n', 'viz_config_doc_radar_note');
-      note.textContent = (typeof t === 'function' ? t('viz_config_doc_radar_note') : 'This document view shows a single profile. Multi-document radar modes are available in the Research Lab.');
+      note.textContent = (typeof t === 'function' ? t('viz_config_doc_radar_note') : 'This view shows one document profile only.');
       body.appendChild(note);
       return;
     }
@@ -7350,6 +7865,58 @@ function buildConfigPanel(panelId, data, docCtx) {
     body.appendChild(stepRow);
   }
   var chartTextPanels = { 'viz-terms-cat': 1, 'viz-terms-fram': 1, 'viz-vocab-diversity': 1, 'viz-segment-length': 1, 'viz-terms-by-framing': 1, 'viz-term-framing-heatmap': 1 };
+  var labelSourcePanels = { 'viz-heatmap': 1, 'viz-per-doc-cat': 1, 'viz-per-doc-fram': 1, 'viz-pie-cat': 1, 'viz-pie-fram': 1, 'viz-terms-cat': 1, 'viz-terms-fram': 1, 'viz-trends': 1, 'viz-radar': 1, 'viz-doc-fingerprint': 1, 'viz-terms-by-framing': 1, 'viz-term-framing-heatmap': 1 };
+  var termsTopNPanels = { 'viz-terms-by-framing': 1, 'viz-term-framing-heatmap': 1 };
+  var externalNotePanels = { 'viz-voyant': 'viz_config_external_tool_note', 'viz-voyant-links': 'viz_config_external_tool_note', 'viz-voyant-bubblelines': 'viz_config_external_tool_note', 'viz-voyant-constellations': 'viz_config_external_tool_note' };
+  if (labelSourcePanels[panelId]) {
+    var cfgLS = getVizConfig();
+    var lsVal = (cfgLS.config && cfgLS.config.label_source) ? cfgLS.config.label_source : 'llm';
+    var rowLS = document.createElement('div');
+    rowLS.className = 'viz-config-row viz-config-full';
+    var lblLS = document.createElement('label');
+    lblLS.setAttribute('data-i18n', 'viz_config_label_source');
+    lblLS.textContent = (typeof t === 'function' ? t('viz_config_label_source') : 'Count labels from:');
+    lblLS.htmlFor = fid('viz-label-source');
+    var selLS = document.createElement('select');
+    selLS.id = fid('viz-label-source');
+    [['llm', typeof t === 'function' ? t('viz_config_label_source_llm') : 'AI labels'], ['human', typeof t === 'function' ? t('viz_config_label_source_human') : 'Human expert labels']].forEach(function(pair) {
+      var opt = document.createElement('option');
+      opt.value = pair[0];
+      opt.textContent = pair[1];
+      selLS.appendChild(opt);
+    });
+    selLS.value = lsVal;
+    rowLS.appendChild(lblLS);
+    rowLS.appendChild(selLS);
+    body.appendChild(rowLS);
+  }
+  if (termsTopNPanels[panelId]) {
+    var cfgTN = getVizConfig();
+    var tnVal = (cfgTN.config && cfgTN.config.terms_top_n != null) ? cfgTN.config.terms_top_n : 10;
+    var rowTN = document.createElement('div');
+    rowTN.className = 'viz-config-row';
+    var lblTN = document.createElement('label');
+    lblTN.setAttribute('data-i18n', 'viz_config_terms_top_n');
+    lblTN.textContent = (typeof t === 'function' ? t('viz_config_terms_top_n') : 'Top terms shown:');
+    lblTN.htmlFor = fid('viz-terms-top-n');
+    var inTN = document.createElement('input');
+    inTN.type = 'number';
+    inTN.id = fid('viz-terms-top-n');
+    inTN.min = '3';
+    inTN.max = '30';
+    inTN.value = tnVal;
+    rowTN.appendChild(lblTN);
+    rowTN.appendChild(inTN);
+    body.appendChild(rowTN);
+  }
+  if (externalNotePanels[panelId]) {
+    var noteExt = document.createElement('p');
+    noteExt.className = 'viz-config-external-note';
+    noteExt.setAttribute('data-i18n', externalNotePanels[panelId]);
+    noteExt.style.cssText = 'margin:0;font-size:0.85rem;color:#6b7280;line-height:1.45;';
+    noteExt.textContent = (typeof t === 'function' ? t(externalNotePanels[panelId]) : '');
+    body.appendChild(noteExt);
+  }
   if (chartTextPanels[panelId]) {
     var cfgCT = getVizConfig();
     var ctLang = (cfgCT.config.chart_text && cfgCT.config.chart_text.language) ? cfgCT.config.chart_text.language : 'both';
@@ -7371,12 +7938,6 @@ function buildConfigPanel(panelId, data, docCtx) {
     rowCT.appendChild(lblCT);
     rowCT.appendChild(selCT);
     body.appendChild(rowCT);
-    var hintCT = document.createElement('p');
-    hintCT.className = 'viz-config-chart-text-hint';
-    hintCT.setAttribute('data-i18n', 'viz_config_chart_text_lang_hint');
-    hintCT.style.cssText = 'margin:0 0 0.35rem 0;font-size:0.82rem;color:#6b7280;line-height:1.45;width:100%;';
-    hintCT.textContent = (typeof t === 'function' ? t('viz_config_chart_text_lang_hint') : '');
-    body.appendChild(hintCT);
   }
   if (isDoc && docCtx && docCtx.suffix) {
     var detP = document.getElementById('viz-config-panel-' + docCtx.suffix);
@@ -7516,7 +8077,9 @@ function initViz() {
       if (e.target.id === 'viz-segment-scale') c.config.segment_length.scale = parseInt(e.target.value, 10) || 100;
       if (e.target.id === 'viz-segment-x-step') c.config.segment_length.x_tick_step = parseInt(e.target.value, 10);
       if (e.target.id === 'viz-chart-text-lang') c.config.chart_text.language = e.target.value || 'both';
-      if (e.target.id && (/^viz-(max-words|weight-factor|language|stopwords-extra|text-source|wc-category|wc-framing|chart-text-lang)$/.test(e.target.id) || /^viz-radar-(mode|compare-count)$/.test(e.target.id) || /^viz-segment-(scale|x-step)$/.test(e.target.id))) {
+      if (e.target.id === 'viz-label-source') c.config.label_source = e.target.value || 'llm';
+      if (e.target.id === 'viz-terms-top-n') c.config.terms_top_n = parseInt(e.target.value, 10) || 10;
+      if (e.target.id && (/^viz-(max-words|weight-factor|language|stopwords-extra|text-source|wc-category|wc-framing|chart-text-lang|label-source|terms-top-n)$/.test(e.target.id) || /^viz-radar-(mode|compare-count)$/.test(e.target.id) || /^viz-segment-(scale|x-step)$/.test(e.target.id))) {
         saveVizConfig(c.selection, c.config);
         renderVizPanel('viz-' + c.selection, payload());
       }
@@ -7948,61 +8511,13 @@ document.addEventListener('DOMContentLoaded', function() {
       applyComparisonTableFilters(tid);
       return;
     }
-    var seg = e.target.closest ? e.target.closest('.doc-entry') : (e.target.classList && e.target.classList.contains('doc-entry') ? e.target : null);
-    if (seg) {
+    var legendBtn = e.target.closest && e.target.closest('.colour-legend-trigger, .comparison-taxonomy-trigger');
+    if (legendBtn) {
+      e.preventDefault();
       e.stopPropagation();
-      var eng = (seg.getAttribute('data-entry-eng') || '').trim();
-      var rus = (seg.getAttribute('data-entry-rus') || '').trim();
-      function norm(s) { return (s || '').replace(/\\s+/g, ' ').trim(); }
-      var key = norm(eng) + '\\t' + norm(rus);
-      var revKey = norm(rus) + '\\t' + norm(eng);
-      var info = (typeof TERM_SYNONYMS !== 'undefined' && TERM_SYNONYMS[key]) || (TERM_SYNONYMS[revKey] || null);
-      var pop = document.getElementById('term-definition-popover');
-      if (!pop) {
-        pop = document.createElement('div');
-        pop.id = 'term-definition-popover';
-        pop.className = 'term-definition-popover';
-        pop.style.display = 'none';
-        document.body.appendChild(pop);
-      }
-      var synEng = [], synRus = [];
-      if (info) {
-        synEng = (info.synonyms_eng || []).filter(function(s) { return norm((s || '').trim()) !== norm(eng); });
-        synRus = (info.synonyms_rus || []).filter(function(s) { return norm((s || '').trim()) !== norm(rus); });
-      }
-      if (info && (info.definition_eng || info.definition_rus || synEng.length || synRus.length)) {
-        var html = '';
-        var defEnLbl = (typeof t === 'function' ? t('definition_en') : 'Definition (EN)');
-        var defRuLbl = (typeof t === 'function' ? t('definition_ru') : 'Definition (RU)');
-        var synEnLbl = (typeof t === 'function' ? t('synonyms_en') : 'Synonyms (EN)');
-        var synRuLbl = (typeof t === 'function' ? t('synonyms_ru') : 'Synonyms (RU)');
-        if (info.definition_eng) html += '<div class="term-def-section"><div class="term-def-label">' + defEnLbl + '</div><div>' + info.definition_eng.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div></div>';
-        if (info.definition_rus) html += '<div class="term-def-section"><div class="term-def-label">' + defRuLbl + '</div><div>' + info.definition_rus.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div></div>';
-        if (synEng.length) html += '<div class="term-def-section"><div class="term-def-label">' + synEnLbl + '</div><div>' + synEng.join(', ').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div></div>';
-        if (synRus.length) html += '<div class="term-def-section"><div class="term-def-label">' + synRuLbl + '</div><div>' + synRus.join(', ').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div></div>';
-        pop.innerHTML = html;
-        pop.style.display = 'block';
-        var rect = seg.getBoundingClientRect();
-        pop.style.left = rect.left + 'px';
-        pop.style.top = (rect.bottom + 4) + 'px';
-        var closePop = function(ev) { if (ev && ev.target && pop.contains(ev.target)) return; pop.style.display = 'none'; document.removeEventListener('click', closePop); document.removeEventListener('keydown', escClose); };
-        var escClose = function(ev) { if (ev.key === 'Escape') { pop.style.display = 'none'; document.removeEventListener('click', closePop); document.removeEventListener('keydown', escClose); } };
-        setTimeout(function() { document.addEventListener('click', closePop); document.addEventListener('keydown', escClose); }, 0);
-      } else {
-        var cat = seg.getAttribute('data-category') || '';
-        var fram = seg.getAttribute('data-framing') || '';
-        var catLbl = (typeof t === 'function' ? t('category') : 'Category');
-        var framLbl = (typeof t === 'function' ? t('framing') : 'Framing');
-        var noDef = (typeof t === 'function' ? t('no_definition') : 'No definition available');
-        pop.innerHTML = '<div class="term-def-fallback">' + (cat ? catLbl + ': ' + cat.replace(/</g, '&lt;') : '') + (fram ? (cat ? ' | ' : '') + framLbl + ': ' + fram.replace(/</g, '&lt;') : '') + (cat || fram ? '' : noDef) + '</div>';
-        pop.style.display = 'block';
-        var rect = seg.getBoundingClientRect();
-        pop.style.left = rect.left + 'px';
-        pop.style.top = (rect.bottom + 4) + 'px';
-        var closePop = function(ev) { if (ev && ev.target && pop.contains(ev.target)) return; pop.style.display = 'none'; document.removeEventListener('click', closePop); document.removeEventListener('keydown', escClose); };
-        var escClose = function(ev) { if (ev.key === 'Escape') { pop.style.display = 'none'; document.removeEventListener('click', closePop); document.removeEventListener('keydown', escClose); } };
-        setTimeout(function() { document.addEventListener('click', closePop); document.addEventListener('keydown', escClose); }, 0);
-      }
+      var taxId = legendBtn.getAttribute('data-taxonomy-id') || '';
+      if (taxId && typeof showTaxonomyDefinitionPopover === 'function') showTaxonomyDefinitionPopover(taxId, legendBtn);
+      return;
     }
   });
 });

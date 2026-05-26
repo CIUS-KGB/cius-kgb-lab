@@ -1,6 +1,7 @@
 """
 Test report module: given comparison input, produces valid HTML with expected structure.
 """
+import re
 import sys
 from pathlib import Path
 
@@ -8,6 +9,28 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from report import run as report_run
 from report import _normalize_segment_for_search, _get_accepted_segments
+from report import _UI_TRANSLATIONS
+
+_CANADIAN_UI_SPELLING_RE = re.compile(
+    r"\b("
+    r"labeled|labeling|human-labeled|relabeling|"
+    r"colors|colored|"
+    r"gray|canceled|canceling|traveling|traveled"
+    r")\b",
+    re.I,
+)
+
+
+def test_ui_translations_use_canadian_spelling():
+    """English UI strings avoid common US-only spellings (colour, labelled, etc.)."""
+    offenders = []
+    for key, langs in _UI_TRANSLATIONS.items():
+        text = (langs or {}).get("en") or ""
+        if not isinstance(text, str) or not text.strip():
+            continue
+        for match in _CANADIAN_UI_SPELLING_RE.finditer(text):
+            offenders.append(f"{key}: {match.group(0)}")
+    assert not offenders, "US spellings in UI copy:\n" + "\n".join(offenders)
 
 
 def test_report_folds_legacy_content_category_in_table_and_attrs():
@@ -97,7 +120,7 @@ def test_report_produces_html():
     assert "Glossary" in html
     assert "collapsible-section" in html
     assert "document-text-controls-sticky" in html
-    assert "Accuracy stats" in html and "Document text view" in html and "Comparison table" in html
+    assert "Document Text Illuminator" in html and "Human vs AI Comparison Table" in html
     assert 'class="sidebar"' in html and 'id="tab-home"' in html and "homepage-content" in html
 
     # Clean up test output

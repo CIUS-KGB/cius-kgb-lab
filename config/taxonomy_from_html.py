@@ -104,7 +104,7 @@ def _parse_content_categories(rows: List[List[str]]) -> List[Dict[str, Any]]:
             j = i + 1
             while j < len(rows):
                 next_row = rows[j]
-                next_c1 = _cell(next_row, 1) or _cell(next_row, 0)
+                next_c1 = _cell(next_row, 1)
                 if not next_c1:
                     j += 1
                     continue
