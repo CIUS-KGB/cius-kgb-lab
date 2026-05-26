@@ -185,7 +185,7 @@ def viz_lab_visualizations_section(
             f'        </select>\n'
             f'      </div>\n'
         )
-    return f"""  <details class="collapsible-section lab-visualizations-collapsible" id="lab-visualizations">
+    return f"""<details class="collapsible-section lab-visualizations-collapsible" id="lab-visualizations">
     <summary><span data-i18n="visualizations">Visualizations</span></summary>
     <div class="collapsible-body lab-visualizations-inner">
     <script type="application/json" id="viz-data">{viz_json}</script>

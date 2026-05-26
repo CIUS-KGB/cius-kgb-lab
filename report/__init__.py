@@ -2296,7 +2296,9 @@ body.standalone-viz-page .viz-how-calculated[open] > summary::after {
   .intro-segmentation-split { grid-template-columns: 1fr; }
   .intro-seg-connector { min-height: auto; padding: 0.25rem 0; }
 }
-.lab-glossary-root { margin-top: 2rem; padding-top: 0; border-top: 2px solid rgba(139,115,85,0.4); scroll-margin-top: 1rem; }
+.research-lab-sections > .collapsible-section { margin-bottom: 0.75rem; }
+.research-lab-sections > .collapsible-section:last-child { margin-bottom: 0; }
+.lab-glossary-root { margin-top: 0; padding-top: 0; border-top: none; scroll-margin-top: 1rem; }
 .lab-glossary-root .header { margin-bottom: 1.25rem; }
 .lab-glossary-collapsible-body > p:first-child { margin-top: 0; }
 .lab-visualizations-inner .viz-controls {
@@ -4216,12 +4218,10 @@ def _homepage(
     home_html = f"""
 <div class="tab-content" id="tab-home">
 <div class="header"><h2 data-i18n="home">Research Lab</h2></div>
-<div class="homepage-content">
-  {taxonomy_section}
-
-  {glossary_panel_html}
-
-  {viz_section_markup}
+<div class="homepage-content research-lab-sections">
+{taxonomy_section}
+{glossary_panel_html}
+{viz_section_markup}
 </div>
 </div>"""
     return home_html, viz_json, heatmap_html, places_map_srcdoc
