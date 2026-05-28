@@ -2,7 +2,7 @@
   "places": [
     {
       "name": "Ukraine",
-      "count": 6,
+      "count": 273,
       "coords": [
         48.3794,
         31.1656
@@ -10,8 +10,179 @@
       "source": "static"
     },
     {
+      "name": "Soviet Union",
+      "count": 141,
+      "coords": [
+        55.7558,
+        37.6173
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Kyiv",
+      "count": 140,
+      "coords": [
+        50.4501,
+        30.5234
+      ],
+      "source": "static"
+    },
+    {
+      "name": "United States",
+      "count": 88,
+      "coords": [
+        39.8283,
+        -98.5795
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Odesa",
+      "count": 86,
+      "coords": [
+        46.4825,
+        30.7233
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Canada",
+      "count": 85,
+      "coords": [
+        56.1304,
+        -106.3468
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Kharkiv",
+      "count": 63,
+      "coords": [
+        49.9935,
+        36.2304
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Lviv",
+      "count": 60,
+      "coords": [
+        49.8397,
+        24.0297
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Donetsk",
+      "count": 50,
+      "coords": [
+        48.0159,
+        37.8029
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Zaporizhzhia",
+      "count": 36,
+      "coords": [
+        47.8388,
+        35.1396
+      ],
+      "source": "static"
+    },
+    {
+      "name": "France",
+      "count": 24,
+      "coords": [
+        46.2276,
+        2.2137
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Kherson",
+      "count": 20,
+      "coords": [
+        46.6354,
+        32.6169
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Simferopol",
+      "count": 18,
+      "coords": [
+        44.9521,
+        34.1024
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Japan",
+      "count": 16,
+      "coords": [
+        36.2048,
+        138.2529
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Toronto",
+      "count": 16,
+      "coords": [
+        43.6532,
+        -79.3832
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Germany",
+      "count": 15,
+      "coords": [
+        51.1657,
+        10.4515
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Moscow",
+      "count": 15,
+      "coords": [
+        55.7558,
+        37.6173
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Ivano-Frankivsk",
+      "count": 13,
+      "coords": [
+        48.9226,
+        24.7111
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Dnipro",
+      "count": 10,
+      "coords": [
+        48.4647,
+        35.0462
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Australia",
+      "count": 8,
+      "coords": [
+        -25.2744,
+        133.7751
+      ],
+      "source": "static"
+    },
+    {
       "name": "Khmelnytskyi",
-      "count": 1,
+      "count": 8,
       "coords": [
         49.4228,
         26.9871
@@ -20,7 +191,7 @@
     },
     {
       "name": "Vinnytsia",
-      "count": 1,
+      "count": 8,
       "coords": [
         49.2328,
         28.4681
@@ -28,8 +199,17 @@
       "source": "static"
     },
     {
+      "name": "Yalta",
+      "count": 8,
+      "coords": [
+        44.5025,
+        34.1665
+      ],
+      "source": "static"
+    },
+    {
       "name": "Zhytomyr",
-      "count": 1,
+      "count": 7,
       "coords": [
         50.2547,
         28.6587
@@ -37,33 +217,249 @@
       "source": "static"
     },
     {
-      "name": "Kyiv",
-      "count": 1,
+      "name": "Illichivsk",
+      "count": 6,
       "coords": [
-        50.4501,
-        30.5234
+        46.305,
+        30.6545
       ],
       "source": "static"
     },
     {
-      "name": "Kharkiv",
-      "count": 1,
+      "name": "Pavlohrad",
+      "count": 6,
       "coords": [
-        49.9935,
-        36.2304
+        48.5333,
+        35.8667
       ],
       "source": "static"
     },
     {
-      "name": "Soviet Union",
-      "count": 1,
+      "name": "England",
+      "count": 5,
       "coords": [
-        55.7558,
-        37.6173
+        52.3555,
+        -1.1743
       ],
       "source": "static"
+    },
+    {
+      "name": "United Kingdom",
+      "count": 5,
+      "coords": [
+        55.3781,
+        -3.436
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Chernivtsi",
+      "count": 4,
+      "coords": [
+        48.2917,
+        25.9352
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Kryvyi Rih",
+      "count": 4,
+      "coords": [
+        47.9105,
+        33.3918
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Sumy",
+      "count": 4,
+      "coords": [
+        50.9216,
+        34.8003
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Washington",
+      "count": 4,
+      "coords": [
+        38.9072,
+        -77.0369
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Moldavian SSR",
+      "count": 3,
+      "coords": [
+        47.4116,
+        28.3699
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Rivne",
+      "count": 3,
+      "coords": [
+        50.6199,
+        26.2516
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Yuzhne",
+      "count": 3,
+      "coords": [
+        46.6228,
+        31.1033
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Berdychiv",
+      "count": 2,
+      "coords": [
+        49.8942,
+        28.5953
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Bilhorod-Dnistrovskyi",
+      "count": 2,
+      "coords": [
+        46.1952,
+        30.3502
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Izmail",
+      "count": 2,
+      "coords": [
+        45.3492,
+        28.84
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Jerusalem",
+      "count": 2,
+      "coords": [
+        31.7683,
+        35.2137
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Krasnosillia",
+      "count": 2,
+      "coords": [
+        48.1167,
+        24.7167
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Montreal",
+      "count": 2,
+      "coords": [
+        45.5017,
+        -73.5673
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Munich",
+      "count": 2,
+      "coords": [
+        48.1351,
+        11.582
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Yuzhny",
+      "count": 2,
+      "coords": [
+        46.6228,
+        31.1033
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Edmonton",
+      "count": 1,
+      "coords": [
+        53.5461,
+        -113.4938
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Lutsk",
+      "count": 1,
+      "coords": [
+        50.7472,
+        25.3254
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Novorossiysk",
+      "count": 1,
+      "coords": [
+        44.7235,
+        37.7685
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Novovolynsk",
+      "count": 1,
+      "coords": [
+        50.5261,
+        24.1628
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Reni",
+      "count": 1,
+      "coords": [
+        45.4564,
+        28.2828
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Winnipeg",
+      "count": 1,
+      "coords": [
+        49.8954,
+        -97.1385
+      ],
+      "source": "static"
+    },
+    {
+      "name": "UKRAINE",
+      "count": 16,
+      "coords": null,
+      "source": "pending"
+    },
+    {
+      "name": "Chernihiv",
+      "count": 2,
+      "coords": null,
+      "source": "pending"
+    },
+    {
+      "name": "Poltava",
+      "count": 2,
+      "coords": null,
+      "source": "pending"
     }
   ],
-  "total_geocoded": 7,
-  "total_failed": 0
+  "total_geocoded": 49,
+  "total_failed": 3
 }

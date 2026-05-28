@@ -10,6 +10,8 @@ from pathlib import Path
 from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 # Soviet-era name mappings (historical -> modern for geocoding)
 GAZETTEER = {
@@ -329,17 +331,34 @@ def extract_from_comparison_by_doc(comparison_by_doc: dict) -> dict:
 
 
 def main() -> int:
-    json_path = ROOT / "data" / "output" / "comparison_results.json"
-    if not json_path.exists():
-        print(f"Not found: {json_path}")
-        print("Run the full pipeline first: python run.py")
+    import os
+
+    rel = os.environ.get("PIPELINE_CONFIG", "config/pipeline_config.example.json")
+    config_path = Path(rel)
+    if not config_path.is_absolute():
+        config_path = ROOT / config_path
+    if not config_path.exists():
+        print(f"Config not found: {config_path}")
+        return 1
+    with open(config_path, encoding="utf-8") as f:
+        config = json.load(f)
+
+    from ingest import run as ingest_run
+
+    documents = ingest_run(config, ROOT)
+    if not documents:
+        print("No documents from ingest.")
         return 1
 
-    with open(json_path, encoding="utf-8") as f:
-        data = json.load(f)
+    comparison_by_doc = None
+    json_path = ROOT / "data" / "output" / "comparison_results.json"
+    if json_path.exists():
+        with open(json_path, encoding="utf-8") as f:
+            comparison_by_doc = json.load(f).get("comparison_by_doc", {})
 
-    comparison_by_doc = data.get("comparison_by_doc", {})
-    output = extract_from_comparison_by_doc(comparison_by_doc)
+    from places.corpus_extract import extract_from_documents
+
+    output = extract_from_documents(documents, comparison_by_doc=comparison_by_doc)
 
     out_path = ROOT / "data" / "output" / "places_extracted.json"
     out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")

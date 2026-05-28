@@ -652,9 +652,9 @@ _UI_TRANSLATIONS = {
     "viz_calc_segment_length_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mi>len</mi><mo>(</mo><mi>entry_eng</mi><mo>)</mo><mo>,</mo><mi>len</mi><mo>(</mo><mi>entry_rus</mi><mo>)</mo><mo>)</mo></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>y</mi><mo>=</mo><msub><mn>1</mn><mrow><mo>[</mo><mtext>both_match</mtext><mo>]</mo></mrow></msub></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Range:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>accuracy</mi><mo>(</mo><mi>bin</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_in_bin</mi></mrow><mrow><mi>total_in_bin</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>bin</mi><mo>&#x2265;</mo><mn>50</mn><mo>,</mo><mi>n</mi><mo>&#x2265;</mo><mn>15</mn></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Single:</mtext><mspace width=\"0.5em\"/><mi>accuracy</mi><mo>(</mo><mi>len</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi>matched_at_len</mi></mrow><mrow><mi>total_at_len</mi></mrow></mfrac></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Qualified:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>length</mi><mo>=</mo><mo>max</mo><mo>(</mo><mtext>довжин</mtext><mo>)</mo><mo>;</mo><mi>y</mi><mo>=</mo><mn>1</mn><mtext> якщо збіг</mtext></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>bin</mi><mo>=</mo><mo>&#x230A;</mo><mi>length</mi><mo>/</mo><mn>25</mn><mo>&#x230B;</mo><mo>&#xD7;</mo><mn>25</mn><mo>;</mo><mi>accuracy</mi><mo>=</mo><mi>matched</mi><mo>/</mo><mi>total</mi></mrow></math><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mtext>Діапазон:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>15</mn><mo>,</mo><mi>len</mi><mo>&#x2265;</mo><mn>50</mn><mo>;</mo><mtext>одна довжина:</mtext><mspace width=\"0.5em\"/><mi>n</mi><mo>&#x2265;</mo><mn>5</mn></mrow></math>"},
     "viz_calc_segment_length_technical": {"en": "length = max(len(entry_eng), len(entry_rus)): we take the longer of the two because both texts contribute to the classification. y = 1[both_match]: we count a segment as correct only when both category and framing agree. Bins of 25 chars avoid sparse data; excluding len < 50 removes noisy very-short segments. n ≥ 15 per bin (range) and n ≥ 5 (single length) ensure the \"most accurate\" stat is not driven by tiny samples.", "uk": "length = max(довжин): беремо довшу, бо обидва тексти впливають на класифікацію. y = 1[збіг]: правильний лише коли збігаються категорія й фреймінг. Біни 25 символів уникaють розріджених даних; len<50 виключаємо. n≥15 (діапазон) і n≥5 (одна довжина): щоб «найточніше» не базувалося на малих вибірках."},
     "viz_calc_radar_simple": {"en": "axis_value(cat) is the number of segments in the selected documents with category cat. In all mode, selected_docs = all documents.", "uk": "axis_value(cat): кількість сегментів з cat у вибраних doc. У режимі all: усі документи."},
-    "viz_calc_places_map_simple": {"en": "Place names are taken from text passages labelled Places in the documents. Spelling variants are normalized, geocoded, and plotted. Bigger circles mean that location shows up in more passages; each Russian or English slice counts separately when both appear.", "uk": "Назви місць беруть із текстових уривків, позначених як Places у документах; вирівнюємо варіанти написання, шукаємо координати після успішного геокодування й ставимо точку на карті. Більше коло означає, що місце згадано в більшій кількості уривків (рус / англ шматки рахуємо окремо, коли обидва є)."},
+    "viz_calc_places_map_simple": {"en": "Place names are found by scanning full document text (English and Russian) with a geography gazetteer — independent of comparison category labels. Spelling variants are normalized, geocoded, and plotted. Bigger circles mean more text mentions; English and Russian occurrences count separately.", "uk": "Назви місць знаходимо скануванням повного тексту документа (англ. і рос.) за географічним словником — незалежно від міток категорій у таблиці порівняння. Вирівнюємо варіанти, геокодуємо й ставимо точку; більше коло — більше згадок у тексті."},
     "viz_calc_places_map_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>marker_size</mi><mo>(</mo><mi>place</mi><mo>)</mo><mo>&#x221D;</mo><mi>segment_mentions</mi><mo>(</mo><mi>place</mi><mo>)</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>marker_size</mi><mo>(</mo><mi>place</mi><mo>)</mo><mo>&#x221D;</mo><mi>segment_mentions</mi><mo>(</mo><mi>place</mi><mo>)</mo></mrow></math>"},
-    "viz_calc_places_map_technical": {"en": "Only segments whose content category is Places contribute. segment_mentions(place) counts how many such segments map to that geocoded location after normalization. marker_size scales with mentions so frequent locations stand out.", "uk": "Лише сегменти категорії Places. segment_mentions(place) = кількість сегментів для геокодованого місця після нормалізації. marker_size ∝ згадкам."},
+    "viz_calc_places_map_technical": {"en": "Corpus gazetteer scan over raw_text_en and raw_text per document. mention_count(place) = non-overlapping gazetteer hits after normalization. View links use text offsets in the illuminator (similar to comparison navigation, not row-index-only).", "uk": "Скан словника по raw_text_en і raw_text. mention_count(place) = згадки після нормалізації. View — за зсувами в тексті (подібно до таблиці, але не лише row_index)."},
     "viz_calc_mismatch_flow_simple": {"en": "Table of human vs AI framing label pairs. Each cell counts aligned passages with that AI label (row) and human label (column). Only taxonomy framing labels are included. This compares the two label sets; it is not a single-label distribution.", "uk": "Таблиця пар фреймінгу ШІ та експерта. Кожна клітинка рахує уривки з міткою ШІ (рядок) та експерта (стовпець). Лише мітки фреймінгу з таксономії. Це порівняння двох наборів міток, а не розподіл однієї мітки."},
     "viz_calc_mismatch_flow_equations": {"en": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>flow</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mo>|</mo><mo>{</mo><mi>s</mi><mo>:</mo><mi>human_fram</mi><mo>=</mo><mi>h</mi><mo>&#x2227;</mo><mi>llm_fram</mi><mo>=</mo><mi>l</mi><mo>}</mo><mo>|</mo></mrow></math>", "uk": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><mi>flow</mi><mo>(</mo><mi>h</mi><mo>,</mo><mi>l</mi><mo>)</mo><mo>=</mo><mtext>кількість сегментів</mtext></mrow></math>"},
     "viz_calc_mismatch_flow_technical": {"en": "flow(h, l) = |{s : human_fram=h ∧ llm_fram=l}| over aligned comparison rows. Same counts as the framing confusion matrix: rows are AI labels, columns are human labels. Pairs outside the active framing taxonomy are omitted.", "uk": "flow(h,l) = |{s : human_fram=h ∧ llm_fram=l}|. Ті самі числа, що в матриці плутанини фреймінгу: рядки = мітки ШІ, стовпці = мітки експерта. Пари поза таксономією пропускаються."},
@@ -701,7 +701,7 @@ _UI_TRANSLATIONS = {
     "viz_read_vocab_diversity": {"en": "Each point is one document. Higher on the chart means the document uses more distinct words relative to its length. Documents far apart differ in how varied their vocabulary is.", "uk": "Кожна точка — один документ. Вище на графіку означає більше різних слів відносно довжини. Віддалені точки мають різну різноманітність словника."},
     "viz_read_trends": {"en": "Lines track how often each label appears from one document to the next in archive order. A rising line means that label becomes more common later in the set.", "uk": "Лінії показують, як часто кожна мітка з’являється від документа до документа в порядку архіву. Зростаюча лінія означає частішу мітку далі в наборі."},
     "viz_read_segment_length": {"en": "The box above the chart highlights which passage length range gets the best agreement between human and AI labels. Each dot is one passage: left to right is length, and position shows whether category and framing both matched.", "uk": "Блок над графіком показує діапазон довжини з найкращою згодою між експертом і ШІ. Кожна крапка — один уривок: вліво-вправо довжина, положення показує збіг категорії та стилю."},
-    "viz_read_places_map": {"en": "Pins mark place names found in the text. Click a pin to see the name and which passages mention it. The count at the top is the number of passages with at least one place, not the total number of mentions.", "uk": "Мітки позначають назви місць у тексті. Клацніть мітку, щоб побачити назву та уривки. Лічильник зверху — кількість уривків із хоча б одним місцем, а не загальна кількість згадок."},
+    "viz_read_places_map": {"en": "Pins mark place names found in full document text. Click a pin for mention snippets; View opens the illuminator at that text position. Counts are gazetteer mentions, not comparison-table rows.", "uk": "Мітки — місця з повного тексту документа. Клацніть мітку для уривків; View відкриває підсвітку в тексті. Лічильники — згадки словника, не рядки таблиці."},
     "viz_read_voyant": {"en": "These panels embed Voyant Tools from another site. They show patterns in a fixed project corpus and do not change when you switch documents in this site.", "uk": "Ці панелі вбудовують Voyant Tools з іншого сайту. Вони показують закономірності у фіксованому корпусі проєкту і не змінюються, коли ви перемикаєте документи тут."},
     "viz_read_radar": {"en": "Each axis is one content topic. The shape shows how many passages in the selected document or documents use each topic. A bulge outward means that topic is common. Overlay multiple documents to compare profiles.", "uk": "Кожна вісь — одна тема змісту. Форма показує, скільки уривків мають кожну тему у вибраних документах. Випинання назовні означає частішу тему. Накладіть кілька документів для порівняння."},
     "viz_read_mismatch_flow": {"en": "Rows show what the AI labelled each passage. Columns show what the human expert labelled it. The number in a cell is how many passages had that pair. Diagonal cells (same label on both sides) are agreements. Other filled cells are mismatches. The list above the table calls out the largest mismatch pairs.", "uk": "Рядки показують мітку ШІ для уривка. Стовпці показують мітку експерта. Число в клітинці показує, скільки уривків мали таку пару. Клітинки на діагоналі (однакова мітка) це збіги. Інші заповнені клітинки це розбіжності. Список над таблицею виділяє найбільші пари розбіжностей."},
@@ -1324,6 +1324,17 @@ def run(
     out_dir = Path(out_config.get("dir", "data/output"))
     report_root = _REPORT_ROOT
     out_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        from report.places_sync import sync_places_artifacts
+
+        sync_places_artifacts(
+            documents,
+            config,
+            report_root,
+            comparison_by_doc=comparison_by_doc,
+        )
+    except Exception as exc:
+        print(f"Warning: places sync skipped ({exc})", file=sys.stderr)
     keyboard_logo_href = _copy_cuis_logo_for_report(out_dir.resolve())
     html_name = out_config.get("report_html", "manual_analysis_report.html")
     viz_html_name = out_config.get("lab_visualization_html", "lab_visualization.html")
@@ -1543,12 +1554,6 @@ def run(
     viz_out_path.write_text("\n".join(standalone_parts), encoding="utf-8")
 
     out_path.write_text("\n".join(parts), encoding="utf-8")
-    try:
-        from report.places_sync import sync_places_artifacts
-
-        sync_places_artifacts(comparison_by_doc, config, report_root)
-    except Exception as exc:
-        print(f"Warning: places sync skipped ({exc})", file=sys.stderr)
     _write_places_map_html(config, out_dir, comparison_by_doc=comparison_by_doc)
     return out_path
 
@@ -3004,22 +3009,14 @@ def _load_places_map_data_enriched(
         except Exception:
             pass
     place_segments: Dict[str, List[Dict[str, Any]]] = {}
-    if comparison_by_doc:
+    extracted_path = base_dir / "places_extracted.json"
+    if extracted_path.exists():
         try:
-            ext_mod = _import_extract_places_module()
-            ext = ext_mod.extract_from_comparison_by_doc(comparison_by_doc)
+            with open(extracted_path, encoding="utf-8") as f:
+                ext = json.load(f)
             place_segments = ext.get("place_segments", {})
         except Exception:
-            place_segments = {}
-    else:
-        extracted_path = base_dir / "places_extracted.json"
-        if extracted_path.exists():
-            try:
-                with open(extracted_path, encoding="utf-8") as f:
-                    ext = json.load(f)
-                place_segments = ext.get("place_segments", {})
-            except Exception:
-                pass
+            pass
     coords_by_name = {p["name"]: p["coords"] for p in base_list if p.get("coords")}
     if comparison_by_doc and place_segments:
         try:
@@ -3042,7 +3039,7 @@ def _load_places_map_data_enriched(
         for s in segs:
             did = s.get("doc_id", "")
             doc_counts[did] = doc_counts.get(did, 0) + 1
-        sample_segs = segs[:15]
+        sample_segs = segs[:40]
         historical = _PLACES_HISTORICAL.get(name)
         segment_count = len(segs)
         enriched.append({
@@ -3050,7 +3047,15 @@ def _load_places_map_data_enriched(
             "count": segment_count,
             "coords": coords,
             "segments": [
-                {"eng": s.get("entry_eng", ""), "rus": s.get("entry_rus", ""), "doc_id": s.get("doc_id", ""), "row_index": s.get("row_index", -1)}
+                {
+                    "eng": s.get("entry_eng", ""),
+                    "rus": s.get("entry_rus", ""),
+                    "doc_id": s.get("doc_id", ""),
+                    "row_index": s.get("row_index", -1),
+                    "offset": s.get("offset", -1),
+                    "length": s.get("length", 0),
+                    "lang": s.get("lang", ""),
+                }
                 for s in sample_segs
             ],
             "doc_counts": [{"doc_id": did, "display_name": doc_names.get(did, did), "count": c} for did, c in sorted(doc_counts.items(), key=lambda x: -x[1])],
@@ -3515,13 +3520,14 @@ def _build_places_map_html(
         }} catch (e2) {{}}
         return (window.parent && window.parent !== window) ? window.parent : null;
       }}
-      function placesMapSendNavigate(docId, rowIdx, eng, rus) {{
+      function placesMapSendNavigate(docId, rowIdx, eng, rus, navExtra) {{
+        navExtra = navExtra || {{}};
         try {{ if (typeof map !== 'undefined' && map && map.closePopup) map.closePopup(); }} catch (e) {{}}
         var navDocId = (hostDocId && useEmbedded) ? hostDocId : docId;
         if (!navDocId) return;
         var host = placesMapLabHost();
         if (host && typeof host.placesMapNavigateToSegment === 'function') {{
-          host.placesMapNavigateToSegment(navDocId, rowIdx, eng, rus, hostDocId);
+          host.placesMapNavigateToSegment(navDocId, rowIdx, eng, rus, hostDocId, navExtra);
           return;
         }}
         if (useEmbedded && navDocId && rowIdx >= 0 && host) {{
@@ -3542,7 +3548,14 @@ def _build_places_map_html(
         if (isNaN(rowIdx)) rowIdx = -1;
         var eng = anchor.getAttribute('data-entry-eng') || '';
         var rus = anchor.getAttribute('data-entry-rus') || '';
-        placesMapSendNavigate(docId, rowIdx, eng, rus);
+        var navExtra = {{}};
+        var oEng = parseInt(anchor.getAttribute('data-offset-eng'), 10);
+        var lEng = parseInt(anchor.getAttribute('data-length-eng'), 10);
+        var oRus = parseInt(anchor.getAttribute('data-offset-rus'), 10);
+        var lRus = parseInt(anchor.getAttribute('data-length-rus'), 10);
+        if (!isNaN(oEng) && oEng >= 0) {{ navExtra.offsetEng = oEng; navExtra.lengthEng = isNaN(lEng) ? 0 : lEng; }}
+        if (!isNaN(oRus) && oRus >= 0) {{ navExtra.offsetRus = oRus; navExtra.lengthRus = isNaN(lRus) ? 0 : lRus; }}
+        placesMapSendNavigate(docId, rowIdx, eng, rus, navExtra);
         return false;
       }}
       function placesMapBindPopupViewButtons(popupEl) {{
@@ -3568,9 +3581,15 @@ def _build_places_map_html(
             var docName = (p.doc_counts || []).find(function(d) {{ return d.doc_id === docId; }});
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
+            var offEng = (s.lang === 'eng' && s.offset >= 0) ? s.offset : -1;
+            var lenEng = (s.lang === 'eng' && s.length > 0) ? s.length : 0;
+            var offRus = (s.lang === 'rus' && s.offset >= 0) ? s.offset : -1;
+            var lenRus = (s.lang === 'rus' && s.length > 0) ? s.length : 0;
             if (docId && (!hostDocId || docId === hostDocId)) {{
               var attrs = ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
                 + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
+                + ' data-offset-eng="' + offEng + '" data-length-eng="' + lenEng
+                + '" data-offset-rus="' + offRus + '" data-length-rus="' + lenRus + '"'
                 + ' onclick="return placesMapViewClick(this);"';
               if (useEmbedded) {{
                 link = '<button type="button" class="popup-doc-view-btn"' + attrs + '>View</button>';
@@ -6685,7 +6704,8 @@ function illuminatorUsesServerFullText(tid) {
   var c = document.getElementById('doc-text-eng-' + tid);
   return !!(c && c.querySelector('.doc-entry[data-has-partner]'));
 }
-function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDocId) {
+function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDocId, navExtra) {
+  navExtra = navExtra || {};
   if (hostDocId) docId = hostDocId;
   if (!docId) return;
   var tabId = 'tab-' + docId;
@@ -6708,7 +6728,15 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
     };
   }
   if (typeof openDocumentSection === 'function') openDocumentSection(docId, 'text');
-  var highlightOpts = { preserveText: true, comparisonRun: highlightRun, fromPlacesMap: true };
+  var highlightOpts = {
+    preserveText: true,
+    comparisonRun: highlightRun,
+    fromPlacesMap: true,
+    offsetEng: navExtra.offsetEng,
+    lengthEng: navExtra.lengthEng,
+    offsetRus: navExtra.offsetRus,
+    lengthRus: navExtra.lengthRus
+  };
   setTimeout(function() {
     if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger, highlightOpts);
     var cmpSec = document.getElementById('doc-section-compare-' + docId);
@@ -6733,7 +6761,12 @@ if (!window.__placesMapMessageListener) {
   window.addEventListener('message', function(ev) {
     var d = ev && ev.data;
     if (!d || d.type !== 'places-map-navigate' || !d.docId) return;
-    placesMapNavigateToSegment(d.docId, d.rowIndex, d.entryEng, d.entryRus, d.hostDocId || '');
+    placesMapNavigateToSegment(d.docId, d.rowIndex, d.entryEng, d.entryRus, d.hostDocId || '', {
+      offsetEng: d.offsetEng,
+      lengthEng: d.lengthEng,
+      offsetRus: d.offsetRus,
+      lengthRus: d.lengthRus
+    });
   });
 }
 function normalizeIlluminatorEntryText(s) {
@@ -6897,9 +6930,21 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   containerEng = document.getElementById('doc-text-eng-' + tid);
   containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
-  var found = findIlluminatorSpans(tid, ri, triggerEl, cmpRun);
-  var spansEng = found.spansEng;
-  var spansRus = found.spansRus;
+  var spansEng = [];
+  var spansRus = [];
+  if (opts.fromPlacesMap && (opts.offsetEng >= 0 || opts.offsetRus >= 0)) {
+    if (opts.offsetEng >= 0 && containerEng) {
+      spansEng = highlightIlluminatorByOffsets(containerEng, opts.offsetEng, opts.offsetEng + (opts.lengthEng || 0));
+    }
+    if (opts.offsetRus >= 0 && containerRus) {
+      spansRus = highlightIlluminatorByOffsets(containerRus, opts.offsetRus, opts.offsetRus + (opts.lengthRus || 0));
+    }
+  }
+  if (spansEng.length === 0 && spansRus.length === 0) {
+    var found = findIlluminatorSpans(tid, ri, triggerEl, cmpRun);
+    spansEng = found.spansEng;
+    spansRus = found.spansRus;
+  }
   var allSpans = [];
   for (var i = 0; i < spansEng.length; i++) allSpans.push(spansEng[i]);
   for (var j = 0; j < spansRus.length; j++) allSpans.push(spansRus[j]);

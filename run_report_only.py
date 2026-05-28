@@ -76,7 +76,9 @@ def main() -> int:
     from report.places_sync import sync_places_artifacts
 
     try:
-        paths = sync_places_artifacts(comparison_by_doc, config, ROOT)
+        paths = sync_places_artifacts(
+            documents, config, ROOT, comparison_by_doc=comparison_by_doc,
+        )
         print(f"Places data: {paths['extracted'].name}, {paths['geocoded'].name}")
     except Exception as exc:
         print(f"Warning: places sync failed ({exc})")
