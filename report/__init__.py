@@ -1987,11 +1987,13 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
 }
 .typewriter-plaque-brand {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: 1fr auto auto 1fr;
   grid-template-rows: auto auto;
   align-items: center;
-  column-gap: 0.28rem;
+  column-gap: 0.42rem;
   row-gap: 0.16rem;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0 0 0.22rem;
   padding: 0.14rem 0.38rem 0.16rem;
   border: 1px solid rgba(105, 82, 62, 0.52);
@@ -2003,11 +2005,12 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
     0 2px 8px rgba(0,0,0,0.12);
 }
 .typewriter-plaque-brand--solo {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: 1fr;
   justify-items: center;
   text-align: center;
 }
 .typewriter-plaque-brand--solo .typewriter-plaque-brand-text {
+  grid-column: 1;
   justify-self: center;
 }
 .typewriter-plaque-model-strip {
@@ -2044,20 +2047,25 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
   line-height: 1;
 }
 .typewriter-plaque-brand-logo-cell {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  padding: 0 0.22rem 0 0.06rem;
+  padding: 0;
 }
 .typewriter-plaque-brand-text {
+  grid-column: 3;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 0;
-  padding: 0 0.06rem 0 0.22rem;
+  padding: 0;
   line-height: 1.05;
   min-width: 0;
+  text-align: center;
 }
 .typewriter-plaque-brand-text--solo {
   align-items: center;
@@ -2068,10 +2076,11 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: 0.26em;
-  padding-left: 0.26em;
+  padding-inline: 0.13em;
   line-height: 1.02;
   color: #251c17;
   font-variant: small-caps;
+  text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 }
 .typewriter-plaque-mark {
