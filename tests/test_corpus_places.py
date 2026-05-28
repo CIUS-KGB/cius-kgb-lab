@@ -27,7 +27,26 @@ def test_corpus_extract_finds_places_without_places_category():
     assert out["source"] == "corpus_gazetteer"
     segs = out["place_segments"]["Kyiv"]
     assert segs[0].get("offset", -1) >= 0
-    assert segs[0].get("lang") == "eng"
+    assert segs[0].get("lang") in ("eng", "both")
+
+
+def test_corpus_extract_dedupes_bilingual_same_passage():
+    from places.corpus_extract import extract_from_documents
+
+    documents = [
+        {
+            "document_id": "d1",
+            "raw_text_en": "From the U.S. — 1, France — 2, Canada — 3.",
+            "raw_text": "Из США — 1, Франции — 2, Канады — 3.",
+        }
+    ]
+    out = extract_from_documents(documents)
+    segs = out["place_segments"]["France"]
+    assert len(segs) == 1
+    assert segs[0].get("lang") == "both"
+    assert segs[0].get("offset_eng", -1) >= 0
+    assert segs[0].get("offset_rus", -1) >= 0
+    assert "France — 2" in segs[0].get("entry_eng", "")
 
 
 def test_corpus_extract_includes_offsets_for_navigation():

@@ -5,8 +5,8 @@ from __future__ import annotations
 import re
 from typing import Any, Dict, Optional, Tuple
 
-from places.corpus_extract import CYRILLIC_PATTERNS
-from places.place_aliases import PLACE_RU_ALIASES
+from places.corpus_extract import mention_preview_text
+from places.ru_gazetteer import patterns_for_place
 
 # Do not link corpus mentions to comparison rows whose slice is much longer than the snippet.
 MAX_ROW_HINT_LEN = 120
@@ -64,20 +64,17 @@ def paired_search_bounds(
 
 
 def _alias_patterns_for_place(place_name: str) -> list[re.Pattern[str]]:
-    patterns: list[re.Pattern[str]] = []
-    low = place_name.lower()
-    for pattern, canonical in CYRILLIC_PATTERNS:
-        if canonical.lower() == low or low in canonical.lower():
-            try:
-                patterns.append(re.compile(pattern, re.IGNORECASE))
-            except re.error:
-                pass
-    for pattern in PLACE_RU_ALIASES.get(place_name, ()):
+    compiled: list[re.Pattern[str]] = []
+    seen: set[str] = set()
+    for pattern in patterns_for_place(place_name):
+        if pattern in seen:
+            continue
+        seen.add(pattern)
         try:
-            patterns.append(re.compile(pattern, re.IGNORECASE))
+            compiled.append(re.compile(pattern, re.IGNORECASE))
         except re.error:
             pass
-    return patterns
+    return compiled
 
 
 def _latin_pattern(place_name: str) -> re.Pattern[str]:
@@ -113,8 +110,17 @@ def find_place_span_in_range(
                 best = (abs_start, base + m.end())
         return best
 
-    pat = _latin_pattern(place_name)
-    hit = _best_match(pat)
+    cyr_in_chunk = bool(re.search(r"[\u0400-\u04FF]", chunk))
+    if cyr_in_chunk:
+        for pat_cyr in _alias_patterns_for_place(place_name):
+            hit = _best_match(pat_cyr)
+            if hit:
+                return hit
+        hit = _best_match(_latin_pattern(place_name))
+        if hit:
+            return hit
+        return None
+    hit = _best_match(_latin_pattern(place_name))
     if hit:
         return hit
     for pat_cyr in _alias_patterns_for_place(place_name):
@@ -144,6 +150,112 @@ def find_place_span_near_offset(
     return find_place_span_in_range(
         text, place_name, 0, len(text), prefer_offset=prefer_offset,
     )
+
+
+def _apply_mention_previews(
+    out: Dict[str, Any],
+    place_name: str,
+    text_en: str,
+    text_ru: str,
+) -> None:
+    """Rebuild eng/rus popup text from full document offsets (not extract-time anchors)."""
+    off_eng = int(out.get("offset_eng", -1))
+    len_eng = max(int(out.get("length_eng", 0)), 0)
+    off_rus = int(out.get("offset_rus", -1))
+    len_rus = max(int(out.get("length_rus", 0)), 0)
+    primary_off = int(out.get("offset", -1))
+    primary_len = max(int(out.get("length", 0)), 0)
+    lang = out.get("lang", "")
+
+    if off_eng >= 0 and text_en:
+        out["eng"] = mention_preview_text(
+            text_en, off_eng, off_eng + max(len_eng, 1), place_name=place_name,
+        )
+    elif lang == "eng" and primary_off >= 0 and text_en:
+        out["eng"] = mention_preview_text(
+            text_en, primary_off, primary_off + max(primary_len, 1), place_name=place_name,
+        )
+
+    if off_rus >= 0 and text_ru:
+        out["rus"] = mention_preview_text(
+            text_ru, off_rus, off_rus + max(len_rus, 1), place_name=place_name,
+        )
+    elif lang == "rus" and primary_off >= 0 and text_ru:
+        out["rus"] = mention_preview_text(
+            text_ru, primary_off, primary_off + max(primary_len, 1), place_name=place_name,
+        )
+
+    eng = (out.get("eng") or "").strip()
+    rus = (out.get("rus") or "").strip()
+    if rus and eng == place_name and off_eng < 0:
+        out["eng"] = ""
+
+
+def resolve_mention_offsets(
+    place_name: str,
+    text_en: str,
+    text_ru: str,
+    *,
+    offset_eng: int = -1,
+    offset_rus: int = -1,
+    length_eng: int = 0,
+    length_rus: int = 0,
+) -> Dict[str, int]:
+    """Snap EN/RU offsets to alias matches; derive the other language from the located side."""
+    out: Dict[str, int] = {
+        "offset_eng": -1,
+        "length_eng": 0,
+        "offset_rus": -1,
+        "length_rus": 0,
+    }
+    if not place_name:
+        return out
+
+    if offset_eng >= 0 and text_en:
+        span = find_place_span_near_offset(text_en, place_name, offset_eng)
+        if span:
+            offset_eng, end_e = span
+            out["offset_eng"] = offset_eng
+            out["length_eng"] = max(end_e - offset_eng, 1)
+        elif length_eng > 0:
+            out["offset_eng"] = offset_eng
+            out["length_eng"] = length_eng
+
+    if offset_rus >= 0 and text_ru:
+        span = find_place_span_near_offset(text_ru, place_name, offset_rus)
+        if span:
+            offset_rus, end_r = span
+            out["offset_rus"] = offset_rus
+            out["length_rus"] = max(end_r - offset_rus, 1)
+        elif length_rus > 0:
+            out["offset_rus"] = offset_rus
+            out["length_rus"] = length_rus
+
+    if out["offset_eng"] >= 0 and out["offset_rus"] < 0 and text_en and text_ru:
+        center = _proportional_offset(text_en, text_ru, out["offset_eng"])
+        p_start, p_end = paired_search_bounds(text_en, text_ru, out["offset_eng"])
+        span = find_place_span_in_range(
+            text_ru, place_name, p_start, p_end, prefer_offset=center,
+        )
+        if not span:
+            span = find_place_span_near_offset(text_ru, place_name, center)
+        if span:
+            out["offset_rus"] = span[0]
+            out["length_rus"] = max(span[1] - span[0], 1)
+
+    if out["offset_rus"] >= 0 and out["offset_eng"] < 0 and text_ru and text_en:
+        center = _proportional_offset(text_ru, text_en, out["offset_rus"])
+        p_start, p_end = paired_search_bounds(text_ru, text_en, out["offset_rus"])
+        span = find_place_span_in_range(
+            text_en, place_name, p_start, p_end, prefer_offset=center,
+        )
+        if not span:
+            span = find_place_span_near_offset(text_en, place_name, center)
+        if span:
+            out["offset_eng"] = span[0]
+            out["length_eng"] = max(span[1] - span[0], 1)
+
+    return out
 
 
 def should_skip_row_hint(entry: str, anchor: str) -> bool:
@@ -185,34 +297,34 @@ def tight_mention_nav_fields(
     if off < 0 or not place_name:
         return out
 
-    if lang == "eng":
-        out["offset_eng"] = off
-        out["length_eng"] = max(length, 1)
-        if text_ru:
-            ru_center = _proportional_offset(text_en, text_ru, off)
-            p_start, p_end = paired_search_bounds(text_en, text_ru, off)
-            ru_span = find_place_span_in_range(
-                text_ru, place_name, p_start, p_end, prefer_offset=ru_center,
-            )
-            if not ru_span:
-                ru_span = find_place_span_near_offset(text_ru, place_name, ru_center)
-            if ru_span:
-                out["offset_rus"], end_ru = ru_span
-                out["length_rus"] = max(end_ru - out["offset_rus"], 1)
-    elif lang == "rus":
-        out["offset_rus"] = off
-        out["length_rus"] = max(length, 1)
-        if text_en:
-            en_center = _proportional_offset(text_ru, text_en, off)
-            p_start, p_end = paired_search_bounds(text_ru, text_en, off)
-            en_span = find_place_span_in_range(
-                text_en, place_name, p_start, p_end, prefer_offset=en_center,
-            )
-            if not en_span:
-                en_span = find_place_span_near_offset(text_en, place_name, en_center)
-            if en_span:
-                out["offset_eng"], end_en = en_span
-                out["length_eng"] = max(end_en - out["offset_eng"], 1)
+    preset_eng = int(seg.get("offset_eng", -1))
+    preset_rus = int(seg.get("offset_rus", -1))
+    if preset_eng < 0 and lang in ("eng", "both"):
+        preset_eng = off
+    if preset_rus < 0 and lang in ("rus", "both"):
+        preset_rus = off
+
+    resolved = resolve_mention_offsets(
+        place_name,
+        text_en,
+        text_ru,
+        offset_eng=preset_eng,
+        offset_rus=preset_rus,
+        length_eng=max(int(seg.get("length_eng", 0)), length if lang == "eng" else 0),
+        length_rus=max(int(seg.get("length_rus", 0)), length if lang == "rus" else 0),
+    )
+    out["offset_eng"] = resolved["offset_eng"]
+    out["length_eng"] = resolved["length_eng"]
+    out["offset_rus"] = resolved["offset_rus"]
+    out["length_rus"] = resolved["length_rus"]
+    if out["offset_eng"] >= 0:
+        out["offset"] = out["offset_eng"]
+        out["length"] = out["length_eng"]
+    elif out["offset_rus"] >= 0:
+        out["offset"] = out["offset_rus"]
+        out["length"] = out["length_rus"]
+
+    _apply_mention_previews(out, place_name, text_en, text_ru)
     return out
 
 

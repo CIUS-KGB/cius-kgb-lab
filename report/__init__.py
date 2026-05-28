@@ -3651,7 +3651,9 @@ def _build_places_map_html(
             + '</tr></thead><tbody>';
           p.segments.forEach(function(s) {{
             var eng = esc(s.eng), rus = esc(s.rus), docId = s.doc_id || '', rowIdx = s.row_index;
-            var text = (eng || rus) + (eng && rus ? ' / ' + rus : '');
+            var text = '';
+            if (eng && rus) text = eng + ' · ' + rus;
+            else text = eng || rus;
             var docName = (p.doc_counts || []).find(function(d) {{ return d.doc_id === docId; }});
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
@@ -5871,17 +5873,9 @@ def _glossary_tab(
 
 def _place_mention_patterns_json() -> str:
     """Canonical place name -> regex strings for illuminator text search (RU aliases + Latin)."""
-    import re
+    from places.ru_gazetteer import mention_patterns_for_js
 
-    from places.place_aliases import PLACE_RU_ALIASES
-
-    out: Dict[str, List[str]] = {}
-    for name, patterns in PLACE_RU_ALIASES.items():
-        stripped = name.strip()
-        esc = re.escape(stripped)
-        latin = [esc] if " " in stripped else [r"\b" + esc + r"\b"]
-        out[name] = list(patterns) + latin
-    return json.dumps(out, ensure_ascii=False)
+    return json.dumps(mention_patterns_for_js(), ensure_ascii=False)
 
 
 def _script(
@@ -7087,18 +7081,30 @@ function highlightPlacesMapMentions(tid, opts) {
   var spansEng = [];
   var spansRus = [];
   if (!containerEng || !containerRus) return { spansEng: spansEng, spansRus: spansRus, offE: offE, offR: offR };
-  if (offE >= 0) {
+  if (placeName) {
+    spansEng = highlightPlaceMentionInContainer(containerEng, placeName, offE, lenE, { precise: true });
+    spansRus = highlightPlaceMentionInContainer(containerRus, placeName, offR, lenR, { precise: true });
+  }
+  if (spansEng.length === 0 && offE >= 0) {
     spansEng = highlightIlluminatorByOffsets(containerEng, offE, offE + (lenE > 0 ? lenE : 1), { precise: true });
   }
-  if (offR >= 0) {
+  if (spansRus.length === 0 && offR >= 0) {
     spansRus = highlightIlluminatorByOffsets(containerRus, offR, offR + (lenR > 0 ? lenR : 1), { precise: true });
-  }
-  if (placeName) {
-    if (spansEng.length === 0) spansEng = highlightPlaceMentionInContainer(containerEng, placeName, offE, lenE, { precise: true });
-    if (spansRus.length === 0) spansRus = highlightPlaceMentionInContainer(containerRus, placeName, offR, lenR, { precise: true });
   }
   stashPlacesMapHighlights(tid, spansEng, spansRus);
   return { spansEng: spansEng, spansRus: spansRus, offE: offE, offR: offR };
+}
+function placeMentionAtOffset(full, off, len, placeName) {
+  if (!full || off < 0 || !placeName) return false;
+  var slice = full.slice(off, Math.min(full.length, off + Math.max(len, 1) + 24));
+  var patterns = placeMentionRegexList(placeName);
+  for (var i = 0; i < patterns.length; i++) {
+    var re = patterns[i];
+    re.lastIndex = 0;
+    var m = re.exec(slice);
+    if (m && m.index <= 12) return true;
+  }
+  return false;
 }
 function findPlaceMentionRangeInContainer(container, placeName, preferOffset, lengthHint) {
   if (!container || !placeName) return null;
@@ -7107,7 +7113,7 @@ function findPlaceMentionRangeInContainer(container, placeName, preferOffset, le
   var off = placesNavOffset(preferOffset);
   var hint = placesNavLength(lengthHint);
   if (!hint && placeName) hint = String(placeName).length;
-  if (off >= 0 && hint > 0 && off + hint <= full.length) {
+  if (off >= 0 && hint > 0 && off + hint <= full.length && placeMentionAtOffset(full, off, hint, placeName)) {
     return { start: off, end: off + hint };
   }
   var center = off >= 0 ? off : Math.floor(full.length / 2);

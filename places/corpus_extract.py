@@ -40,50 +40,153 @@ EXTRA_GAZETTEER_NAMES = (
     "Australia",
 )
 
-# Cyrillic regex -> canonical English (word-boundary where possible)
-CYRILLIC_PATTERNS: Tuple[Tuple[str, str], ...] = (
-    (r"Украин[аеиы]?", "Ukraine"),
-    (r"Киев\w*", "Kyiv"),
-    (r"Харьков\w*", "Kharkiv"),
-    (r"Одесс\w*", "Odesa"),
-    (r"Львов\w*", "Lviv"),
-    (r"Донецк\w*", "Donetsk"),
-    (r"Днепр\w*", "Dnipro"),
-    (r"Запорож\w*", "Zaporizhzhia"),
-    (r"Винниц\w*", "Vinnytsia"),
-    (r"Житомир\w*", "Zhytomyr"),
-    (r"Хмельниц\w*", "Khmelnytskyi"),
-    (r"Канад\w*", "Canada"),
-    (r"США", "United States"),
-    (r"СССР", "Soviet Union"),
-    (r"Советск\w+\s+Союз", "Soviet Union"),
-    (r"Германи\w*", "Germany"),
-    (r"Франци\w*", "France"),
-    (r"Япони\w*", "Japan"),
-    (r"Торонт\w*", "Toronto"),
-    (r"Москв\w*", "Moscow"),
-    (r"Великобритани\w*", "United Kingdom"),
-    (r"Австрали\w*", "Australia"),
-    (r"Бердичев\w*", "Berdychiv"),
-    (r"Криворож\w*", "Kryvyi Rih"),
-    (r"Херсон\w*", "Kherson"),
-    (r"Симферопол\w*", "Simferopol"),
-    (r"Мариупол\w*", "Mariupol"),
-    (r"Черновиц\w*", "Chernivtsi"),
-    (r"Ивано-Франковск\w*", "Ivano-Frankivsk"),
-    (r"Кропивниц\w*", "Kropyvnytskyi"),
-    (r"Луганск\w*", "Luhansk"),
-    (r"\bСум(?:ы|у|и)\b", "Sumy"),
-    (r"Полтав\w*", "Poltava"),
-    (r"Ровн\w*", "Rivne"),
-    (r"Мюнхен\w*", "Munich"),
-    (r"Иерусалим\w*", "Jerusalem"),
-    (r"Турци\w*", "Turkey"),
-    (r"Румын\w*", "Romania"),
-    (r"Бельги\w*", "Belgium"),
-)
+from places.ru_gazetteer import cyrillic_canonical_set, cyrillic_scan_patterns
+
+# Cyrillic regex -> canonical English (inflection-aware stems from ru_gazetteer)
+CYRILLIC_PATTERNS: Tuple[Tuple[str, str], ...] = cyrillic_scan_patterns()
 
 SNIPPET_RADIUS = 72
+PREVIEW_MAX_LEN = 200
+PREVIEW_HALF_WIDTH = 90
+PREVIEW_CLAUSE_MAX = 88
+SAME_LANG_OFFSET_SLOP = 10
+
+_STAT_COUNT = re.compile(r"[—–\-]\s*\d+")
+CYRILLIC_CANONICAL = cyrillic_canonical_set()
+
+
+def _is_stat_list_line(text: str, line_start: int, line_end: int) -> bool:
+    line = text[line_start:line_end]
+    return len(_STAT_COUNT.findall(line)) >= 3
+
+
+def mention_clause_bounds(
+    text: str,
+    start: int,
+    end: int,
+    place_name: str = "",
+) -> Tuple[int, int]:
+    """Bounds for one list item or short phrase containing the place (not the whole country table)."""
+    if not text:
+        return 0, 0
+    n = len(text)
+    start = max(0, min(start, n))
+    end = max(start + 1, min(end, n))
+    win_a = max(0, start - 120)
+    win_b = min(n, end + 120)
+    window = text[win_a:win_b]
+
+    if place_name:
+        esc = re.escape(place_name.strip())
+        lat = re.compile(
+            rf"([^\n,;]{{0,36}}\b{esc}\b\s*[—–\-]\s*[^\n,;]{{0,48}})",
+            re.IGNORECASE,
+        )
+        for m in lat.finditer(window):
+            a = win_a + m.start(1)
+            b = win_a + m.end(1)
+            if a <= start < b or a < end <= b:
+                return a, b
+        try:
+            from places.ru_gazetteer import patterns_for_place
+
+            for pat_str in patterns_for_place(place_name):
+                cpat = re.compile(
+                    rf"([^\n,;]{{0,28}}{pat_str}\s*[—–\-]\s*[^\n,;]{{0,48}})",
+                    re.IGNORECASE,
+                )
+                for m in cpat.finditer(window):
+                    a = win_a + m.start(1)
+                    b = win_a + m.end(1)
+                    if a <= start < b or a < end <= b:
+                        return a, b
+        except Exception:
+            pass
+
+    a = start
+    while a > 0 and text[a - 1] not in ",;\n":
+        a -= 1
+    if a > 0 and text[a] in ",;":
+        a += 1
+    b = end
+    while b < n and text[b] not in ",;\n":
+        b += 1
+    if b - a > PREVIEW_CLAUSE_MAX:
+        b = min(n, a + PREVIEW_CLAUSE_MAX)
+    return a, b
+
+
+def mention_preview_bounds(
+    text: str,
+    start: int,
+    end: int,
+    *,
+    place_name: str = "",
+    half_width: int = PREVIEW_HALF_WIDTH,
+    max_len: int = PREVIEW_MAX_LEN,
+) -> Tuple[int, int]:
+    """Slice bounds for popup preview: clause in stat lists, else sentence-sized window."""
+    if not text:
+        return 0, 0
+    n = len(text)
+    start = max(0, min(start, n))
+    end = max(start + 1, min(end, n))
+
+    line_start = text.rfind("\n", 0, start) + 1
+    line_end = text.find("\n", end)
+    if line_end < 0:
+        line_end = n
+
+    if _is_stat_list_line(text, line_start, line_end):
+        return mention_clause_bounds(text, start, end, place_name)
+
+    # Short prose line: use the whole line when it fits.
+    if line_end - line_start <= max_len:
+        return line_start, line_end
+
+    match_len = end - start
+    half = max(half_width, match_len + 28)
+    center = (start + end) // 2
+    a = max(line_start, center - half)
+    b = min(line_end, center + half)
+    if b - a > max_len:
+        a = max(line_start, center - max_len // 2)
+        b = min(line_end, a + max_len)
+        if b - a < max_len:
+            a = max(line_start, b - max_len)
+    if start < a:
+        a = max(line_start, start - 16)
+    if end > b:
+        b = min(line_end, end + 16)
+    if b - a > max_len:
+        a = max(line_start, center - max_len // 2)
+        b = min(line_end, a + max_len)
+    return a, b
+
+
+def mention_preview_text(
+    text: str,
+    start: int,
+    end: int,
+    *,
+    place_name: str = "",
+    half_width: int = PREVIEW_HALF_WIDTH,
+    max_len: int = PREVIEW_MAX_LEN,
+) -> str:
+    """Reader-facing snippet focused on this mention (not an entire multi-country count line)."""
+    if not text or start < 0:
+        return ""
+    a, b = mention_preview_bounds(
+        text, start, end, place_name=place_name, half_width=half_width, max_len=max_len,
+    )
+    s = text[a:b].strip()
+    if not s:
+        return ""
+    if a > 0:
+        s = "…" + s
+    if b < len(text):
+        s = s + "…"
+    return s
 
 
 def _load_gazetteer_names() -> List[str]:
@@ -123,17 +226,22 @@ def _load_gazetteer_names() -> List[str]:
     return sorted(names, key=lambda s: (-len(s), s.lower()))
 
 
-def _snippet(text: str, start: int, end: int, radius: int = SNIPPET_RADIUS) -> str:
-    if not text:
-        return ""
-    a = max(0, start - radius)
-    b = min(len(text), end + radius)
-    s = text[a:b].strip()
-    if a > 0:
-        s = "…" + s
-    if b < len(text):
-        s = s + "…"
-    return s
+def _snippet(
+    text: str,
+    start: int,
+    end: int,
+    radius: int = SNIPPET_RADIUS,
+    *,
+    place_name: str = "",
+) -> str:
+    return mention_preview_text(
+        text,
+        start,
+        end,
+        place_name=place_name,
+        half_width=radius,
+        max_len=max(radius * 2 + 40, PREVIEW_MAX_LEN),
+    )
 
 
 def _word_pattern(name: str) -> re.Pattern[str]:
@@ -154,6 +262,8 @@ def _scan_latin_gazetteer(
     out: List[Dict[str, Any]] = []
     seen_spans: set[Tuple[int, int, str]] = set()
     for name in gazetteer:
+        if lang == "rus" and name in CYRILLIC_CANONICAL:
+            continue
         pat = _word_pattern(name)
         for m in pat.finditer(text):
             start, end = m.start(), m.end()
@@ -169,7 +279,7 @@ def _scan_latin_gazetteer(
                     continue
             except Exception:
                 canonical = name
-            snip = _snippet(text, start, end)
+            snip = _snippet(text, start, end, place_name=canonical)
             rec: Dict[str, Any] = {
                 "doc_id": doc_id,
                 "place": canonical,
@@ -200,7 +310,7 @@ def _scan_cyrillic_gazetteer(text: str, doc_id: str) -> List[Dict[str, Any]]:
             if key in seen:
                 continue
             seen.add(key)
-            snip = _snippet(text, start, end)
+            snip = _snippet(text, start, end, place_name=canonical)
             out.append({
                 "doc_id": doc_id,
                 "place": canonical,
@@ -211,6 +321,116 @@ def _scan_cyrillic_gazetteer(text: str, doc_id: str) -> List[Dict[str, Any]]:
                 "anchor_rus": snip,
                 "row_index": -1,
             })
+    return out
+
+
+def _dedupe_same_lang(mentions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    if not mentions:
+        return []
+    ordered = sorted(mentions, key=lambda m: int(m.get("offset", 0)))
+    out: List[Dict[str, Any]] = [ordered[0]]
+    for m in ordered[1:]:
+        last = out[-1]
+        if abs(int(m.get("offset", 0)) - int(last.get("offset", 0))) <= SAME_LANG_OFFSET_SLOP:
+            if int(m.get("length", 0)) > int(last.get("length", 0)):
+                out[-1] = m
+            continue
+        out.append(m)
+    return out
+
+
+def _pair_cross_lang_mentions(
+    eng: List[Dict[str, Any]],
+    rus: List[Dict[str, Any]],
+    text_en: str,
+    text_ru: str,
+    place_name: str,
+) -> List[Dict[str, Any]]:
+    """One row per logical mention; RU offset is derived from EN (not a separate scan hit)."""
+    from places.mention_nav import mention_preview_text, resolve_mention_offsets
+
+    merged: List[Dict[str, Any]] = []
+    claimed_rus: List[int] = []
+
+    for e in eng:
+        off_e = int(e.get("offset", -1))
+        resolved = resolve_mention_offsets(
+            place_name,
+            text_en,
+            text_ru,
+            offset_eng=off_e,
+            length_eng=int(e.get("length", 0)),
+        )
+        rec = dict(e)
+        rec.update(resolved)
+        rec["lang"] = "both" if resolved["offset_rus"] >= 0 else "eng"
+        if resolved["offset_eng"] >= 0 and text_en:
+            rec["anchor_eng"] = mention_preview_text(
+                text_en,
+                resolved["offset_eng"],
+                resolved["offset_eng"] + max(resolved["length_eng"], 1),
+                place_name=place_name,
+            )
+        if resolved["offset_rus"] >= 0 and text_ru:
+            rec["anchor_rus"] = mention_preview_text(
+                text_ru,
+                resolved["offset_rus"],
+                resolved["offset_rus"] + max(resolved["length_rus"], 1),
+                place_name=place_name,
+            )
+            claimed_rus.append(resolved["offset_rus"])
+        merged.append(rec)
+
+    for r in rus:
+        off_r = int(r.get("offset", -1))
+        if any(abs(off_r - c) <= SAME_LANG_OFFSET_SLOP for c in claimed_rus):
+            continue
+        resolved = resolve_mention_offsets(
+            place_name,
+            text_en,
+            text_ru,
+            offset_rus=off_r,
+            length_rus=int(r.get("length", 0)),
+        )
+        if resolved["offset_eng"] >= 0 and any(
+            abs(resolved["offset_eng"] - int(m.get("offset_eng", -999))) <= SAME_LANG_OFFSET_SLOP
+            for m in merged
+        ):
+            continue
+        rec = dict(r)
+        rec.update(resolved)
+        rec["lang"] = "both" if resolved["offset_eng"] >= 0 else "rus"
+        if resolved["offset_rus"] >= 0 and text_ru:
+            rec["anchor_rus"] = mention_preview_text(
+                text_ru,
+                resolved["offset_rus"],
+                resolved["offset_rus"] + max(resolved["length_rus"], 1),
+                place_name=place_name,
+            )
+        if resolved["offset_eng"] >= 0 and text_en:
+            rec["anchor_eng"] = mention_preview_text(
+                text_en,
+                resolved["offset_eng"],
+                resolved["offset_eng"] + max(resolved["length_eng"], 1),
+                place_name=place_name,
+            )
+        merged.append(rec)
+    return merged
+
+
+def _dedupe_doc_mentions(
+    mentions: List[Dict[str, Any]],
+    text_en: str,
+    text_ru: str,
+) -> List[Dict[str, Any]]:
+    by_place: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    for m in mentions:
+        by_place[str(m.get("place", ""))].append(m)
+    out: List[Dict[str, Any]] = []
+    for _place, group in by_place.items():
+        eng = _dedupe_same_lang([m for m in group if m.get("lang") == "eng"])
+        rus = _dedupe_same_lang([m for m in group if m.get("lang") == "rus"])
+        out.extend(_pair_cross_lang_mentions(eng, rus, text_en, text_ru, _place))
     return out
 
 
@@ -288,6 +508,7 @@ def extract_from_documents(
         doc_mentions.extend(_scan_latin_gazetteer(text_en, doc_id, "eng", gazetteer))
         doc_mentions.extend(_scan_latin_gazetteer(text_ru, doc_id, "rus", gazetteer))
         doc_mentions.extend(_scan_cyrillic_gazetteer(text_ru, doc_id))
+        doc_mentions = _dedupe_doc_mentions(doc_mentions, text_en, text_ru)
         _attach_related_row_hints(doc_mentions, comparison_by_doc)
 
         for m in doc_mentions:
@@ -295,17 +516,33 @@ def extract_from_documents(
             mention_seq += 1
             m["mention_id"] = f"{doc_id}-{mention_seq}"
             place_counts[place] += 1
+            lang = m.get("lang", "eng")
+            off_eng = int(m.get("offset_eng", -1))
+            off_rus = int(m.get("offset_rus", -1))
+            len_eng = int(m.get("length_eng", 0))
+            len_rus = int(m.get("length_rus", 0))
+            if off_eng < 0 and lang in ("eng", "both"):
+                off_eng = int(m.get("offset", -1))
+                len_eng = int(m.get("length", 0))
+            if off_rus < 0 and lang in ("rus", "both"):
+                off_rus = int(m.get("offset", -1))
+                len_rus = int(m.get("length", 0))
+            primary_off = off_eng if off_eng >= 0 else off_rus
             # Legacy fields for map popup / navigation
             seg = {
                 "doc_id": doc_id,
                 "row_index": -1,
                 "place": place,
-                "entry_eng": m.get("anchor_eng") or place,
+                "entry_eng": m.get("anchor_eng") or "",
                 "entry_rus": m.get("anchor_rus") or "",
                 "count": 1,
-                "lang": m.get("lang"),
-                "offset": m.get("offset"),
-                "length": m.get("length"),
+                "lang": lang,
+                "offset": primary_off,
+                "length": len_eng if off_eng >= 0 else len_rus,
+                "offset_eng": off_eng,
+                "length_eng": len_eng,
+                "offset_rus": off_rus,
+                "length_rus": len_rus,
                 "mention_id": m["mention_id"],
             }
             place_segments[place].append(seg)
