@@ -2923,6 +2923,78 @@ def _load_places_map_data(config: Dict[str, Any]) -> List[Dict[str, Any]]:
         return []
 
 
+def _load_bilingual_alignments_by_doc(config: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    try:
+        from align.bilingual import load_bilingual_alignments
+
+        data = load_bilingual_alignments(_bilingual_alignments_path(config))
+        return data.get("by_doc") or {}
+    except Exception:
+        return {}
+
+
+def _place_segment_nav_fields(
+    seg: Dict[str, Any],
+    align_by_doc: Dict[str, Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Attach offset_eng / offset_rus for places map View (from bilingual alignment file)."""
+    doc_id = seg.get("doc_id", "")
+    doc_align = align_by_doc.get(doc_id) or {}
+    out = {
+        "eng": seg.get("entry_eng", ""),
+        "rus": seg.get("entry_rus", ""),
+        "doc_id": doc_id,
+        "row_index": seg.get("row_index", -1),
+        "offset": seg.get("offset", -1),
+        "length": seg.get("length", 0),
+        "lang": seg.get("lang", ""),
+        "offset_eng": -1,
+        "length_eng": 0,
+        "offset_rus": -1,
+        "length_rus": 0,
+    }
+    ri = int(seg.get("row_index", -1))
+    if ri >= 0:
+        try:
+            from align.bilingual import nav_index_from_document
+
+            nav = nav_index_from_document(doc_align)
+            row = (nav.get("rows") or {}).get(str(ri)) or (nav.get("rows") or {}).get(ri)
+            if row:
+                en = row.get("eng") or {}
+                ru = row.get("rus") or {}
+                if en.get("found"):
+                    out["offset_eng"] = en.get("start", -1)
+                    out["length_eng"] = max(0, int(en.get("end", 0)) - int(en.get("start", 0)))
+                if ru.get("found"):
+                    out["offset_rus"] = ru.get("start", -1)
+                    out["length_rus"] = max(0, int(ru.get("end", 0)) - int(ru.get("start", 0)))
+                return out
+        except Exception:
+            pass
+    lang = seg.get("lang", "")
+    off = int(seg.get("offset", -1))
+    if off >= 0 and lang in ("eng", "rus"):
+        try:
+            from align.bilingual import find_passage_for_offset
+
+            passage = find_passage_for_offset(doc_align, lang, off)
+            if passage:
+                en = passage.get("en") or {}
+                ru = passage.get("ru") or {}
+                if en.get("found"):
+                    out["offset_eng"] = en.get("start", -1)
+                    out["length_eng"] = max(0, int(en.get("end", 0)) - int(en.get("start", 0)))
+                if ru.get("found"):
+                    out["offset_rus"] = ru.get("start", -1)
+                    out["length_rus"] = max(0, int(ru.get("end", 0)) - int(ru.get("start", 0)))
+                if passage.get("row_index", -1) >= 0:
+                    out["row_index"] = passage["row_index"]
+        except Exception:
+            pass
+    return out
+
+
 def _load_places_map_data_enriched(
     config: Dict[str, Any],
     comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
@@ -2963,6 +3035,7 @@ def _load_places_map_data_enriched(
                     coords_by_name[place_name] = [lat, lon]
         except Exception:
             pass
+    align_by_doc = _load_bilingual_alignments_by_doc(config)
     enriched: List[Dict[str, Any]] = []
     for place_name, coords in coords_by_name.items():
         name = place_name
@@ -2979,15 +3052,7 @@ def _load_places_map_data_enriched(
             "count": segment_count,
             "coords": coords,
             "segments": [
-                {
-                    "eng": s.get("entry_eng", ""),
-                    "rus": s.get("entry_rus", ""),
-                    "doc_id": s.get("doc_id", ""),
-                    "row_index": s.get("row_index", -1),
-                    "offset": s.get("offset", -1),
-                    "length": s.get("length", 0),
-                    "lang": s.get("lang", ""),
-                }
+                _place_segment_nav_fields(s, align_by_doc)
                 for s in sample_segs
             ],
             "doc_counts": [{"doc_id": did, "display_name": doc_names.get(did, did), "count": c} for did, c in sorted(doc_counts.items(), key=lambda x: -x[1])],
@@ -3513,10 +3578,14 @@ def _build_places_map_html(
             var docName = (p.doc_counts || []).find(function(d) {{ return d.doc_id === docId; }});
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
-            var offEng = (s.lang === 'eng' && s.offset >= 0) ? s.offset : -1;
-            var lenEng = (s.lang === 'eng' && s.length > 0) ? s.length : 0;
-            var offRus = (s.lang === 'rus' && s.offset >= 0) ? s.offset : -1;
-            var lenRus = (s.lang === 'rus' && s.length > 0) ? s.length : 0;
+            var offEng = (typeof s.offset_eng === 'number' && s.offset_eng >= 0) ? s.offset_eng
+              : ((s.lang === 'eng' && s.offset >= 0) ? s.offset : -1);
+            var lenEng = (typeof s.length_eng === 'number' && s.length_eng > 0) ? s.length_eng
+              : ((s.lang === 'eng' && s.length > 0) ? s.length : 0);
+            var offRus = (typeof s.offset_rus === 'number' && s.offset_rus >= 0) ? s.offset_rus
+              : ((s.lang === 'rus' && s.offset >= 0) ? s.offset : -1);
+            var lenRus = (typeof s.length_rus === 'number' && s.length_rus > 0) ? s.length_rus
+              : ((s.lang === 'rus' && s.length > 0) ? s.length : 0);
             if (docId && (!hostDocId || docId === hostDocId)) {{
               var attrs = ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
                 + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
@@ -6670,6 +6739,7 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
     offsetRus: navExtra.offsetRus,
     lengthRus: navExtra.lengthRus
   };
+  var delayMs = sameTab ? 120 : 320;
   setTimeout(function() {
     if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger, highlightOpts);
     var cmpSec = document.getElementById('doc-section-compare-' + docId);
@@ -6686,7 +6756,7 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
       if (!cmpRow) cmpRow = cmpSec.querySelector('tr[data-row-index="' + String(ri) + '"]');
       if (cmpRow) cmpRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-  }, sameTab ? 90 : 240);
+  }, delayMs);
 }
 window.placesMapNavigateToSegment = placesMapNavigateToSegment;
 if (!window.__placesMapMessageListener) {
@@ -6787,7 +6857,8 @@ function navOccForRow(panelMap, rowIndex) {
   return panelMap[String(rowIndex)] || null;
 }
 function highlightIlluminatorByOffsets(container, start, end) {
-  if (!container || start < 0 || end <= start) return [];
+  if (!container || start < 0) return [];
+  if (end <= start) end = start + 1;
   var highlighted = [];
   var seen = new Set();
   var walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
@@ -6832,15 +6903,8 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
     return { spansEng: spansEng, spansRus: spansRus, containerEng: containerEng, containerRus: containerRus };
   }
   var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
+  var cmpRow = resolveHighlightTriggerRow(tid, ri, triggerEl, comparisonRun);
   if (ri >= 0) {
-    var rowNav = bilingualRowNav(tid, ri);
-    if (rowNav) {
-      var bi = highlightBilingualSides(tid, rowNav);
-      spansEng = bi.spansEng;
-      spansRus = bi.spansRus;
-    }
-  }
-  if (spansEng.length === 0 && spansRus.length === 0) {
     var rowIdxStr = String(ri);
     spansEng = Array.prototype.slice.call(containerEng.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
     spansRus = Array.prototype.slice.call(containerRus.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
@@ -6848,13 +6912,21 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
   if (spansEng.length === 0 && spansRus.length === 0) {
     var nav = getIlluminatorNavIndex(tid);
     if (nav && ri >= 0) {
-      var engOcc = navOccForRow(nav.eng, ri);
-      var rusOcc = navOccForRow(nav.rus, ri);
-      if (engOcc && engOcc.found && engOcc.start >= 0) {
-        spansEng = highlightIlluminatorByOffsets(containerEng, engOcc.start, engOcc.end);
+      var rowNav = bilingualRowNav(tid, ri);
+      if (rowNav) {
+        var bi = highlightBilingualSides(tid, rowNav);
+        spansEng = bi.spansEng;
+        spansRus = bi.spansRus;
       }
-      if (rusOcc && rusOcc.found && rusOcc.start >= 0) {
-        spansRus = highlightIlluminatorByOffsets(containerRus, rusOcc.start, rusOcc.end);
+      if (spansEng.length === 0 && spansRus.length === 0) {
+        var engOcc = navOccForRow(nav.eng, ri);
+        var rusOcc = navOccForRow(nav.rus, ri);
+        if (engOcc && engOcc.found && engOcc.start >= 0) {
+          spansEng = highlightIlluminatorByOffsets(containerEng, engOcc.start, engOcc.end);
+        }
+        if (rusOcc && rusOcc.found && rusOcc.start >= 0) {
+          spansRus = highlightIlluminatorByOffsets(containerRus, rusOcc.start, rusOcc.end);
+        }
       }
     }
   }
@@ -6919,7 +6991,12 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   if (!containerEng || !containerRus) return;
   var spansEng = [];
   var spansRus = [];
-  if (opts.fromPlacesMap && (opts.offsetEng >= 0 || opts.offsetRus >= 0)) {
+  if (opts.fromPlacesMap && ri >= 0) {
+    var foundPlacesRow = findIlluminatorSpans(tid, ri, triggerEl, cmpRun);
+    spansEng = foundPlacesRow.spansEng;
+    spansRus = foundPlacesRow.spansRus;
+  }
+  if (opts.fromPlacesMap && spansEng.length === 0 && spansRus.length === 0 && (opts.offsetEng >= 0 || opts.offsetRus >= 0)) {
     var rowNavPlaces = null;
     if (opts.offsetEng >= 0) rowNavPlaces = findBilingualPassageAtOffset(tid, 'eng', opts.offsetEng);
     if (!rowNavPlaces && opts.offsetRus >= 0) rowNavPlaces = findBilingualPassageAtOffset(tid, 'rus', opts.offsetRus);
@@ -6928,20 +7005,14 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
       spansEng = biPlaces.spansEng;
       spansRus = biPlaces.spansRus;
     } else {
+      var lenE = opts.lengthEng > 0 ? opts.lengthEng : 1;
+      var lenR = opts.lengthRus > 0 ? opts.lengthRus : 1;
       if (opts.offsetEng >= 0 && containerEng) {
-        spansEng = highlightIlluminatorByOffsets(containerEng, opts.offsetEng, opts.offsetEng + (opts.lengthEng || 0));
+        spansEng = highlightIlluminatorByOffsets(containerEng, opts.offsetEng, opts.offsetEng + lenE);
       }
       if (opts.offsetRus >= 0 && containerRus) {
-        spansRus = highlightIlluminatorByOffsets(containerRus, opts.offsetRus, opts.offsetRus + (opts.lengthRus || 0));
+        spansRus = highlightIlluminatorByOffsets(containerRus, opts.offsetRus, opts.offsetRus + lenR);
       }
-    }
-  }
-  if (ri >= 0 && spansEng.length === 0 && spansRus.length === 0) {
-    var rowNavClick = bilingualRowNav(tid, ri);
-    if (rowNavClick) {
-      var biClick = highlightBilingualSides(tid, rowNavClick);
-      spansEng = biClick.spansEng;
-      spansRus = biClick.spansRus;
     }
   }
   if (spansEng.length === 0 && spansRus.length === 0) {
