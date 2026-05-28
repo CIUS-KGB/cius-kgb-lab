@@ -44,6 +44,24 @@
       var reportFile = places[0] && places[0].report ? places[0].report : 'manual_analysis_report.html';
       var useEmbedded = false;
       function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+      function placesMapViewClick(anchor) {
+        if (!anchor) return false;
+        var docId = anchor.getAttribute('data-doc-id') || '';
+        var rowIdx = parseInt(anchor.getAttribute('data-row-index'), 10);
+        if (isNaN(rowIdx)) rowIdx = -1;
+        var eng = anchor.getAttribute('data-entry-eng') || '';
+        var rus = anchor.getAttribute('data-entry-rus') || '';
+        var host = window.parent && window.parent !== window ? window.parent : null;
+        if (host && typeof host.placesMapNavigateToSegment === 'function') {
+          host.placesMapNavigateToSegment(docId, rowIdx, eng, rus);
+          return false;
+        }
+        if (useEmbedded && docId && rowIdx >= 0 && host) {
+          host.location.hash = '#tab-' + docId + '-row-' + rowIdx;
+          return false;
+        }
+        return true;
+      }
       function popupHtml(p) {
         var h = '<strong>' + esc(p.name) + '</strong><br/>' + p.count + ' segment(s)';
         if (p.segments && p.segments.length > 0) {
@@ -55,12 +73,13 @@
             var docName = (p.doc_counts || []).find(function(d) { return d.doc_id === docId; });
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
-            if (docId && rowIdx >= 0) {
-              if (useEmbedded) {
-                link = '<a class="popup-doc-link" href="#" onclick="parent.location.hash=\'#tab-' + esc(docId) + '-row-' + rowIdx + '\'; return false;">View</a>';
-              } else {
-                link = '<a class="popup-doc-link" href="' + esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx + '" target="_blank" rel="noopener">View</a>';
-              }
+            if (docId) {
+              var href = useEmbedded ? '#' : (esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx);
+              var target = useEmbedded ? '' : ' target="_blank" rel="noopener"';
+              link = '<a class="popup-doc-link" href="' + href + '"' + target
+                + ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
+                + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
+                + ' onclick="return placesMapViewClick(this);">View</a>';
             }
             h += '<tr><td class="segment-text" title="' + text + '">' + text + '</td><td>' + docName + '</td><td>' + link + '</td></tr>';
           });
