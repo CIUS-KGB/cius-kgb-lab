@@ -2,11 +2,7 @@
   "places": [
     {
       "name": "Ukraine",
-      "count": 5
-    },
-    {
-      "name": "There are also",
-      "count": 1
+      "count": 6
     },
     {
       "name": "Khmelnytskyi",
@@ -50,6 +46,13 @@
         "count": 1
       },
       {
+        "entry_eng": "There are also",
+        "entry_rus": "На территории Украины также находятся",
+        "doc_id": "1127",
+        "row_index": 34,
+        "count": 1
+      },
+      {
         "entry_eng": "in the Ukraine",
         "entry_rus": "на Украине",
         "doc_id": "1256",
@@ -68,15 +71,6 @@
         "entry_rus": "на Украине",
         "doc_id": "1262_198-200",
         "row_index": 9,
-        "count": 1
-      }
-    ],
-    "There are also": [
-      {
-        "entry_eng": "There are also",
-        "entry_rus": "На территории Украины также находятся",
-        "doc_id": "1127",
-        "row_index": 34,
         "count": 1
       }
     ],
@@ -136,5 +130,5 @@
     ]
   },
   "total_mentions": 12,
-  "unique_places": 8
+  "unique_places": 7
 }

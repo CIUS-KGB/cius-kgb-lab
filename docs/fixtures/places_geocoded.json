@@ -2,7 +2,7 @@
   "places": [
     {
       "name": "Ukraine",
-      "count": 5,
+      "count": 6,
       "coords": [
         48.3794,
         31.1656
@@ -62,14 +62,8 @@
         37.6173
       ],
       "source": "static"
-    },
-    {
-      "name": "There are also",
-      "count": 1,
-      "coords": null,
-      "source": "pending"
     }
   ],
   "total_geocoded": 7,
-  "total_failed": 1
+  "total_failed": 0
 }

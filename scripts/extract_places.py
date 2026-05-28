@@ -82,6 +82,71 @@ MERGE_TO_CANONICAL = {
     "the Moldavian SSR": "Moldova",
 }
 
+# English/Russian fragments mis-tagged as Places (not geocodable names)
+FRAGMENT_RE = re.compile(
+    r"^(there\s+(are|is|were|was)|also|на\s+территории|также\s+находятся)",
+    re.I,
+)
+
+# Cyrillic place tokens -> canonical English for map/geocode
+CYRILLIC_PLACE_TOKENS = {
+    "украин": "Ukraine",
+    "киев": "Kyiv",
+    "киеве": "Kyiv",
+    "харьков": "Kharkiv",
+    "харькове": "Kharkiv",
+    "одесс": "Odesa",
+    "львов": "Lviv",
+    "львове": "Lviv",
+    "винниц": "Vinnytsia",
+    "житомир": "Zhytomyr",
+    "хмельницк": "Khmelnytskyi",
+    "советск": "Soviet Union",
+    "ссср": "Soviet Union",
+    "москв": "Moscow",
+    "торонт": "Toronto",
+    "канада": "Canada",
+    "герман": "Germany",
+    "франц": "France",
+    "япон": "Japan",
+}
+
+
+def _is_sentence_fragment(name: str) -> bool:
+    """Reject clause stubs (e.g. GT entry_eng 'There are also') mistaken as place names."""
+    if not name:
+        return True
+    n = name.strip()
+    if len(n) < 3:
+        return True
+    if FRAGMENT_RE.search(n):
+        return True
+    low = n.lower()
+    if low in {"there are also", "there is also", "there are", "there is"}:
+        return True
+    # Multiple common words, no capitalized place token
+    words = re.findall(r"[A-Za-zА-Яа-яЁё]+", n)
+    if len(words) >= 3 and not re.search(
+        r"\b(Kyiv|Odesa|Kharkiv|Lviv|Ukraine|Canada|Toronto|Moscow|Germany|France|Japan)\b",
+        n,
+        re.I,
+    ):
+        return True
+    return False
+
+
+def _extract_from_russian(rus: str) -> list[tuple[str, int]]:
+    """Pull canonical place names from Russian segment text when English is a fragment."""
+    if not rus:
+        return []
+    results: list[tuple[str, int]] = []
+    low = rus.lower()
+    for stem, canonical in CYRILLIC_PLACE_TOKENS.items():
+        if stem in low:
+            if canonical not in {p for p, _ in results}:
+                results.append((canonical, 1))
+    return results
+
 
 def _normalize_place(name: str) -> str:
     """Normalize place name for aggregation."""
@@ -105,6 +170,8 @@ def _should_skip(name: str) -> bool:
     if n in SKIP_TERMS:
         return True
     if n.isdigit():
+        return True
+    if _is_sentence_fragment(name):
         return True
     return False
 
@@ -196,13 +263,21 @@ def _extract_from_phrase(eng: str, rus: str) -> list[tuple[str, int]]:
             if place and not _should_skip(place):
                 results.append((place, 1))
 
+    # When English is a clause stub, mine Russian for place tokens (e.g. "На территории Украины…")
+    if not results and rus:
+        for place, count in _extract_from_russian(rus):
+            if place and not _should_skip(place):
+                results.append((place, count))
+
     # Fallback: whole segment is a place name (e.g. "Edmonton", "г. Эдмонтон")
-    FALLBACK_BLOCK = {"featuring", "exhibition", "association", "aviation", "production"}
+    FALLBACK_BLOCK = {"featuring", "exhibition", "association", "aviation", "production", "there", "also"}
     if not results:
         raw = (eng or rus or "").strip()
         if rus and not eng:
             raw = re.sub(r"^г\.\s*", "", raw, flags=re.I)
         raw = raw.strip()
+        if _is_sentence_fragment(raw):
+            return results
         if raw and len(raw) < 50 and not re.search(r"\b(the|and|of|to|in|from|at|on)\b", raw, re.I):
             if raw.lower().startswith("other "):
                 return results
@@ -214,6 +289,8 @@ def _extract_from_phrase(eng: str, rus: str) -> list[tuple[str, int]]:
             if place and not _should_skip(place):
                 results.append((place, 1))
 
+    # Drop any sentence fragments that slipped through earlier patterns
+    results = [(p, c) for p, c in results if not _should_skip(p)]
     return results
 
 
