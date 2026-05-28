@@ -3369,6 +3369,24 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
         }} catch (e2) {{}}
         return (window.parent && window.parent !== window) ? window.parent : null;
       }}
+      function placesMapSendNavigate(docId, rowIdx, eng, rus) {{
+        try {{ if (typeof map !== 'undefined' && map && map.closePopup) map.closePopup(); }} catch (e) {{}}
+        var host = placesMapLabHost();
+        if (host && typeof host.placesMapNavigateToSegment === 'function') {{
+          host.placesMapNavigateToSegment(docId, rowIdx, eng, rus);
+          return;
+        }}
+        if (useEmbedded && docId && rowIdx >= 0 && host) {{
+          try {{ host.location.hash = '#tab-' + docId + '-row-' + rowIdx; }} catch (e3) {{}}
+          return;
+        }}
+        try {{
+          var target = host || window.parent;
+          if (target && target !== window) {{
+            target.postMessage({{ type: 'places-map-navigate', docId: docId, rowIndex: rowIdx, entryEng: eng || '', entryRus: rus || '' }}, '*');
+          }}
+        }} catch (e4) {{}}
+      }}
       function placesMapViewClick(anchor) {{
         if (!anchor) return false;
         var docId = anchor.getAttribute('data-doc-id') || '';
@@ -3376,19 +3394,21 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
         if (isNaN(rowIdx)) rowIdx = -1;
         var eng = anchor.getAttribute('data-entry-eng') || '';
         var rus = anchor.getAttribute('data-entry-rus') || '';
-        try {{ if (typeof map !== 'undefined' && map && map.closePopup) map.closePopup(); }} catch (e) {{}}
-        var host = placesMapLabHost();
-        if (host && typeof host.placesMapNavigateToSegment === 'function') {{
-          host.placesMapNavigateToSegment(docId, rowIdx, eng, rus);
-          return false;
-        }}
-        if (useEmbedded && docId && rowIdx >= 0 && host) {{
-          try {{ host.location.hash = '#tab-' + docId + '-row-' + rowIdx; }} catch (e3) {{}}
-          return false;
-        }}
-        if (useEmbedded) return false;
-        return true;
+        placesMapSendNavigate(docId, rowIdx, eng, rus);
+        return false;
       }}
+      function placesMapBindPopupViewButtons(popupEl) {{
+        if (!popupEl) return;
+        popupEl.querySelectorAll('.popup-doc-view-btn, .popup-doc-link').forEach(function(btn) {{
+          if (btn.getAttribute('data-places-view-bound') === '1') return;
+          btn.setAttribute('data-places-view-bound', '1');
+          btn.addEventListener('click', function(ev) {{
+            ev.preventDefault();
+            placesMapViewClick(btn);
+          }});
+        }});
+      }}
+      window.placesMapViewClick = placesMapViewClick;
       function popupHtml(p) {{
         var h = '<strong>' + esc(p.name) + '</strong><br/>' + p.count + ' segment(s)';
         if (p.segments && p.segments.length > 0) {{
@@ -3437,6 +3457,10 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
       }}
       var map = L.map('map').setView([48.5, 31.5], 6);
       L.tileLayer('https://{{s}}.basemaps.cartocdn.com/rastertiles/voyager/{{z}}/{{x}}/{{y}}.png', {{ attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>', maxZoom: 20, subdomains: 'abcd' }}).addTo(map);
+      map.on('popupopen', function(ev) {{
+        var popupEl = ev.popup && ev.popup.getElement ? ev.popup.getElement() : null;
+        placesMapBindPopupViewButtons(popupEl);
+      }});
       places.forEach(function(p) {{
         var sz = sizeForCount(p.count);
         var icon = L.divIcon({{ html: eyeSvg(sz), className: 'eye-marker', iconSize: [sz, sz], iconAnchor: [sz/2, sz/2] }});
@@ -6520,14 +6544,28 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus) {
       }
     };
   }
+  if (typeof openDocumentSection === 'function') openDocumentSection(docId, 'text');
   setTimeout(function() {
     var textSec = document.getElementById('doc-section-text-' + docId) || document.getElementById('doc-text-view-details-' + docId);
     if (textSec && textSec.tagName === 'DETAILS') textSec.open = true;
     if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger);
     if (textSec) textSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 150);
+    var cmpSec = document.getElementById('doc-section-compare-' + docId);
+    if (cmpSec && ri >= 0) {
+      var cmpRow = cmpSec.querySelector('tr[data-row-index="' + String(ri) + '"]');
+      if (cmpRow) cmpRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, 200);
 }
 window.placesMapNavigateToSegment = placesMapNavigateToSegment;
+if (!window.__placesMapMessageListener) {
+  window.__placesMapMessageListener = true;
+  window.addEventListener('message', function(ev) {
+    var d = ev && ev.data;
+    if (!d || d.type !== 'places-map-navigate' || !d.docId) return;
+    placesMapNavigateToSegment(d.docId, d.rowIndex, d.entryEng, d.entryRus);
+  });
+}
 function onSectionClickToView(tid, rowIndex, triggerEl) {
   var detailsEl = document.getElementById('doc-section-text-' + tid) || document.getElementById('doc-text-view-details-' + tid);
   if (!detailsEl) return;
