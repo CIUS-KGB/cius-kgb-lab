@@ -880,10 +880,14 @@ def _cyrillic_keyboard_html(doc_id: str, *, logo_href: Optional[str] = None) -> 
         f'<span class="typewriter-plaque-mark" lang="cs">Liščák</span>'
         "</div>"
     )
+    if logo_cell:
+        brand_row = f'<div class="typewriter-plaque-brand-top">{logo_cell}{text_block}</div>'
+    else:
+        brand_row = text_block
     return (
         f'<div class="typewriter-keyboard cyrillic-keyboard" data-caps-on="0" data-shift-next="0">'
         f'<div class="typewriter-plaque typewriter-plaque-brand{brand_mod}" id="cyrillic-popup-label-{esc_id}">'
-        f"{logo_cell}{text_block}{model_strip}"
+        f"{brand_row}{model_strip}"
         f"</div>"
         f'<div class="cyrillic-keyboard-frame">{inner}</div></div>'
     )
@@ -1986,11 +1990,9 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.14));
 }
 .typewriter-plaque-brand {
-  display: grid;
-  grid-template-columns: 1fr auto auto 1fr;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  column-gap: 0.42rem;
   row-gap: 0.16rem;
   width: 100%;
   box-sizing: border-box;
@@ -2004,18 +2006,20 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
     inset 0 -4px 12px rgba(55, 42, 32, 0.07),
     0 2px 8px rgba(0,0,0,0.12);
 }
-.typewriter-plaque-brand--solo {
-  grid-template-columns: 1fr;
-  justify-items: center;
-  text-align: center;
+.typewriter-plaque-brand-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  width: 100%;
+  max-width: 100%;
 }
 .typewriter-plaque-brand--solo .typewriter-plaque-brand-text {
-  grid-column: 1;
-  justify-self: center;
+  align-items: center;
+  padding: 0;
 }
 .typewriter-plaque-model-strip {
-  grid-column: 1 / -1;
-  justify-self: stretch;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -2047,16 +2051,13 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
   line-height: 1;
 }
 .typewriter-plaque-brand-logo-cell {
-  grid-column: 2;
-  grid-row: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   padding: 0;
 }
 .typewriter-plaque-brand-text {
-  grid-column: 3;
-  grid-row: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2066,6 +2067,7 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
   line-height: 1.05;
   min-width: 0;
   text-align: center;
+  flex-shrink: 0;
 }
 .typewriter-plaque-brand-text--solo {
   align-items: center;
@@ -3335,6 +3337,24 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
       var reportFile = places[0] && places[0].report ? places[0].report : 'manual_analysis_report.html';
       var useEmbedded = {use_embedded};
       function esc(s) {{ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }}
+      function placesMapViewClick(anchor) {{
+        if (!anchor) return false;
+        var docId = anchor.getAttribute('data-doc-id') || '';
+        var rowIdx = parseInt(anchor.getAttribute('data-row-index'), 10);
+        if (isNaN(rowIdx)) rowIdx = -1;
+        var eng = anchor.getAttribute('data-entry-eng') || '';
+        var rus = anchor.getAttribute('data-entry-rus') || '';
+        var host = window.parent && window.parent !== window ? window.parent : null;
+        if (host && typeof host.placesMapNavigateToSegment === 'function') {{
+          host.placesMapNavigateToSegment(docId, rowIdx, eng, rus);
+          return false;
+        }}
+        if (useEmbedded && docId && rowIdx >= 0 && host) {{
+          host.location.hash = '#tab-' + docId + '-row-' + rowIdx;
+          return false;
+        }}
+        return true;
+      }}
       function popupHtml(p) {{
         var h = '<strong>' + esc(p.name) + '</strong><br/>' + p.count + ' segment(s)';
         if (p.segments && p.segments.length > 0) {{
@@ -3346,12 +3366,13 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
             var docName = (p.doc_counts || []).find(function(d) {{ return d.doc_id === docId; }});
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
-            if (docId && rowIdx >= 0) {{
-              if (useEmbedded) {{
-                link = '<a class="popup-doc-link" href="#" onclick="parent.location.hash=\\'#tab-' + esc(docId) + '-row-' + rowIdx + '\\'; return false;">View</a>';
-              }} else {{
-                link = '<a class="popup-doc-link" href="' + esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx + '" target="_blank" rel="noopener">View</a>';
-              }}
+            if (docId) {{
+              var href = useEmbedded ? '#' : (esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx);
+              var target = useEmbedded ? '' : ' target="_blank" rel="noopener"';
+              link = '<a class="popup-doc-link" href="' + href + '"' + target
+                + ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
+                + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
+                + ' onclick="return placesMapViewClick(this);">View</a>';
             }}
             h += '<tr><td class="segment-text" title="' + text + '">' + text + '</td><td>' + docName + '</td><td>' + link + '</td></tr>';
           }});
@@ -6103,7 +6124,8 @@ function buildDocumentTextView(tid) {
       spanEng.setAttribute('data-human-framing', humanFramText);
       spanEng.setAttribute('data-human-category-colour', humanCatColor);
       spanEng.setAttribute('data-human-framing-colour', humanFramColor);
-      spanEng.setAttribute('data-row-index', String(i));
+      var rowIndexAttr = row.getAttribute('data-row-index');
+      spanEng.setAttribute('data-row-index', (rowIndexAttr !== null && rowIndexAttr !== '') ? rowIndexAttr : String(i));
       var useCatColour = catFilter !== '' && (catFilter === 'All' || (typeof categoryMatch === 'function' && categoryMatch(catText, catFilter)));
       var useFramColour = (framFilter === 'All' || (framFilter !== '' && typeof framingMatch === 'function' && framingMatch(framText, framFilter)));
       if (useCatColour) { spanEng.style.backgroundColor = hexToRgba(catColor, 0.28); } else { spanEng.style.backgroundColor = ''; }
@@ -6121,7 +6143,7 @@ function buildDocumentTextView(tid) {
       spanRus.setAttribute('data-human-framing', humanFramText);
       spanRus.setAttribute('data-human-category-colour', humanCatColor);
       spanRus.setAttribute('data-human-framing-colour', humanFramColor);
-      spanRus.setAttribute('data-row-index', String(i));
+      spanRus.setAttribute('data-row-index', (rowIndexAttr !== null && rowIndexAttr !== '') ? rowIndexAttr : String(i));
       if (useCatColour) { spanRus.style.backgroundColor = hexToRgba(catColor, 0.28); } else { spanRus.style.backgroundColor = ''; }
       if (useFramColour) { spanRus.style.color = framColor; } else { spanRus.style.color = '#333'; }
       containerEng.appendChild(spanEng);
@@ -6439,6 +6461,28 @@ function pulseIlluminatorVignette(tid) {
   window.setTimeout(function() {
     panels.classList.remove('illuminator-vignette-pulse');
   }, 1400);
+}
+function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus) {
+  if (!docId) return;
+  var tabId = 'tab-' + docId;
+  if (!document.getElementById(tabId)) return;
+  showTab(tabId);
+  var trigger = null;
+  entryEng = entryEng || '';
+  entryRus = entryRus || '';
+  if (entryEng || entryRus) {
+    trigger = {
+      getAttribute: function(name) {
+        if (name === 'data-entry-eng') return entryEng;
+        if (name === 'data-entry-rus') return entryRus;
+        return '';
+      }
+    };
+  }
+  var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
+  setTimeout(function() {
+    if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger);
+  }, 150);
 }
 function onSectionClickToView(tid, rowIndex, triggerEl) {
   var detailsEl = document.getElementById('doc-section-text-' + tid) || document.getElementById('doc-text-view-details-' + tid);
