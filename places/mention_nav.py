@@ -6,7 +6,7 @@ import re
 from typing import Any, Dict, Optional, Tuple
 
 from places.corpus_extract import mention_preview_text
-from places.ru_gazetteer import patterns_for_place
+from places.ru_gazetteer import latin_alias_patterns_for_place, patterns_for_place
 
 # Do not link corpus mentions to comparison rows whose slice is much longer than the snippet.
 MAX_ROW_HINT_LEN = 120
@@ -66,7 +66,10 @@ def paired_search_bounds(
 def _alias_patterns_for_place(place_name: str) -> list[re.Pattern[str]]:
     compiled: list[re.Pattern[str]] = []
     seen: set[str] = set()
-    for pattern in patterns_for_place(place_name):
+    for pattern in (
+        *patterns_for_place(place_name),
+        *latin_alias_patterns_for_place(place_name),
+    ):
         if pattern in seen:
             continue
         seen.add(pattern)
@@ -77,11 +80,22 @@ def _alias_patterns_for_place(place_name: str) -> list[re.Pattern[str]]:
     return compiled
 
 
-def _latin_pattern(place_name: str) -> re.Pattern[str]:
-    esc = re.escape(place_name.strip())
-    if " " in place_name.strip():
-        return re.compile(esc, re.IGNORECASE)
-    return re.compile(rf"\b{esc}\b", re.IGNORECASE)
+def _latin_patterns_for_place(place_name: str) -> list[re.Pattern[str]]:
+    """Canonical Latin name plus bulletin abbreviations (FRG, U.S., …)."""
+    patterns: list[re.Pattern[str]] = []
+    seen: set[str] = set()
+    for raw in (place_name.strip(), *latin_alias_patterns_for_place(place_name)):
+        if not raw or raw in seen:
+            continue
+        seen.add(raw)
+        try:
+            if " " in raw or "." in raw:
+                patterns.append(re.compile(re.escape(raw), re.IGNORECASE))
+            else:
+                patterns.append(re.compile(rf"\b{re.escape(raw)}\b", re.IGNORECASE))
+        except re.error:
+            pass
+    return patterns
 
 
 def find_place_span_in_range(
@@ -116,13 +130,15 @@ def find_place_span_in_range(
             hit = _best_match(pat_cyr)
             if hit:
                 return hit
-        hit = _best_match(_latin_pattern(place_name))
+        for pat_lat in _latin_patterns_for_place(place_name):
+            hit = _best_match(pat_lat)
+            if hit:
+                return hit
+        return None
+    for pat_lat in _latin_patterns_for_place(place_name):
+        hit = _best_match(pat_lat)
         if hit:
             return hit
-        return None
-    hit = _best_match(_latin_pattern(place_name))
-    if hit:
-        return hit
     for pat_cyr in _alias_patterns_for_place(place_name):
         hit = _best_match(pat_cyr)
         if hit:
@@ -191,6 +207,78 @@ def _apply_mention_previews(
         out["eng"] = ""
 
 
+def _ru_span_from_bilingual_passage(
+    place_name: str,
+    text_en: str,
+    text_ru: str,
+    offset_eng: int,
+    doc_align: Optional[Dict[str, Any]],
+) -> Optional[Tuple[int, int]]:
+    """Map an EN mention offset to a RU place hit via aligned passage bounds."""
+    if not doc_align or offset_eng < 0 or not text_ru:
+        return None
+    try:
+        from align.bilingual import find_passage_for_offset
+    except Exception:
+        return None
+    passage = find_passage_for_offset(doc_align, "eng", offset_eng)
+    if not passage:
+        return None
+    ru_side = passage.get("ru") or {}
+    if not ru_side.get("found"):
+        return None
+    ru_start = int(ru_side.get("start", -1))
+    ru_end = int(ru_side.get("end", -1))
+    if ru_start < 0 or ru_end <= ru_start:
+        return None
+    prefer = ru_start
+    if text_ru and text_en:
+        prefer = _proportional_offset(text_en, text_ru, offset_eng)
+        prefer = max(ru_start, min(prefer, ru_end - 1))
+    span = find_place_span_in_range(
+        text_ru, place_name, ru_start, ru_end, prefer_offset=prefer,
+    )
+    if span:
+        return span
+    return None
+
+
+def _en_span_from_bilingual_passage(
+    place_name: str,
+    text_en: str,
+    text_ru: str,
+    offset_rus: int,
+    doc_align: Optional[Dict[str, Any]],
+) -> Optional[Tuple[int, int]]:
+    """Map a RU mention offset to an EN place hit via aligned passage bounds."""
+    if not doc_align or offset_rus < 0 or not text_en:
+        return None
+    try:
+        from align.bilingual import find_passage_for_offset
+    except Exception:
+        return None
+    passage = find_passage_for_offset(doc_align, "rus", offset_rus)
+    if not passage:
+        return None
+    en_side = passage.get("en") or {}
+    if not en_side.get("found"):
+        return None
+    en_start = int(en_side.get("start", -1))
+    en_end = int(en_side.get("end", -1))
+    if en_start < 0 or en_end <= en_start:
+        return None
+    prefer = en_start
+    if text_ru and text_en:
+        prefer = _proportional_offset(text_ru, text_en, offset_rus)
+        prefer = max(en_start, min(prefer, en_end - 1))
+    span = find_place_span_in_range(
+        text_en, place_name, en_start, en_end, prefer_offset=prefer,
+    )
+    if span:
+        return span
+    return None
+
+
 def resolve_mention_offsets(
     place_name: str,
     text_en: str,
@@ -200,6 +288,7 @@ def resolve_mention_offsets(
     offset_rus: int = -1,
     length_eng: int = 0,
     length_rus: int = 0,
+    doc_align: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, int]:
     """Snap EN/RU offsets to alias matches; derive the other language from the located side."""
     out: Dict[str, int] = {
@@ -242,6 +331,21 @@ def resolve_mention_offsets(
         if span:
             out["offset_rus"] = span[0]
             out["length_rus"] = max(span[1] - span[0], 1)
+        if out["offset_rus"] < 0:
+            span = _ru_span_from_bilingual_passage(
+                place_name, text_en, text_ru, out["offset_eng"], doc_align,
+            )
+            if span:
+                out["offset_rus"] = span[0]
+                out["length_rus"] = max(span[1] - span[0], 1)
+        if out["offset_rus"] < 0 and text_ru:
+            center = _proportional_offset(text_en, text_ru, out["offset_eng"])
+            span = find_place_span_in_range(
+                text_ru, place_name, 0, len(text_ru), prefer_offset=center,
+            )
+            if span:
+                out["offset_rus"] = span[0]
+                out["length_rus"] = max(span[1] - span[0], 1)
 
     if out["offset_rus"] >= 0 and out["offset_eng"] < 0 and text_ru and text_en:
         center = _proportional_offset(text_ru, text_en, out["offset_rus"])
@@ -254,6 +358,13 @@ def resolve_mention_offsets(
         if span:
             out["offset_eng"] = span[0]
             out["length_eng"] = max(span[1] - span[0], 1)
+        if out["offset_eng"] < 0:
+            span = _en_span_from_bilingual_passage(
+                place_name, text_en, text_ru, out["offset_rus"], doc_align,
+            )
+            if span:
+                out["offset_eng"] = span[0]
+                out["length_eng"] = max(span[1] - span[0], 1)
 
     return out
 
@@ -275,6 +386,8 @@ def tight_mention_nav_fields(
     place_name: str,
     text_en: str,
     text_ru: str,
+    *,
+    doc_align: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """Build popup/nav payload using mention-sized offsets only."""
     lang = seg.get("lang", "")
@@ -312,6 +425,7 @@ def tight_mention_nav_fields(
         offset_rus=preset_rus,
         length_eng=max(int(seg.get("length_eng", 0)), length if lang == "eng" else 0),
         length_rus=max(int(seg.get("length_rus", 0)), length if lang == "rus" else 0),
+        doc_align=doc_align,
     )
     out["offset_eng"] = resolved["offset_eng"]
     out["length_eng"] = resolved["length_eng"]

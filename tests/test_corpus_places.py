@@ -30,6 +30,23 @@ def test_corpus_extract_finds_places_without_places_category():
     assert segs[0].get("lang") in ("eng", "both")
 
 
+def test_corpus_extract_skips_institutional_ukraine_header():
+    from places.corpus_extract import extract_from_documents
+
+    documents = [
+        {
+            "document_id": "hdr",
+            "raw_text_en": "CENTRAL COMMITTEE OF THE COMMUNIST PARTY OF UKRAINE\n\nNote body.",
+            "raw_text": "ЦК КП Украины\n\nТекст.",
+        }
+    ]
+    out = extract_from_documents(documents)
+    assert "UKRAINE" not in out.get("place_segments", {})
+    assert "Ukraine" not in out.get("place_segments", {}) or len(
+        out["place_segments"].get("Ukraine", [])
+    ) == 0
+
+
 def test_corpus_extract_dedupes_bilingual_same_passage():
     from places.corpus_extract import extract_from_documents
 

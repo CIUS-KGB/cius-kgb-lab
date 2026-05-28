@@ -141,6 +141,70 @@ def test_lutsk_pairs_lutske_in_doc_1209():
     assert ru_snip.startswith("Луцк")
 
 
+def test_resolve_eng_zaporizhzhia_pairs_ru_stat_list():
+    cfg = json.loads((ROOT / "config/pipeline_config.example.json").read_text(encoding="utf-8"))
+    from ingest import run as ingest_run
+
+    doc = next(d for d in ingest_run(cfg, ROOT) if d.get("document_id") == "1127")
+    text_en = doc.get("raw_text_en") or ""
+    text_ru = doc.get("raw_text") or ""
+    off_en = text_en.find("Zaporizhzhia")
+    assert off_en >= 0
+    resolved = resolve_mention_offsets("Zaporizhzhia", text_en, text_ru, offset_eng=off_en)
+    assert resolved["offset_rus"] >= 0
+    assert "Запор" in text_ru[resolved["offset_rus"] : resolved["offset_rus"] + 12]
+
+
+def test_resolve_eng_canada_pairs_ru_via_bilingual_passage():
+    """When proportional offset fails, passage bounds still link EN Canada to RU Канада."""
+    text_en = "A delegation from Canada and Japan arrived at the society."
+    text_ru = "Делегация из Канады и Японии прибыла в общество."
+    off_en = text_en.index("Canada")
+    doc_align = {
+        "passages": [{
+            "en": {"start": 0, "end": len(text_en), "found": True},
+            "ru": {"start": 0, "end": len(text_ru), "found": True},
+        }],
+    }
+    resolved = resolve_mention_offsets(
+        "Canada", text_en, text_ru, offset_eng=off_en, doc_align=doc_align,
+    )
+    assert resolved["offset_rus"] >= 0
+    assert "Канад" in text_ru[resolved["offset_rus"] : resolved["offset_rus"] + 12]
+
+
+def test_resolve_rus_england_pairs_british_embassy():
+    text_en = "The First Secretary of the British Embassy in Kyiv, J. Patterson (introductory visit)."
+    text_ru = "Первому секретарю посольства Англии Дж. Паттерсону (ознакомительная поездка)."
+    off_ru = text_ru.index("Англи")
+    resolved = resolve_mention_offsets("United Kingdom", text_en, text_ru, offset_rus=off_ru)
+    assert resolved["offset_eng"] >= 0
+    en_snip = text_en[resolved["offset_eng"] : resolved["offset_eng"] + resolved["length_eng"]]
+    assert "British" in en_snip
+
+
+def test_resolve_rus_mariupol_pairs_zhdanov_in_english():
+    text_en = "At the ports of Odesa, Zhdanov, and Kherson there are 12 ships."
+    text_ru = "в Одесском, Ждановском и Херсонском портах находились 12 судна"
+    off_ru = text_ru.index("Жданов")
+    resolved = resolve_mention_offsets("Mariupol", text_en, text_ru, offset_rus=off_ru)
+    assert resolved["offset_eng"] >= 0
+    en_snip = text_en[resolved["offset_eng"] : resolved["offset_eng"] + resolved["length_eng"]]
+    assert "Zhdanov" in en_snip
+
+
+def test_resolve_rus_only_usa_finds_us_in_english():
+    text_en = "From the U.S. — 32, U.K. — 4, FRG — 4, France — 2, Canada — 7."
+    text_ru = "Из США — 32, Великобритании — 4, ФРГ — 4, Франции — 2, Канады — 7."
+    off_ru = text_ru.index("США")
+    resolved = resolve_mention_offsets(
+        "United States", text_en, text_ru, offset_rus=off_ru,
+    )
+    assert resolved["offset_eng"] >= 0
+    en_snip = text_en[resolved["offset_eng"] : resolved["offset_eng"] + resolved["length_eng"]]
+    assert "U.S" in en_snip or "US" in en_snip.upper()
+
+
 def test_find_place_span_near_offset_reni():
     text_ru = (
         "прочих категорий — 3 682 человека;\n"

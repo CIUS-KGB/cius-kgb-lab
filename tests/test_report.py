@@ -80,6 +80,34 @@ def test_report_folds_legacy_content_category_in_table_and_attrs():
         pass
 
 
+def test_report_illuminator_fills_missing_bilingual_panel():
+    """Comparison navigation must backfill EN or RU highlight when only one panel has data-row-index."""
+    config = {"output": {"dir": "data/output", "report_html": "test_report_bilingual_fill.html"}}
+    taxonomy = {
+        "content_categories": [{"id": "Actors", "label_en": "Actors", "colour": "#3b82f6"}],
+        "framing_strategies": [{"id": "Institutional / Bureaucratic Lingo", "label_en": "Institutional / Bureaucratic Lingo", "colour": "#2563eb"}],
+    }
+    documents = [{"document_id": "d1", "display_name": "doc1.txt"}]
+    comparison_by_doc = {
+        "d1": {
+            "aligned_rows": [
+                {"section": 1, "entry_eng": "A", "entry_rus": "Б", "llm_category": "Actors", "llm_framing": "Institutional / Bureaucratic Lingo", "human_category": "Actors", "human_framing": "Institutional / Bureaucratic Lingo", "context": "", "category_match": True, "framing_match": True, "both_match": True},
+            ],
+            "category_accuracy_pct": 100.0,
+            "framing_accuracy_pct": 100.0,
+            "both_match_pct": 100.0,
+        },
+    }
+    out_path = report_run(comparison_by_doc, documents, taxonomy, config)
+    html = out_path.read_text(encoding="utf-8")
+    assert "Fill each missing panel independently" in html
+    assert "spansEng.length === 0 || spansRus.length === 0" in html
+    try:
+        out_path.unlink()
+    except Exception:
+        pass
+
+
 def test_report_produces_html():
     """Report run writes HTML file containing tabs, table, document text view, glossary section on Lab page."""
     config = {"output": {"dir": "data/output", "report_html": "test_report_output.html", "intermediate_json": "comparison_results.json"}}

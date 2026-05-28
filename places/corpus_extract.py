@@ -20,7 +20,6 @@ EXTRA_GAZETTEER_NAMES = (
     "Romania",
     "Belgium",
     "United Kingdom",
-    "Great Britain",
     "Dnipro",
     "Chernihiv",
     "Poltava",
@@ -36,11 +35,10 @@ EXTRA_GAZETTEER_NAMES = (
     "Ottawa",
     "Montreal",
     "Washington",
-    "England",
     "Australia",
 )
 
-from places.ru_gazetteer import cyrillic_canonical_set, cyrillic_scan_patterns
+from places.ru_gazetteer import cyrillic_canonical_set, cyrillic_scan_patterns, map_pin_canonical
 
 # Cyrillic regex -> canonical English (inflection-aware stems from ru_gazetteer)
 CYRILLIC_PATTERNS: Tuple[Tuple[str, str], ...] = cyrillic_scan_patterns()
@@ -52,7 +50,32 @@ PREVIEW_CLAUSE_MAX = 88
 SAME_LANG_OFFSET_SLOP = 10
 
 _STAT_COUNT = re.compile(r"[—–\-]\s*\d+")
+_INSTITUTIONAL_UKRAINE_EN = re.compile(
+    r"COMMUNIST\s+PARTY.{0,48}(?:OF\s+)?UKRAINE",
+    re.IGNORECASE | re.DOTALL,
+)
+_INSTITUTIONAL_UKRAINE_RU = re.compile(
+    r"(?:КОММУНИСТИЧЕСКОЙ\s+ПАРТИИ|КП)\s+Украин",
+    re.IGNORECASE,
+)
 CYRILLIC_CANONICAL = cyrillic_canonical_set()
+
+
+def _is_institutional_header_place(
+    text: str,
+    start: int,
+    end: int,
+    place: str,
+) -> bool:
+    """Skip letterhead 'COMMUNIST PARTY OF UKRAINE' — not a geographic mention."""
+    if map_pin_canonical(place) != "Ukraine":
+        return False
+    window = text[max(0, start - 100) : min(len(text), end + 100)]
+    if _INSTITUTIONAL_UKRAINE_EN.search(window):
+        return True
+    if _INSTITUTIONAL_UKRAINE_RU.search(window):
+        return True
+    return False
 
 
 def _is_stat_list_line(text: str, line_start: int, line_end: int) -> bool:
@@ -279,6 +302,11 @@ def _scan_latin_gazetteer(
                     continue
             except Exception:
                 canonical = name
+            canonical = map_pin_canonical(canonical)
+            if not canonical:
+                continue
+            if lang == "eng" and _is_institutional_header_place(text, start, end, canonical):
+                continue
             snip = _snippet(text, start, end, place_name=canonical)
             rec: Dict[str, Any] = {
                 "doc_id": doc_id,
@@ -310,6 +338,9 @@ def _scan_cyrillic_gazetteer(text: str, doc_id: str) -> List[Dict[str, Any]]:
             if key in seen:
                 continue
             seen.add(key)
+            canonical = map_pin_canonical(canonical)
+            if _is_institutional_header_place(text, start, end, canonical):
+                continue
             snip = _snippet(text, start, end, place_name=canonical)
             out.append({
                 "doc_id": doc_id,
@@ -345,6 +376,8 @@ def _pair_cross_lang_mentions(
     text_en: str,
     text_ru: str,
     place_name: str,
+    *,
+    doc_align: Optional[Dict[str, Any]] = None,
 ) -> List[Dict[str, Any]]:
     """One row per logical mention; RU offset is derived from EN (not a separate scan hit)."""
     from places.mention_nav import mention_preview_text, resolve_mention_offsets
@@ -360,6 +393,7 @@ def _pair_cross_lang_mentions(
             text_ru,
             offset_eng=off_e,
             length_eng=int(e.get("length", 0)),
+            doc_align=doc_align,
         )
         rec = dict(e)
         rec.update(resolved)
@@ -391,6 +425,7 @@ def _pair_cross_lang_mentions(
             text_ru,
             offset_rus=off_r,
             length_rus=int(r.get("length", 0)),
+            doc_align=doc_align,
         )
         if resolved["offset_eng"] >= 0 and any(
             abs(resolved["offset_eng"] - int(m.get("offset_eng", -999))) <= SAME_LANG_OFFSET_SLOP
@@ -422,16 +457,39 @@ def _dedupe_doc_mentions(
     mentions: List[Dict[str, Any]],
     text_en: str,
     text_ru: str,
+    *,
+    doc_align: Optional[Dict[str, Any]] = None,
 ) -> List[Dict[str, Any]]:
     by_place: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
     for m in mentions:
-        by_place[str(m.get("place", ""))].append(m)
+        canon = map_pin_canonical(str(m.get("place", "")))
+        if canon:
+            m["place"] = canon
+            by_place[canon].append(m)
     out: List[Dict[str, Any]] = []
     for _place, group in by_place.items():
         eng = _dedupe_same_lang([m for m in group if m.get("lang") == "eng"])
         rus = _dedupe_same_lang([m for m in group if m.get("lang") == "rus"])
-        out.extend(_pair_cross_lang_mentions(eng, rus, text_en, text_ru, _place))
+        out.extend(
+            _pair_cross_lang_mentions(
+                eng, rus, text_en, text_ru, _place, doc_align=doc_align,
+            )
+        )
     return out
+
+
+def _merge_pin_canonical_buckets(
+    place_segments: Dict[str, List[Dict[str, Any]]],
+    place_counts: Dict[str, int],
+) -> Tuple[Dict[str, List[Dict[str, Any]]], Dict[str, int]]:
+    """Collapse merged canonicals (e.g. Great Britain -> United Kingdom)."""
+    merged_segs: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    merged_counts: Dict[str, int] = defaultdict(int)
+    for place, segs in place_segments.items():
+        canon = map_pin_canonical(place)
+        merged_segs[canon].extend(segs)
+        merged_counts[canon] += place_counts.get(place, len(segs))
+    return dict(merged_segs), dict(merged_counts)
 
 
 def _attach_related_row_hints(
@@ -487,6 +545,8 @@ def _attach_related_row_hints(
 def extract_from_documents(
     documents: Iterable[Dict[str, Any]],
     comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
+    *,
+    alignments_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     """
     Scan full EN/RU document text for gazetteer place names.
@@ -508,7 +568,10 @@ def extract_from_documents(
         doc_mentions.extend(_scan_latin_gazetteer(text_en, doc_id, "eng", gazetteer))
         doc_mentions.extend(_scan_latin_gazetteer(text_ru, doc_id, "rus", gazetteer))
         doc_mentions.extend(_scan_cyrillic_gazetteer(text_ru, doc_id))
-        doc_mentions = _dedupe_doc_mentions(doc_mentions, text_en, text_ru)
+        doc_align = (alignments_by_doc or {}).get(doc_id)
+        doc_mentions = _dedupe_doc_mentions(
+            doc_mentions, text_en, text_ru, doc_align=doc_align,
+        )
         _attach_related_row_hints(doc_mentions, comparison_by_doc)
 
         for m in doc_mentions:
@@ -547,6 +610,9 @@ def extract_from_documents(
             }
             place_segments[place].append(seg)
 
+    place_segments, place_counts = _merge_pin_canonical_buckets(
+        dict(place_segments), dict(place_counts),
+    )
     sorted_places = sorted(place_counts.items(), key=lambda x: (-x[1], x[0]))
     return {
         "source": "corpus_gazetteer",

@@ -36,6 +36,7 @@ NORMALIZE = {
     "UK": "United Kingdom",
     "FRG": "Germany",
     "USSR": "Soviet Union",
+    "UKRAINE": "Ukraine",
 }
 
 # Skip these — too generic or not geocodable

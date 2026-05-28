@@ -1275,6 +1275,13 @@ def run(
     report_root = _REPORT_ROOT
     out_dir.mkdir(parents=True, exist_ok=True)
     try:
+        from align.bilingual import build_bilingual_alignments, write_bilingual_alignments
+
+        align_payload = build_bilingual_alignments(documents, comparison_by_doc)
+        write_bilingual_alignments(align_payload, _bilingual_alignments_path(config))
+    except Exception as exc:
+        print(f"Warning: bilingual alignment skipped ({exc})", file=sys.stderr)
+    try:
         from report.places_sync import sync_places_artifacts
 
         sync_places_artifacts(
@@ -1285,13 +1292,6 @@ def run(
         )
     except Exception as exc:
         print(f"Warning: places sync skipped ({exc})", file=sys.stderr)
-    try:
-        from align.bilingual import build_bilingual_alignments, write_bilingual_alignments
-
-        align_payload = build_bilingual_alignments(documents, comparison_by_doc)
-        write_bilingual_alignments(align_payload, _bilingual_alignments_path(config))
-    except Exception as exc:
-        print(f"Warning: bilingual alignment skipped ({exc})", file=sys.stderr)
     keyboard_logo_href = _copy_cuis_logo_for_report(out_dir.resolve())
     html_name = out_config.get("report_html", "manual_analysis_report.html")
     viz_html_name = out_config.get("lab_visualization_html", "lab_visualization.html")
@@ -2982,17 +2982,20 @@ def _place_segment_nav_fields(
     seg: Dict[str, Any],
     place_name: str,
     doc_texts: Dict[str, Dict[str, str]],
+    alignments_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     """Tight mention offsets for places map View (not whole comparison rows or paragraphs)."""
     from places.mention_nav import tight_mention_nav_fields
 
     doc_id = seg.get("doc_id", "")
     texts = doc_texts.get(doc_id) or {}
+    doc_align = (alignments_by_doc or {}).get(doc_id)
     return tight_mention_nav_fields(
         seg,
         place_name or seg.get("place", ""),
         texts.get("en", ""),
         texts.get("ru", ""),
+        doc_align=doc_align,
     )
 
 
@@ -3038,6 +3041,7 @@ def _load_places_map_data_enriched(
         except Exception:
             pass
     doc_texts = _document_texts_by_id(documents)
+    alignments_by_doc = _load_bilingual_alignments_by_doc(config)
     enriched: List[Dict[str, Any]] = []
     for place_name, coords in coords_by_name.items():
         name = place_name
@@ -3054,7 +3058,7 @@ def _load_places_map_data_enriched(
             "count": segment_count,
             "coords": coords,
             "segments": [
-                _place_segment_nav_fields(s, name, doc_texts)
+                _place_segment_nav_fields(s, name, doc_texts, alignments_by_doc)
                 for s in sample_segs
             ],
             "doc_counts": [{"doc_id": did, "display_name": doc_names.get(did, did), "count": c} for did, c in sorted(doc_counts.items(), key=lambda x: -x[1])],
@@ -7067,6 +7071,12 @@ function placeMentionRegexList(placeName) {
   }
   return out;
 }
+function proportionalTextOffset(srcLen, dstLen, srcOff) {
+  if (!dstLen) return -1;
+  if (!srcLen || srcLen <= 1) return Math.min(Math.max(srcOff, 0), Math.max(dstLen - 1, 0));
+  var ratio = Math.max(0, Math.min(srcOff, srcLen)) / srcLen;
+  return Math.min(Math.floor(ratio * dstLen), Math.max(dstLen - 1, 0));
+}
 function highlightPlacesMapMentions(tid, opts) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
@@ -7081,9 +7091,33 @@ function highlightPlacesMapMentions(tid, opts) {
   var spansEng = [];
   var spansRus = [];
   if (!containerEng || !containerRus) return { spansEng: spansEng, spansRus: spansRus, offE: offE, offR: offR };
+  var fullRus = containerRus.textContent || '';
+  var fullEng = containerEng.textContent || '';
+  if (offE < 0 && offR >= 0 && fullRus.length && fullEng.length) {
+    offE = proportionalTextOffset(fullRus.length, fullEng.length, offR);
+  }
   if (placeName) {
     spansEng = highlightPlaceMentionInContainer(containerEng, placeName, offE, lenE, { precise: true });
     spansRus = highlightPlaceMentionInContainer(containerRus, placeName, offR, lenR, { precise: true });
+  }
+  if (spansEng.length === 0 && offR >= 0 && tid) {
+    var passage = findBilingualPassageAtOffset(tid, 'rus', offR);
+    if (passage) {
+      var enSide = passage.eng || {};
+      var enStart = placesNavOffset(enSide.start);
+      var enEnd = placesNavOffset(enSide.end);
+      if (enStart >= 0 && enEnd > enStart) {
+        if (placeName) {
+          spansEng = highlightPlaceMentionInContainer(containerEng, placeName, enStart, lenE, { precise: true });
+        }
+        if (spansEng.length === 0) {
+          spansEng = highlightIlluminatorByOffsets(containerEng, enStart, enEnd, { precise: true });
+          offE = enStart;
+        } else if (offE < 0) {
+          offE = enStart;
+        }
+      }
+    }
   }
   if (spansEng.length === 0 && offE >= 0) {
     spansEng = highlightIlluminatorByOffsets(containerEng, offE, offE + (lenE > 0 ? lenE : 1), { precise: true });
@@ -7290,21 +7324,39 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
     spansEng = Array.prototype.slice.call(containerEng.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
     spansRus = Array.prototype.slice.call(containerRus.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
   }
-  if (spansEng.length === 0 && spansRus.length === 0) {
+  /* Fill each missing panel independently: server full-text often anchors only one language per row. */
+  if (spansEng.length === 0 || spansRus.length === 0) {
     var nav = getIlluminatorNavIndex(tid);
     if (nav && ri >= 0) {
       var rowNav = bilingualRowNav(tid, ri);
       if (rowNav) {
-        var bi = highlightBilingualSides(tid, rowNav);
-        spansEng = bi.spansEng;
-        spansRus = bi.spansRus;
+        if (spansEng.length === 0) {
+          var enSide = rowNavSide(rowNav, 'eng');
+          var enStart = placesNavOffset(enSide.start);
+          var enEnd = placesNavOffset(enSide.end);
+          if (enStart >= 0) {
+            if (enEnd <= enStart) enEnd = enStart + 1;
+            spansEng = highlightIlluminatorByOffsets(containerEng, enStart, enEnd);
+          }
+        }
+        if (spansRus.length === 0) {
+          var ruSide = rowNavSide(rowNav, 'ru');
+          var ruStart = placesNavOffset(ruSide.start);
+          var ruEnd = placesNavOffset(ruSide.end);
+          if (ruStart >= 0) {
+            if (ruEnd <= ruStart) ruEnd = ruStart + 1;
+            spansRus = highlightIlluminatorByOffsets(containerRus, ruStart, ruEnd);
+          }
+        }
       }
-      if (spansEng.length === 0 && spansRus.length === 0) {
+      if (spansEng.length === 0) {
         var engOcc = navOccForRow(nav.eng, ri);
-        var rusOcc = navOccForRow(nav.rus, ri);
         if (engOcc && engOcc.found && engOcc.start >= 0) {
           spansEng = highlightIlluminatorByOffsets(containerEng, engOcc.start, engOcc.end);
         }
+      }
+      if (spansRus.length === 0) {
+        var rusOcc = navOccForRow(nav.rus, ri);
         if (rusOcc && rusOcc.found && rusOcc.start >= 0) {
           spansRus = highlightIlluminatorByOffsets(containerRus, rusOcc.start, rusOcc.end);
         }

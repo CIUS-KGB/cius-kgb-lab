@@ -52,7 +52,20 @@ def sync_places_artifacts(
 
     from places.corpus_extract import extract_from_documents
 
-    extracted = extract_from_documents(documents, comparison_by_doc=comparison_by_doc)
+    alignments_by_doc: Dict[str, Dict[str, Any]] = {}
+    align_path = out_dir / "bilingual_alignments.json"
+    if align_path.exists():
+        try:
+            with open(align_path, encoding="utf-8") as f:
+                alignments_by_doc = json.load(f).get("by_doc") or {}
+        except Exception:
+            pass
+
+    extracted = extract_from_documents(
+        documents,
+        comparison_by_doc=comparison_by_doc,
+        alignments_by_doc=alignments_by_doc,
+    )
     extracted_path.write_text(
         json.dumps(extracted, indent=2, ensure_ascii=False),
         encoding="utf-8",

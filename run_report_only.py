@@ -76,14 +76,6 @@ def main() -> int:
     from report.places_sync import sync_places_artifacts
 
     try:
-        paths = sync_places_artifacts(
-            documents, config, ROOT, comparison_by_doc=comparison_by_doc,
-        )
-        print(f"Places data: {paths['extracted'].name}, {paths['geocoded'].name}")
-    except Exception as exc:
-        print(f"Warning: places sync failed ({exc})")
-
-    try:
         from align.bilingual import build_bilingual_alignments, write_bilingual_alignments
 
         out_dir = Path(config.get("output", {}).get("dir", "data/output"))
@@ -93,6 +85,14 @@ def main() -> int:
         print(f"Bilingual alignments: {align_path.name}")
     except Exception as exc:
         print(f"Warning: bilingual alignment failed ({exc})")
+
+    try:
+        paths = sync_places_artifacts(
+            documents, config, ROOT, comparison_by_doc=comparison_by_doc,
+        )
+        print(f"Places data: {paths['extracted'].name}, {paths['geocoded'].name}")
+    except Exception as exc:
+        print(f"Warning: places sync failed ({exc})")
 
     out_path = report_run(comparison_by_doc, documents, taxonomy, config)
     print(f"Report: {out_path}")
