@@ -217,17 +217,8 @@ def _extract_from_phrase(eng: str, rus: str) -> list[tuple[str, int]]:
     return results
 
 
-def main() -> int:
-    json_path = ROOT / "data" / "output" / "comparison_results.json"
-    if not json_path.exists():
-        print(f"Not found: {json_path}")
-        print("Run the full pipeline first: python run.py")
-        return 1
-
-    with open(json_path, encoding="utf-8") as f:
-        data = json.load(f)
-
-    comparison_by_doc = data.get("comparison_by_doc", {})
+def extract_from_comparison_by_doc(comparison_by_doc: dict) -> dict:
+    """Build places payload from comparison rows (same shape as places_extracted.json)."""
     place_counts: dict[str, int] = defaultdict(int)
     place_segments: dict[str, list[dict]] = defaultdict(list)
 
@@ -251,14 +242,27 @@ def main() -> int:
                     "count": count,
                 })
 
-    # Sort by count descending
     sorted_places = sorted(place_counts.items(), key=lambda x: -x[1])
-    output = {
+    return {
         "places": [{"name": p, "count": c} for p, c in sorted_places],
         "place_segments": {p: segs for p, segs in place_segments.items()},
         "total_mentions": sum(place_counts.values()),
         "unique_places": len(place_counts),
     }
+
+
+def main() -> int:
+    json_path = ROOT / "data" / "output" / "comparison_results.json"
+    if not json_path.exists():
+        print(f"Not found: {json_path}")
+        print("Run the full pipeline first: python run.py")
+        return 1
+
+    with open(json_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    comparison_by_doc = data.get("comparison_by_doc", {})
+    output = extract_from_comparison_by_doc(comparison_by_doc)
 
     out_path = ROOT / "data" / "output" / "places_extracted.json"
     out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")

@@ -1107,6 +1107,62 @@ def _get_accepted_segments(
     return accepted
 
 
+def _illuminator_nav_occurrences(
+    full_text: str,
+    aligned: List[Dict],
+    entry_key: str,
+) -> Dict[int, Dict[str, Any]]:
+    """Per aligned row: character offsets in full_text for the row's assigned occurrence (same order as table/illuminator logic)."""
+    if not full_text or not aligned:
+        return {}
+    next_occurrence: Dict[str, int] = defaultdict(int)
+    out: Dict[int, Dict[str, Any]] = {}
+    for row_index, r in enumerate(aligned):
+        segment = (r.get(entry_key) or "").strip()
+        if not segment:
+            out[row_index] = {"start": -1, "end": -1, "found": False}
+            continue
+        occ_key = _normalize_segment_for_search(segment) or segment
+        occ_list = _segment_occurrences(full_text, segment)
+        k = next_occurrence[occ_key]
+        if k >= len(occ_list):
+            out[row_index] = {"start": -1, "end": -1, "found": False}
+            continue
+        idx, matched = occ_list[k]
+        next_occurrence[occ_key] += 1
+        out[row_index] = {"start": idx, "end": idx + len(matched), "found": True}
+    return out
+
+
+def _illuminator_nav_index_script(
+    doc_id: str,
+    aligned: List[Dict],
+    full_text_eng: str,
+    full_text_rus: str,
+) -> str:
+    """Embedded JSON for client-side highlight when a row has no accepted illuminator span."""
+    eng = _illuminator_nav_occurrences(full_text_eng or "", aligned, "entry_eng")
+    rus = _illuminator_nav_occurrences(full_text_rus or "", aligned, "entry_rus")
+    payload = json.dumps({"eng": eng, "rus": rus}, separators=(",", ":"), ensure_ascii=False)
+    esc_id = html_module.escape(doc_id)
+    return (
+        f'<script type="application/json" id="illuminator-nav-{esc_id}" '
+        f'class="illuminator-nav-data">{payload}</script>'
+    )
+
+
+def _import_extract_places_module() -> Any:
+    import importlib.util
+
+    path = _REPORT_ROOT / "scripts" / "extract_places.py"
+    spec = importlib.util.spec_from_file_location("vozmezdie_extract_places", path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot load extract_places from {path}")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def _spans_to_html(
     full_text: str,
     accepted: List[Tuple],
@@ -1436,7 +1492,7 @@ def run(
     viz_out_path.write_text("\n".join(standalone_parts), encoding="utf-8")
 
     out_path.write_text("\n".join(parts), encoding="utf-8")
-    _write_places_map_html(config, out_dir)
+    _write_places_map_html(config, out_dir, comparison_by_doc=comparison_by_doc)
     return out_path
 
 
@@ -2873,13 +2929,15 @@ def _load_places_map_data(config: Dict[str, Any]) -> List[Dict[str, Any]]:
         return []
 
 
-def _load_places_map_data_enriched(config: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _load_places_map_data_enriched(
+    config: Dict[str, Any],
+    comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> List[Dict[str, Any]]:
     """Load geocoded places with segments, doc counts, doc names, and historical notes."""
     base_list = _load_places_map_data(config)
     if not base_list:
         return []
     base_dir = _places_map_data_dir(config)
-    extracted_path = base_dir / "places_extracted.json"
     doc_map_path = _REPORT_ROOT / "config" / "document_map.json"
     doc_names: Dict[str, str] = {}
     if doc_map_path.exists():
@@ -2891,13 +2949,22 @@ def _load_places_map_data_enriched(config: Dict[str, Any]) -> List[Dict[str, Any
         except Exception:
             pass
     place_segments: Dict[str, List[Dict[str, Any]]] = {}
-    if extracted_path.exists():
+    if comparison_by_doc:
         try:
-            with open(extracted_path, encoding="utf-8") as f:
-                ext = json.load(f)
+            ext_mod = _import_extract_places_module()
+            ext = ext_mod.extract_from_comparison_by_doc(comparison_by_doc)
             place_segments = ext.get("place_segments", {})
         except Exception:
-            pass
+            place_segments = {}
+    else:
+        extracted_path = base_dir / "places_extracted.json"
+        if extracted_path.exists():
+            try:
+                with open(extracted_path, encoding="utf-8") as f:
+                    ext = json.load(f)
+                place_segments = ext.get("place_segments", {})
+            except Exception:
+                pass
     enriched: List[Dict[str, Any]] = []
     for p in base_list:
         name = p["name"]
@@ -3158,7 +3225,9 @@ def _build_per_document_viz_section(
     }
     heatmap_html = _heatmap_html(stats, cat_ids=cat_ids, config=config)
 
-    places_html = _build_places_map_html(config, embedded=True, doc_id_filter=doc_id)
+    places_html = _build_places_map_html(
+        config, embedded=True, doc_id_filter=doc_id, comparison_by_doc=comparison_by_doc,
+    )
     places_fallback = '<p style="padding:2rem;color:#6b7280;">No places data for this document.</p>'
     lab_a, lab_b = viz_experiment_labels if viz_experiment_labels else _DEFAULT_VIZ_EXPERIMENT_LABELS
 
@@ -3286,9 +3355,14 @@ def _build_per_document_viz_section(
     )
 
 
-def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_id_filter: Optional[str] = None) -> str:
+def _build_places_map_html(
+    config: Dict[str, Any],
+    embedded: bool = False,
+    doc_id_filter: Optional[str] = None,
+    comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> str:
     """Build places map HTML. If embedded=True, View links use parent.location.hash for same-doc navigation."""
-    places = _load_places_map_data_enriched(config)
+    places = _load_places_map_data_enriched(config, comparison_by_doc=comparison_by_doc)
     if doc_id_filter:
         places = _filter_places_enriched_for_doc(places, doc_id_filter)
     if not places:
@@ -3479,9 +3553,13 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
     return html
 
 
-def _write_places_map_html(config: Dict[str, Any], out_dir: Path) -> None:
+def _write_places_map_html(
+    config: Dict[str, Any],
+    out_dir: Path,
+    comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> None:
     """Write places_map.html to output dir for opening in new window."""
-    html = _build_places_map_html(config, embedded=False)
+    html = _build_places_map_html(config, embedded=False, comparison_by_doc=comparison_by_doc)
     if html:
         (out_dir / "places_map.html").write_text(html, encoding="utf-8")
 
@@ -4546,7 +4624,7 @@ def _homepage(
         fram_colours,
     )
 
-    places_map_html = _build_places_map_html(config, embedded=True)
+    places_map_html = _build_places_map_html(config, embedded=True, comparison_by_doc=comparison_by_doc)
     if places_map_html:
         places_map_srcdoc = _places_map_lab_embed_markup(places_map_html)
     else:
@@ -4845,6 +4923,9 @@ def _doc_tab(
         full_text_eng_html=eng_html,
         full_text_rus_html=rus_html,
     )
+    illuminator_nav_script = _illuminator_nav_index_script(
+        doc_id, aligned, full_text_eng, full_text_rus,
+    )
     if dual_compare:
         sc = secondary_cat_pct if secondary_cat_pct is not None else 0
         sf = secondary_fram_pct if secondary_fram_pct is not None else 0
@@ -4958,6 +5039,7 @@ def _doc_tab(
   <summary data-i18n="document_text_view">Document Text Illuminator</summary>
   <div class="collapsible-body">
     {text_view}
+    {illuminator_nav_script}
   </div>
 </details>
 {doc_viz_section_html}
@@ -6574,7 +6656,7 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
       if (!cmpRow) cmpRow = cmpSec.querySelector('tr[data-row-index="' + String(ri) + '"]');
       if (cmpRow) cmpRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-  }, sameTab ? 60 : 140);
+  }, sameTab ? 90 : 240);
 }
 window.placesMapNavigateToSegment = placesMapNavigateToSegment;
 if (!window.__placesMapMessageListener) {
@@ -6612,6 +6694,45 @@ function comparisonRowForHighlight(tid, rowIndex, comparisonRun) {
   if (!tbody) return null;
   return tbody.querySelector('tr[data-row-index="' + String(rowIndex) + '"]');
 }
+function getIlluminatorNavIndex(tid) {
+  var el = document.getElementById('illuminator-nav-' + tid);
+  if (!el) return null;
+  try { return JSON.parse(el.textContent); } catch (e) { return null; }
+}
+function navOccForRow(panelMap, rowIndex) {
+  if (!panelMap || rowIndex < 0) return null;
+  if (panelMap[rowIndex] != null) return panelMap[rowIndex];
+  return panelMap[String(rowIndex)] || null;
+}
+function highlightIlluminatorByOffsets(container, start, end) {
+  if (!container || start < 0 || end <= start) return [];
+  var highlighted = [];
+  var seen = new Set();
+  var walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+  var pos = 0;
+  while (walker.nextNode()) {
+    var n = walker.currentNode;
+    var len = n.textContent.length;
+    var nodeStart = pos;
+    var nodeEnd = pos + len;
+    pos = nodeEnd;
+    if (nodeEnd <= start || nodeStart >= end) continue;
+    var el = n.parentElement;
+    while (el && el !== container) {
+      if (el.classList && (el.classList.contains('doc-entry') || el.classList.contains('doc-gap'))) {
+        if (!seen.has(el)) {
+          seen.add(el);
+          el.classList.add('doc-entry-highlight-brief', 'filter-match');
+          el.classList.remove('dimmed');
+          highlighted.push(el);
+        }
+        break;
+      }
+      el = el.parentElement;
+    }
+  }
+  return highlighted;
+}
 function resolveHighlightTriggerRow(tid, rowIndex, triggerEl, comparisonRun) {
   if (triggerEl && triggerEl.tagName === 'TR' && triggerEl.getAttribute('data-row-index') != null) return triggerEl;
   if (triggerEl && triggerEl.closest) {
@@ -6634,6 +6755,19 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
     var rowIdxStr = String(ri);
     spansEng = Array.prototype.slice.call(containerEng.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
     spansRus = Array.prototype.slice.call(containerRus.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
+  }
+  if (spansEng.length === 0 && spansRus.length === 0) {
+    var nav = getIlluminatorNavIndex(tid);
+    if (nav && ri >= 0) {
+      var engOcc = navOccForRow(nav.eng, ri);
+      var rusOcc = navOccForRow(nav.rus, ri);
+      if (engOcc && engOcc.found && engOcc.start >= 0) {
+        spansEng = highlightIlluminatorByOffsets(containerEng, engOcc.start, engOcc.end);
+      }
+      if (rusOcc && rusOcc.found && rusOcc.start >= 0) {
+        spansRus = highlightIlluminatorByOffsets(containerRus, rusOcc.start, rusOcc.end);
+      }
+    }
   }
   if (spansEng.length === 0 && spansRus.length === 0) {
     var textSource = cmpRow || triggerEl;
@@ -6664,6 +6798,14 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   if (ri >= 0) {
     var cmpRow = resolveHighlightTriggerRow(tid, ri, triggerEl, cmpRun);
     if (cmpRow) triggerEl = cmpRow;
+  }
+  if (opts.fromPlacesMap) {
+    var catEl = document.getElementById('doc-cat-' + tid);
+    var framEl = document.getElementById('doc-fram-' + tid);
+    var searchEl = document.getElementById('doc-search-' + tid);
+    if (catEl) catEl.value = '';
+    if (framEl) framEl.value = '';
+    if (searchEl) searchEl.value = '';
   }
   var serverLayout = illuminatorUsesServerFullText(tid);
   var hasEntries = containerEng && containerEng.querySelector('.doc-entry');
