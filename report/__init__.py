@@ -4691,6 +4691,7 @@ def _comparison_table_rows_html(
         )
         section_btn = (
             f'<button type="button" class="section-click-to-view" data-tab="{doc_id}" data-row-index="{row_idx}" '
+            f'data-entry-eng="{entry_eng}" data-entry-rus="{entry_rus}" '
             f'data-i18n-title="comparison_open_illuminator_tooltip" '
             f'title="Open the Document Text Illuminator and highlight this passage">{r.get("section", "")}</button>'
         )
@@ -6121,6 +6122,7 @@ function buildDocumentTextView(tid, comparisonRun) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
+  if (illuminatorUsesServerFullText(tid)) return;
   var tbody = comparisonTbodyForHighlight(tid, comparisonRun);
   var catSelect = tabEl.querySelector('select.document-category-filter');
   var framSelect = tabEl.querySelector('select.document-framing-filter');
@@ -6528,6 +6530,10 @@ function pulseIlluminatorVignette(tid) {
     panels.classList.remove('illuminator-vignette-pulse');
   }, 1400);
 }
+function illuminatorUsesServerFullText(tid) {
+  var c = document.getElementById('doc-text-eng-' + tid);
+  return !!(c && c.querySelector('.doc-entry[data-has-partner]'));
+}
 function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDocId) {
   if (hostDocId) docId = hostDocId;
   if (!docId) return;
@@ -6537,13 +6543,11 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
   var sameTab = active && active.id === tabId;
   if (!sameTab) showTab(tabId);
   var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
-  if (ri >= 0) {
-    try { window.location.hash = '#tab-' + docId + '-row-' + ri; } catch (e) {}
-  }
-  var trigger = null;
-  entryEng = entryEng || '';
-  entryRus = entryRus || '';
-  if (entryEng || entryRus) {
+  var highlightRun = 0;
+  var trigger = typeof comparisonRowForHighlight === 'function' ? comparisonRowForHighlight(docId, ri, highlightRun) : null;
+  if (!trigger && (entryEng || entryRus)) {
+    entryEng = entryEng || '';
+    entryRus = entryRus || '';
     trigger = {
       getAttribute: function(name) {
         if (name === 'data-entry-eng') return entryEng;
@@ -6553,7 +6557,7 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
     };
   }
   if (typeof openDocumentSection === 'function') openDocumentSection(docId, 'text');
-  var highlightOpts = { preserveText: sameTab, comparisonRun: 0 };
+  var highlightOpts = { preserveText: true, comparisonRun: highlightRun, fromPlacesMap: true };
   setTimeout(function() {
     if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger, highlightOpts);
     var cmpSec = document.getElementById('doc-section-compare-' + docId);
@@ -6601,6 +6605,21 @@ function comparisonTbodyForHighlight(tid, comparisonRun) {
   }
   return typeof getActiveComparisonTbody === 'function' ? getActiveComparisonTbody(tid) : null;
 }
+function comparisonRowForHighlight(tid, rowIndex, comparisonRun) {
+  if (rowIndex === null || rowIndex === undefined || isNaN(rowIndex) || rowIndex < 0) return null;
+  var runIdx = (comparisonRun === 0 || comparisonRun === 1) ? comparisonRun : 0;
+  var tbody = comparisonTbodyForHighlight(tid, runIdx);
+  if (!tbody) return null;
+  return tbody.querySelector('tr[data-row-index="' + String(rowIndex) + '"]');
+}
+function resolveHighlightTriggerRow(tid, rowIndex, triggerEl, comparisonRun) {
+  if (triggerEl && triggerEl.tagName === 'TR' && triggerEl.getAttribute('data-row-index') != null) return triggerEl;
+  if (triggerEl && triggerEl.closest) {
+    var tr = triggerEl.closest('tr[data-row-index]');
+    if (tr) return tr;
+  }
+  return comparisonRowForHighlight(tid, rowIndex, comparisonRun);
+}
 function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
@@ -6609,42 +6628,26 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
   if (!containerEng || !containerRus) {
     return { spansEng: spansEng, spansRus: spansRus, containerEng: containerEng, containerRus: containerRus };
   }
-  if (rowIndex >= 0) {
-    var rowIdxStr = String(rowIndex);
+  var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
+  var cmpRow = resolveHighlightTriggerRow(tid, ri, triggerEl, comparisonRun);
+  if (ri >= 0) {
+    var rowIdxStr = String(ri);
     spansEng = Array.prototype.slice.call(containerEng.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
     spansRus = Array.prototype.slice.call(containerRus.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
   }
-  if (spansEng.length === 0 && spansRus.length === 0 && triggerEl) {
-    var engNorm = normalizeIlluminatorEntryText(triggerEl.getAttribute('data-entry-eng') || '');
-    var rusNorm = normalizeIlluminatorEntryText(triggerEl.getAttribute('data-entry-rus') || '');
-    if (engNorm || rusNorm) {
-      containerEng.querySelectorAll('.doc-entry').forEach(function(el) {
-        if (illuminatorEntryTextsMatch(el, engNorm, rusNorm)) spansEng.push(el);
-      });
-      containerRus.querySelectorAll('.doc-entry').forEach(function(el) {
-        if (illuminatorEntryTextsMatch(el, engNorm, rusNorm)) spansRus.push(el);
-      });
-    }
-  }
-  if (spansEng.length === 0 && spansRus.length === 0 && rowIndex >= 0) {
-    var rowIdxStr2 = String(rowIndex);
-    var row = null;
-    var tbodyAct = comparisonTbodyForHighlight(tid, comparisonRun);
-    if (tbodyAct) row = tbodyAct.querySelector('tr[data-row-index="' + rowIdxStr2 + '"]');
-    if (!row) row = document.querySelector('#table-' + tid + ' tr[data-row-index="' + rowIdxStr2 + '"]');
-    if (!row) {
-      var tb0f = document.getElementById('table-' + tid + '-run-0');
-      if (tb0f) row = tb0f.querySelector('tr[data-row-index="' + rowIdxStr2 + '"]');
-    }
-    if (row) {
-      var engNorm2 = normalizeIlluminatorEntryText(row.getAttribute('data-entry-eng') || '');
-      var rusNorm2 = normalizeIlluminatorEntryText(row.getAttribute('data-entry-rus') || '');
-      containerEng.querySelectorAll('.doc-entry').forEach(function(el) {
-        if (illuminatorEntryTextsMatch(el, engNorm2, rusNorm2)) spansEng.push(el);
-      });
-      containerRus.querySelectorAll('.doc-entry').forEach(function(el) {
-        if (illuminatorEntryTextsMatch(el, engNorm2, rusNorm2)) spansRus.push(el);
-      });
+  if (spansEng.length === 0 && spansRus.length === 0) {
+    var textSource = cmpRow || triggerEl;
+    if (textSource) {
+      var engNorm = normalizeIlluminatorEntryText(textSource.getAttribute('data-entry-eng') || '');
+      var rusNorm = normalizeIlluminatorEntryText(textSource.getAttribute('data-entry-rus') || '');
+      if (engNorm || rusNorm) {
+        containerEng.querySelectorAll('.doc-entry').forEach(function(el) {
+          if (illuminatorEntryTextsMatch(el, engNorm, rusNorm)) spansEng.push(el);
+        });
+        containerRus.querySelectorAll('.doc-entry').forEach(function(el) {
+          if (illuminatorEntryTextsMatch(el, engNorm, rusNorm)) spansRus.push(el);
+        });
+      }
     }
   }
   return { spansEng: spansEng, spansRus: spansRus, containerEng: containerEng, containerRus: containerRus };
@@ -6657,9 +6660,15 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
+  var cmpRun = (opts.comparisonRun === 0 || opts.comparisonRun === 1) ? opts.comparisonRun : null;
+  if (ri >= 0) {
+    var cmpRow = resolveHighlightTriggerRow(tid, ri, triggerEl, cmpRun);
+    if (cmpRow) triggerEl = cmpRow;
+  }
+  var serverLayout = illuminatorUsesServerFullText(tid);
   var hasEntries = containerEng && containerEng.querySelector('.doc-entry');
-  var mustRebuild = !opts.preserveText || !hasEntries;
-  if (opts.preserveText && hasEntries && ri >= 0) {
+  var mustRebuild = !serverLayout && (!opts.preserveText || !hasEntries);
+  if (!serverLayout && opts.preserveText && hasEntries && ri >= 0) {
     var probe = containerEng.querySelector('.doc-entry[data-row-index="' + String(ri) + '"]');
     if (!probe) mustRebuild = true;
   }
@@ -6677,7 +6686,6 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   containerEng = document.getElementById('doc-text-eng-' + tid);
   containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
-  var cmpRun = (opts.comparisonRun === 0 || opts.comparisonRun === 1) ? opts.comparisonRun : null;
   var found = findIlluminatorSpans(tid, ri, triggerEl, cmpRun);
   var spansEng = found.spansEng;
   var spansRus = found.spansRus;
@@ -6697,7 +6705,7 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
     allSpans.forEach(function(s) {
       s.classList.remove('doc-entry-highlight-brief');
     });
-    if (typeof applyDocumentSearchAndFilter === 'function') applyDocumentSearchAndFilter(tid);
+    if (!opts.fromPlacesMap && typeof applyDocumentSearchAndFilter === 'function') applyDocumentSearchAndFilter(tid);
   }, 2100);
   pulseIlluminatorVignette(tid);
 }
@@ -8461,7 +8469,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (document.getElementById(tabIdRow)) {
         showTab(tabIdRow);
         setTimeout(function() {
-          if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, rowIndex);
+          if (typeof onSectionClickToView === 'function') {
+            var hashOpts = { preserveText: true, comparisonRun: 0 };
+            if (typeof illuminatorUsesServerFullText === 'function' && illuminatorUsesServerFullText(docId)) {
+              hashOpts.preserveText = true;
+            }
+            onSectionClickToView(docId, rowIndex, null, hashOpts);
+          }
         }, 150);
       }
       return;
