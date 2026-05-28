@@ -1,0 +1,126 @@
+{
+  "chunk_id": 44,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "for the preparation and creation of works of literature and art",
+      "entry_rus": "по подготовке и созданию произведений литературы и искусства",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for the recognition of the \"UGCC Patriarchate,\"",
+      "entry_rus": "в признании \"патриархата\" УКЦ",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "for the release of convicted anti-Soviet elements",
+      "entry_rus": "об освобождении осуждённых антисоветчиков",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "for the restoration of the Uniate Church in the Ukraine",
+      "entry_rus": "о восстановлении униатской церкви на Украине",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "For this purpose, they handed the president a list",
+      "entry_rus": "В этих целях они вручили президенту список",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for Zhytomyr",
+      "entry_rus": "убывают в Житомир",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "forced the Canadian government",
+      "entry_rus": "вынудило правительство Канады",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "forcing the OUN members",
+      "entry_rus": "заставило оуновцев",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "foreign centers of the OUN",
+      "entry_rus": "зарубежных центров ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "foreign nationalist [organizations]",
+      "entry_rus": "зарубежных националистических [организаций]",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "foreign nationalist and anti-Soviet centers",
+      "entry_rus": "зарубежным националистическим и антисоветским центрам",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "foreign nationalist centers",
+      "entry_rus": "зарубежных националистических центров",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "foreign OUN actions",
+      "entry_rus": "зарубежными ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "foreign OUN and clerical centers",
+      "entry_rus": "зарубежных оуновских и клерикальных центров",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Foreign OUN centers",
+      "entry_rus": "Зарубежные оуновские центры",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Foreign sailors",
+      "entry_rus": "иноморяков",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "foreign sailors",
+      "entry_rus": "иноморяков",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Foreign Specialists – 109",
+      "entry_rus": "иноспециалистов 109",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Foreign specialists – 140",
+      "entry_rus": "специалистов 140",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Foreign specialists – 194",
+      "entry_rus": "иноспециалистов – 194",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

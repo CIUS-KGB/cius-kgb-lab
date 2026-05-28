@@ -1,0 +1,126 @@
+{
+  "chunk_id": 114,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the Republic’s Committees of State Security, with authorization from the center",
+      "entry_rus": "Комитетом госбезопасности республики с санкции центра",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the requirements of orders and instructions of the KGB of the USSR",
+      "entry_rus": "требованиями приказов и указаний КГБ СССР",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the rest had been shut off",
+      "entry_rus": "остальные заглушены",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the ringleaders",
+      "entry_rus": "главари",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the ringleaders of the OUN",
+      "entry_rus": "главари ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the ringleaders of the “Organization of Ukrainian Nationalists-Solidarists” (OUN-s)",
+      "entry_rus": "главари «Организации украинских националистов-солидаристов» (ОУН-с)",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The ringleaders of this reactionary organization",
+      "entry_rus": "Главари этого реакционного формирования",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the shaft mouth was not covered",
+      "entry_rus": "не перекрыто устье ствола",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The shipping company’s management",
+      "entry_rus": "Руководством пароходства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The situation at the mine is normal",
+      "entry_rus": "Обстановка на шахте нормальная",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the situation remains calm",
+      "entry_rus": "обстановка в связи с данным происшествием нормальная",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the skip was insecurely fastened",
+      "entry_rus": "скип был ненадежно прикреплен",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the so-called \"moratorium\" on ceasing critical polemics between Melnykites and Banderites was disrupted",
+      "entry_rus": "инспирирован срыв так называемого \"моратория\" на прекращение критической полемики мельниковцев с бандеровцами",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the so-called “50th anniversary of the artificial famine in Ukraine.”",
+      "entry_rus": "так называемому \"50-летию искусственного голода на Украине\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the so-called “Ukrainian Holocaust”",
+      "entry_rus": "так называемый \"украинский голокост\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the Soviet state",
+      "entry_rus": "Советское государство",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the Special Department of the KGB",
+      "entry_rus": "Особым отделом КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The State Security Committee of the Republic",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The stolen components were intended for use",
+      "entry_rus": "похищенные детали намеревались использовать",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "the subversive activities",
+      "entry_rus": "подрывная деятельность",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

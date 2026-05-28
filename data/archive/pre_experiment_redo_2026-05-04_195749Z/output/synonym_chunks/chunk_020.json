@@ -1,0 +1,126 @@
+{
+  "chunk_id": 20,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "anti-Soviet activity",
+      "entry_rus": "антисоветскую деятельность",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "anti-Soviet campaign",
+      "entry_rus": "антисоветской кампании",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "anti-Soviet demonstration",
+      "entry_rus": "антисоветскую манифестацию",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "anti-Soviet organizations [they supported]",
+      "entry_rus": "и прочих антисоветских организаций [находящихся у них на содержании]",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "appealed",
+      "entry_rus": "обратились",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "appeals are to be sent",
+      "entry_rus": "предусматривается направление",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Appeals were submitted",
+      "entry_rus": "направлены обращения",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Appendix",
+      "entry_rus": "Приложение",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "approximately 4 tons of red-hot burden",
+      "entry_rus": "около 4 тонн раскалённой шихты",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "approximately 400 people",
+      "entry_rus": "около 400 человек",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "are actively involved in the work carried out by party organizations on the",
+      "entry_rus": "активно учавствуют в проводимой партийными организациями работе по",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are also planned",
+      "entry_rus": "также планируются",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "are attempting",
+      "entry_rus": "предпринимают попытки",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are attempting to give",
+      "entry_rus": "пытаются придать",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are attempting to intensify a campaign in his defense",
+      "entry_rus": "пытаются активизировать кампанию в его защиту",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are attempting to intensify their",
+      "entry_rus": "предпринимают попытки активизации своей",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are attempting to justify the forgery by claiming the absence of photographic materials from that period",
+      "entry_rus": "пытаются оправдать подлог отсутствием фотоматериалов того периода",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "are being forced to make considerable efforts",
+      "entry_rus": "вынуждены прилагать значительные усилия",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are causing indignation in international public opinion",
+      "entry_rus": "вызывают возмущение международной общественности",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "are conducting operational measures",
+      "entry_rus": "проводятся оперативные мероприятия",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

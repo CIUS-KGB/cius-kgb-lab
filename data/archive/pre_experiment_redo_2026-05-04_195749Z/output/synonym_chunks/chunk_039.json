@@ -1,0 +1,126 @@
+{
+  "chunk_id": 39,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Due to the absence",
+      "entry_rus": "В связи с отсутствием",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "due to the failure of the plate coolers",
+      "entry_rus": "вследствие выхода из строя плитовых холодильников",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "due to the long-term operation of the furnace",
+      "entry_rus": "из-за длительного периода эксплуатации печи",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "due to violation of safety regulations",
+      "entry_rus": "вследствие нарушения правил техники безопасности",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "during an attempt",
+      "entry_rus": "при попытке",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during an overtaking maneuver",
+      "entry_rus": "при обгоне",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during his stay in the USSR",
+      "entry_rus": "во время пребывания в СССР",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during mail sorting",
+      "entry_rus": "при сортировке корреспонденции",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "During Operation \"Conclave\"",
+      "entry_rus": "В ходе операции \"Конклав\"",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "during play",
+      "entry_rus": "во время игры",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during replacement work",
+      "entry_rus": "во время производства работ",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during the  Great Patriotic War",
+      "entry_rus": "в годы Великой Отечественной войны",
+      "category": "Time",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "during the day of December 12",
+      "entry_rus": "днем 12 декабря",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "During the investigation of this case",
+      "entry_rus": "В ходе расследования этого дела",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "During the meeting",
+      "entry_rus": "В ходе встречи указанные лица",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during the period",
+      "entry_rus": "в период",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during the Second World War",
+      "entry_rus": "в период второй мировой войны",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during the Second World War",
+      "entry_rus": "в годы второй мировой войны",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during the trial",
+      "entry_rus": "во время судебного процесса",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "During the upcoming summit",
+      "entry_rus": "Во время предстоящей встречи в верхах",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    }
+  ]
+}

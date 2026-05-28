@@ -1,0 +1,126 @@
+{
+  "chunk_id": 79,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "of Radio Liberty",
+      "entry_rus": "радиостанции \"Свобода\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of reactionary political circles in the West",
+      "entry_rus": "реакционных политических кругов Запада",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of Savytskyi D. Ya.",
+      "entry_rus": "Савицкого Д. Я.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of Soviet citizens",
+      "entry_rus": "советских граждан",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of special operations services",
+      "entry_rus": "спецслужб",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of Syria",
+      "entry_rus": "Сирии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of technical",
+      "entry_rus": "учащихся техникумов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of technical schools",
+      "entry_rus": "учащихся техникумов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of Teodorovych",
+      "entry_rus": "Теодоровича",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the \"artificial famine in Ukraine.\"",
+      "entry_rus": "\"искусственного голода на Украине\".",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the 11th outpost",
+      "entry_rus": "11-й заставы",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the 27th CPSU Congress",
+      "entry_rus": "ХХVII съезда КПСС",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the 7th border detachment",
+      "entry_rus": "7 погранотряда",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the [...] inspection authorities",
+      "entry_rus": "инспекции портнадзора",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Academy of Sciences of the Ukrainian SSR",
+      "entry_rus": "АН УССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the adoption of Christianity in Rus’",
+      "entry_rus": "введения христианства на Руси",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Bandera faction",
+      "entry_rus": "бандеровского крыла",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the Banderite \"Ukrainian Congress Committee of America\"",
+      "entry_rus": "бандеровского \"Украинского конгрессового комитета Америки\"",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Banderite “Ukrainian Congress Committee of America,”",
+      "entry_rus": "бандеровского \"Украинского конгрессового комитета Америки\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the Berdychiv District Communications Node",
+      "entry_rus": "Бердичевского районного узла связи",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

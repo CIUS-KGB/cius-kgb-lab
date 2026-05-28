@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Reference note on experimental interpretation for the Vozmezdie archival NLP evaluation pipeline: units, multiplicity, Cohen's kappa, alignment as measurement, truncation, decoding uncertainty, lineage, taxonomy as instrument, aggregation, blind vs anchored protocols."/>
+<title>Vozmezdie experiment methods primer (reference)</title>
+<link rel="canonical" href="experiment_primer.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  --bg: #1a1814;
+  --bg-card: #252019;
+  --ink: #ece6dc;
+  --muted: #a89f91;
+  --accent: #c45c26;
+  --accent-dim: rgba(196, 92, 38, 0.35);
+  --border: rgba(139, 115, 85, 0.45);
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --serif: "IBM Plex Serif", Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 1.05rem;
+}
+@media (min-width: 900px) { body { font-size: 1.1rem; } }
+.wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+header h1 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  margin-bottom: 0.5rem;
+}
+header .sub { color: var(--muted); font-size: 0.98rem; margin-bottom: 0.65rem; }
+header .crosslink {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+header .crosslink a { color: var(--accent); }
+
+nav.toc {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: linear-gradient(180deg, var(--bg) 70%, transparent);
+  padding: 0.75rem 0 1rem;
+  margin: -0.5rem 0 1.5rem;
+}
+nav.toc-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+nav.toc a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+nav.toc a:hover { border-bottom-color: var(--accent); }
+
+.block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.2rem 1.35rem;
+  margin-bottom: 1.75rem;
+}
+.block h2 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  color: var(--accent);
+}
+.block p, .block li { color: var(--muted); margin-bottom: 0.65rem; }
+.block .analogy {
+  border-left: 3px solid var(--accent);
+  padding: 0.65rem 0 0.65rem 1rem;
+  margin: 1rem 0;
+  color: var(--muted);
+  font-style: italic;
+}
+.block .example {
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 0.85rem 1rem;
+  border-radius: 4px;
+  margin: 0.85rem 0;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.block .lede {
+  color: var(--ink);
+  font-size: 1.02rem;
+  margin-bottom: 1rem;
+}
+
+.pipeline-svg { width: 100%; height: auto; display: block; margin: 1rem 0; }
+.box { fill: var(--bg-card); stroke: var(--border); stroke-width: 1.5; }
+.box-title { fill: var(--ink); font-family: var(--mono); font-size: 11px; font-weight: 600; }
+.arrow { stroke: var(--muted); stroke-width: 1.5; fill: none; marker-end: url(#ah-exp1); }
+.small-cap { fill: var(--muted); font-family: var(--mono); font-size: 10px; }
+.diagram-caption {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+.katex-block { overflow-x: auto; padding: 0.85rem 0; font-size: 1rem; }
+
+.cite-box {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+  margin-top: 2rem;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Experiment methods primer</h1>
+    <p class="sub">Standalone reference on interpreting the Vozmezdie evaluation as an experiment (statistics-of-measurement viewpoint). Not a substitute for the implementation spec.</p>
+    <p class="crosslink">Companion: <a href="pipeline_mathematics.html"><cite>Vozmezdie pipeline — mathematics &amp; proofs</cite></a> (figures 0–6, LLM sections L1–L7, compare proofs §1–§8).</p>
+  </header>
+
+  <nav class="toc" aria-label="Sections">
+    <div class="toc-inner">
+      <a href="#exp-intro">Preface</a>
+      <a href="#exp-unit">E1 Units</a>
+      <a href="#exp-multiplicity">E2 Multiplicity</a>
+      <a href="#exp-kappa">E3 κ &amp; chance</a>
+      <a href="#exp-align">E4 Alignment</a>
+      <a href="#exp-trunc">E5 Truncation</a>
+      <a href="#exp-channel">E6 Soft grammar</a>
+      <a href="#exp-uncertainty">E7 Uncertainty</a>
+      <a href="#exp-lineage">E8 Lineage</a>
+      <a href="#exp-instrument">E9 Taxonomy</a>
+      <a href="#exp-aggregate">E10 Aggregation</a>
+      <a href="#exp-protocol">E11 Protocol</a>
+      <a href="#exp-cite">Citation</a>
+    </div>
+  </nav>
+
+  <section class="block" id="exp-intro">
+    <h2>Preface · How to read this primer</h2>
+    <p class="lede">The companion page <a href="pipeline_mathematics.html"><cite>pipeline_mathematics.html</cite></a> records <em>what the running pipeline implements</em> in notation. <strong>This document</strong> records <em>how to read those quantities once they exist</em>: what is being measured, which independence assumptions typically fail silently, and why two similar percentages can answer different scientific questions.</p>
+    <p>The intended reader tolerates technical vocabulary when each term is unpacked. Where useful we pair abstraction with a <strong>micro-example</strong> (small numbers, pencil-and-paper arithmetic) and an <strong>analogy</strong> from ordinary measurement.</p>
+    <p class="analogy"><strong>Analogy (throughout).</strong> Treat the pipeline as a compound instrument—telescope, sensor, compression. Each stage sharpens, distorts, or drops information. A headline accuracy figure is an image file at the end of the chain; it is not the scene itself.</p>
+  </section>
+
+  <section class="block" id="exp-unit">
+    <h2>E1 · Experimental units, clustering, and “who repeated whom?”</h2>
+    <p>The pipeline surfaces paired rows and document-level summaries. A fragile silent assumption is <strong>exchangeability</strong>: treating every paired segment as independent evidence about model quality. That assumption rarely holds.</p>
+    <p><strong>Nested structure.</strong> Documents \(i=1,\ldots,D\) contain varying counts \(n_i\) of ground-truth segments. Segments inside one memo share genre, voice, topic, and repetitive formulae. Model errors on neighbouring clauses correlate because representations carry context. That yields <strong>positive intra-document correlation</strong> of residuals.</p>
+    <div class="example"><strong>Worked micro-example.</strong> Document A has 100 paired segments; Document B has 5. Pooling all 105 rows into one corpus accuracy lets A contribute twenty times more mass than B—not because A is “more important,” but because micropooling weights segments equally regardless of document.</div>
+    <p><strong>Unit for inference.</strong> The quantity you attach uncertainty to should drive resampling: document-level bootstrap or hierarchical models if segments cluster; segment-level i.i.d. models only if dependence is negligible or modeled.</p>
+    <p class="analogy"><strong>Analogy.</strong> Five hundred answers from fifty related households are not five hundred independent polls.</p>
+  </section>
+
+  <section class="block" id="exp-multiplicity">
+    <h2>E2 · Multiple endpoints, multiple comparisons, exploratory dignity</h2>
+    <p>The evaluation touches category agreement, framing agreement, conjunction (“both match”), pairing coverage, and sometimes alternate alignments (<code>content_rus</code> vs index). Each answers a different question; jointly they form a <strong>multiple-testing landscape</strong>. Under noise, scanning many summaries elevates the chance that at least one looks striking.</p>
+    <p>Exploration is legitimate; clarity lies in <strong>declaring epistemic status</strong>. Confirmatory claims (for example, <em>p</em> &lt; 0.05 on a <em>pre-specified</em> primary endpoint) call for multiplicity control (Bonferroni is blunt; Benjamini–Hochberg FDR is common when outcomes correlate).</p>
+    <div class="example"><strong>Worked micro-example.</strong> Ten independent tests at \(\alpha=0.05\) each yield roughly \(1-(1-\alpha)^{10}\approx 0.40\) probability that at least one rejects under global nulls—absent malice. Correlation among metrics modifies that arithmetic but does not remove the issue.</div>
+    <p class="analogy"><strong>Analogy.</strong> Finding coins in one dresser drawer does not prove every drawer is full of treasure.</p>
+  </section>
+
+  <section class="block" id="exp-kappa">
+    <h2>E3 · Raw accuracy vs agreement corrected for chance (Cohen’s \(\kappa\))</h2>
+    <p>Accuracy divides agreements by evaluated pairs. Under heavy class imbalance, high accuracy can coexist with a model that chiefly predicts the mode. <strong>Cohen’s kappa</strong> compares observed agreement \(p_o\) to expected agreement \(p_e\) from fixed marginal prevalences:</p>
+    <div class="katex-block">\[
+      \kappa \;=\; \frac{p_o - p_e}{1 - p_e}.
+    \]</div>
+    <p>\(\kappa=0\) matches chance given margins; \(\kappa=1\) is perfect agreement.</p>
+    <div class="example"><strong>Worked micro-example (binary).</strong> Categories \(\{\mathrm{S},\mathrm{N}\}\). Independent chance baselines with \(\mathbb{P}(S)=0.9\) for both raters give \(p_e = 0.9^2 + 0.1^2 = 0.82\). Observed \(p_o=0.85\) yields \(\kappa=(0.85-0.82)/(1-0.82)\approx 0.167\)—high raw agreement, modest correction.</div>
+    <p><strong>Pipeline hook.</strong> Parse-time coercion toward default taxonomy labels can concentrate margins artificially; inspect confusion matrices alongside \(\kappa\).</p>
+    <p class="analogy"><strong>Analogy.</strong> Forecasting daily sunshine in a dry climate earns a high hit rate; \(\kappa\)-style reasoning asks what baseline deserved beating.</p>
+  </section>
+
+  <section class="block" id="exp-align">
+    <h2>E4 · Alignment as latent correspondence and greedy approximation</h2>
+    <p>Before label comparison, <a href="pipeline_mathematics.html#fig4">matching \(\mathcal{P}_i\)</a> links human and predicted rows via \(\eta(\cdot)\)-normalized text. One may view this as estimating which phrases <strong>correspond</strong> when segmentation differs.</p>
+    <p>The implementation is deterministic greedy (exact match pass, then containment); it need not maximize global overlap or minimize edit distance—those would be different optimization problems.</p>
+    <div class="example"><strong>Micro-example.</strong> If one predicted span could align with either of two GT spans, early greedy locking can block a globally better pairing.</div>
+    <p>Reported accuracy is therefore conditional on <strong>alignment-induced measurement error</strong>.</p>
+    <p class="analogy"><strong>Analogy.</strong> Greedy seat assignment at an event is fast; it need not be globally optimal.</p>
+  </section>
+
+  <section class="block" id="exp-trunc">
+    <h2>E5 · Prefix truncation \(\pi_k\) as irreversible bottleneck</h2>
+    <p>The LLM prompt embeds \(\pi_{8000}(\mathrm{RUS})\)—see <a href="pipeline_mathematics.html#llm-prompt">pipeline notation (L2 · truncation)</a>. Distinct full texts that agree up to character 8000 collide under \(\pi_k\); tail-only entities vanish from the model’s stimulus though ground truth may still reference them.</p>
+    <p>Tokenizer geometry matters: truncation is in Unicode characters before server-side BPE; semantic “attention budget” is not uniform across scripts.</p>
+    <div class="example"><strong>Mental experiment.</strong> A decisive paragraph sits after the cutoff; GT encodes it; the model never sees it—errors need not reflect “ideology,” only missing input.</div>
+    <p class="analogy"><strong>Analogy.</strong> Reading page one of a verdict skips the disposition on page twelve.</p>
+  </section>
+
+  <section class="block" id="exp-channel">
+    <h2>E6 · Requested JSON lines as a soft channel constraint</h2>
+    <p>The prompt requests JSON lines; decoding is not grammar-constrained (see <a href="pipeline_mathematics.html#llm-arch">neural generator / L7.4</a> in the companion spec). \(\mathrm{Parse}\) keeps decodable lines and drops the rest, so invalid continuations erode structured rows and can trigger fallback.</p>
+    <p>You asked for a low-entropy subspace \(\mathcal{Y}_{\mathrm{json}}\subset \Sigma^\ast\); sampling still traverses \(\Sigma^\ast\) unless constrained decoding intervenes.</p>
+    <p class="analogy"><strong>Analogy.</strong> Requesting haiku without counting syllables obtains occasional haiku-shaped text by cooperation, not by mechanical enforcement.</p>
+  </section>
+
+  <section class="block" id="exp-uncertainty">
+    <h2>E7 · Stochastic decoding and Monte Carlo variability</h2>
+    <p>For \(\tau>0\), continuations \(Y_i\) are random (see <a href="pipeline_mathematics.html#llm-arch">L7.3</a>). Replicates differ unless sampling collapses and all seeds align across stacks. Treat \(\mathrm{Pred}_{\mathrm{LLM}}(i)\) as <strong>one draw</strong>, not a fixed functional of \(\mathrm{RUS}_i\).</p>
+    <p>Credible intervals over decode noise matter especially when \(n_i\) is small.</p>
+    <div class="example"><strong>Tiny rehearsal.</strong> Validity of JSON may hinge on a delimiter realized probabilistically—accuracy can swing across rerolls with identical weights \(\theta\).</div>
+    <p class="analogy"><strong>Analogy.</strong> One anemometer reading during a gust is data; several readings characterize turbulence.</p>
+  </section>
+
+  <section class="block" id="exp-lineage">
+    <h2>E8 · Lineage: configuration graphs and deterministic forks</h2>
+    <p>Reproducibility benefits from a DAG over artifacts: config, taxonomy, texts, weights, prompts, decode outputs, paired comparisons. Some edges are deterministic given parents (\(\eta\), greedy pairing at fixed inputs); decode is stochastic.</p>
+    <svg class="pipeline-svg" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" aria-label="Lineage DAG sketch">
+      <defs>
+        <marker id="ah-exp1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#a89f91"/>
+        </marker>
+      </defs>
+      <text class="small-cap" x="360" y="22" text-anchor="middle">Fig E8 · Stylized lineage (deterministic vs stochastic edges)</text>
+      <rect class="box" x="40" y="48" width="120" height="40" rx="4"/>
+      <text class="box-title" x="100" y="72" text-anchor="middle">taxonomy.json</text>
+      <rect class="box" x="200" y="48" width="120" height="40" rx="4"/>
+      <text class="box-title" x="260" y="72" text-anchor="middle">config JSON</text>
+      <rect class="box" x="360" y="48" width="120" height="40" rx="4"/>
+      <text class="box-title" x="420" y="72" text-anchor="middle">RUS / GT files</text>
+      <path class="arrow" d="M160 68 H200"/>
+      <path class="arrow" d="M320 68 H360"/>
+      <rect class="box" x="120" y="120" width="140" height="44" rx="4"/>
+      <text class="box-title" x="190" y="146" text-anchor="middle">Ingest + Prompt</text>
+      <path class="arrow" d="M260 88 V120"/>
+      <path class="arrow" d="M420 88 V120 H260"/>
+      <rect class="box" x="300" y="118" width="140" height="48" rx="4"/>
+      <text class="box-title" x="370" y="142" text-anchor="middle">Decode tau,M</text>
+      <text class="small-cap" x="370" y="156" text-anchor="middle">stochastic</text>
+      <path class="arrow" d="M190 164 V200"/>
+      <path class="arrow" d="M370 166 V200"/>
+      <rect class="box" x="220" y="200" width="160" height="44" rx="4"/>
+      <text class="box-title" x="300" y="226" text-anchor="middle">Compare + metrics</text>
+      <path class="arrow" d="M480 140 H560"/>
+      <rect class="box" x="520" y="118" width="160" height="48" rx="4"/>
+      <text class="box-title" x="600" y="142" text-anchor="middle">report HTML</text>
+      <text class="small-cap" x="600" y="156" text-anchor="middle">deterministic UI</text>
+      <path class="arrow" d="M380 222 H520"/>
+    </svg>
+    <p class="diagram-caption">Fig E8 — Decode is the primary stochastic fork; reporting is deterministic given Pred/GT inputs.</p>
+    <p class="analogy"><strong>Analogy.</strong> Same dough, different ovens—note where temperature stops being controlled.</p>
+  </section>
+
+  <section class="block" id="exp-instrument">
+    <h2>E9 · Taxonomy as measurement instrument</h2>
+    <p>Finite \(\mathcal{C}\) and \(\mathcal{F}\) operationalize qualitative theory (cf. <a href="pipeline_mathematics.html#fig2">Fig 2</a>). The taxonomy is an <strong>instrument</strong>: it buckets continuous rhetorical nuance. Boundary disputes concentrate where humans also disagree—often where models flicker.</p>
+    <p>Changing taxonomy versions without relabelling breaks strict comparability across studies.</p>
+    <p class="analogy"><strong>Analogy.</strong> Pain scales compress subjective experience; raw averages ignore anchor calibration differences.</p>
+  </section>
+
+  <section class="block" id="exp-aggregate">
+    <h2>E10 · Aggregation across documents</h2>
+    <p>Pooled segment metrics weight long documents heavily unless reweighted. <strong>Macro</strong> averaging assigns equal weight per document; <strong>micro</strong> pooling weights each segment equally.</p>
+    <div class="example"><strong>Contrast.</strong> Micro: \(\sum_i\sum_{r\in\mathcal{R}^{\mathrm{p}}_i}\mathrm{cat}(r) \,/\, \sum_i|\mathcal{R}^{\mathrm{p}}_i|\). Macro: \(\frac{1}{D}\sum_i \mathrm{Acc}^{\mathrm{cat}}_i\).</div>
+    <p class="analogy"><strong>Analogy.</strong> GPA by course count differs from GPA by credit hour.</p>
+  </section>
+
+  <section class="block" id="exp-protocol">
+    <h2>E11 · Blind versus anchored assessment protocols</h2>
+    <p>Human workflows may be blind to gold labels or anchored to them (see repository agent handbook). Those protocols estimate different quantities; pooling without stratification mixes estimands.</p>
+    <p class="analogy"><strong>Analogy.</strong> Blind taste tests and labelled taste tests measure different cognitive processes.</p>
+    <p><strong>Caveat.</strong> Formal statements are conditional (“given greedy pairing,” “given \(\pi_{8000}\),” “given one decode draw”). Historical interpretation needs archival reasoning beyond any metric sheet.</p>
+  </section>
+
+  <section class="block" id="exp-cite">
+    <h2>Suggested citation</h2>
+    <p style="margin-bottom:0.75rem">Treat this file as a technical reference note tied to the repository version you reproduce. Adapt authors, year, and retrieval date to your venue.</p>
+    <div class="cite-box" id="bibtex-note">Vozmezdie Framework contributors (YYYY). Experiment methods primer [HTML reference]. In Vozmezdie framework repository, docs/experiment_primer.html. Retrieved MONTH DAY, YEAR, from &lt;canonical URL or repo path&gt;.
+
+Companion specification: pipeline_mathematics.html (same docs/ directory).</div>
+  </section>
+
+  <footer>
+    <a href="pipeline_mathematics.html">Pipeline mathematics &amp; proofs</a>
+    · <a href="index.html">Research Lab</a>
+    · LaTeX whitepaper: <code style="font-family:var(--mono);font-size:0.85em;">docs/overleaf_whitepaper/main.tex</code>
+  </footer>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  if (typeof renderMathInElement !== "undefined") {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: "\\(", right: "\\)", display: false},
+        {left: "\\[", right: "\\]", display: true}
+      ],
+      throwOnError: false
+    });
+  }
+});
+</script>
+</body>
+</html>

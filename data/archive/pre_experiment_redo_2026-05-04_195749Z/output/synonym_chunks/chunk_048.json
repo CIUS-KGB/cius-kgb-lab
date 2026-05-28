@@ -1,0 +1,126 @@
+{
+  "chunk_id": 48,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Fundraising is being conducted [...] for its construction",
+      "entry_rus": "проводится сбор пожертвований на его сооружение",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Further measures are being taken",
+      "entry_rus": "Принимаются дальнейшие меры",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "G. Barakling",
+      "entry_rus": "Г. Бараклинг",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "G. Schroeter",
+      "entry_rus": "Г. Шретер",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "gatherings",
+      "entry_rus": "сборищах",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "general-regime",
+      "entry_rus": "общего режима",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "genuine photos and footage of “famine victims from 1932–1933” are absent",
+      "entry_rus": "подлинные снимки и кинокадры \"жертв голода 1932-1933 гг.\" отсутствуют",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "German occupiers",
+      "entry_rus": "немецких оккупантов",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "governments of imperialist states",
+      "entry_rus": "правительств империалистических государств",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Great Patriotic War",
+      "entry_rus": "Великой Отечественной войны",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Gruzitskii",
+      "entry_rus": "Грузицкий",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "H. A. Prykhodko",
+      "entry_rus": "Приходько Г. А.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "H. Kuni",
+      "entry_rus": "Г. Куни",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "H. V. Badzio",
+      "entry_rus": "Бадзьо Г. В.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "had served",
+      "entry_rus": "находившихся на службе",
+      "category": "Time",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "had two party reprimands",
+      "entry_rus": "имел два партийных взыскания",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "handed over",
+      "entry_rus": "передал",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Harvest of Despair",
+      "entry_rus": "\"Жатва отчаяния\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "has been closed",
+      "entry_rus": "дальнейшим производством прекращено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "has been informed",
+      "entry_rus": "известно",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

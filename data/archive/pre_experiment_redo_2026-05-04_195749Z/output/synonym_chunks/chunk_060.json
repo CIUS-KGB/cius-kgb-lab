@@ -1,0 +1,126 @@
+{
+  "chunk_id": 60,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "in the U.S. Congress",
+      "entry_rus": "в Конгрессе США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the U.S., Canada, and England",
+      "entry_rus": "в США, Канаде и Англии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the Ukraine",
+      "entry_rus": "на Украине",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In the United States",
+      "entry_rus": "В США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the United States",
+      "entry_rus": "в США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the USA",
+      "entry_rus": "в США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the USSR",
+      "entry_rus": "в СССР",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the West",
+      "entry_rus": "на Западе",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the West",
+      "entry_rus": "Запада",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the Western-produced",
+      "entry_rus": "в вышедших на Западе",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the work of the leadership",
+      "entry_rus": "в работе руководства",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the yard of building No. 59",
+      "entry_rus": "во дворе дома № 59",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In this regard, they have increased their lobbying efforts among",
+      "entry_rus": "В этой связи они усилили обработку",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Toronto",
+      "entry_rus": "в гор.Торонто",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Toronto",
+      "entry_rus": "в Торонто",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in USA",
+      "entry_rus": "в США",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "In Voroshilovhrad Oblast — 34",
+      "entry_rus": "в Ворошиловградской области 34",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Washington",
+      "entry_rus": "в Вашингтоне",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in Western mass media",
+      "entry_rus": "в средства массовой информации Запада",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in which [...] have agreed [...] to participate",
+      "entry_rus": "в которой дали согласие принять участие",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 57,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "in our country",
+      "entry_rus": "в нашей стране",
+      "category": "Places",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "In particular, in Washington",
+      "entry_rus": "В частности, в Вашингтоне",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In particular, through operational capabilities",
+      "entry_rus": "В частности, через оперативные возможности",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "In places of imprisonment",
+      "entry_rus": "в местах лишения свободы",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In places of imprisonment... are being held",
+      "entry_rus": "в местах лишения свободы находится",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "in preparing and creating works of literature and art",
+      "entry_rus": "в подготовке и создании произведений литературы и искусства",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in preparing and pushing abroad",
+      "entry_rus": "и подготовке и продвижении за кордон",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "in preparing for publication 112 books",
+      "entry_rus": "в подготовке к публикации 112 книг",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in preparing materials on this subject",
+      "entry_rus": "в подготовке материалов по данной тематике",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in production",
+      "entry_rus": "в производстве это вещество",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in progressive Canadian and American press",
+      "entry_rus": "в прогрессивной канадской и американской прессе",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "in red dye",
+      "entry_rus": "красным красителем",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Rivne",
+      "entry_rus": "в Ровно",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in several Western countries",
+      "entry_rus": "в ряде стран Запада",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in shootings",
+      "entry_rus": "в расстрелах",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "in showing the broader public abroad",
+      "entry_rus": "показать широкой общественности за границей",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in subversive actions against the USSR",
+      "entry_rus": "в подрывных акциях против СССР",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "In Sumy region",
+      "entry_rus": "Сумской области",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in support of the proposal advanced",
+      "entry_rus": "в поддержку выдвинутого",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in that country",
+      "entry_rus": "этой страны",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

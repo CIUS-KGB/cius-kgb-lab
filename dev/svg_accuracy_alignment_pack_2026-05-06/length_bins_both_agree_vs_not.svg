@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Is segment length driving disagreement? (bucketed counts)">
+<rect x="0.00" y="0.00" width="1200.00" height="520.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="44.00" y="50.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Is segment length driving disagreement? (bucketed counts)</text>
+<line x1="120.00" y1="114.00" x2="120.00" y2="444.00" stroke="#dedad4" stroke-width="1"/>
+<text x="120.00" y="461.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">0</text>
+<line x1="375.00" y1="114.00" x2="375.00" y2="444.00" stroke="#dedad4" stroke-width="1"/>
+<text x="375.00" y="461.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">200</text>
+<line x1="630.00" y1="114.00" x2="630.00" y2="444.00" stroke="#dedad4" stroke-width="1"/>
+<text x="630.00" y="461.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">400</text>
+<line x1="885.00" y1="114.00" x2="885.00" y2="444.00" stroke="#dedad4" stroke-width="1"/>
+<text x="885.00" y="461.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">600</text>
+<line x1="1140.00" y1="114.00" x2="1140.00" y2="444.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1140.00" y="461.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">800</text>
+<line x1="120.00" y1="120.00" x2="120.00" y2="444.00" stroke="#111827" stroke-width="1.3"/>
+<text x="630.00" y="510.00" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">Number of segments (bucketed by max(ENG len, RUS len))</text>
+<rect x="120.00" y="120.00" width="1020.00" height="70.50" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="120.00" y="120.00" width="554.62" height="70.50" fill="#16a34a" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="674.62" y="120.00" width="378.68" height="70.50" fill="#dc2626" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="110.00" y="169.35" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">≤49</text>
+<text x="1150.00" y="169.35" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">732 total</text>
+<text x="397.31" y="169.35" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">435</text>
+<text x="863.96" y="169.35" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">297</text>
+<rect x="120.00" y="204.50" width="1020.00" height="70.50" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="120.00" y="204.50" width="130.05" height="70.50" fill="#16a34a" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="250.05" y="204.50" width="100.73" height="70.50" fill="#dc2626" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="110.00" y="253.85" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">50–99</text>
+<text x="1150.00" y="253.85" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">181 total</text>
+<text x="185.03" y="253.85" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">102</text>
+<text x="300.41" y="253.85" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">79</text>
+<rect x="120.00" y="289.00" width="1020.00" height="70.50" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="120.00" y="289.00" width="12.75" height="70.50" fill="#16a34a" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="132.75" y="289.00" width="12.75" height="70.50" fill="#dc2626" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="110.00" y="338.35" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">100–199</text>
+<text x="1150.00" y="338.35" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">20 total</text>
+<text x="138.75" y="338.35" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">10</text>
+<text x="151.50" y="338.35" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">10</text>
+<text x="110.00" y="422.85" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">≥200</text>
+<rect x="120.00" y="86.00" width="14.00" height="14.00" fill="#16a34a" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="138.00" y="98.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Both agreed</text>
+<rect x="250.00" y="86.00" width="14.00" height="14.00" fill="#dc2626" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="268.00" y="98.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Not both agreed</text>
+</svg>

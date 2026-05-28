@@ -1,0 +1,3 @@
+Okay so, forgive how vague and shorthand this list will be; I had to write quickly while being given rather complicated yet vague requests for changes; something I imagine you can relate to hahaha. Here are the changes list, let's think about what they would imply, expand on them, and strategize how to tackle them:
+
+-Remove "Open Research Lab" header and remove jump to glossary button.

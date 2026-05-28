@@ -1,0 +1,126 @@
+{
+  "chunk_id": 93,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Other regions",
+      "entry_rus": "других областях",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Other regions",
+      "entry_rus": "в других областях",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "other regions",
+      "entry_rus": "в других областях",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Other states",
+      "entry_rus": "из иных государств",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "other states",
+      "entry_rus": "из иных государств",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "other states — 19",
+      "entry_rus": "иных государств – 19",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "other states — 524",
+      "entry_rus": "из иных государств 524",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Other states — 63",
+      "entry_rus": "из иных государств 63",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Other states — 744",
+      "entry_rus": "из иных государств 744",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "other states — 91",
+      "entry_rus": "из иных государств 91",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "OUN centers",
+      "entry_rus": "оуновские центры",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "OUN members",
+      "entry_rus": "оуновцев",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "OUN organizations \"of the 1930s model\"",
+      "entry_rus": "оуновские организации \"образца тридцатых годов\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "OUN ringleaders",
+      "entry_rus": "Оуновские главари",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "OUN ringleaders developed new tactical strategies",
+      "entry_rus": "оуновские главари выработали новые тактические установки",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "OUN terrorists",
+      "entry_rus": "оуновскими террористами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "OUN-Zionist collaboration",
+      "entry_rus": "оуновско-сионистского сотрудничества",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "OUNites",
+      "entry_rus": "оуновцы",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "out of 40 Ukrainian candidates who ran, only 7 were elected",
+      "entry_rus": "из 40 выдвигавшихся кандидатов-украинцев было избрано только 7",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "outside of Canada",
+      "entry_rus": "вне территории Канады",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

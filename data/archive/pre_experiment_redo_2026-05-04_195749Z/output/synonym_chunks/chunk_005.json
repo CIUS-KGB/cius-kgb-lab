@@ -1,0 +1,126 @@
+{
+  "chunk_id": 5,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "77,000 priests",
+      "entry_rus": "77 тыс. священников",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "785 students",
+      "entry_rus": "учащихся 785",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "82 private visitors",
+      "entry_rus": "частных лиц 82",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "882 former accomplices",
+      "entry_rus": "882 бывших пособников",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "9,115 postgraduate students",
+      "entry_rus": "9 115 аспирантов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "9,582 foreigners",
+      "entry_rus": "9582 иностранца",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[...]  located in Shop No. 4 of the Kryvyi Rih plant “Remgormash” of the Ministry of Ferrous Metallurgy of the Ukrainian SSR.",
+      "entry_rus": "из цеха № 4 Криворожского завода \"Ремгормаш\" Минчермета УССР",
+      "category": "Places",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "[about this] in the near future",
+      "entry_rus": "в ближайшее время",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[Also present are] the Assistant Military Attaché",
+      "entry_rus": "помощник военного атташе",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "[arrived] on May 30 of this year",
+      "entry_rus": "с 30 мая с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[between] the American",
+      "entry_rus": "американского",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[but are] unfit for use",
+      "entry_rus": "к эксплуатации непригодны",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[charged]",
+      "entry_rus": "в преступлении,",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "[in the production of] 14 books and brochures, 583 articles, 535 radio broadcasts, 842 thematic evenings, and village rallies",
+      "entry_rus": "подготовке 14 книг и брошюр, 583 статей, 535 радиопередач, 842 тематических вечеров и сельских сходов",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[including] 4,193 from the Polish People’s Republic",
+      "entry_rus": "из ПНР 4 193",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[interviews were conducted] and pushed out into the mass media",
+      "entry_rus": "взято и продвинуто в средства массовой информации 200 интервью",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "[Reports] No. 364/sv and 366/sv",
+      "entry_rus": "№№364/св и 366/св",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[Scheduled] to depart for Lviv",
+      "entry_rus": "убывают во Львов",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[the book] among the members of the U.S. Congressional Commission “on the investigation of the artificial famine in the Ukraine in 1932–1933”",
+      "entry_rus": "ее членам комиссии \"по изучению искусственного голода на Украине в 1932-1933 гг.\" конгресса США",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "[These strategies were] aimed at discrediting the policy of perestroika",
+      "entry_rus": "направленные на дискредитацию политики перестройки",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

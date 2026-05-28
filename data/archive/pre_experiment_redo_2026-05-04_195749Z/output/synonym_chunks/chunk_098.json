@@ -1,0 +1,126 @@
+{
+  "chunk_id": 98,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "radio",
+      "entry_rus": "радио",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Radio Liberty",
+      "entry_rus": "радиостанции \"Свобода\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Radio Liberty employee B. Nahajlo",
+      "entry_rus": "сотрудника радиостанции \"Свобода\" Б. Нагайло",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "rallies",
+      "entry_rus": "митинги",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "reactionary political figures",
+      "entry_rus": "реакционных политических деятелей",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Reagan justified his actions by",
+      "entry_rus": "Свои действия Рейган мотивировал",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Recent data indicate that",
+      "entry_rus": "Полученные в последнее время данные свидетельствуют",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "reconnaissance trip",
+      "entry_rus": "разведывательная поездка",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "reconnaissance visit",
+      "entry_rus": "разведывательная поездка",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "refuting the baseless",
+      "entry_rus": "опровергающих несостоятельность",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "regard [...] as",
+      "entry_rus": "расценивают как",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "regarding 50 war criminals residing in Canada",
+      "entry_rus": "в отношении 50 проживающих в Канаде военных преступников",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "regarding the \"artificial famine in Ukraine in 1932-1933,\"",
+      "entry_rus": "об \"искусственном голоде на Украине 1932-1933 гг.\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "regarding the \"artificial famine\"",
+      "entry_rus": "об \"искусственном голоде\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "regarding the purchase of aircraft",
+      "entry_rus": "по вопросу закупки самолетов",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "regarding the selection, placement, and training of personnel",
+      "entry_rus": "по подбору, расстановке и воспитанию кадров",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "regarding the situation of the church in our country",
+      "entry_rus": "о положении церкви в нашей стране",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "regarding the “colonial” status of the Ukrainian SSR",
+      "entry_rus": "о \"колониальном\" положении УССР",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "regarding this incident",
+      "entry_rus": "об этом проявлении",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "relations [...] are being expanded",
+      "entry_rus": "расширяются связи",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

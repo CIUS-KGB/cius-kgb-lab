@@ -1,0 +1,126 @@
+{
+  "chunk_id": 13,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "An official reception [...] is also scheduled",
+      "entry_rus": "намечен официальный приём",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and",
+      "entry_rus": "и",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and \"Admiral Nakhimov\"",
+      "entry_rus": "и \"Адмирал Нахимов\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and 17 documentary fand TV movies",
+      "entry_rus": "и 17 документальных кино- и телефильмов",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and 60 rounds of ammunition",
+      "entry_rus": "и 60 патронами",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and a LiAZ-677 bus belonging to motor depot APT-03113",
+      "entry_rus": "с автобусом ЛиАЗ-677 АТП-03113",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and a new fundraising campaign has been announced for these purposes",
+      "entry_rus": "и объявлен новый сбор пожертвований на эти цели",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and a staff member of the embassy of this country",
+      "entry_rus": "и сотрудник посольства этой страны",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and about the ensuing investigation in the U.S.",
+      "entry_rus": "и о начатом в связи с этим в Соединенных Штатах Америки расследовании",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and active members",
+      "entry_rus": "и активных участников",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and adapting their operations to the ongoing [...] in our country",
+      "entry_rus": "и приспособление её к происходящим в нашей стране",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and advocate for the development of contacts with the republic",
+      "entry_rus": "и выступают за развитие контактов с республикой",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and also expressed a request",
+      "entry_rus": "а также высказали просьбу",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and anti-social activities",
+      "entry_rus": "и антиобщественной деятельности",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and anti-social elements",
+      "entry_rus": "и антиобщественных элементов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and apprehend the deserters",
+      "entry_rus": "и задержанию дезертиров",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and are reinforcing the view of Ukrainian nationalists as antisemites and accomplices of fascism",
+      "entry_rus": "способствуют закреплению мнения об украинских националистах как антисемитах и фашистских пособниках",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and around 20:00 went home",
+      "entry_rus": "и примерно в 20 часов ушли домой",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and Assistant Cultural Attaché",
+      "entry_rus": "и помошник атташе по вопросам культуры",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and audible warnings from the locomotive engineer",
+      "entry_rus": "и подаваемые машинистом электровоза звуковые сигналы",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "chunk_id": 138,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "“persecution of nationally conscious Ukrainians,”",
+      "entry_rus": "\"гонениях на сознательных украинцев\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "“photographic materials”",
+      "entry_rus": "\"фотоматериалы\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "“to commemorate the victims of the artificial famine in Ukraine”",
+      "entry_rus": "для \"увековечения памяти жертв искусственного голода на Украине\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

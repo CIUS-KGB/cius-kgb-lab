@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Ideological morphemes (proxy): which tokens shift the AI toward the swap?">
+<rect x="0.00" y="0.00" width="1200.00" height="520.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="44.00" y="50.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Ideological morphemes (proxy): which tokens shift the AI toward the swap?</text>
+<line x1="420.00" y1="114.00" x2="420.00" y2="450.00" stroke="#dedad4" stroke-width="1"/>
+<text x="420.00" y="467.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">0%</text>
+<line x1="780.00" y1="114.00" x2="780.00" y2="450.00" stroke="#dedad4" stroke-width="1"/>
+<text x="780.00" y="467.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">10%</text>
+<line x1="1140.00" y1="114.00" x2="1140.00" y2="450.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1140.00" y="467.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">20%</text>
+<line x1="420.00" y1="120.00" x2="420.00" y2="450.00" stroke="#111827" stroke-width="1.3"/>
+<text x="780.00" y="510.00" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">Share of segments containing token (swap vs agreed)</text>
+<rect x="420.00" y="86.00" width="14.00" height="14.00" fill="#dc2626" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="438.00" y="98.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Swap set</text>
+<rect x="530.00" y="86.00" width="14.00" height="14.00" fill="#16a34a" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="548.00" y="98.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Agreed set</text>
+<text x="394.00" y="145.57" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">тематических  (swap 4/87, agreed 0/142)</text>
+<line x1="420.00" y1="140.57" x2="585.52" y2="140.57" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="585.52" cy="140.57" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="420.00" cy="140.57" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="595.52" y="144.57" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">5%</text>
+<text x="410.00" y="144.57" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">0%</text>
+<text x="394.00" y="186.82" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">мероприятия  (swap 5/87, agreed 3/142)</text>
+<line x1="496.06" y1="181.82" x2="626.90" y2="181.82" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="626.90" cy="181.82" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="496.06" cy="181.82" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="636.90" y="185.82" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">6%</text>
+<text x="486.06" y="185.82" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">2%</text>
+<text x="394.00" y="228.07" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">также  (swap 3/87, agreed 1/142)</text>
+<line x1="445.35" y1="223.07" x2="544.14" y2="223.07" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="544.14" cy="223.07" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="445.35" cy="223.07" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="554.14" y="227.07" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">3%</text>
+<text x="435.35" y="227.07" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">1%</text>
+<text x="394.00" y="269.32" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">статей  (swap 3/87, agreed 1/142)</text>
+<line x1="445.35" y1="264.32" x2="544.14" y2="264.32" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="544.14" cy="264.32" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="445.35" cy="264.32" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="554.14" y="268.32" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">3%</text>
+<text x="435.35" y="268.32" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">1%</text>
+<text x="394.00" y="310.57" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">целях  (swap 3/87, agreed 2/142)</text>
+<line x1="470.70" y1="305.57" x2="544.14" y2="305.57" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="544.14" cy="305.57" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="470.70" cy="305.57" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="554.14" y="309.57" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">3%</text>
+<text x="460.70" y="309.57" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">1%</text>
+<text x="394.00" y="351.82" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">материалы  (swap 3/87, agreed 3/142)</text>
+<line x1="496.06" y1="346.82" x2="544.14" y2="346.82" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="544.14" cy="346.82" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="496.06" cy="346.82" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="554.14" y="350.82" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">3%</text>
+<text x="486.06" y="350.82" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">2%</text>
+<text x="394.00" y="393.07" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">мероприятий  (swap 3/87, agreed 3/142)</text>
+<line x1="496.06" y1="388.07" x2="544.14" y2="388.07" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="544.14" cy="388.07" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="496.06" cy="388.07" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="554.14" y="392.07" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">3%</text>
+<text x="486.06" y="392.07" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">2%</text>
+<text x="394.00" y="434.32" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">книг  (swap 2/87, agreed 2/142)</text>
+<line x1="470.70" y1="429.32" x2="502.76" y2="429.32" stroke="rgba(17,24,39,0.25)" stroke-width="3"/>
+<circle cx="502.76" cy="429.32" r="6" fill="#dc2626" opacity="0.92"/>
+<circle cx="470.70" cy="429.32" r="6" fill="#16a34a" opacity="0.92"/>
+<text x="512.76" y="433.32" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">2%</text>
+<text x="460.70" y="433.32" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">1%</text>
+</svg>

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 117,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "there were 9,901 foreigners",
+      "entry_rus": "находится 9901 иностранец",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "there were [...] present",
+      "entry_rus": "находились",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "there were also",
+      "entry_rus": "также находились",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "There were also [...] in the territory of Ukraine",
+      "entry_rus": "на территории Украины также находились",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "there were no casualties",
+      "entry_rus": "жертв нет",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "These contained",
+      "entry_rus": "В них содержатся",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "These issues were reflected in four documentary films (\"The Web\"",
+      "entry_rus": "Эти вопросы нашли отражение в четырех документальных фильмах  \"Паутина\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "These leaflets link the disaster to",
+      "entry_rus": "В них указанная авария увязывается с",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "These materials have elicited",
+      "entry_rus": "Указанные материалы вызвали",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "these measures succeeded",
+      "entry_rus": "эти мероприятия позволили",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "they aim to accuse the USSR of",
+      "entry_rus": "обвиняя СССР в",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "They are attempting to downplay the significance",
+      "entry_rus": "Они пытаются приуменьшить значение",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "they are planning will cost 1.5 million dollars",
+      "entry_rus": "будет затрачено 1,5 миллиона долларов",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "They delivered lectures",
+      "entry_rus": "Ими прочитано 10609 лекций",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "they disposed of the items in a sewer manhole",
+      "entry_rus": "выбросили их в канализационный колодец",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "They expect this",
+      "entry_rus": "Этим они предполагают",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "they explained",
+      "entry_rus": "они объяснили",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "they inquired about their attitude",
+      "entry_rus": "интересовались их отношением",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "they intend to use the convicted person’s relatives residing in the USA",
+      "entry_rus": "В этих целях намерены использовать проживающих в США родственников осужденного",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "they opened fire",
+      "entry_rus": "они обстреляли",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    }
+  ]
+}

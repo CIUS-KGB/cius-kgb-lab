@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="782" viewBox="0 0 1200 782" role="img" aria-label="Most common topic category mix-ups: what did the human label vs what did the AI pick?">
+<rect x="0.00" y="0.00" width="1200.00" height="782.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="44.00" y="50.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Most common topic category mix-ups: what did the human label vs what did the AI pick?</text>
+<line x1="289.00" y1="102.00" x2="289.00" y2="714.00" stroke="#dedad4" stroke-width="1"/>
+<text x="289.00" y="731.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">0</text>
+<line x1="566.00" y1="102.00" x2="566.00" y2="714.00" stroke="#dedad4" stroke-width="1"/>
+<text x="566.00" y="731.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">20</text>
+<line x1="843.00" y1="102.00" x2="843.00" y2="714.00" stroke="#dedad4" stroke-width="1"/>
+<text x="843.00" y="731.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">40</text>
+<line x1="1120.00" y1="102.00" x2="1120.00" y2="714.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1120.00" y="731.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">60</text>
+<line x1="289.00" y1="108.00" x2="289.00" y2="714.00" stroke="#111827" stroke-width="1.3"/>
+<text x="704.50" y="772.00" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">Segments (count)</text>
+<rect x="289.00" y="108.00" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="108.00" width="831.00" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="133.75" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actions / Documents</text>
+<text x="1112.00" y="133.75" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">60</text>
+<rect x="289.00" y="151.79" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="151.79" width="803.30" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="177.54" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actions / Legal Framework</text>
+<text x="1084.30" y="177.54" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">58</text>
+<rect x="289.00" y="195.57" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="195.57" width="290.85" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="221.32" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actions / Events</text>
+<text x="571.85" y="221.32" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">21</text>
+<rect x="289.00" y="239.36" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="239.36" width="235.45" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="265.11" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actions / Actors</text>
+<text x="516.45" y="265.11" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">17</text>
+<rect x="289.00" y="283.14" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="283.14" width="152.35" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="308.89" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actors / Legal Framework</text>
+<text x="433.35" y="308.89" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">11</text>
+<rect x="289.00" y="326.93" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="326.93" width="138.50" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="352.68" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actions / Material Resources</text>
+<text x="419.50" y="352.68" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">10</text>
+<rect x="289.00" y="370.71" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="370.71" width="138.50" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="396.46" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Events / Actions</text>
+<text x="419.50" y="396.46" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">10</text>
+<rect x="289.00" y="414.50" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="414.50" width="124.65" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="440.25" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actors / Documents</text>
+<text x="405.65" y="440.25" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">9</text>
+<rect x="289.00" y="458.29" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="458.29" width="110.80" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="484.04" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actors / Places</text>
+<text x="391.80" y="484.04" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">8</text>
+<rect x="289.00" y="502.07" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="502.07" width="110.80" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="527.82" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actions / Date &amp; Time</text>
+<text x="391.80" y="527.82" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">8</text>
+<rect x="289.00" y="545.86" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="545.86" width="69.25" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="571.61" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actions / Places</text>
+<text x="350.25" y="571.61" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">5</text>
+<rect x="289.00" y="589.64" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="589.64" width="69.25" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="615.39" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Events / Legal Framework</text>
+<text x="350.25" y="615.39" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">5</text>
+<rect x="289.00" y="633.43" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="633.43" width="69.25" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="659.18" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Events / Documents</text>
+<text x="350.25" y="659.18" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">5</text>
+<rect x="289.00" y="677.21" width="831.00" height="36.79" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="289.00" y="677.21" width="69.25" height="36.79" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="279.00" y="702.96" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Actors / Actions</text>
+<text x="350.25" y="702.96" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">5</text>
+</svg>

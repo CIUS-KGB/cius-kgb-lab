@@ -1,0 +1,126 @@
+{
+  "chunk_id": 84,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "on an introductory visit",
+      "entry_rus": "ознакомительная поездка",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On Anti-Soviet Action",
+      "entry_rus": "Об антисоветской акции",
+      "category": "Events",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "On Anti-Soviet Actions",
+      "entry_rus": "О антисоветских акциях",
+      "category": "Events",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "on behalf of the “World Congress of Free Ukrainians”",
+      "entry_rus": "от имени \"Всемирного конгресса свободных украинцев\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On Contacts",
+      "entry_rus": "О контактах",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On December 13, 1976",
+      "entry_rus": "13 декабря 1976 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On disagreements",
+      "entry_rus": "О разногласиях",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On February 4, 1983",
+      "entry_rus": "4 февраля 1983 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On January 23, 1984, at 13:00",
+      "entry_rus": "23 января 1984 г. в 13 часов",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On January 6, 1977",
+      "entry_rus": "6 января 1977 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on January 7",
+      "entry_rus": "7 января",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On January 7, 1977",
+      "entry_rus": "7 января 1977 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On January 7, during the day",
+      "entry_rus": "Днём 7 января",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on January 8 and 9",
+      "entry_rus": "8 и 9 января",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On January 8, 1977, at 23:20",
+      "entry_rus": "8 января 1977 г. в 23 часа 20 мин.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on January 9, 1977",
+      "entry_rus": "9 января 1977 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On June 5",
+      "entry_rus": "5 июня",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on legal defense",
+      "entry_rus": "на правовую защиту",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on March 23",
+      "entry_rus": "23 марта",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On March 23 of this year",
+      "entry_rus": "23 марта с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

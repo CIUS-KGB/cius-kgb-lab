@@ -1,0 +1,126 @@
+{
+  "chunk_id": 56,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "In Lviv – 50",
+      "entry_rus": "Львове – 50",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in major cities of Canada",
+      "entry_rus": "В крупных городах Канады",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in making 1 feature film",
+      "entry_rus": "создании 1 художественного",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in March of this year",
+      "entry_rus": "в марте с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in mass circulation",
+      "entry_rus": "массовым тиражом",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in military unit 12472",
+      "entry_rus": "в войсковой части 12472",
+      "category": "Places",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "in Montreal",
+      "entry_rus": "в Монреале",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Moscow",
+      "entry_rus": "в Москве",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in November of this year",
+      "entry_rus": "в ноябре с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Odesa",
+      "entry_rus": "в Одессе",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Odesa Oblast — 53",
+      "entry_rus": "в Одесской области – 53",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Odesa Oblast — 7",
+      "entry_rus": "в Одесской области 7",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Odesa – 2",
+      "entry_rus": "в Одессе – 2",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Odesa – 34",
+      "entry_rus": "Одессе – 34",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In one of Canada’s influential newspapers, the Toronto Sun",
+      "entry_rus": "В одной из влиятельных канадских газет \"Торонто сан\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Ontario Province",
+      "entry_rus": "в провинции Онтарио",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In order to contain these developments",
+      "entry_rus": "В цедях локализации этих процессов",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "In order to discredit",
+      "entry_rus": "В целях компрометации",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "In order to further intensify",
+      "entry_rus": "В целях дальнейшей активизации",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in order to include them in the lists",
+      "entry_rus": "для включения их в списки",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

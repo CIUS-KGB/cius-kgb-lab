@@ -1,0 +1,164 @@
+{
+  "term_results": [
+    {
+      "entry_eng": "According to [...] correspondent",
+      "entry_rus": "По заявлению корреспондента",
+      "definition_eng": "Attribution phrase with redacted source; standard formulation for citing a journalist or press representative in Soviet reporting.",
+      "definition_rus": "Формула атрибуции с заретушированным источником; стандартная формулировка для ссылки на корреспондента в советской отчётности.",
+      "synonyms_eng": ["per correspondent", "as stated by a correspondent", "source: correspondent", "according to a correspondent"],
+      "synonyms_rus": ["по заявлению корреспондента", "со слов корреспондента", "по данным корреспондента", "как заявил корреспондент"]
+    },
+    {
+      "entry_eng": "According to Baringer",
+      "entry_rus": "По мнению Барингер",
+      "definition_eng": "Attribution to a named individual (Baringer); proper-name source in archival context.",
+      "definition_rus": "Атрибуция именованному лицу (Барингер); источник — имя собственное в архивном контексте.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "According to data received",
+      "entry_rus": "По поступившим [...] данным",
+      "definition_eng": "Standard KGB/intelligence attribution; indicates information from incoming reports, with optional redaction.",
+      "definition_rus": "Стандартная формула атрибуции КГБ/разведки; указывает на информацию из поступивших данных, с возможной ретушью.",
+      "synonyms_eng": ["per data received", "based on received data", "as per incoming data", "according to incoming reports"],
+      "synonyms_rus": ["по поступившим данным", "на основании поступивших данных", "согласно полученным данным", "по имеющимся данным"]
+    },
+    {
+      "entry_eng": "According to information obtained by the KGB of the Ukrainian SSR",
+      "entry_rus": "По полученным КГБ УССР данным",
+      "definition_eng": "Explicit KGB-Ukrainian SSR intelligence attribution; bureaucratic formula for citing agency-collected information.",
+      "definition_rus": "Явная атрибуция разведданных КГБ УССР; бюрократическая формула для ссылки на информацию, собранную ведомством.",
+      "synonyms_eng": ["per KGB Ukrainian SSR intelligence", "based on KGB Ukrainian SSR data", "as per KGB Ukrainian SSR information", "according to KGB Ukrainian SSR reports"],
+      "synonyms_rus": ["по данным КГБ УССР", "на основании информации КГБ УССР", "по разведданным КГБ УССР", "согласно данным КГБ УССР"]
+    },
+    {
+      "entry_eng": "According to information received",
+      "entry_rus": "По поступившим [...] данным",
+      "definition_eng": "Intelligence attribution for received information; variant with optional redaction in Russian.",
+      "definition_rus": "Атрибуция поступившей информации; вариант с возможной ретушью в русском тексте.",
+      "synonyms_eng": ["per information received", "based on received information", "as per incoming information", "according to incoming data"],
+      "synonyms_rus": ["по поступившим данным", "на основании поступившей информации", "согласно полученной информации", "по имеющимся сведениям"]
+    },
+    {
+      "entry_eng": "According to information received by the KGB of the Ukrainian SSR",
+      "entry_rus": "По полученным КГБ УССР данным",
+      "definition_eng": "Same as above; KGB Ukrainian SSR as explicit collector of the received information.",
+      "definition_rus": "Та же формула; КГБ УССР — явный собиратель поступившей информации.",
+      "synonyms_eng": ["per KGB Ukrainian SSR received data", "based on KGB Ukrainian SSR intelligence", "as per KGB Ukrainian SSR received information"],
+      "synonyms_rus": ["по полученным КГБ УССР данным", "на основании разведданных КГБ УССР", "согласно данным КГБ УССР"]
+    },
+    {
+      "entry_eng": "According to neighbors",
+      "entry_rus": "Со слов соседей",
+      "definition_eng": "Informal source attribution; information from neighbors, often used in operational or witness-based reporting.",
+      "definition_rus": "Неформальная атрибуция источника; информация со слов соседей, часто в оперативной или свидетельской отчётности.",
+      "synonyms_eng": ["per neighbors", "from neighbors", "as neighbors report", "according to neighbor testimony", "neighbors stated"],
+      "synonyms_rus": ["со слов соседей", "по словам соседей", "на основании показаний соседей", "по сообщениям соседей"]
+    },
+    {
+      "entry_eng": "According to operational data",
+      "entry_rus": "По оперативным данным",
+      "definition_eng": "Intelligence/operational attribution; standard phrase for citing agency operational intelligence.",
+      "definition_rus": "Атрибуция оперативной разведки; стандартная формула для ссылки на оперативные данные ведомства.",
+      "synonyms_eng": ["per operational data", "based on operational intelligence", "as per operational reports", "according to operational intelligence"],
+      "synonyms_rus": ["по оперативным данным", "на основании оперативных данных", "согласно оперативной информации", "по оперативным сведениям"]
+    },
+    {
+      "entry_eng": "According to operational data obtained",
+      "entry_rus": "По полученным оперативным данным",
+      "definition_eng": "Attribution for obtained operational intelligence; emphasizes acquisition of the data.",
+      "definition_rus": "Атрибуция полученных оперативных данных; подчёркивает факт получения разведданных.",
+      "synonyms_eng": ["per operational data obtained", "based on obtained operational intelligence", "as per acquired operational data"],
+      "synonyms_rus": ["по полученным оперативным данным", "на основании полученных оперативных данных", "согласно добытым оперативным сведениям"]
+    },
+    {
+      "entry_eng": "According to operational data received",
+      "entry_rus": "По полученным оперативным данным",
+      "definition_eng": "Same formulation; operational data received by the reporting body.",
+      "definition_rus": "Та же формула; оперативные данные, поступившие в отчитывающий орган.",
+      "synonyms_eng": ["per operational data received", "based on received operational intelligence", "as per incoming operational data"],
+      "synonyms_rus": ["по полученным оперативным данным", "на основании поступивших оперативных данных", "согласно поступившей оперативной информации"]
+    },
+    {
+      "entry_eng": "According to operational data received by the KGB of the Ukrainian SSR",
+      "entry_rus": "По полученным КГБ УССР оперативным данным",
+      "definition_eng": "Explicit KGB-Ukrainian SSR attribution for received operational intelligence.",
+      "definition_rus": "Явная атрибуция полученных оперативных данных КГБ УССР.",
+      "synonyms_eng": ["per KGB Ukrainian SSR operational intelligence", "based on KGB Ukrainian SSR received operational data", "as per KGB Ukrainian SSR operational reports"],
+      "synonyms_rus": ["по полученным КГБ УССР оперативным данным", "на основании оперативных данных КГБ УССР", "согласно оперативной информации КГБ УССР"]
+    },
+    {
+      "entry_eng": "According to operational information received",
+      "entry_rus": "По полученным [...] оперативным данным",
+      "definition_eng": "Operational attribution with optional redaction; variant of standard received-intel formula.",
+      "definition_rus": "Оперативная атрибуция с возможной ретушью; вариант стандартной формулы полученной разведки.",
+      "synonyms_eng": ["per operational information received", "based on received operational information", "as per incoming operational intelligence"],
+      "synonyms_rus": ["по полученным оперативным данным", "на основании поступивших оперативных сведений", "согласно полученной оперативной информации"]
+    },
+    {
+      "entry_eng": "According to preliminary calculations by OUN ringleaders",
+      "entry_rus": "По предварительным подсчетам оуновских главарей",
+      "definition_eng": "Attribution to OUN leaders' preliminary calculations; discrediting framing (главари = ringleaders).",
+      "definition_rus": "Атрибуция предварительным подсчётам оуновских главарей; дискредитирующая рамка.",
+      "synonyms_eng": ["per OUN ringleaders' preliminary calculations", "based on OUN leaders' preliminary estimates", "as per OUN chiefs' preliminary figures"],
+      "synonyms_rus": ["по предварительным подсчётам оуновских главарей", "на основании подсчётов оуновского руководства", "согласно предварительным данным оуновцев"]
+    },
+    {
+      "entry_eng": "according to preliminary data",
+      "entry_rus": "по предварительным данным",
+      "definition_eng": "Lowercase variant; attribution to preliminary, unverified data.",
+      "definition_rus": "Вариант с маленькой буквы; атрибуция предварительным, непроверенным данным.",
+      "synonyms_eng": ["per preliminary data", "based on preliminary data", "as per preliminary information", "according to preliminary figures"],
+      "synonyms_rus": ["по предварительным данным", "на основании предварительных данных", "согласно предварительной информации", "по предварительным сведениям"]
+    },
+    {
+      "entry_eng": "According to specialists",
+      "entry_rus": "По заключению специалистов",
+      "definition_eng": "Expert attribution; information based on specialist conclusion or assessment.",
+      "definition_rus": "Атрибуция экспертам; информация на основании заключения или оценки специалистов.",
+      "synonyms_eng": ["per specialists", "based on specialist conclusion", "as per expert assessment", "according to expert opinion", "per experts"],
+      "synonyms_rus": ["по заключению специалистов", "на основании экспертной оценки", "согласно мнению специалистов", "по оценке экспертов"]
+    },
+    {
+      "entry_eng": "According to the admission of an active nationalist",
+      "entry_rus": "По признанию активного националиста",
+      "definition_eng": "Attribution to an admission or confession by a nationalist; framing suggests ideological labelling.",
+      "definition_rus": "Атрибуция признанию или признанию активного националиста; рамка с идеологической маркировкой.",
+      "synonyms_eng": ["per admission of an active nationalist", "based on nationalist's admission", "as per confession of a nationalist", "according to nationalist's own statement"],
+      "synonyms_rus": ["по признанию активного националиста", "на основании признания националиста", "согласно заявлению националиста", "по словам националиста"]
+    },
+    {
+      "entry_eng": "According to the assessment of the KGB of the USSR",
+      "entry_rus": "По оценке КГБ СССР",
+      "definition_eng": "Attribution to USSR-level KGB assessment; highest-level agency judgment.",
+      "definition_rus": "Атрибуция оценке КГБ СССР; суждение ведомства на союзном уровне.",
+      "synonyms_eng": ["per KGB USSR assessment", "based on KGB USSR evaluation", "as per KGB USSR judgment", "according to USSR KGB estimate"],
+      "synonyms_rus": ["по оценке КГБ СССР", "на основании оценки КГБ СССР", "согласно заключению КГБ СССР", "по мнению КГБ СССР"]
+    },
+    {
+      "entry_eng": "According to the Black Sea Shipping Company",
+      "entry_rus": "По сообщению Черноморского пароходства",
+      "definition_eng": "Organizational attribution; information from the Black Sea Shipping Company (Soviet maritime enterprise).",
+      "definition_rus": "Организационная атрибуция; информация по сообщению Черноморского пароходства.",
+      "synonyms_eng": ["per Black Sea Shipping Company", "based on Black Sea Shipping Company report", "as per Black Sea Shipping Company communication", "according to Black Sea Shipping Company"],
+      "synonyms_rus": ["по сообщению Черноморского пароходства", "на основании сообщения Черноморского пароходства", "согласно данным Черноморского пароходства"]
+    },
+    {
+      "entry_eng": "according to the preliminary conclusion of specialists",
+      "entry_rus": "по предварительному заключению специалистов",
+      "definition_eng": "Expert preliminary conclusion; lowercase variant for specialist assessment.",
+      "definition_rus": "Предварительное заключение специалистов; вариант с маленькой буквы.",
+      "synonyms_eng": ["per specialists' preliminary conclusion", "based on preliminary expert conclusion", "as per preliminary specialist assessment"],
+      "synonyms_rus": ["по предварительному заключению специалистов", "на основании предварительной экспертной оценки", "согласно предварительному мнению специалистов"]
+    },
+    {
+      "entry_eng": "accredited in the USSR — 3",
+      "entry_rus": "аккредитованных в СССР, 3",
+      "definition_eng": "Statistical formulation; count of accredited entities or persons in the USSR.",
+      "definition_rus": "Статистическая формулировка; численность аккредитованных в СССР.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 111,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "The KGB Directorate has taken measures",
+      "entry_rus": "УКГБ приняты меры",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB Directorate is assisting",
+      "entry_rus": "УКГБ оказывает помощь",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB Directorate, in cooperation with the Interior Ministry, has taken measures",
+      "entry_rus": "Управлением КГБ совместно с УВД приняты меры",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB directorates of the oblasts",
+      "entry_rus": "Управлениями КГБ областей республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the KGB divitions of the republic",
+      "entry_rus": "подразделениями КГБ республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB of the republic has taken the search under special control",
+      "entry_rus": "КГБ республики розыск взят на контроль",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB of the Ukrainian SSR",
+      "entry_rus": "КГБ УССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the KGB of the Ukrainian SSR,through operational channels",
+      "entry_rus": "КГБ УССР готовит продвижение через оперативные каналы",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the KGB of the USSR",
+      "entry_rus": "КГБ СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB of the USSR",
+      "entry_rus": "КГБ СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB of the USSR and the Regional Committee of the Communist Party of Ukraine have been informed",
+      "entry_rus": "КГБ СССР и обкому Компартии Украины доложено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB of the USSR has been informed",
+      "entry_rus": "КГБ СССР доложено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB of the USSR is informed",
+      "entry_rus": "КГБ СССР известно",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the KGB organs",
+      "entry_rus": "органами КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB under the USSR Council of Ministers has been informed",
+      "entry_rus": "КГБ при СМ СССР доложено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the Khmelnytskyi Regional Committee",
+      "entry_rus": "Хмельницкому",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the last major overhaul was",
+      "entry_rus": "последний капитальный ремонт проводился",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The leader of the so-called “Committee of Ukrainian Canadians,”",
+      "entry_rus": "Главарь т.н. \"Комитета украинских канадцев\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the leadership of the press center",
+      "entry_rus": "руководству пресс-центра",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the legal basis",
+      "entry_rus": "правовой основы",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

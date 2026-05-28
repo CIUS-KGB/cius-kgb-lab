@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Analysis Report</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+.master-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem 2rem; border-radius: 0; }
+.app-container { display: flex; min-height: calc(100vh - 70px); }
+.sidebar { width: 240px; min-width: 240px; background: #2d3748; color: #e2e8f0; padding: 1rem 0; flex-shrink: 0; }
+.sidebar-nav-item { display: block; width: 100%; padding: 0.6rem 1.25rem; border: none; background: none; color: #cbd5e0; text-align: left; cursor: pointer; font-size: 0.9rem; font-family: inherit; border-left: 3px solid transparent; }
+.sidebar-nav-item:hover { background: rgba(255,255,255,0.08); color: white; }
+.sidebar-nav-item.active { background: rgba(102,126,234,0.3); color: white; border-left-color: #667eea; }
+.sidebar-section-title { padding: 0.75rem 1.25rem 0.35rem; font-size: 0.75rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+.sidebar-doc-stat { font-size: 0.75rem; color: #94a3b8; margin-left: 0.5rem; }
+.main-content { flex: 1; padding: 2rem; overflow: auto; }
+.tabs { display: none; }
+.tab-button { padding: 0.75rem 1.5rem; background: #e9ecef; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+.tab-button:hover { background: #dee2e6; }
+.tab-button.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+@media (max-width: 768px) { .sidebar { width: 100%; min-width: auto; } .app-container { flex-direction: column; } }
+.header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+.stat-card { background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; text-align: center; }
+.stat-number { font-size: 2rem; font-weight: bold; }
+.stat-label { font-size: 0.9rem; opacity: 0.9; }
+.compare-units-summary { font-size: 0.9rem; color: #495057; margin: -0.5rem 0 1rem 0; }
+.comparison-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 2rem; }
+.comparison-table th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem; text-align: left; }
+.comparison-table td { padding: 1rem; border-bottom: 1px solid #dee2e6; vertical-align: top; }
+.comparison-table tr:hover { background: #f8f9fa; }
+.category-match, .framing-match { background: #d4edda; color: #155724; }
+.category-mismatch, .framing-mismatch { background: #f8d7da; color: #721c24; }
+.context-cell { max-width: 300px; font-size: 0.85rem; color: #666; }
+.document-text-view { margin-bottom: 2rem; }
+.document-text-controls { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; margin-bottom: 0.75rem; }
+.document-text-controls input, .document-text-controls select { padding: 0.5rem; border: 1px solid #dee2e6; border-radius: 4px; font-size: 0.9rem; }
+.colour-legend { margin-top: 0.75rem; padding: 0.75rem; background: #f1f3f5; border-radius: 6px; font-size: 0.8rem; }
+.colour-legend-section { margin-bottom: 0.5rem; }
+.colour-legend-section:last-child { margin-bottom: 0; }
+.colour-legend-section-title { font-weight: 600; color: #495057; margin-bottom: 0.25rem; }
+.colour-legend-items { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.colour-legend-item { display: inline-flex; align-items: center; gap: 0.25rem; }
+.colour-swatch { width: 12px; height: 12px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.15); flex-shrink: 0; }
+.colour-legend-orphan-note { font-size: 0.75rem; color: #64748b; margin-top: 0.25rem; }
+.document-text-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.document-text-panel { display: flex; flex-direction: column; min-width: 0; }
+.document-text-panel-label { font-weight: 600; font-size: 0.85rem; color: #495057; margin-bottom: 0.5rem; padding-bottom: 0.25rem; border-bottom: 1px solid #dee2e6; }
+.document-text-content { line-height: 1.8; padding: 1rem; background: #fff; border-radius: 8px; border: 1px solid #dee2e6; min-height: 80px; overflow: auto; white-space: pre-wrap; }
+.document-text-content .doc-entry { margin-right: 0.25em; padding: 0 1px; border-radius: 2px; }
+.document-text-content .doc-entry.dimmed { opacity: 0.35; }
+.document-text-content .doc-entry.search-highlight { background: rgba(255, 193, 7, 0.6) !important; border-radius: 2px; }
+.document-text-content .doc-entry.doc-entry-orphan { border-bottom: 1px dashed #94a3b8; }
+@media (max-width: 900px) { .document-text-panels { grid-template-columns: 1fr; } }
+/* Collapsible sections */
+.collapsible-section { margin-bottom: 1rem; background: white; border-radius: 8px; border: 1px solid #dee2e6; overflow: hidden; }
+.collapsible-section summary { padding: 0.75rem 1rem; font-weight: 600; cursor: pointer; background: #f8f9fa; user-select: none; list-style: none; }
+.collapsible-section summary::-webkit-details-marker { display: none; }
+.collapsible-section summary::before { content: "− "; }
+.collapsible-section:not([open]) summary::before { content: "+ "; }
+.collapsible-section summary:hover { background: #e9ecef; }
+.collapsible-section .collapsible-body { padding: 1rem; }
+/* Sticky document text controls */
+.document-text-controls-sticky { position: sticky; top: 0; z-index: 10; background: #f8f9fa; padding: 0.75rem 0; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+<div class="master-header"><h1>Full Analysis Report</h1></div>
+<div class="app-container">
+<div class="sidebar" id="sidebar"><div class="sidebar-section-title">Navigation</div>
+<button class="sidebar-nav-item active" onclick="showTab('tab-home')">Home</button>
+<div class="sidebar-section-title">Documents</div>
+<button class="sidebar-nav-item" onclick="showTab('tab-d1')">Doc 1<span class="sidebar-doc-stat">100%</span></button>
+<div class="sidebar-section-title">Reference</div>
+<button class="sidebar-nav-item" onclick="showTab('tab-glossary')">Glossary</button></div>
+<div class="main-content" id="tab-contents">
+
+<div class="tab-content active" id="tab-home">
+<div class="header"><h2>Home</h2></div>
+<div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+  <p class="homepage-placeholder" style="color: #94a3b8; font-style: italic; margin-bottom: 2rem;">[Add your introductory text here. This section is a placeholder for project overview, methodology, or key findings.]</p>
+  <section style="margin-bottom: 2rem;">
+    <h3 style="color: #667eea; margin-bottom: 1rem;">Section placeholder</h3>
+    <p class="homepage-placeholder" style="color: #94a3b8; font-style: italic;">[Add section content here.]</p>
+  </section>
+  <section style="margin-bottom: 2rem;">
+    <h3 style="color: #667eea; margin-bottom: 1rem;">Section placeholder</h3>
+    <p class="homepage-placeholder" style="color: #94a3b8; font-style: italic;">[Add section content here.]</p>
+  </section>
+  <section>
+    <h3 style="color: #667eea; margin-bottom: 1rem;">Section placeholder</h3>
+    <p class="homepage-placeholder" style="color: #94a3b8; font-style: italic;">[Add section content here.]</p>
+  </section>
+</div>
+</div>
+
+<div class="tab-content" id="tab-d1">
+<div class="header"><h2>Doc 1</h2></div>
+<details class="collapsible-section" open>
+  <summary>Accuracy stats</summary>
+  <div class="collapsible-body">
+    <div class="stats">
+      <div class="stat-card"><div class="stat-number" id="cat-acc-d1">100%</div><div class="stat-label">Category Accuracy</div></div>
+      <div class="stat-card"><div class="stat-number" id="fram-acc-d1">100%</div><div class="stat-label">Framing Accuracy</div></div>
+      <div class="stat-card"><div class="stat-number" id="both-acc-d1">100%</div><div class="stat-label">Both Match</div></div>
+    </div>
+    
+  </div>
+</details>
+<details class="collapsible-section" open>
+  <summary>Document text view</summary>
+  <div class="collapsible-body">
+    
+<div class="document-text-view" data-tab-id="d1">
+  <div class="document-text-controls-sticky">
+    <div class="document-text-controls">
+      <input type="text" id="doc-search-d1" class="document-search" placeholder="Search in text (English or Russian)..." data-tab="d1"/>
+      <select id="doc-cat-d1" class="document-category-filter" data-tab="d1"><option value="">— None —</option></select>
+      <select id="doc-fram-d1" class="document-framing-filter" data-tab="d1"><option value="">— None —</option></select>
+      <select id="doc-colour-by-d1" class="document-colour-by" data-tab="d1" title="Whose labels to use for colours">
+        <option value="llm">Colour by: LLM</option>
+        <option value="human">Colour by: Human</option>
+      </select>
+      <button type="button" class="document-clear-filters" data-tab="d1">Clear filters</button>
+    </div>
+  </div>
+
+  <div class="colour-legend">
+    <div class="colour-legend-section">
+      <div class="colour-legend-section-title">Content category (highlight)</div>
+      <div class="colour-legend-items"><span class="colour-legend-item"><span class="colour-swatch" style="background:#6366f1"></span>Actors</span></div>
+    </div>
+    <div class="colour-legend-section">
+      <div class="colour-legend-section-title">Framing (text colour)</div>
+      <div class="colour-legend-items"><span class="colour-legend-item"><span class="colour-swatch" style="background:#ec4899"></span>Generic</span></div>
+    </div>
+    <div class="colour-legend-section">
+      <div class="colour-legend-orphan-note">Segments with a dashed underline have no corresponding segment in the other panel; hover for tooltip.</div>
+    </div>
+    <div class="colour-legend-section">
+      <div class="colour-legend-orphan-note">Colour by: LLM = model labels; Human = annotator labels.</div>
+    </div>
+  </div>
+  <div class="document-text-panels">
+    <div class="document-text-panel">
+      <div class="document-text-panel-label">English</div>
+      <div class="document-text-content" id="doc-text-eng-d1"></div>
+    </div>
+    <div class="document-text-panel">
+      <div class="document-text-panel-label">Russian (original)</div>
+      <div class="document-text-content" id="doc-text-rus-d1"></div>
+    </div>
+  </div>
+</div>
+  </div>
+</details>
+<details class="collapsible-section" open>
+  <summary>Comparison table</summary>
+  <div class="collapsible-body">
+    <table class="comparison-table">
+    <thead><tr><th>Section</th><th>Entry (ENG)</th><th>Entry (RUS)</th><th>Content Category</th><th>Framing</th><th>Context</th></tr></thead>
+    <tbody id="table-d1"><tr><td>1</td><td>x</td><td></td><td class="category-match"><strong>LLM:</strong> <span style="color: #6366f1; font-weight: 600;">A</span><br/><strong>Human:</strong> <span style="color: #6366f1; font-weight: 600;">A</span></td><td class="framing-match"><strong>LLM:</strong> <span style="color: #ec4899; font-weight: 600;">G</span><br/><strong>Human:</strong> <span style="color: #ec4899; font-weight: 600;">G</span></td><td class="context-cell"></td></tr></tbody>
+    </table>
+  </div>
+</details>
+</div>
+
+<div class="tab-content" id="tab-glossary">
+<div class="header">
+<h2>Glossary of Terms</h2>
+<p>Definitions and examples for content categories and framing strategies used in document analysis.</p>
+</div>
+<div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 2rem;">
+<h3 style="color: #667eea; margin-bottom: 1.5rem; font-size: 1.5rem;">Content Categories</h3>
+<p style="margin-bottom: 2rem; color: #666; font-style: italic;">Content categories describe WHAT is being discussed: events, time, actors, location, and methods.</p>
+
+<div class="glossary-category-section" style="margin-bottom: 2rem;">
+<h4 style="color: #6366f1; margin-bottom: 0.5rem; font-size: 1.2rem;">Actors</h4>
+<p style="margin-bottom: 0.5rem;"><strong>Purpose:</strong> Actors</p>
+
+<details style="margin-top: 0.75rem;">
+<summary style="cursor: pointer; font-weight: 500;">Terms from documents (1)</summary>
+<div style="margin-top: 0.5rem;"><div class="glossary-term-item" style="padding: 0.5rem; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #6366f1; margin-bottom: 0.5rem;"><div class="term-eng" style="font-weight: 500; margin-bottom: 0.25rem;">x</div><div class="term-rus" style="font-size: 0.9rem; color: #666; font-style: italic;">x</div></div></div>
+</details>
+</div>
+
+<hr style="margin: 3rem 0; border: none; border-top: 2px solid #dee2e6;"/>
+<h3 style="color: #667eea; margin-bottom: 1.5rem; font-size: 1.5rem; margin-top: 3rem;">Terms Found in Documents - Summary</h3>
+<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+<p style="margin-bottom: 1rem;"><strong>Total unique terms extracted:</strong> 1</p>
+<p style="margin-bottom: 1rem;"><strong>Content Categories:</strong> 1 categories with 1 term instances</p>
+<p style="margin-bottom: 1rem;"><strong>Framing Strategies:</strong> 1 categories with 1 term instances</p>
+</div>
+<h3 style="color: #667eea; margin-bottom: 1.5rem; font-size: 1.5rem; margin-top: 3rem;">Framing and Language Strategy Categories</h3>
+<p style="margin-bottom: 2rem; color: #666; font-style: italic;">Framing strategies describe HOW language is used: neutral, bureaucratic, ideological, or action-focused.</p>
+
+<div class="glossary-framing-section" style="margin-bottom: 2rem;">
+<h4 style="color: #ec4899; margin-bottom: 0.5rem; font-size: 1.2rem;">Generic</h4>
+<p style="margin-bottom: 0.5rem;"><strong>Function:</strong> Generic</p>
+
+<details style="margin-top: 0.75rem;">
+<summary style="cursor: pointer; font-weight: 500;">Terms from documents (1)</summary>
+<div style="margin-top: 0.5rem;"><div class="glossary-term-item" style="padding: 0.5rem; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #ec4899; margin-bottom: 0.5rem;"><div class="term-eng" style="font-weight: 500; margin-bottom: 0.25rem;">x</div><div class="term-rus" style="font-size: 0.9rem; color: #666; font-style: italic;">x</div></div></div>
+</details>
+</div>
+</div>
+</div>
+</div></div>
+
+<script>
+var TAXONOMY_ALL_CATEGORIES = ["A"];
+var TAXONOMY_ALL_FRAMINGS = ["G"];
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.sidebar-nav-item').forEach(function(el) { el.classList.remove('active'); });
+  var tab = document.getElementById(tabId);
+  if (tab) tab.classList.add('active');
+  var btns = document.querySelectorAll('.sidebar-nav-item');
+  for (var i = 0; i < btns.length; i++) {
+    if (btns[i].getAttribute('onclick') && btns[i].getAttribute('onclick').indexOf(tabId) !== -1) btns[i].classList.add('active');
+  }
+  if (tabId && tabId !== 'tab-home' && tabId.indexOf('tab-glossary') === -1) {
+    var tid = tabId.replace('tab-', '');
+    if (tid && typeof onDocumentTabShown === 'function') onDocumentTabShown(tid);
+  }
+}
+function hexToRgba(hex, a) {
+  if (!hex || hex.indexOf('rgb') === 0) return hex || 'transparent';
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+  var r = parseInt(hex.substr(0,2), 16), g = parseInt(hex.substr(2,2), 16), b = parseInt(hex.substr(4,2), 16);
+  return 'rgba(' + r + ',' + g + ',' + b + ',' + (a !== undefined ? a : 1) + ')';
+}
+var framingColourFallback = { 'Action-Focused Language': '#dc2626', 'Ideological Phrasing (Normalizing)': '#ca8a04', 'Generic / Neutral Language': '#15803d', 'Generic / Neutral': '#15803d', 'Institutional / Bureaucratic Lingo': '#2563eb', 'Ideological Framing (Discrediting)': '#ea580c' };
+function resolveFramingColour(fram, attrColour) {
+  fram = (fram || '').trim();
+  if (!fram) return (attrColour && attrColour !== '#333' && attrColour !== '#333333') ? attrColour : '#333';
+  if (framingColourFallback[fram]) return framingColourFallback[fram];
+  var lower = fram.toLowerCase();
+  for (var k in framingColourFallback) { if (k.toLowerCase() === lower) return framingColourFallback[k]; }
+  if (fram.indexOf('Action-Focused') !== -1) return '#dc2626';
+  if (lower.indexOf('generic') !== -1 && lower.indexOf('neutral') !== -1) return '#15803d';
+  return (attrColour && attrColour !== '#333' && attrColour !== '#333333') ? attrColour : '#333';
+}
+function canonicalFramingOption(fram) {
+  if (!fram) return fram;
+  var lower = (fram + '').trim().toLowerCase();
+  if (lower === 'generic / neutral' || lower === 'generic / neutral language') return 'Generic / Neutral Language';
+  return (fram + '').trim();
+}
+function framingMatch(spanFram, filterVal) {
+  if (!filterVal || filterVal === 'All') return true;
+  spanFram = (spanFram || '').trim();
+  var f = filterVal.trim();
+  if (spanFram === f) return true;
+  if (spanFram.toLowerCase() === f.toLowerCase()) return true;
+  var genericNeutral = ['generic / neutral', 'generic / neutral language'];
+  var spanLower = spanFram.toLowerCase();
+  var filterLower = f.toLowerCase();
+  if (genericNeutral.indexOf(spanLower) !== -1 && genericNeutral.indexOf(filterLower) !== -1) return true;
+  return false;
+}
+function categoryMatch(spanCat, filterVal) {
+  if (!filterVal || filterVal === 'All') return true;
+  spanCat = (spanCat || '').trim();
+  var f = (filterVal || '').trim();
+  if (!spanCat && !f) return true;
+  if (spanCat === f) return true;
+  if (spanCat.toLowerCase() === f.toLowerCase()) return true;
+  return false;
+}
+function buildDocumentTextView(tid) {
+  var tabEl = document.getElementById('tab-' + tid);
+  if (!tabEl) return;
+  var tbody = tabEl.querySelector('tbody[id="table-' + tid + '"]');
+  var containerEng = document.getElementById('doc-text-eng-' + tid);
+  var containerRus = document.getElementById('doc-text-rus-' + tid);
+  if (!tbody || !containerEng || !containerRus) return;
+  var catSelect = tabEl.querySelector('select.document-category-filter');
+  var framSelect = tabEl.querySelector('select.document-framing-filter');
+  var categories = {}, framings = {};
+  if (typeof TAXONOMY_ALL_CATEGORIES !== 'undefined') {
+    for (var c = 0; c < TAXONOMY_ALL_CATEGORIES.length; c++) categories[TAXONOMY_ALL_CATEGORIES[c]] = true;
+  }
+  if (typeof TAXONOMY_ALL_FRAMINGS !== 'undefined') {
+    for (var f = 0; f < TAXONOMY_ALL_FRAMINGS.length; f++) {
+      var fid = TAXONOMY_ALL_FRAMINGS[f];
+      framings[typeof canonicalFramingOption === 'function' ? canonicalFramingOption(fid) : fid] = true;
+    }
+  }
+  var rows = tbody.querySelectorAll('tr');
+  var hasPreFilled = containerEng.children.length > 0;
+  if (!hasPreFilled) {
+    var catFilter = catSelect ? catSelect.value : '';
+    var framFilter = framSelect ? framSelect.value : '';
+    for (var i = 0; i < rows.length; i++) {
+      var tds = rows[i].querySelectorAll('td');
+      if (tds.length < 5) continue;
+      var eng = (tds[1] && tds[1].textContent) ? tds[1].textContent.trim() : '';
+      var rus = (tds[2] && tds[2].textContent) ? tds[2].textContent.trim() : '';
+      var catCell = tds[3], framCell = tds[4];
+      var catSpans = catCell ? catCell.querySelectorAll('span[style*="color"]') : [];
+      var framSpans = framCell ? framCell.querySelectorAll('span[style*="color"]') : [];
+      var llmCatSpan = catSpans[0] || null;
+      var humanCatSpan = catSpans.length >= 2 ? catSpans[1] : catSpans[0];
+      var llmFramSpan = framSpans[0] || null;
+      var humanFramSpan = framSpans.length >= 2 ? framSpans[1] : framSpans[0];
+      var catText = llmCatSpan ? llmCatSpan.textContent.trim() : '';
+      var framText = llmFramSpan ? llmFramSpan.textContent.trim() : '';
+      var humanCatText = humanCatSpan ? humanCatSpan.textContent.trim() : '';
+      var humanFramText = humanFramSpan ? humanFramSpan.textContent.trim() : '';
+      var catColor = llmCatSpan && llmCatSpan.style.color ? llmCatSpan.style.color : '#333';
+      var framColor = (framText && typeof resolveFramingColour === 'function') ? resolveFramingColour(framText, (llmFramSpan && llmFramSpan.style.color ? llmFramSpan.style.color : '#333')) : '#333';
+      var humanCatColor = humanCatSpan && humanCatSpan.style.color ? humanCatSpan.style.color : '#333';
+      var humanFramColor = (humanFramText && typeof resolveFramingColour === 'function') ? resolveFramingColour(humanFramText, (humanFramSpan && humanFramSpan.style.color ? humanFramSpan.style.color : '#333')) : '#333';
+      if (catText) categories[catText] = true;
+      if (framText) framings[framText] = true;
+      if (humanCatText) categories[humanCatText] = true;
+      if (humanFramText) framings[typeof canonicalFramingOption === 'function' ? canonicalFramingOption(humanFramText) : humanFramText] = true;
+      var spanEng = document.createElement('span');
+      spanEng.className = 'doc-entry';
+      spanEng.textContent = eng;
+      spanEng.setAttribute('data-category', catText);
+      spanEng.setAttribute('data-framing', framText);
+      spanEng.setAttribute('data-category-colour', catColor);
+      spanEng.setAttribute('data-framing-colour', framColor);
+      spanEng.setAttribute('data-human-category', humanCatText);
+      spanEng.setAttribute('data-human-framing', humanFramText);
+      spanEng.setAttribute('data-human-category-colour', humanCatColor);
+      spanEng.setAttribute('data-human-framing-colour', humanFramColor);
+      spanEng.setAttribute('data-row-index', String(i));
+      var useCatColour = catFilter !== '' && (catFilter === 'All' || (typeof categoryMatch === 'function' && categoryMatch(catText, catFilter)));
+      var useFramColour = (framFilter === 'All' || (framFilter !== '' && typeof framingMatch === 'function' && framingMatch(framText, framFilter)));
+      if (useCatColour) { spanEng.style.backgroundColor = hexToRgba(catColor, 0.28); } else { spanEng.style.backgroundColor = ''; }
+      if (useFramColour) { spanEng.style.color = framColor; } else { spanEng.style.color = '#333'; }
+      var spanRus = document.createElement('span');
+      spanRus.className = 'doc-entry';
+      spanRus.textContent = rus;
+      spanRus.setAttribute('data-category', catText);
+      spanRus.setAttribute('data-framing', framText);
+      spanRus.setAttribute('data-category-colour', catColor);
+      spanRus.setAttribute('data-framing-colour', framColor);
+      spanRus.setAttribute('data-human-category', humanCatText);
+      spanRus.setAttribute('data-human-framing', humanFramText);
+      spanRus.setAttribute('data-human-category-colour', humanCatColor);
+      spanRus.setAttribute('data-human-framing-colour', humanFramColor);
+      spanRus.setAttribute('data-row-index', String(i));
+      if (useCatColour) { spanRus.style.backgroundColor = hexToRgba(catColor, 0.28); } else { spanRus.style.backgroundColor = ''; }
+      if (useFramColour) { spanRus.style.color = framColor; } else { spanRus.style.color = '#333'; }
+      containerEng.appendChild(spanEng);
+      containerEng.appendChild(document.createTextNode(' '));
+      containerRus.appendChild(spanRus);
+      containerRus.appendChild(document.createTextNode(' '));
+    }
+  }
+  if (hasPreFilled) {
+    var spans = containerEng.querySelectorAll('.doc-entry');
+    for (var s = 0; s < spans.length; s++) {
+      var cat = spans[s].getAttribute('data-category');
+      var fram = spans[s].getAttribute('data-framing');
+      if (cat) categories[cat] = true;
+      if (fram) framings[typeof canonicalFramingOption === 'function' ? canonicalFramingOption(fram) : fram] = true;
+    }
+    for (var i = 0; i < rows.length; i++) {
+      var tds = rows[i].querySelectorAll('td');
+      if (tds.length < 5) continue;
+      var catCell = tds[3], framCell = tds[4];
+      var catSpans = catCell ? catCell.querySelectorAll('span[style*="color"]') : [];
+      var framSpans = framCell ? framCell.querySelectorAll('span[style*="color"]') : [];
+      for (var ci = 0; ci < catSpans.length; ci++) {
+        var ct = catSpans[ci].textContent ? catSpans[ci].textContent.trim() : '';
+        if (ct) categories[ct] = true;
+      }
+      for (var fi = 0; fi < framSpans.length; fi++) {
+        var ft = framSpans[fi].textContent ? framSpans[fi].textContent.trim() : '';
+        if (ft) framings[typeof canonicalFramingOption === 'function' ? canonicalFramingOption(ft) : ft] = true;
+      }
+    }
+  } else {
+    for (var i = 0; i < rows.length; i++) {
+      var tds = rows[i].querySelectorAll('td');
+      if (tds.length < 5) continue;
+      var catCell = tds[3], framCell = tds[4];
+      var catSpans = catCell ? catCell.querySelectorAll('span[style*="color"]') : [];
+      var framSpans = framCell ? framCell.querySelectorAll('span[style*="color"]') : [];
+      var catSpan = catSpans.length >= 2 ? catSpans[1] : (catSpans[0] || null);
+      var framSpan = framSpans.length >= 2 ? framSpans[1] : (framSpans[0] || null);
+      var catText = catSpan ? catSpan.textContent.trim() : '';
+      var framText = framSpan ? framSpan.textContent.trim() : '';
+      if (catText) categories[catText] = true;
+      if (framText) framings[typeof canonicalFramingOption === 'function' ? canonicalFramingOption(framText) : framText] = true;
+    }
+  }
+  var noneOpt = document.createElement('option');
+  noneOpt.value = '';
+  noneOpt.textContent = '— None —';
+  var allCatOpt = document.createElement('option');
+  allCatOpt.value = 'All';
+  allCatOpt.textContent = 'All';
+  while (catSelect.options.length > 0) catSelect.remove(0);
+  catSelect.appendChild(noneOpt);
+  catSelect.appendChild(allCatOpt);
+  for (var c in categories) {
+    var opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c;
+    catSelect.appendChild(opt);
+  }
+  var noneFram = document.createElement('option');
+  noneFram.value = '';
+  noneFram.textContent = '— None —';
+  var allFramOpt = document.createElement('option');
+  allFramOpt.value = 'All';
+  allFramOpt.textContent = 'All';
+  while (framSelect.options.length > 0) framSelect.remove(0);
+  framSelect.appendChild(noneFram);
+  framSelect.appendChild(allFramOpt);
+  for (var f in framings) {
+    var opt = document.createElement('option');
+    opt.value = f;
+    opt.textContent = f;
+    framSelect.appendChild(opt);
+  }
+}
+function applyDocumentSearchAndFilter(tid) {
+  var containerEng = document.getElementById('doc-text-eng-' + tid);
+  var containerRus = document.getElementById('doc-text-rus-' + tid);
+  if (!containerEng || !containerRus) return;
+  var searchEl = document.getElementById('doc-search-' + tid);
+  var catEl = document.getElementById('doc-cat-' + tid);
+  var framEl = document.getElementById('doc-fram-' + tid);
+  var colourByEl = document.getElementById('doc-colour-by-' + tid);
+  var colourBy = (colourByEl && colourByEl.value) ? colourByEl.value : 'llm';
+  var search = (searchEl && searchEl.value) ? searchEl.value.trim().toLowerCase() : '';
+  var catFilter = catEl ? catEl.value : '';
+  var framFilter = framEl ? framEl.value : '';
+  var entriesEng = containerEng.querySelectorAll('.doc-entry');
+  var entriesRus = containerRus.querySelectorAll('.doc-entry');
+  var i;
+  for (i = 0; i < entriesEng.length; i++) {
+    var eEng = entriesEng[i];
+    var textEng = (eEng.textContent || '').toLowerCase();
+    var catEng = eEng.getAttribute('data-category') || '';
+    var framEng = eEng.getAttribute('data-framing') || '';
+    var humanCatEng = eEng.getAttribute('data-human-category') || '';
+    var humanFramEng = eEng.getAttribute('data-human-framing') || '';
+    var matchSearch = !search || textEng.indexOf(search) !== -1;
+    var matchCatEng = !catFilter || catFilter === 'All' || (colourBy === 'human' && categoryMatch(humanCatEng, catFilter)) || (colourBy !== 'human' && categoryMatch(catEng, catFilter));
+    var matchFramEng = !framFilter || framFilter === 'All' || (colourBy === 'human' && framingMatch(humanFramEng, framFilter)) || (colourBy !== 'human' && framingMatch(framEng, framFilter));
+    var showEng = matchSearch && matchCatEng && matchFramEng;
+    var catColEng, framColEng, humanCatColEng, humanFramColEng;
+    if (colourBy === 'human') {
+      humanCatColEng = eEng.getAttribute('data-human-category-colour') || '#333';
+      humanFramColEng = typeof resolveFramingColour === 'function' ? resolveFramingColour(humanFramEng, eEng.getAttribute('data-human-framing-colour') || '#333') : (eEng.getAttribute('data-human-framing-colour') || '#333');
+      catColEng = humanCatColEng; framColEng = humanFramColEng;
+    } else {
+      catColEng = eEng.getAttribute('data-category-colour') || '#333';
+      framColEng = typeof resolveFramingColour === 'function' ? resolveFramingColour(framEng, eEng.getAttribute('data-framing-colour') || '#333') : (eEng.getAttribute('data-framing-colour') || '#333');
+      humanCatColEng = eEng.getAttribute('data-human-category-colour') || '#333';
+      humanFramColEng = typeof resolveFramingColour === 'function' ? resolveFramingColour(humanFramEng, eEng.getAttribute('data-human-framing-colour') || '#333') : (eEng.getAttribute('data-human-framing-colour') || '#333');
+    }
+    var useCatColourEng = catFilter !== '' && (catFilter === 'All' || (colourBy === 'human' && categoryMatch(humanCatEng, catFilter)) || (colourBy !== 'human' && categoryMatch(catEng, catFilter)));
+    var useFramColourEng = framFilter === 'All' || (framFilter !== '' && ((colourBy === 'human' && framingMatch(humanFramEng, framFilter)) || (colourBy !== 'human' && framingMatch(framEng, framFilter))));
+    if (useCatColourEng) eEng.style.backgroundColor = hexToRgba(catColEng, 0.28); else eEng.style.backgroundColor = '';
+    if (useFramColourEng) eEng.style.setProperty('color', framColEng, 'important'); else eEng.style.setProperty('color', '#333', 'important');
+    eEng.classList.toggle('dimmed', !showEng);
+    eEng.classList.toggle('search-highlight', search && textEng.indexOf(search) !== -1);
+  }
+  for (i = 0; i < entriesRus.length; i++) {
+    var eRus = entriesRus[i];
+    var textRus = (eRus.textContent || '').toLowerCase();
+    var catRus = eRus.getAttribute('data-category') || '';
+    var framRus = eRus.getAttribute('data-framing') || '';
+    var humanCatRus = eRus.getAttribute('data-human-category') || '';
+    var humanFramRus = eRus.getAttribute('data-human-framing') || '';
+    var matchSearchR = !search || textRus.indexOf(search) !== -1;
+    var matchCatRus = !catFilter || catFilter === 'All' || (colourBy === 'human' && categoryMatch(humanCatRus, catFilter)) || (colourBy !== 'human' && categoryMatch(catRus, catFilter));
+    var matchFramRus = !framFilter || framFilter === 'All' || (colourBy === 'human' && framingMatch(humanFramRus, framFilter)) || (colourBy !== 'human' && framingMatch(framRus, framFilter));
+    var showRus = matchSearchR && matchCatRus && matchFramRus;
+    var catColRus, framColRus, humanCatColRus, humanFramColRus;
+    if (colourBy === 'human') {
+      humanCatColRus = eRus.getAttribute('data-human-category-colour') || '#333';
+      humanFramColRus = typeof resolveFramingColour === 'function' ? resolveFramingColour(humanFramRus, eRus.getAttribute('data-human-framing-colour') || '#333') : (eRus.getAttribute('data-human-framing-colour') || '#333');
+      catColRus = humanCatColRus; framColRus = humanFramColRus;
+    } else {
+      catColRus = eRus.getAttribute('data-category-colour') || '#333';
+      framColRus = typeof resolveFramingColour === 'function' ? resolveFramingColour(framRus, eRus.getAttribute('data-framing-colour') || '#333') : (eRus.getAttribute('data-framing-colour') || '#333');
+      humanCatColRus = eRus.getAttribute('data-human-category-colour') || '#333';
+      humanFramColRus = typeof resolveFramingColour === 'function' ? resolveFramingColour(humanFramRus, eRus.getAttribute('data-human-framing-colour') || '#333') : (eRus.getAttribute('data-human-framing-colour') || '#333');
+    }
+    var useCatColourRus = catFilter !== '' && (catFilter === 'All' || (colourBy === 'human' && categoryMatch(humanCatRus, catFilter)) || (colourBy !== 'human' && categoryMatch(catRus, catFilter)));
+    var useFramColourRus = framFilter === 'All' || (framFilter !== '' && ((colourBy === 'human' && framingMatch(humanFramRus, framFilter)) || (colourBy !== 'human' && framingMatch(framRus, framFilter))));
+    if (useCatColourRus) eRus.style.backgroundColor = hexToRgba(catColRus, 0.28); else eRus.style.backgroundColor = '';
+    if (useFramColourRus) eRus.style.setProperty('color', framColRus, 'important'); else eRus.style.setProperty('color', '#333', 'important');
+    eRus.classList.toggle('dimmed', !showRus);
+    eRus.classList.toggle('search-highlight', search && textRus.indexOf(search) !== -1);
+  }
+}
+function onDocumentTabShown(tid) {
+  buildDocumentTextView(tid);
+  applyDocumentSearchAndFilter(tid);
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var active = document.querySelector('.tab-content.active');
+  if (active && active.id && active.id.indexOf('tab-glossary') === -1) {
+    var tid = active.id.replace('tab-', '');
+    if (tid) onDocumentTabShown(tid);
+  }
+  document.getElementById('tabs-container').addEventListener('click', function(e) {
+    var tid = e.target.getAttribute('data-tab');
+    if (tid) applyDocumentSearchAndFilter(tid);
+  });
+  document.body.addEventListener('input', function(e) {
+    var tid = e.target.getAttribute('data-tab');
+    if (tid) applyDocumentSearchAndFilter(tid);
+  });
+  document.body.addEventListener('change', function(e) {
+    var tid = e.target.getAttribute('data-tab');
+    if (tid) applyDocumentSearchAndFilter(tid);
+  });
+  document.body.addEventListener('click', function(e) {
+    if (e.target.classList.contains('document-clear-filters')) {
+      var tid = e.target.getAttribute('data-tab');
+      if (!tid) return;
+      var searchEl = document.getElementById('doc-search-' + tid);
+      var catEl = document.getElementById('doc-cat-' + tid);
+      var framEl = document.getElementById('doc-fram-' + tid);
+      if (searchEl) searchEl.value = '';
+      if (catEl) catEl.value = '';
+      if (framEl) framEl.value = '';
+      applyDocumentSearchAndFilter(tid);
+    }
+  });
+});
+</script>
+</body></html>

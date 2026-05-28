@@ -1,0 +1,164 @@
+{
+  "term_results": [
+    {
+      "entry_eng": "acting on the orders of the special operations services",
+      "entry_rus": "действующих по указке спецслужб",
+      "definition_eng": "Discrediting formulation implying agents act on orders from Western intelligence; suggests puppetry rather than independent agency.",
+      "definition_rus": "Дискредитирующая формулировка: действующие по указке спецслужб; подразумевает марионеточность, а не самостоятельность.",
+      "synonyms_eng": ["acting on special-services orders", "directed by intelligence services", "under special-services direction", "on orders from intelligence services"],
+      "synonyms_rus": ["действующие по указке спецслужб", "по указанию спецслужб", "руководствуясь указаниями спецслужб", "направляемые спецслужбами"]
+    },
+    {
+      "entry_eng": "active OUNites",
+      "entry_rus": "активные оуновцы",
+      "definition_eng": "Active members of the Organization of Ukrainian Nationalists; discrediting designation in Soviet discourse.",
+      "definition_rus": "Активные члены ОУН; дискредитирующее обозначение в советском дискурсе.",
+      "synonyms_eng": ["active OUN members", "activists of the OUN", "OUN activists", "active nationalists of the OUN"],
+      "synonyms_rus": ["активные оуновцы", "активные члены ОУН", "оуновские активисты", "активисты ОУН"]
+    },
+    {
+      "entry_eng": "activities carried out by the KGB bodies of the republic",
+      "entry_rus": "Проведенные органами КГБ республики",
+      "definition_eng": "Activities conducted by republican KGB organs; institutional formulation for agency work.",
+      "definition_rus": "Мероприятия, проведённые органами КГБ республики; институциональная формулировка деятельности ведомства.",
+      "synonyms_eng": ["activities conducted by republican KGB", "KGB republican bodies' activities", "measures carried out by republican KGB", "KGB republic organs' operations"],
+      "synonyms_rus": ["проведённые органами КГБ республики", "мероприятия КГБ республики", "деятельность органов КГБ республики", "операции республиканского КГБ"]
+    },
+    {
+      "entry_eng": "Additionally, the leaflets contain",
+      "entry_rus": "Кроме того, в листовках содержатся",
+      "definition_eng": "Transitional phrase introducing further leaflet content; neutral informational connector.",
+      "definition_rus": "Переходная фраза, вводящая дополнительное содержание листовок; нейтральный информационный коннектор.",
+      "synonyms_eng": ["Moreover, the leaflets contain", "Furthermore, the leaflets contain", "In addition, the leaflets contain", "The leaflets also contain"],
+      "synonyms_rus": ["кроме того, в листовках содержатся", "также в листовках содержатся", "дополнительно в листовках указано", "в листовках также имеется"]
+    },
+    {
+      "entry_eng": "Additionally, there were present in the territory of Ukraine",
+      "entry_rus": "на территории Украины также находились",
+      "definition_eng": "Presence formulation; indicates entities or persons located in Ukrainian territory.",
+      "definition_rus": "Формулировка наличия; указывает на объекты или лица, находившиеся на территории Украины.",
+      "synonyms_eng": ["Moreover, there were present in Ukraine", "Also present in Ukrainian territory", "Furthermore, present in Ukraine", "There were also present in Ukraine"],
+      "synonyms_rus": ["на территории Украины также находились", "также присутствовали на территории Украины", "на территории Украины присутствовали", "в Украине также имелись"]
+    },
+    {
+      "entry_eng": "Additionally, there were present on the territory of Ukraine",
+      "entry_rus": "на территории Украины также находились",
+      "definition_eng": "Same formulation; presence on Ukrainian territory (on/in variant).",
+      "definition_rus": "Та же формулировка; наличие на территории Украины (вариант на/в).",
+      "synonyms_eng": ["Moreover, there were present on Ukrainian territory", "Also present on the territory of Ukraine", "Furthermore, on Ukrainian territory"],
+      "synonyms_rus": ["на территории Украины также находились", "также находились на территории Украины", "присутствовали на территории Украины"]
+    },
+    {
+      "entry_eng": "adopted an amendment to the legislation",
+      "entry_rus": "принял поправку к законодательству",
+      "definition_eng": "Legislative action; formal adoption of an amendment to existing law.",
+      "definition_rus": "Законодательное действие; формальное принятие поправки к законодательству.",
+      "synonyms_eng": ["adopted a legislative amendment", "passed an amendment to the law", "enacted an amendment", "approved a legislative amendment"],
+      "synonyms_rus": ["принял поправку к законодательству", "внёс поправку в законодательство", "принял законодательную поправку", "одобрил поправку к закону"]
+    },
+    {
+      "entry_eng": "Afghan",
+      "entry_rus": "Афганистана",
+      "definition_eng": "Geographic/adjectival reference to Afghanistan; genitive form in Russian (of Afghanistan).",
+      "definition_rus": "Географическая/прилагательная отсылка к Афганистану; родительный падеж в русском.",
+      "synonyms_eng": ["Afghanistan", "of Afghanistan", "Afghan-related", "relating to Afghanistan"],
+      "synonyms_rus": ["Афганистана", "афганский", "связанный с Афганистаном", "относящийся к Афганистану"]
+    },
+    {
+      "entry_eng": "after bathing",
+      "entry_rus": "после купания",
+      "definition_eng": "Temporal phrase; following a bathing or swimming event.",
+      "definition_rus": "Временная формулировка; после события купания или плавания.",
+      "synonyms_eng": ["after bathing", "following bathing", "post-bathing", "after a swim"],
+      "synonyms_rus": ["после купания", "по окончании купания", "после плавания", "сразу после купания"]
+    },
+    {
+      "entry_eng": "after which",
+      "entry_rus": "после чего",
+      "definition_eng": "Temporal connector; indicates sequence of events.",
+      "definition_rus": "Временной коннектор; указывает на последовательность событий.",
+      "synonyms_eng": ["after which", "whereafter", "following which", "subsequently"],
+      "synonyms_rus": ["после чего", "после чего", "вслед за чем", "затем"]
+    },
+    {
+      "entry_eng": "against 644 persons",
+      "entry_rus": "в отношении 644 лиц",
+      "definition_eng": "Formulation for measures or actions directed at a specified number of persons; bureaucratic usage.",
+      "definition_rus": "Формулировка мер или действий в отношении указанного числа лиц; бюрократическое употребление.",
+      "synonyms_eng": ["in respect of 644 persons", "regarding 644 persons", "against 644 individuals", "concerning 644 persons"],
+      "synonyms_rus": ["в отношении 644 лиц", "в отношении 644 человек", "касательно 644 лиц", "по 644 лицам"]
+    },
+    {
+      "entry_eng": "against [...] residing in the country",
+      "entry_rus": "против проживающих в этой стране",
+      "definition_eng": "Formulation for measures against persons residing in a specified country; redaction in English.",
+      "definition_rus": "Формулировка мер против проживающих в указанной стране; ретушь в английском.",
+      "synonyms_eng": ["against residents of the country", "against those residing in the country", "targeting country residents", "directed at country residents"],
+      "synonyms_rus": ["против проживающих в этой стране", "в отношении проживающих в стране", "направленные на проживающих в стране", "против жителей страны"]
+    },
+    {
+      "entry_eng": "against anti-Soviet provocations",
+      "entry_rus": "с антисоветскими провокациями",
+      "definition_eng": "Contextual phrase; Russian has 'with' (с) — association with anti-Soviet provocations; ideological framing.",
+      "definition_rus": "Контекстная фраза; в оригинале «с» — связь с антисоветскими провокациями; идеологическая рамка.",
+      "synonyms_eng": ["against anti-Soviet provocations", "in connection with anti-Soviet provocations", "relating to anti-Soviet provocations", "involving anti-Soviet provocations"],
+      "synonyms_rus": ["с антисоветскими провокациями", "в связи с антисоветскими провокациями", "касательно антисоветских провокаций", "в отношении антисоветских провокаций"]
+    },
+    {
+      "entry_eng": "against several war criminals",
+      "entry_rus": "в отношении ряда военных преступников",
+      "definition_eng": "Measures or actions directed at war criminals; discrediting designation of the targets.",
+      "definition_rus": "Меры или действия в отношении военных преступников; дискредитирующее обозначение целей.",
+      "synonyms_eng": ["against several war criminals", "regarding a number of war criminals", "in respect of war criminals", "targeting war criminals"],
+      "synonyms_rus": ["в отношении ряда военных преступников", "в отношении нескольких военных преступников", "касательно военных преступников", "против военных преступников"]
+    },
+    {
+      "entry_eng": "against the Melnykites",
+      "entry_rus": "на мельниковцев",
+      "definition_eng": "Directed against supporters of Andriy Melnyk (OUN-M faction); discrediting faction designation.",
+      "definition_rus": "Направлено против мельниковцев (сторонников Андрея Мельника, фракция ОУН-м); дискредитирующее обозначение фракции.",
+      "synonyms_eng": ["against the Melnykites", "targeting Melnyk supporters", "directed at OUN-M", "against Melnyk faction"],
+      "synonyms_rus": ["на мельниковцев", "против мельниковцев", "в отношении мельниковцев", "направленные на мельниковцев"]
+    },
+    {
+      "entry_eng": "agitation and propaganda department of the Central Committee",
+      "entry_rus": "отделом агитации и пропаганды ЦК",
+      "definition_eng": "Soviet institutional body; Agitprop department of the Communist Party Central Committee.",
+      "definition_rus": "Советское институциональное подразделение; отдел агитации и пропаганды ЦК КПСС.",
+      "synonyms_eng": ["Central Committee agitprop department", "CC agitation and propaganda department", "Party agitprop department", "Central Committee Agitprop"],
+      "synonyms_rus": ["отделом агитации и пропаганды ЦК", "агитпропом ЦК", "отделом агитпропа ЦК", "агитационно-пропагандистским отделом ЦК"]
+    },
+    {
+      "entry_eng": "agreed to prepare such an \"appeal.\"",
+      "entry_rus": "дали согласие на подготовку такого \"воззвания\"",
+      "definition_eng": "Consent to prepare an appeal; quotation marks signal Soviet skepticism toward the designated document.",
+      "definition_rus": "Согласие на подготовку воззвания; кавычки сигнализируют скептическое отношение к документу.",
+      "synonyms_eng": ["agreed to prepare such an appeal", "consented to preparation of such an appeal", "gave consent to preparing the appeal", "agreed to draft such an appeal"],
+      "synonyms_rus": ["дали согласие на подготовку такого воззвания", "согласились подготовить такое воззвание", "выразили согласие на подготовку воззвания"]
+    },
+    {
+      "entry_eng": "aimed at compromising the ringleaders of the foreign OUN",
+      "entry_rus": "компрометирующих главарей зарубежных ОУН",
+      "definition_eng": "Measures intended to compromise OUN leaders abroad; discrediting framing (главари = ringleaders).",
+      "definition_rus": "Меры, направленные на компрометацию руководителей зарубежного ОУН; дискредитирующая рамка.",
+      "synonyms_eng": ["aimed at compromising foreign OUN ringleaders", "to compromise OUN leaders abroad", "directed at discrediting foreign OUN leaders", "to discredit OUN chiefs abroad"],
+      "synonyms_rus": ["компрометирующих главарей зарубежных ОУН", "направленные на компрометацию оуновского руководства за рубежом", "с целью дискредитации зарубежных оуновцев"]
+    },
+    {
+      "entry_eng": "aimed at discrediting OUN members before Western governmental and public circles",
+      "entry_rus": "проводимой с целью компрометации перед правительственными и общественными кругами Запада оуновцев",
+      "definition_eng": "Activity aimed at discrediting OUN members in Western government and public opinion; ideological counter-propaganda framing.",
+      "definition_rus": "Деятельность с целью компрометации оуновцев перед западными властями и общественностью; рамка контрпропаганды.",
+      "synonyms_eng": ["aimed at discrediting OUN before Western circles", "to discredit OUN members in the West", "directed at compromising OUN in Western eyes", "to compromise OUN before Western governments"],
+      "synonyms_rus": ["с целью компрометации оуновцев перед Западом", "направленная на дискредитацию ОУН на Западе", "для компрометации оуновцев в западных кругах"]
+    },
+    {
+      "entry_eng": "aimed at disrupting",
+      "entry_rus": "направленные на срыв",
+      "definition_eng": "Measures intended to disrupt or sabotage; action-focused formulation.",
+      "definition_rus": "Меры, направленные на срыв; формулировка, ориентированная на действие.",
+      "synonyms_eng": ["aimed at disrupting", "directed at disruption", "intended to disrupt", "designed to sabotage", "to thwart"],
+      "synonyms_rus": ["направленные на срыв", "имеющие целью срыв", "на срыв", "для срыва", "с целью сорвать"]
+    }
+  ]
+}

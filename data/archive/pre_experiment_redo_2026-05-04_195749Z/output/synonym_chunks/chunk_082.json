@@ -1,0 +1,126 @@
+{
+  "chunk_id": 82,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "of the same shipping company’s",
+      "entry_rus": "этого же пароходства",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the slanderous book Terror of Collectivization",
+      "entry_rus": "пасквиля \"Террор коллективизации\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the so-called “independence of Ukraine.”",
+      "entry_rus": "так называемой \"независимости Украины\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the Soviet people",
+      "entry_rus": "советских людей",
+      "category": "Actors",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "of the SS division “Galicia”",
+      "entry_rus": "дивизии СС \"Галичина\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the Supreme Court of the USSR",
+      "entry_rus": "Верховного суда СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the temporary German occupation",
+      "entry_rus": "временной немецкой оккупации",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the theft",
+      "entry_rus": "о хищении",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "of the TV series America",
+      "entry_rus": "телесериала \"Америка\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Ukrainian Catholic Church in the USA",
+      "entry_rus": "украинской католической церкви в США",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Uniate and Autocephalous churches",
+      "entry_rus": "униатской и автокефальной церквей",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the USA",
+      "entry_rus": "США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the village of Murovane",
+      "entry_rus": "с. Муроване",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the “Moldavspetsstroimekhanizatsiya” trust",
+      "entry_rus": "треста «Молдавспецстроймеханизация»",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the “Ukrzakhidvuhillia” Combine",
+      "entry_rus": "комбината «Укрзападуголь»",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the “Voroshilovhradugol” Industrial Association",
+      "entry_rus": "производственного объединения «Ворошиловградуголь»",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of their criminal activities",
+      "entry_rus": "их преступной деятельности,",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of this vessel",
+      "entry_rus": "этого судна",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of Ukrainian bourgeois nationalism",
+      "entry_rus": "украинского буржуазного национализма",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of Ukrainian Bourgeois Nationalists",
+      "entry_rus": "украинских буржуазных националистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

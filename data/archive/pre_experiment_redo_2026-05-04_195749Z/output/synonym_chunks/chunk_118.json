@@ -1,0 +1,126 @@
+{
+  "chunk_id": 118,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "they plan to raise demands",
+      "entry_rus": "предполагается выдвигать требования",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "they stated",
+      "entry_rus": "они заявили",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "This action is taken into account by the KGB of the Ukrainian SSR",
+      "entry_rus": "Указанная акция учитывается КГБ УССР",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "This gathering",
+      "entry_rus": "Указанному сборищу",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "this information was transmitted to U.S. media",
+      "entry_rus": "Эти факты [...] были переданы в средства массовой информации США",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "This led to increased distrust towards the leaders of foreign nationalist centers in capitalist countries",
+      "entry_rus": "Это привело к росту недоверия к главарям зарубежных националистических центров в капиталистических странах",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "this slanderous campaign",
+      "entry_rus": "этой клеветнической кампании",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "This, in turn, dealt a serious blow",
+      "entry_rus": "Это в свою очередь нанесло серьезный удар",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "those present",
+      "entry_rus": "присутствовавших",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Three counter-propaganda films were sent",
+      "entry_rus": "переданы три контрпропагандистских фильма",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "three from India — 167",
+      "entry_rus": "три из Индии 167",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "three from Liberia – 108",
+      "entry_rus": "три из Либерии – 108",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "through a broken window",
+      "entry_rus": "через разбитое окно",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "through a foreign source from the so-called \"third generation\" of emigrants",
+      "entry_rus": "через закордонного источника из так называемого \"третьего поколения\" эмиграции",
+      "category": "Actors",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "Through influence channels",
+      "entry_rus": "Через источников влияния",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Through operational and other available channels",
+      "entry_rus": "через оперативные и другие возможности",
+      "category": "Methods",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "through operational capabilities",
+      "entry_rus": "через оперативные возможности",
+      "category": "Methods",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Through operational capabilities",
+      "entry_rus": "Через оперативные возможности",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "through operational capabilities in the United States",
+      "entry_rus": "в США через оперативные возможности",
+      "category": "Methods",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "through operational capabilities,",
+      "entry_rus": "через оперативные возможности",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

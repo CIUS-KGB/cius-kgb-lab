@@ -1,0 +1,126 @@
+{
+  "chunk_id": 4,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "23,416 citizens of socialist countries",
+      "entry_rus": "23 416 граждан социалистических стран",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "23,947 citizens of socialist countries",
+      "entry_rus": "23 947 граждан социалистических стран",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "25,468 citizens of socialist countries",
+      "entry_rus": "25 468 граждан социалистических стран",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "260 students",
+      "entry_rus": "учащихся 260",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "29,301 citizens from socialist countries",
+      "entry_rus": "29 301 гражданин социалистических стран",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "2930 articles (1985 - 3253)",
+      "entry_rus": "2930 статей (1985 г.- 3253)",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "3 from Italy",
+      "entry_rus": "3 из Итали",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "3 from Japan",
+      "entry_rus": "3 из Японии",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "3,337 specialists",
+      "entry_rus": "специалистов 3 337",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "4,549 specialists",
+      "entry_rus": "специалистов 4 549",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "40,000 rubles",
+      "entry_rus": "по 40 тысяч рублей",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "45 kilometers from the city of Vinnytsia",
+      "entry_rus": "в 45 километрах от гор. Винницы",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "5 from Austria — 7",
+      "entry_rus": "5 из Австрии 7",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "5 ships",
+      "entry_rus": "5 судов",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "50th anniversary",
+      "entry_rus": "50-летию",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "59 accomplices",
+      "entry_rus": "59 пособников",
+      "category": "Information",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "5th KGB Department of the Ukrainian SSR",
+      "entry_rus": "5 Упр. КГБ УССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "7 executioners were stripped off",
+      "entry_rus": "семь карателей лишены",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "71 private individuals",
+      "entry_rus": "частных лиц 71",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "710 students",
+      "entry_rus": "учащихся 710",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

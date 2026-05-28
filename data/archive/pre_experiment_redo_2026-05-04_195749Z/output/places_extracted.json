@@ -1,0 +1,2520 @@
+{
+  "places": [
+    {
+      "name": "Kyiv",
+      "count": 4518
+    },
+    {
+      "name": "Kharkiv",
+      "count": 1402
+    },
+    {
+      "name": "Odesa",
+      "count": 1348
+    },
+    {
+      "name": "Donetsk",
+      "count": 956
+    },
+    {
+      "name": "Lviv",
+      "count": 393
+    },
+    {
+      "name": "Zaporizhzhia",
+      "count": 335
+    },
+    {
+      "name": "Simferopol",
+      "count": 219
+    },
+    {
+      "name": "United States",
+      "count": 84
+    },
+    {
+      "name": "Luhansk",
+      "count": 46
+    },
+    {
+      "name": "Dnipro",
+      "count": 33
+    },
+    {
+      "name": "Canada",
+      "count": 27
+    },
+    {
+      "name": "Ivano-Frankivsk",
+      "count": 22
+    },
+    {
+      "name": "Kropyvnytskyi",
+      "count": 22
+    },
+    {
+      "name": "Ukraine",
+      "count": 9
+    },
+    {
+      "name": "Germany",
+      "count": 8
+    },
+    {
+      "name": "France",
+      "count": 8
+    },
+    {
+      "name": "Kherson",
+      "count": 6
+    },
+    {
+      "name": "Illichivsk",
+      "count": 6
+    },
+    {
+      "name": "Moscow",
+      "count": 5
+    },
+    {
+      "name": "Mariupol",
+      "count": 5
+    },
+    {
+      "name": "Soviet Union",
+      "count": 5
+    },
+    {
+      "name": "Toronto",
+      "count": 4
+    },
+    {
+      "name": "United Kingdom",
+      "count": 4
+    },
+    {
+      "name": "England",
+      "count": 4
+    },
+    {
+      "name": "Japan",
+      "count": 3
+    },
+    {
+      "name": "Zhytomyr",
+      "count": 3
+    },
+    {
+      "name": "Khmelnytskyi",
+      "count": 3
+    },
+    {
+      "name": "Vinnytsia",
+      "count": 3
+    },
+    {
+      "name": "Yuzhne",
+      "count": 3
+    },
+    {
+      "name": "Washington",
+      "count": 3
+    },
+    {
+      "name": "Australia",
+      "count": 3
+    },
+    {
+      "name": "the bathroom",
+      "count": 2
+    },
+    {
+      "name": "Sokal Raion",
+      "count": 2
+    },
+    {
+      "name": "Chernivtsi",
+      "count": 2
+    },
+    {
+      "name": "Bilhorod-Dnistrovskyi",
+      "count": 2
+    },
+    {
+      "name": "Yuzhny",
+      "count": 2
+    },
+    {
+      "name": "Izmail",
+      "count": 2
+    },
+    {
+      "name": "Dnipropetrovsk Oblast",
+      "count": 2
+    },
+    {
+      "name": "Sumy",
+      "count": 2
+    },
+    {
+      "name": "Ivano-Frankivsk region",
+      "count": 2
+    },
+    {
+      "name": "Yalta",
+      "count": 2
+    },
+    {
+      "name": "the Soviet Union",
+      "count": 2
+    },
+    {
+      "name": "the parcel reception department",
+      "count": 1
+    },
+    {
+      "name": "the village of Davydkivtsi",
+      "count": 1
+    },
+    {
+      "name": "the apartment",
+      "count": 1
+    },
+    {
+      "name": "Munich",
+      "count": 1
+    },
+    {
+      "name": "Krasnosillia",
+      "count": 1
+    },
+    {
+      "name": "the yard of building No",
+      "count": 1
+    },
+    {
+      "name": "the Dardanelles Strait",
+      "count": 1
+    },
+    {
+      "name": "Moldova",
+      "count": 1
+    },
+    {
+      "name": "Ivano-Frankivsk Oblast",
+      "count": 1
+    },
+    {
+      "name": "the Dnister basin",
+      "count": 1
+    },
+    {
+      "name": "Edmonton",
+      "count": 1
+    },
+    {
+      "name": "Montreal",
+      "count": 1
+    },
+    {
+      "name": "Poltava Oblast",
+      "count": 1
+    },
+    {
+      "name": "Moldavian SSR",
+      "count": 1
+    },
+    {
+      "name": "Volyn Oblast",
+      "count": 1
+    },
+    {
+      "name": "Novovolynsk",
+      "count": 1
+    },
+    {
+      "name": "the administrative building",
+      "count": 1
+    },
+    {
+      "name": "Voroshilovhrad Oblast",
+      "count": 1
+    },
+    {
+      "name": "Lutuhyne Raion",
+      "count": 1
+    },
+    {
+      "name": "Jerusalem",
+      "count": 1
+    },
+    {
+      "name": "Reni",
+      "count": 1
+    },
+    {
+      "name": "through a broken window",
+      "count": 1
+    },
+    {
+      "name": "Rivne",
+      "count": 1
+    },
+    {
+      "name": "New York",
+      "count": 1
+    },
+    {
+      "name": "Philadelphia",
+      "count": 1
+    },
+    {
+      "name": "Detroit",
+      "count": 1
+    },
+    {
+      "name": "Chicago",
+      "count": 1
+    },
+    {
+      "name": "Cleveland",
+      "count": 1
+    },
+    {
+      "name": "Pavlohrad",
+      "count": 1
+    },
+    {
+      "name": "(Pavlohrad)",
+      "count": 1
+    },
+    {
+      "name": "Belgium",
+      "count": 1
+    },
+    {
+      "name": "Argentina",
+      "count": 1
+    },
+    {
+      "name": "Crimea region",
+      "count": 1
+    },
+    {
+      "name": "Zhdanov ports",
+      "count": 1
+    },
+    {
+      "name": "Italy",
+      "count": 1
+    },
+    {
+      "name": "Cyprus",
+      "count": 1
+    },
+    {
+      "name": "Panama",
+      "count": 1
+    },
+    {
+      "name": "Novorossiysk",
+      "count": 1
+    },
+    {
+      "name": "republic",
+      "count": 1
+    },
+    {
+      "name": "Kovalchuk",
+      "count": 1
+    },
+    {
+      "name": "Kyivan Rus’",
+      "count": 1
+    },
+    {
+      "name": "Israel",
+      "count": 1
+    },
+    {
+      "name": "Winnipeg",
+      "count": 1
+    }
+  ],
+  "place_segments": {
+    "Ukraine": [
+      {
+        "entry_eng": "on the temporarily Hitlerites-occupied territory of Ukraine",
+        "entry_rus": "на временно оккупированной гитлеровцами территории Украины",
+        "doc_id": "1127",
+        "row_index": 10,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the Ukraine",
+        "entry_rus": "на Украине",
+        "doc_id": "1127",
+        "row_index": 48,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the territory of the Ukrainian SSR",
+        "entry_rus": "На территории Украинской ССР",
+        "doc_id": "1208",
+        "row_index": 66,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the territory of the Ukrainian SSR",
+        "entry_rus": "На территории Украинской ССР",
+        "doc_id": "1209",
+        "row_index": 31,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the territory of the Ukrainian SSR",
+        "entry_rus": "На территории Украинской ССР",
+        "doc_id": "1213",
+        "row_index": 60,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the territory of the Ukrainian SSR",
+        "entry_rus": "На территории Украинской ССР",
+        "doc_id": "1215",
+        "row_index": 54,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the Ukraine",
+        "entry_rus": "на Украине",
+        "doc_id": "1262_149-150",
+        "row_index": 23,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the Ukraine",
+        "entry_rus": "на Украине",
+        "doc_id": "1262_198-200",
+        "row_index": 15,
+        "count": 1
+      },
+      {
+        "entry_eng": "for the restoration of the Uniate Church in the Ukraine",
+        "entry_rus": "о восстановлении униатской церкви на Украине",
+        "doc_id": "1262_28-32",
+        "row_index": 113,
+        "count": 1
+      }
+    ],
+    "Toronto": [
+      {
+        "entry_eng": "in Toronto",
+        "entry_rus": "в гор.Торонто",
+        "doc_id": "1127",
+        "row_index": 22,
+        "count": 1
+      },
+      {
+        "entry_eng": "Toronto",
+        "entry_rus": "г. Торонто",
+        "doc_id": "1128",
+        "row_index": 43,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Toronto",
+        "entry_rus": "в Торонто",
+        "doc_id": "1262_198-200",
+        "row_index": 135,
+        "count": 1
+      },
+      {
+        "entry_eng": "Toronto",
+        "entry_rus": "Торонто",
+        "doc_id": "1262_28-32",
+        "row_index": 140,
+        "count": 1
+      }
+    ],
+    "Kyiv": [
+      {
+        "entry_eng": "In Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1127",
+        "row_index": 73,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1127",
+        "row_index": 79,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Kyiv — 55",
+        "entry_rus": "в Киеве – 55",
+        "doc_id": "1127",
+        "row_index": 86,
+        "count": 55
+      },
+      {
+        "entry_eng": "In Kyiv — 55",
+        "entry_rus": "в Киеве – 55",
+        "doc_id": "1127",
+        "row_index": 86,
+        "count": 55
+      },
+      {
+        "entry_eng": "In Kyiv — 55",
+        "entry_rus": "в Киеве – 55",
+        "doc_id": "1127",
+        "row_index": 86,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kyiv — 25",
+        "entry_rus": "Киевской – 25",
+        "doc_id": "1127",
+        "row_index": 102,
+        "count": 25
+      },
+      {
+        "entry_eng": "In Kyiv — 2,181",
+        "entry_rus": "в Киеве – 2181",
+        "doc_id": "1127",
+        "row_index": 109,
+        "count": 2181
+      },
+      {
+        "entry_eng": "In Kyiv — 2,181",
+        "entry_rus": "в Киеве – 2181",
+        "doc_id": "1127",
+        "row_index": 109,
+        "count": 2181
+      },
+      {
+        "entry_eng": "In Kyiv — 2,181",
+        "entry_rus": "в Киеве – 2181",
+        "doc_id": "1127",
+        "row_index": 109,
+        "count": 1
+      },
+      {
+        "entry_eng": "from Kyiv abroad",
+        "entry_rus": "из Киева за границу",
+        "doc_id": "1128",
+        "row_index": 70,
+        "count": 1
+      },
+      {
+        "entry_eng": "All in Kyiv",
+        "entry_rus": "все в Киеве",
+        "doc_id": "1128",
+        "row_index": 93,
+        "count": 1
+      },
+      {
+        "entry_eng": "All in Kyiv",
+        "entry_rus": "все в Киеве",
+        "doc_id": "1128",
+        "row_index": 101,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1206",
+        "row_index": 79,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1209",
+        "row_index": 36,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kyiv",
+        "entry_rus": "в Киев",
+        "doc_id": "1213",
+        "row_index": 27,
+        "count": 1
+      },
+      {
+        "entry_eng": "one of the churches of the Kyiv-Pechersk Lavra",
+        "entry_rus": "одной из церквей Киево-Печерской лавры",
+        "doc_id": "1213",
+        "row_index": 37,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1213",
+        "row_index": 39,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1213",
+        "row_index": 65,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1215",
+        "row_index": 59,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kyiv",
+        "entry_rus": "Киеве",
+        "doc_id": "1247",
+        "row_index": 7,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kyiv region",
+        "entry_rus": "Киевской",
+        "doc_id": "1247",
+        "row_index": 40,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1247",
+        "row_index": 68,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kyiv region",
+        "entry_rus": "в Киевской области",
+        "doc_id": "1247",
+        "row_index": 81,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Kyiv",
+        "entry_rus": "в Киеве",
+        "doc_id": "1249-80-83",
+        "row_index": 6,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kyiv region",
+        "entry_rus": "Киевской",
+        "doc_id": "1249-80-83",
+        "row_index": 26,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Kyiv",
+        "entry_rus": "Киеве",
+        "doc_id": "1262_149-150",
+        "row_index": 10,
+        "count": 1
+      }
+    ],
+    "Moscow": [
+      {
+        "entry_eng": "in Moscow",
+        "entry_rus": "в Москве",
+        "doc_id": "1127",
+        "row_index": 75,
+        "count": 1
+      },
+      {
+        "entry_eng": "for Moscow",
+        "entry_rus": "в Москву",
+        "doc_id": "1208",
+        "row_index": 79,
+        "count": 1
+      },
+      {
+        "entry_eng": "for Moscow",
+        "entry_rus": "в Москву",
+        "doc_id": "1209",
+        "row_index": 59,
+        "count": 1
+      },
+      {
+        "entry_eng": "for Moscow",
+        "entry_rus": "в Москву",
+        "doc_id": "1247",
+        "row_index": 23,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Moscow",
+        "entry_rus": "в Москве",
+        "doc_id": "1262_198-200",
+        "row_index": 33,
+        "count": 1
+      }
+    ],
+    "Canada": [
+      {
+        "entry_eng": "each from Canada",
+        "entry_rus": "из Канады",
+        "doc_id": "1127",
+        "row_index": 81,
+        "count": 1
+      },
+      {
+        "entry_eng": "Canada — 7",
+        "entry_rus": "Канады – 7",
+        "doc_id": "1127",
+        "row_index": 94,
+        "count": 7
+      },
+      {
+        "entry_eng": "in Canada",
+        "entry_rus": "в Канаде",
+        "doc_id": "1128",
+        "row_index": 6,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Ontario Province",
+        "entry_rus": "в провинции Онтарио",
+        "doc_id": "1128",
+        "row_index": 26,
+        "count": 1
+      },
+      {
+        "entry_eng": "outside of Canada",
+        "entry_rus": "вне территории Канады",
+        "doc_id": "1128",
+        "row_index": 38,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Canada",
+        "entry_rus": "в Канаде",
+        "doc_id": "1206",
+        "row_index": 1,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Canada",
+        "entry_rus": "Канады",
+        "doc_id": "1206",
+        "row_index": 22,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Canada",
+        "entry_rus": "в Канаде",
+        "doc_id": "1230",
+        "row_index": 48,
+        "count": 1
+      },
+      {
+        "entry_eng": "and Canada",
+        "entry_rus": "и Канаде",
+        "doc_id": "1230",
+        "row_index": 82,
+        "count": 1
+      },
+      {
+        "entry_eng": "and Canada",
+        "entry_rus": "и Канаду",
+        "doc_id": "1230",
+        "row_index": 92,
+        "count": 1
+      },
+      {
+        "entry_eng": "Canada",
+        "entry_rus": "Канаде",
+        "doc_id": "1245",
+        "row_index": 143,
+        "count": 1
+      },
+      {
+        "entry_eng": "Canada",
+        "entry_rus": "из Канады",
+        "doc_id": "1247",
+        "row_index": 73,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the mass media of the USA and Canada",
+        "entry_rus": "в средства массовой информации США и Канады",
+        "doc_id": "1249-0046-0047",
+        "row_index": 13,
+        "count": 1
+      },
+      {
+        "entry_eng": "Canada",
+        "entry_rus": "из Канады",
+        "doc_id": "1249-80-83",
+        "row_index": 61,
+        "count": 1
+      },
+      {
+        "entry_eng": "residing in Canada",
+        "entry_rus": "проживающих в Канаде",
+        "doc_id": "1249-80-83",
+        "row_index": 79,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Canada",
+        "entry_rus": "в Канаде",
+        "doc_id": "1249-80-83",
+        "row_index": 91,
+        "count": 1
+      },
+      {
+        "entry_eng": "in major cities of Canada",
+        "entry_rus": "В крупных городах Канады",
+        "doc_id": "1262_198-200",
+        "row_index": 132,
+        "count": 1
+      },
+      {
+        "entry_eng": "Canada",
+        "entry_rus": "Канаде",
+        "doc_id": "1262_28-32",
+        "row_index": 43,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the U.S., Canada, and England",
+        "entry_rus": "в США, Канаде и Англии",
+        "doc_id": "1262_28-32",
+        "row_index": 59,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Canada",
+        "entry_rus": "В Канаде",
+        "doc_id": "1262_28-32",
+        "row_index": 126,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Canada, [...] have been established",
+        "entry_rus": "в Канаде созданы",
+        "doc_id": "1262_28-32",
+        "row_index": 137,
+        "count": 1
+      }
+    ],
+    "Japan": [
+      {
+        "entry_eng": "and Japan",
+        "entry_rus": "и Японии",
+        "doc_id": "1127",
+        "row_index": 82,
+        "count": 1
+      },
+      {
+        "entry_eng": "from Japan",
+        "entry_rus": "из Японии",
+        "doc_id": "1128",
+        "row_index": 105,
+        "count": 1
+      },
+      {
+        "entry_eng": "from Japan",
+        "entry_rus": "из Японии",
+        "doc_id": "1208",
+        "row_index": 102,
+        "count": 1
+      }
+    ],
+    "Odesa": [
+      {
+        "entry_eng": "Odesa — 9",
+        "entry_rus": "Одессе – 9",
+        "doc_id": "1127",
+        "row_index": 87,
+        "count": 9
+      },
+      {
+        "entry_eng": "In Odesa Oblast — 53",
+        "entry_rus": "в Одесской области – 53",
+        "doc_id": "1127",
+        "row_index": 98,
+        "count": 53
+      },
+      {
+        "entry_eng": "In Odesa Oblast — 53",
+        "entry_rus": "в Одесской области – 53",
+        "doc_id": "1127",
+        "row_index": 98,
+        "count": 53
+      },
+      {
+        "entry_eng": "In Odesa Oblast — 53",
+        "entry_rus": "в Одесской области – 53",
+        "doc_id": "1127",
+        "row_index": 98,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa — 1,208",
+        "entry_rus": "Одессе – 1208",
+        "doc_id": "1127",
+        "row_index": 111,
+        "count": 1208
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Zhdanov, and Kherson",
+        "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+        "doc_id": "1127",
+        "row_index": 122,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa and Zhdanov",
+        "entry_rus": "в Одесском и Ждановском портах",
+        "doc_id": "1128",
+        "row_index": 143,
+        "count": 1
+      },
+      {
+        "entry_eng": "home port Odesa",
+        "entry_rus": "порт приписки Одесса",
+        "doc_id": "1128",
+        "row_index": 247,
+        "count": 1
+      },
+      {
+        "entry_eng": "City of Odesa",
+        "entry_rus": "г. Одесса",
+        "doc_id": "1128",
+        "row_index": 271,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa",
+        "entry_rus": "в Одесском",
+        "doc_id": "1206",
+        "row_index": 127,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa",
+        "entry_rus": "в Одесском",
+        "doc_id": "1206",
+        "row_index": 127,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Odesa",
+        "entry_rus": "в Одессе",
+        "doc_id": "1208",
+        "row_index": 73,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Illichivsk, Izmail, Reni, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Ильичёвском, Измаильском, Ренийском, Южном и Ждановском портах",
+        "doc_id": "1208",
+        "row_index": 154,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Illichivsk, Yuzhne, and Kherson",
+        "entry_rus": "в Одесском, Ильичевском, Южном и Херсонском портах",
+        "doc_id": "1209",
+        "row_index": 109,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Illichivsk, Yuzhne, and Kherson",
+        "entry_rus": "в Одесском, Ильичевском, Южном и Херсонском портах",
+        "doc_id": "1209",
+        "row_index": 109,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Zhdanov, and Kherson",
+        "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+        "doc_id": "1213",
+        "row_index": 111,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Zhdanov, and Kherson",
+        "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+        "doc_id": "1213",
+        "row_index": 111,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Bilhorod-Dnistrovskyi, Illichivsk, Izmail, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Белгород-Днестровском, Ильичёвском, Измаильском, Южном и Ждановском портах",
+        "doc_id": "1215",
+        "row_index": 106,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa",
+        "entry_rus": "Одессе",
+        "doc_id": "1247",
+        "row_index": 15,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa",
+        "entry_rus": "Одессе",
+        "doc_id": "1247",
+        "row_index": 51,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa",
+        "entry_rus": "в Одесском порту",
+        "doc_id": "1247",
+        "row_index": 58,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa",
+        "entry_rus": "в Одесском порту",
+        "doc_id": "1247",
+        "row_index": 58,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa",
+        "entry_rus": "в Одессе",
+        "doc_id": "1247",
+        "row_index": 69,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa region",
+        "entry_rus": "в Одесской области",
+        "doc_id": "1247",
+        "row_index": 80,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa",
+        "entry_rus": "Одессе",
+        "doc_id": "1249-80-83",
+        "row_index": 13,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa",
+        "entry_rus": "в Одессе",
+        "doc_id": "1249-80-83",
+        "row_index": 37,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the ports of Odesa",
+        "entry_rus": "в Одесском,",
+        "doc_id": "1249-80-83",
+        "row_index": 44,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the ports of Odesa",
+        "entry_rus": "в Одесском,",
+        "doc_id": "1249-80-83",
+        "row_index": 44,
+        "count": 1
+      },
+      {
+        "entry_eng": "Odesa region",
+        "entry_rus": "Одесская область",
+        "doc_id": "1249-80-83",
+        "row_index": 148,
+        "count": 1
+      }
+    ],
+    "Lviv": [
+      {
+        "entry_eng": "Lviv — 7",
+        "entry_rus": "Львове – 7",
+        "doc_id": "1127",
+        "row_index": 88,
+        "count": 7
+      },
+      {
+        "entry_eng": "Lviv — 380",
+        "entry_rus": "Львове – 380",
+        "doc_id": "1127",
+        "row_index": 113,
+        "count": 380
+      },
+      {
+        "entry_eng": "Lviv Oblast",
+        "entry_rus": "Львовская область",
+        "doc_id": "1128",
+        "row_index": 160,
+        "count": 1
+      },
+      {
+        "entry_eng": "Lviv Oblast",
+        "entry_rus": "Львовской",
+        "doc_id": "1128",
+        "row_index": 302,
+        "count": 1
+      },
+      {
+        "entry_eng": "Lviv",
+        "entry_rus": "Львове",
+        "doc_id": "1247",
+        "row_index": 53,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Lviv region",
+        "entry_rus": "во Львовской области",
+        "doc_id": "1247",
+        "row_index": 78,
+        "count": 1
+      },
+      {
+        "entry_eng": "Lviv",
+        "entry_rus": "во Львове",
+        "doc_id": "1249-80-83",
+        "row_index": 39,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Lviv region",
+        "entry_rus": "во Львовской области",
+        "doc_id": "1249-80-83",
+        "row_index": 65,
+        "count": 1
+      }
+    ],
+    "United States": [
+      {
+        "entry_eng": "From the U.S. — 32",
+        "entry_rus": "Из США – 32",
+        "doc_id": "1127",
+        "row_index": 90,
+        "count": 32
+      },
+      {
+        "entry_eng": "From the U.S. — 32",
+        "entry_rus": "Из США – 32",
+        "doc_id": "1127",
+        "row_index": 90,
+        "count": 32
+      },
+      {
+        "entry_eng": "the USA",
+        "entry_rus": "США",
+        "doc_id": "1206",
+        "row_index": 23,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1206",
+        "row_index": 32,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1209",
+        "row_index": 1,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1215",
+        "row_index": 2,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the United States",
+        "entry_rus": "В США",
+        "doc_id": "1215",
+        "row_index": 11,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the United States",
+        "entry_rus": "в США",
+        "doc_id": "1230",
+        "row_index": 45,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1230",
+        "row_index": 81,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1230",
+        "row_index": 91,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1245",
+        "row_index": 142,
+        "count": 1
+      },
+      {
+        "entry_eng": "from the USA",
+        "entry_rus": "из США",
+        "doc_id": "1247",
+        "row_index": 35,
+        "count": 1
+      },
+      {
+        "entry_eng": "From the USA",
+        "entry_rus": "из США",
+        "doc_id": "1247",
+        "row_index": 70,
+        "count": 1
+      },
+      {
+        "entry_eng": "of the USA",
+        "entry_rus": "США",
+        "doc_id": "1247",
+        "row_index": 149,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1247",
+        "row_index": 180,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the mass media of the USA and Canada",
+        "entry_rus": "в средства массовой информации США и Канады",
+        "doc_id": "1249-0046-0047",
+        "row_index": 13,
+        "count": 1
+      },
+      {
+        "entry_eng": "From the USA",
+        "entry_rus": "из США",
+        "doc_id": "1249-80-83",
+        "row_index": 57,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1262_149-150",
+        "row_index": 43,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USA",
+        "entry_rus": "в США",
+        "doc_id": "1262_198-200",
+        "row_index": 6,
+        "count": 1
+      },
+      {
+        "entry_eng": "in USA",
+        "entry_rus": "в США",
+        "doc_id": "1262_198-200",
+        "row_index": 148,
+        "count": 1
+      },
+      {
+        "entry_eng": "United States",
+        "entry_rus": "США",
+        "doc_id": "1262_28-32",
+        "row_index": 42,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the United States",
+        "entry_rus": "В США",
+        "doc_id": "1262_28-32",
+        "row_index": 145,
+        "count": 1
+      }
+    ],
+    "United Kingdom": [
+      {
+        "entry_eng": "U.K. — 4",
+        "entry_rus": "Англии – 4",
+        "doc_id": "1127",
+        "row_index": 91,
+        "count": 4
+      }
+    ],
+    "Germany": [
+      {
+        "entry_eng": "FRG — 4",
+        "entry_rus": "ФРГ – 4",
+        "doc_id": "1127",
+        "row_index": 92,
+        "count": 4
+      },
+      {
+        "entry_eng": "from the Federal Republic of Germany",
+        "entry_rus": "из ФРГ",
+        "doc_id": "1213",
+        "row_index": 71,
+        "count": 1
+      },
+      {
+        "entry_eng": "Federal Republic of Germany (FRG)",
+        "entry_rus": "ФРГ",
+        "doc_id": "1245",
+        "row_index": 148,
+        "count": 1
+      },
+      {
+        "entry_eng": "FRG",
+        "entry_rus": "из ФРГ",
+        "doc_id": "1247",
+        "row_index": 71,
+        "count": 1
+      },
+      {
+        "entry_eng": "FRG",
+        "entry_rus": "из ФРГ",
+        "doc_id": "1249-80-83",
+        "row_index": 59,
+        "count": 1
+      }
+    ],
+    "France": [
+      {
+        "entry_eng": "France — 2",
+        "entry_rus": "Франции – 2",
+        "doc_id": "1127",
+        "row_index": 93,
+        "count": 2
+      },
+      {
+        "entry_eng": "France",
+        "entry_rus": "Франции",
+        "doc_id": "1206",
+        "row_index": 24,
+        "count": 1
+      },
+      {
+        "entry_eng": "France",
+        "entry_rus": "Франция",
+        "doc_id": "1206",
+        "row_index": 37,
+        "count": 1
+      },
+      {
+        "entry_eng": "France",
+        "entry_rus": "Франции",
+        "doc_id": "1245",
+        "row_index": 144,
+        "count": 1
+      },
+      {
+        "entry_eng": "France",
+        "entry_rus": "из Франции",
+        "doc_id": "1247",
+        "row_index": 72,
+        "count": 1
+      },
+      {
+        "entry_eng": "France",
+        "entry_rus": "Франции",
+        "doc_id": "1249-80-83",
+        "row_index": 53,
+        "count": 1
+      },
+      {
+        "entry_eng": "France",
+        "entry_rus": "из Франции",
+        "doc_id": "1249-80-83",
+        "row_index": 60,
+        "count": 1
+      }
+    ],
+    "Luhansk": [
+      {
+        "entry_eng": "Voroshylovhrad — 46",
+        "entry_rus": "Ворошиловградской – 46",
+        "doc_id": "1127",
+        "row_index": 99,
+        "count": 46
+      }
+    ],
+    "Kharkiv": [
+      {
+        "entry_eng": "Kharkiv — 33",
+        "entry_rus": "Харьковской – 33",
+        "doc_id": "1127",
+        "row_index": 100,
+        "count": 33
+      },
+      {
+        "entry_eng": "Kharkiv — 1,336",
+        "entry_rus": "Харькове – 1336",
+        "doc_id": "1127",
+        "row_index": 110,
+        "count": 1336
+      },
+      {
+        "entry_eng": "In Kharkiv Oblast — 12",
+        "entry_rus": "в Харьковской области – 12",
+        "doc_id": "1127",
+        "row_index": 118,
+        "count": 12
+      },
+      {
+        "entry_eng": "In Kharkiv Oblast — 12",
+        "entry_rus": "в Харьковской области – 12",
+        "doc_id": "1127",
+        "row_index": 118,
+        "count": 12
+      },
+      {
+        "entry_eng": "In Kharkiv Oblast — 12",
+        "entry_rus": "в Харьковской области – 12",
+        "doc_id": "1127",
+        "row_index": 118,
+        "count": 1
+      },
+      {
+        "entry_eng": "City of Kharkiv",
+        "entry_rus": "гор. Харьков",
+        "doc_id": "1127",
+        "row_index": 211,
+        "count": 1
+      },
+      {
+        "entry_eng": "City of Kharkiv",
+        "entry_rus": "г. Харьков",
+        "doc_id": "1128",
+        "row_index": 328,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the city of Kharkiv",
+        "entry_rus": "г. Харькова",
+        "doc_id": "1128",
+        "row_index": 333,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kharkiv Oblast",
+        "entry_rus": "Харьковской области",
+        "doc_id": "1206",
+        "row_index": 173,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kharkiv",
+        "entry_rus": "Харькове",
+        "doc_id": "1247",
+        "row_index": 50,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Kharkiv",
+        "entry_rus": "в Харькове",
+        "doc_id": "1247",
+        "row_index": 145,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kharkiv region",
+        "entry_rus": "в Харьковской",
+        "doc_id": "1249-80-83",
+        "row_index": 29,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kharkiv",
+        "entry_rus": "в Харькове",
+        "doc_id": "1249-80-83",
+        "row_index": 32,
+        "count": 1
+      }
+    ],
+    "Dnipro": [
+      {
+        "entry_eng": "Dnipropetrovsk — 33",
+        "entry_rus": "Днепропетровской – 33",
+        "doc_id": "1127",
+        "row_index": 101,
+        "count": 33
+      }
+    ],
+    "Donetsk": [
+      {
+        "entry_eng": "Donetsk — 25",
+        "entry_rus": "Донецкой – 25",
+        "doc_id": "1127",
+        "row_index": 103,
+        "count": 25
+      },
+      {
+        "entry_eng": "Donetsk — 919",
+        "entry_rus": "Донецке – 919",
+        "doc_id": "1127",
+        "row_index": 112,
+        "count": 919
+      },
+      {
+        "entry_eng": "Donetsk — 9",
+        "entry_rus": "Донецкой – 9",
+        "doc_id": "1127",
+        "row_index": 119,
+        "count": 9
+      },
+      {
+        "entry_eng": "In Donetsk",
+        "entry_rus": "в Донецке",
+        "doc_id": "1213",
+        "row_index": 70,
+        "count": 1
+      },
+      {
+        "entry_eng": "Donetsk",
+        "entry_rus": "Донецке",
+        "doc_id": "1247",
+        "row_index": 52,
+        "count": 1
+      },
+      {
+        "entry_eng": "Donetsk",
+        "entry_rus": "в Донецке",
+        "doc_id": "1249-80-83",
+        "row_index": 38,
+        "count": 1
+      }
+    ],
+    "Ivano-Frankivsk": [
+      {
+        "entry_eng": "Ivano-Frankivsk — 22",
+        "entry_rus": "Ивано-Франковской – 22",
+        "doc_id": "1127",
+        "row_index": 104,
+        "count": 22
+      }
+    ],
+    "Kropyvnytskyi": [
+      {
+        "entry_eng": "Kirovohrad — 20",
+        "entry_rus": "Кировоградской – 20",
+        "doc_id": "1127",
+        "row_index": 105,
+        "count": 20
+      },
+      {
+        "entry_eng": "City of Kirovohrad",
+        "entry_rus": "г. Кировоград",
+        "doc_id": "1128",
+        "row_index": 209,
+        "count": 1
+      },
+      {
+        "entry_eng": "In Kirovohrad",
+        "entry_rus": "в Кировограде",
+        "doc_id": "1208",
+        "row_index": 85,
+        "count": 1
+      }
+    ],
+    "Zaporizhzhia": [
+      {
+        "entry_eng": "Zaporizhzhia — 11",
+        "entry_rus": "Запорожской – 11",
+        "doc_id": "1127",
+        "row_index": 106,
+        "count": 11
+      },
+      {
+        "entry_eng": "Zaporizhzhia — 317",
+        "entry_rus": "Запорожье – 317",
+        "doc_id": "1127",
+        "row_index": 114,
+        "count": 317
+      },
+      {
+        "entry_eng": "In Zaporizhzhia",
+        "entry_rus": "в Запорожье",
+        "doc_id": "1208",
+        "row_index": 80,
+        "count": 1
+      },
+      {
+        "entry_eng": "Zaporizhzhia",
+        "entry_rus": "г. Запорожье",
+        "doc_id": "1209",
+        "row_index": 129,
+        "count": 1
+      },
+      {
+        "entry_eng": "Zaporizhzhia region",
+        "entry_rus": "Запорожской",
+        "doc_id": "1247",
+        "row_index": 42,
+        "count": 1
+      },
+      {
+        "entry_eng": "Zaporizhzhia",
+        "entry_rus": "Запорожье",
+        "doc_id": "1247",
+        "row_index": 54,
+        "count": 1
+      },
+      {
+        "entry_eng": "Zaporizhzhia region",
+        "entry_rus": "в Запорожской",
+        "doc_id": "1249-80-83",
+        "row_index": 28,
+        "count": 1
+      },
+      {
+        "entry_eng": "Zaporizhzhia",
+        "entry_rus": "в Запорожье",
+        "doc_id": "1249-80-83",
+        "row_index": 40,
+        "count": 1
+      },
+      {
+        "entry_eng": "Zaporizhzhia",
+        "entry_rus": "в Запорожской",
+        "doc_id": "1249-80-83",
+        "row_index": 66,
+        "count": 1
+      }
+    ],
+    "Simferopol": [
+      {
+        "entry_eng": "Simferopol — 217",
+        "entry_rus": "Симферополе – 217",
+        "doc_id": "1127",
+        "row_index": 115,
+        "count": 217
+      },
+      {
+        "entry_eng": "Simferopol",
+        "entry_rus": "Симферополе",
+        "doc_id": "1247",
+        "row_index": 55,
+        "count": 1
+      },
+      {
+        "entry_eng": "Simferopol",
+        "entry_rus": "в Симферополе",
+        "doc_id": "1249-80-83",
+        "row_index": 41,
+        "count": 1
+      }
+    ],
+    "Mariupol": [
+      {
+        "entry_eng": "At the ports of Odesa, Zhdanov, and Kherson",
+        "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+        "doc_id": "1127",
+        "row_index": 122,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa and Zhdanov",
+        "entry_rus": "в Одесском и Ждановском портах",
+        "doc_id": "1128",
+        "row_index": 143,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Illichivsk, Izmail, Reni, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Ильичёвском, Измаильском, Ренийском, Южном и Ждановском портах",
+        "doc_id": "1208",
+        "row_index": 154,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Zhdanov, and Kherson",
+        "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+        "doc_id": "1213",
+        "row_index": 111,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Bilhorod-Dnistrovskyi, Illichivsk, Izmail, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Белгород-Днестровском, Ильичёвском, Измаильском, Южном и Ждановском портах",
+        "doc_id": "1215",
+        "row_index": 106,
+        "count": 1
+      }
+    ],
+    "Kherson": [
+      {
+        "entry_eng": "At the ports of Odesa, Zhdanov, and Kherson",
+        "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+        "doc_id": "1127",
+        "row_index": 122,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Illichivsk, Yuzhne, and Kherson",
+        "entry_rus": "в Одесском, Ильичевском, Южном и Херсонском портах",
+        "doc_id": "1209",
+        "row_index": 109,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Zhdanov, and Kherson",
+        "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+        "doc_id": "1213",
+        "row_index": 111,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kherson region",
+        "entry_rus": "Херсонской",
+        "doc_id": "1247",
+        "row_index": 43,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kherson",
+        "entry_rus": "в Херсонском порту",
+        "doc_id": "1247",
+        "row_index": 61,
+        "count": 1
+      },
+      {
+        "entry_eng": "Kherson",
+        "entry_rus": "в Херсонской",
+        "doc_id": "1249-80-83",
+        "row_index": 67,
+        "count": 1
+      }
+    ],
+    "Zhytomyr": [
+      {
+        "entry_eng": "Zhytomyr Oblast",
+        "entry_rus": "Житомирская область",
+        "doc_id": "1127",
+        "row_index": 138,
+        "count": 1
+      },
+      {
+        "entry_eng": "and Zhytomyr Oblast",
+        "entry_rus": "и Житомирской областям",
+        "doc_id": "1127",
+        "row_index": 201,
+        "count": 1
+      },
+      {
+        "entry_eng": "for Zhytomyr",
+        "entry_rus": "убывают в Житомир",
+        "doc_id": "1206",
+        "row_index": 68,
+        "count": 1
+      }
+    ],
+    "the parcel reception department": [
+      {
+        "entry_eng": "in the parcel reception department",
+        "entry_rus": "в отделении приема посылок",
+        "doc_id": "1127",
+        "row_index": 149,
+        "count": 1
+      }
+    ],
+    "Khmelnytskyi": [
+      {
+        "entry_eng": "Khmelnytskyi Oblast",
+        "entry_rus": "Хмельницкая область",
+        "doc_id": "1127",
+        "row_index": 160,
+        "count": 1
+      },
+      {
+        "entry_eng": "Khmelnytskyi district",
+        "entry_rus": "Хмельницкого района",
+        "doc_id": "1127",
+        "row_index": 165,
+        "count": 1
+      },
+      {
+        "entry_eng": "of Khmelnytskyi Oblast",
+        "entry_rus": "по Хмельницкой",
+        "doc_id": "1127",
+        "row_index": 199,
+        "count": 1
+      }
+    ],
+    "the village of Davydkivtsi": [
+      {
+        "entry_eng": "stationed in the village of Davydkivtsi",
+        "entry_rus": "дислоцируется в с. Давыдковцы",
+        "doc_id": "1127",
+        "row_index": 164,
+        "count": 1
+      }
+    ],
+    "Vinnytsia": [
+      {
+        "entry_eng": "45 kilometers from the city of Vinnytsia",
+        "entry_rus": "в 45 километрах от гор. Винницы",
+        "doc_id": "1127",
+        "row_index": 177,
+        "count": 1
+      },
+      {
+        "entry_eng": "Vinnytsia Oblast",
+        "entry_rus": "Винницкой области",
+        "doc_id": "1127",
+        "row_index": 193,
+        "count": 1
+      },
+      {
+        "entry_eng": "Vinnytsia Oblast",
+        "entry_rus": "Винницкой",
+        "doc_id": "1127",
+        "row_index": 200,
+        "count": 1
+      }
+    ],
+    "the bathroom": [
+      {
+        "entry_eng": "in the bathroom",
+        "entry_rus": "в ванной комнате",
+        "doc_id": "1127",
+        "row_index": 214,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the bathroom",
+        "entry_rus": "в ванной комнате",
+        "doc_id": "1128",
+        "row_index": 343,
+        "count": 1
+      }
+    ],
+    "the apartment": [
+      {
+        "entry_eng": "in the apartment",
+        "entry_rus": "в квартире",
+        "doc_id": "1127",
+        "row_index": 236,
+        "count": 1
+      }
+    ],
+    "Munich": [
+      {
+        "entry_eng": "Munich",
+        "entry_rus": "в Мюнхене",
+        "doc_id": "1128",
+        "row_index": 62,
+        "count": 1
+      }
+    ],
+    "Sokal Raion": [
+      {
+        "entry_eng": "Sokal Raion",
+        "entry_rus": "Сокальского района",
+        "doc_id": "1128",
+        "row_index": 166,
+        "count": 1
+      },
+      {
+        "entry_eng": "Sokal Raion",
+        "entry_rus": "Сокальского района",
+        "doc_id": "1128",
+        "row_index": 183,
+        "count": 1
+      }
+    ],
+    "Krasnosillia": [
+      {
+        "entry_eng": "living in Krasnosillia",
+        "entry_rus": "проживающих в с. Красноселье",
+        "doc_id": "1128",
+        "row_index": 187,
+        "count": 1
+      }
+    ],
+    "Chernivtsi": [
+      {
+        "entry_eng": "City of Chernivtsi",
+        "entry_rus": "г. Черновцы",
+        "doc_id": "1128",
+        "row_index": 196,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Chernivtsi Oblast",
+        "entry_rus": "Черновицкой",
+        "doc_id": "1128",
+        "row_index": 300,
+        "count": 1
+      }
+    ],
+    "the yard of building No": [
+      {
+        "entry_eng": "in the yard of building No. 59",
+        "entry_rus": "во дворе дома № 59",
+        "doc_id": "1128",
+        "row_index": 212,
+        "count": 1
+      }
+    ],
+    "the Dardanelles Strait": [
+      {
+        "entry_eng": "in the Dardanelles Strait",
+        "entry_rus": "в проливе Дарданеллы",
+        "doc_id": "1128",
+        "row_index": 244,
+        "count": 1
+      }
+    ],
+    "Moldova": [
+      {
+        "entry_eng": "in the Moldavian SSR",
+        "entry_rus": "в Молдавской ССР",
+        "doc_id": "1128",
+        "row_index": 299,
+        "count": 1
+      }
+    ],
+    "Ivano-Frankivsk Oblast": [
+      {
+        "entry_eng": "Ivano-Frankivsk Oblast",
+        "entry_rus": "Ивано-Франковской",
+        "doc_id": "1128",
+        "row_index": 301,
+        "count": 1
+      }
+    ],
+    "the Dnister basin": [
+      {
+        "entry_eng": "located in the Dnister basin",
+        "entry_rus": "отдельные районы которых расположены в бассейне Днестра",
+        "doc_id": "1128",
+        "row_index": 321,
+        "count": 1
+      }
+    ],
+    "Edmonton": [
+      {
+        "entry_eng": "Edmonton",
+        "entry_rus": "г. Эдмонтон",
+        "doc_id": "1206",
+        "row_index": 13,
+        "count": 1
+      }
+    ],
+    "Montreal": [
+      {
+        "entry_eng": "in Montreal",
+        "entry_rus": "в Монреале",
+        "doc_id": "1206",
+        "row_index": 18,
+        "count": 1
+      }
+    ],
+    "Bilhorod-Dnistrovskyi": [
+      {
+        "entry_eng": "Bilhorod-Dnistrovskyi",
+        "entry_rus": "Белгород-Днестровском",
+        "doc_id": "1206",
+        "row_index": 128,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Bilhorod-Dnistrovskyi, Illichivsk, Izmail, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Белгород-Днестровском, Ильичёвском, Измаильском, Южном и Ждановском портах",
+        "doc_id": "1215",
+        "row_index": 106,
+        "count": 1
+      }
+    ],
+    "Illichivsk": [
+      {
+        "entry_eng": "Illichivsk",
+        "entry_rus": "Ильичевском",
+        "doc_id": "1206",
+        "row_index": 129,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Illichivsk, Izmail, Reni, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Ильичёвском, Измаильском, Ренийском, Южном и Ждановском портах",
+        "doc_id": "1208",
+        "row_index": 154,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Illichivsk, Yuzhne, and Kherson",
+        "entry_rus": "в Одесском, Ильичевском, Южном и Херсонском портах",
+        "doc_id": "1209",
+        "row_index": 109,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Bilhorod-Dnistrovskyi, Illichivsk, Izmail, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Белгород-Днестровском, Ильичёвском, Измаильском, Южном и Ждановском портах",
+        "doc_id": "1215",
+        "row_index": 106,
+        "count": 1
+      },
+      {
+        "entry_eng": "Illichivsk",
+        "entry_rus": "в Ильичевском порту",
+        "doc_id": "1247",
+        "row_index": 59,
+        "count": 1
+      },
+      {
+        "entry_eng": "Illichivsk",
+        "entry_rus": "Ильичевском",
+        "doc_id": "1249-80-83",
+        "row_index": 45,
+        "count": 1
+      }
+    ],
+    "Yuzhny": [
+      {
+        "entry_eng": "Yuzhny",
+        "entry_rus": "Южном",
+        "doc_id": "1206",
+        "row_index": 130,
+        "count": 1
+      },
+      {
+        "entry_eng": "Yuzhny",
+        "entry_rus": "в Южном порту",
+        "doc_id": "1247",
+        "row_index": 60,
+        "count": 1
+      }
+    ],
+    "Poltava Oblast": [
+      {
+        "entry_eng": "Poltava Oblast",
+        "entry_rus": "Полтавская область",
+        "doc_id": "1206",
+        "row_index": 150,
+        "count": 1
+      }
+    ],
+    "Moldavian SSR": [
+      {
+        "entry_eng": "Moldavian SSR",
+        "entry_rus": "Молдавской ССР",
+        "doc_id": "1206",
+        "row_index": 184,
+        "count": 1
+      }
+    ],
+    "Volyn Oblast": [
+      {
+        "entry_eng": "Volyn Oblast",
+        "entry_rus": "Волынская область",
+        "doc_id": "1206",
+        "row_index": 208,
+        "count": 1
+      }
+    ],
+    "Novovolynsk": [
+      {
+        "entry_eng": "in the city of Novovolynsk",
+        "entry_rus": "в г. Нововолынске",
+        "doc_id": "1206",
+        "row_index": 211,
+        "count": 1
+      }
+    ],
+    "the administrative building": [
+      {
+        "entry_eng": "in the administrative building",
+        "entry_rus": "в административном здании",
+        "doc_id": "1206",
+        "row_index": 219,
+        "count": 1
+      }
+    ],
+    "Voroshilovhrad Oblast": [
+      {
+        "entry_eng": "Voroshilovhrad Oblast",
+        "entry_rus": "Ворошиловградская область",
+        "doc_id": "1206",
+        "row_index": 236,
+        "count": 1
+      }
+    ],
+    "Lutuhyne Raion": [
+      {
+        "entry_eng": "Lutuhyne Raion",
+        "entry_rus": "Лутугинского района",
+        "doc_id": "1206",
+        "row_index": 243,
+        "count": 1
+      }
+    ],
+    "Jerusalem": [
+      {
+        "entry_eng": "in Jerusalem",
+        "entry_rus": "в Иерусалиме",
+        "doc_id": "1208",
+        "row_index": 17,
+        "count": 1
+      }
+    ],
+    "Izmail": [
+      {
+        "entry_eng": "At the ports of Odesa, Illichivsk, Izmail, Reni, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Ильичёвском, Измаильском, Ренийском, Южном и Ждановском портах",
+        "doc_id": "1208",
+        "row_index": 154,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Bilhorod-Dnistrovskyi, Illichivsk, Izmail, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Белгород-Днестровском, Ильичёвском, Измаильском, Южном и Ждановском портах",
+        "doc_id": "1215",
+        "row_index": 106,
+        "count": 1
+      }
+    ],
+    "Reni": [
+      {
+        "entry_eng": "At the ports of Odesa, Illichivsk, Izmail, Reni, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Ильичёвском, Измаильском, Ренийском, Южном и Ждановском портах",
+        "doc_id": "1208",
+        "row_index": 154,
+        "count": 1
+      }
+    ],
+    "Yuzhne": [
+      {
+        "entry_eng": "At the ports of Odesa, Illichivsk, Izmail, Reni, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Ильичёвском, Измаильском, Ренийском, Южном и Ждановском портах",
+        "doc_id": "1208",
+        "row_index": 154,
+        "count": 1
+      },
+      {
+        "entry_eng": "In the ports of Odesa, Illichivsk, Yuzhne, and Kherson",
+        "entry_rus": "в Одесском, Ильичевском, Южном и Херсонском портах",
+        "doc_id": "1209",
+        "row_index": 109,
+        "count": 1
+      },
+      {
+        "entry_eng": "At the ports of Odesa, Bilhorod-Dnistrovskyi, Illichivsk, Izmail, Yuzhne, and Zhdanov",
+        "entry_rus": "в Одесском, Белгород-Днестровском, Ильичёвском, Измаильском, Южном и Ждановском портах",
+        "doc_id": "1215",
+        "row_index": 106,
+        "count": 1
+      }
+    ],
+    "Dnipropetrovsk Oblast": [
+      {
+        "entry_eng": "Dnipropetrovsk Oblast",
+        "entry_rus": "Днепропетровская область",
+        "doc_id": "1208",
+        "row_index": 176,
+        "count": 1
+      },
+      {
+        "entry_eng": "Dnipropetrovsk Oblast",
+        "entry_rus": "Днепропетровская область",
+        "doc_id": "1215",
+        "row_index": 126,
+        "count": 1
+      }
+    ],
+    "through a broken window": [
+      {
+        "entry_eng": "through a broken window",
+        "entry_rus": "через разбитое окно",
+        "doc_id": "1208",
+        "row_index": 201,
+        "count": 1
+      }
+    ],
+    "Rivne": [
+      {
+        "entry_eng": "In Rivne",
+        "entry_rus": "в Ровно",
+        "doc_id": "1209",
+        "row_index": 60,
+        "count": 1
+      }
+    ],
+    "Soviet Union": [
+      {
+        "entry_eng": "outside the building of the Permanent Mission of the USSR to the United Nations",
+        "entry_rus": "у здания Постоянного представительства СССР при ООН",
+        "doc_id": "1215",
+        "row_index": 30,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USSR",
+        "entry_rus": "в СССР",
+        "doc_id": "1247",
+        "row_index": 150,
+        "count": 1
+      },
+      {
+        "entry_eng": "obtained from the USSR",
+        "entry_rus": "полученные из СССР",
+        "doc_id": "1249-80-83",
+        "row_index": 135,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the USSR",
+        "entry_rus": "в СССР",
+        "doc_id": "1262_198-200",
+        "row_index": 39,
+        "count": 1
+      },
+      {
+        "entry_eng": "during his stay in the USSR",
+        "entry_rus": "во время пребывания в СССР",
+        "doc_id": "1262_198-200",
+        "row_index": 70,
+        "count": 1
+      }
+    ],
+    "Washington": [
+      {
+        "entry_eng": "Washington",
+        "entry_rus": "Вашингтона",
+        "doc_id": "1215",
+        "row_index": 32,
+        "count": 1
+      },
+      {
+        "entry_eng": "In particular, in Washington",
+        "entry_rus": "В частности, в Вашингтоне",
+        "doc_id": "1262_198-200",
+        "row_index": 112,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Washington",
+        "entry_rus": "в Вашингтоне",
+        "doc_id": "1262_198-200",
+        "row_index": 145,
+        "count": 1
+      }
+    ],
+    "New York": [
+      {
+        "entry_eng": "New York",
+        "entry_rus": "Нью-Йорка",
+        "doc_id": "1215",
+        "row_index": 33,
+        "count": 1
+      }
+    ],
+    "Philadelphia": [
+      {
+        "entry_eng": "Philadelphia",
+        "entry_rus": "Филадельфии",
+        "doc_id": "1215",
+        "row_index": 34,
+        "count": 1
+      }
+    ],
+    "Detroit": [
+      {
+        "entry_eng": "Detroit",
+        "entry_rus": "Детройта",
+        "doc_id": "1215",
+        "row_index": 35,
+        "count": 1
+      }
+    ],
+    "Chicago": [
+      {
+        "entry_eng": "Chicago",
+        "entry_rus": "Чикаго",
+        "doc_id": "1215",
+        "row_index": 36,
+        "count": 1
+      }
+    ],
+    "Cleveland": [
+      {
+        "entry_eng": "Cleveland",
+        "entry_rus": "Кливленда",
+        "doc_id": "1215",
+        "row_index": 37,
+        "count": 1
+      }
+    ],
+    "Pavlohrad": [
+      {
+        "entry_eng": "in the city of Pavlohrad",
+        "entry_rus": "в г. Павлограде",
+        "doc_id": "1215",
+        "row_index": 128,
+        "count": 1
+      }
+    ],
+    "(Pavlohrad)": [
+      {
+        "entry_eng": "(Pavlohrad)",
+        "entry_rus": "г. Павлоград",
+        "doc_id": "1215",
+        "row_index": 134,
+        "count": 1
+      }
+    ],
+    "Belgium": [
+      {
+        "entry_eng": "Belgium",
+        "entry_rus": "Бельгии",
+        "doc_id": "1245",
+        "row_index": 145,
+        "count": 1
+      }
+    ],
+    "Argentina": [
+      {
+        "entry_eng": "Argentina",
+        "entry_rus": "Аргентине",
+        "doc_id": "1245",
+        "row_index": 146,
+        "count": 1
+      }
+    ],
+    "Australia": [
+      {
+        "entry_eng": "Australia",
+        "entry_rus": "Австралии",
+        "doc_id": "1245",
+        "row_index": 147,
+        "count": 1
+      },
+      {
+        "entry_eng": "Australia",
+        "entry_rus": "Австралии",
+        "doc_id": "1262_28-32",
+        "row_index": 44,
+        "count": 1
+      },
+      {
+        "entry_eng": "Australia",
+        "entry_rus": "Австралии",
+        "doc_id": "1262_28-32",
+        "row_index": 211,
+        "count": 1
+      }
+    ],
+    "England": [
+      {
+        "entry_eng": "England",
+        "entry_rus": "Англии",
+        "doc_id": "1247",
+        "row_index": 17,
+        "count": 1
+      },
+      {
+        "entry_eng": "England",
+        "entry_rus": "Англии",
+        "doc_id": "1249-80-83",
+        "row_index": 49,
+        "count": 1
+      },
+      {
+        "entry_eng": "England",
+        "entry_rus": "из Англии",
+        "doc_id": "1249-80-83",
+        "row_index": 58,
+        "count": 1
+      },
+      {
+        "entry_eng": "England",
+        "entry_rus": "Англии",
+        "doc_id": "1262_28-32",
+        "row_index": 210,
+        "count": 1
+      }
+    ],
+    "Sumy": [
+      {
+        "entry_eng": "In Sumy region",
+        "entry_rus": "Сумской области",
+        "doc_id": "1247",
+        "row_index": 39,
+        "count": 1
+      },
+      {
+        "entry_eng": "Sumy region",
+        "entry_rus": "Сумской области",
+        "doc_id": "1249-80-83",
+        "row_index": 25,
+        "count": 1
+      }
+    ],
+    "Ivano-Frankivsk region": [
+      {
+        "entry_eng": "Ivano-Frankivsk region",
+        "entry_rus": "Ивано-Франковской",
+        "doc_id": "1247",
+        "row_index": 41,
+        "count": 1
+      },
+      {
+        "entry_eng": "Ivano-Frankivsk region",
+        "entry_rus": "в Ивано-Франковской",
+        "doc_id": "1249-80-83",
+        "row_index": 27,
+        "count": 1
+      }
+    ],
+    "Yalta": [
+      {
+        "entry_eng": "In Yalta",
+        "entry_rus": "в Ялте",
+        "doc_id": "1247",
+        "row_index": 67,
+        "count": 1
+      },
+      {
+        "entry_eng": "in Yalta",
+        "entry_rus": "в Ялте",
+        "doc_id": "1249-80-83",
+        "row_index": 56,
+        "count": 1
+      }
+    ],
+    "Crimea region": [
+      {
+        "entry_eng": "Crimea region",
+        "entry_rus": "в Крымской области",
+        "doc_id": "1247",
+        "row_index": 79,
+        "count": 1
+      }
+    ],
+    "Zhdanov ports": [
+      {
+        "entry_eng": "Zhdanov ports",
+        "entry_rus": "Ждановском портах",
+        "doc_id": "1249-80-83",
+        "row_index": 46,
+        "count": 1
+      }
+    ],
+    "Italy": [
+      {
+        "entry_eng": "Italy",
+        "entry_rus": "Италии",
+        "doc_id": "1249-80-83",
+        "row_index": 50,
+        "count": 1
+      }
+    ],
+    "Cyprus": [
+      {
+        "entry_eng": "Cyprus",
+        "entry_rus": "Кипра",
+        "doc_id": "1249-80-83",
+        "row_index": 51,
+        "count": 1
+      }
+    ],
+    "Panama": [
+      {
+        "entry_eng": "Panama",
+        "entry_rus": "Панамы",
+        "doc_id": "1249-80-83",
+        "row_index": 52,
+        "count": 1
+      }
+    ],
+    "Novorossiysk": [
+      {
+        "entry_eng": "at the port of Novorossiysk",
+        "entry_rus": "Новороссийского порта",
+        "doc_id": "1249-80-83",
+        "row_index": 207,
+        "count": 1
+      }
+    ],
+    "republic": [
+      {
+        "entry_eng": "republic",
+        "entry_rus": "республике",
+        "doc_id": "1256",
+        "row_index": 57,
+        "count": 1
+      }
+    ],
+    "Kovalchuk": [
+      {
+        "entry_eng": "Kovalchuk",
+        "entry_rus": "Ковальчуке",
+        "doc_id": "1256",
+        "row_index": 66,
+        "count": 1
+      }
+    ],
+    "the Soviet Union": [
+      {
+        "entry_eng": "held in the Soviet Union",
+        "entry_rus": "проводимых в Советском Союзе",
+        "doc_id": "1262_198-200",
+        "row_index": 25,
+        "count": 1
+      },
+      {
+        "entry_eng": "in the Soviet Union",
+        "entry_rus": "в Советском Союзе",
+        "doc_id": "1262_198-200",
+        "row_index": 106,
+        "count": 1
+      }
+    ],
+    "Kyivan Rus’": [
+      {
+        "entry_eng": "Kyivan Rus’",
+        "entry_rus": "Киевской Руси",
+        "doc_id": "1262_198-200",
+        "row_index": 104,
+        "count": 1
+      }
+    ],
+    "Israel": [
+      {
+        "entry_eng": "Israel",
+        "entry_rus": "Израиле",
+        "doc_id": "1262_28-32",
+        "row_index": 45,
+        "count": 1
+      }
+    ],
+    "Winnipeg": [
+      {
+        "entry_eng": "Winnipeg",
+        "entry_rus": "Виннипег",
+        "doc_id": "1262_28-32",
+        "row_index": 141,
+        "count": 1
+      }
+    ]
+  },
+  "total_mentions": 9555,
+  "unique_places": 85
+}

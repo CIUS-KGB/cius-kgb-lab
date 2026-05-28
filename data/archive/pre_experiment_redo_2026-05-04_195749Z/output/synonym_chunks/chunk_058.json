@@ -1,0 +1,126 @@
+{
+  "chunk_id": 58,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "in the \"Ukrainian Canadian Committee\"",
+      "entry_rus": "в \"Комитете украинцев Канады\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the administrative building",
+      "entry_rus": "в административном здании",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the adversary’s tactics of subversive activity",
+      "entry_rus": "в тактике подрывной деятельности противника",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in the apartment",
+      "entry_rus": "в квартире",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the bathroom",
+      "entry_rus": "в ванной комнате",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the bourgeois press",
+      "entry_rus": "в буржуазной прессе",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "In the Canadian parliamentary elections",
+      "entry_rus": "На парламентских выборах в Канаде",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the Canadian press",
+      "entry_rus": "канадской печати",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the city of Kharkiv",
+      "entry_rus": "г. Харькова",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the city of Novovolynsk",
+      "entry_rus": "в г. Нововолынске",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the city of Pavlohrad",
+      "entry_rus": "в г. Павлограде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In the course of implementation of the planned activities",
+      "entry_rus": "В ходе реализации намеченных мероприятий",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "In the course of the ideological, patriotic, and international education of the workers",
+      "entry_rus": "В ходе проведения работы по идейному, патриотическому и интернациональному воспитанию трудящихся",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "in the Dardanelles Strait",
+      "entry_rus": "в проливе Дарданеллы",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the direction of",
+      "entry_rus": "в направлении",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the execution",
+      "entry_rus": "в расстреле",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "in the eyes of Western public opinion",
+      "entry_rus": "в глазах западной общественности",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the field of national relations",
+      "entry_rus": "в области национальных отношений",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "in the main countries of its settlement",
+      "entry_rus": "в основных странах её поселения",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in the mass media of the USA and Canada",
+      "entry_rus": "в средства массовой информации США и Канады",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

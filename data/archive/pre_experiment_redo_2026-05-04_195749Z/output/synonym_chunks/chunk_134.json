@@ -1,0 +1,126 @@
+{
+  "chunk_id": 134,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "who visited the republic",
+      "entry_rus": "посетивших республику",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who was forced to acknowledge his connection with Nazi intelligence",
+      "entry_rus": "который был вынужден признать свою связь с гитлеровской разведкой",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "whom U.S. authorities were forced to deport to Israel",
+      "entry_rus": "которого власти США были вынуждены депортировать в Израиль",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "will be collected",
+      "entry_rus": "с них будет взыскано",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "will be handed over the materials",
+      "entry_rus": "будут переданы материалы",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Winnipeg",
+      "entry_rus": "Виннипег",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with \"leaders of underground churches\"",
+      "entry_rus": "c лидерами подпольных церквей",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "with a Kalashnikov rifle",
+      "entry_rus": "с автоматом Калашникова",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with a sign attached reading “For the Prices”",
+      "entry_rus": "с прикреплённой к нему надписью \"За цены\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with a total crew of 627",
+      "entry_rus": "экипажи которых состоят из 627 человек",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with assurances that he would not engage in similar actions in the future",
+      "entry_rus": "с заверением о недопущении подобных действий в дальнейшем",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with certain local residents",
+      "entry_rus": "с отдельными местными жителями",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with correspondents from Canadian television and major bourgeois newspapers",
+      "entry_rus": "корреспондентами канадского телевидения и крупных буржуазных газет",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "with crews totaling 174 individuals, including",
+      "entry_rus": "с экипажами в количестве 174 человека, из них",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "With crews totaling 242 persons. Including",
+      "entry_rus": "с экипажами в количестве 242 человек из них",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with crews totaling 360 people",
+      "entry_rus": "с экипажами в количестве 360 человек",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with crews totaling 376 people",
+      "entry_rus": "с экипажами в количестве 376 человек",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with crews totaling 388 people",
+      "entry_rus": "с экипажами в количестве 388 человек",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with crews totaling 409 people including",
+      "entry_rus": "экипажи которых состоят из 409 человек из них",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with food",
+      "entry_rus": "продуктами питания",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

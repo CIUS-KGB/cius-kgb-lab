@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-label="Ideological Layers: the top directional swap errors">
+<rect x="0.00" y="0.00" width="1200.00" height="460.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="44.00" y="50.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Ideological Layers: the top directional swap errors</text>
+<rect x="70.00" y="160.00" width="360.00" height="44.00" fill="rgba(220,38,38,0.08)" stroke="rgba(17,24,39,0.12)" stroke-width="1" rx="10" ry="10"/>
+<rect x="770.00" y="160.00" width="360.00" height="44.00" fill="rgba(37,99,235,0.08)" stroke="rgba(17,24,39,0.12)" stroke-width="1" rx="10" ry="10"/>
+<text x="84.00" y="188.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Action-Focused Language</text>
+<text x="784.00" y="188.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Institutional / Bureaucratic Lingo</text>
+<path d="M 446.00 182.00 C 566.00 152.00, 634.00 152.00, 754.00 182.00" fill="none" stroke="#dc2626" stroke-width="11.00" opacity="0.78"/>
+<path d="M 754.00 182.00 l -10 -7 l 2 7 l -2 7 z" fill="#dc2626" opacity="0.78"/>
+<text x="600.00" y="170.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">87 segments</text>
+<text x="70.00" y="150.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Human label</text>
+<text x="770.00" y="150.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">AI label</text>
+<rect x="70.00" y="250.00" width="360.00" height="44.00" fill="rgba(220,38,38,0.08)" stroke="rgba(17,24,39,0.12)" stroke-width="1" rx="10" ry="10"/>
+<rect x="770.00" y="250.00" width="360.00" height="44.00" fill="rgba(37,99,235,0.08)" stroke="rgba(17,24,39,0.12)" stroke-width="1" rx="10" ry="10"/>
+<text x="84.00" y="278.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Institutional / Bureaucratic Lingo</text>
+<text x="784.00" y="278.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Action-Focused Language</text>
+<path d="M 446.00 272.00 C 566.00 242.00, 634.00 242.00, 754.00 272.00" fill="none" stroke="#dc2626" stroke-width="7.71" opacity="0.78"/>
+<path d="M 754.00 272.00 l -10 -7 l 2 7 l -2 7 z" fill="#dc2626" opacity="0.78"/>
+<text x="600.00" y="260.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">35 segments</text>
+<text x="70.00" y="240.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Human label</text>
+<text x="770.00" y="240.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">AI label</text>
+<rect x="70.00" y="340.00" width="360.00" height="44.00" fill="rgba(220,38,38,0.08)" stroke="rgba(17,24,39,0.12)" stroke-width="1" rx="10" ry="10"/>
+<rect x="770.00" y="340.00" width="360.00" height="44.00" fill="rgba(37,99,235,0.08)" stroke="rgba(17,24,39,0.12)" stroke-width="1" rx="10" ry="10"/>
+<text x="84.00" y="368.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Ideological Framing (Discrediting)</text>
+<text x="784.00" y="368.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Institutional / Bureaucratic Lingo</text>
+<path d="M 446.00 362.00 C 566.00 332.00, 634.00 332.00, 754.00 362.00" fill="none" stroke="#dc2626" stroke-width="6.92" opacity="0.78"/>
+<path d="M 754.00 362.00 l -10 -7 l 2 7 l -2 7 z" fill="#dc2626" opacity="0.78"/>
+<text x="600.00" y="350.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">26 segments</text>
+<text x="70.00" y="330.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Human label</text>
+<text x="770.00" y="330.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">AI label</text>
+<text x="600.00" y="446.00" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">Top directional swaps (off-diagonal only)</text>
+</svg>

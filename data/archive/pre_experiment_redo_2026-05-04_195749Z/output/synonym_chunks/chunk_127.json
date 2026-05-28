@@ -1,0 +1,126 @@
+{
+  "chunk_id": 127,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Two ships",
+      "entry_rus": "два судна",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "two ships",
+      "entry_rus": "два судна",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "two ships from India — 92",
+      "entry_rus": "два судна из Индии – 92",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "two workers were killed",
+      "entry_rus": "погибли",
+      "category": "Events",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "U.K. — 11",
+      "entry_rus": "из Англии 11",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "U.K. — 16",
+      "entry_rus": "из Англии 16",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "U.K. — 336",
+      "entry_rus": "из Англии 336",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "U.K. — 4",
+      "entry_rus": "Англии – 4",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "U.S. President",
+      "entry_rus": "президент США",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "UK – 14",
+      "entry_rus": "Англии – 14",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ukrainian",
+      "entry_rus": "украинец",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ukrainian",
+      "entry_rus": "украинца",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ukrainian bourgeois nationalism",
+      "entry_rus": "украинского буржуазного национализма",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ukrainian Bourgeois Nationalists",
+      "entry_rus": "украинских буржуазных националистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Ukrainian bourgeois nationalists",
+      "entry_rus": "украинских буржуазных националистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Ukrainian bourgeois nationalists",
+      "entry_rus": "украинскими буржуазными националистами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Ukrainian bourgeois nationalists who had settled in Canada",
+      "entry_rus": "осевших в Канаде украинских буржуазных националистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Ukrainian Catholic Church (UCC)",
+      "entry_rus": "верхушки так называемой Украинской католической церкви (УКЦ)",
+      "category": "Actors",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "Ukrainian Nationalists",
+      "entry_rus": "украинских националистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Ukrainian nationalists",
+      "entry_rus": "украинские националисты",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

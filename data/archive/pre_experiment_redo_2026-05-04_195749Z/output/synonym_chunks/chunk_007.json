@@ -1,0 +1,126 @@
+{
+  "chunk_id": 7,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "A noticeable increase in nervousness and confusion among OUN ringleaders has been caused by",
+      "entry_rus": "Заметное усиление нервозности и замешательства среди оуновских главарей вызывает",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a number of anti-Soviet actions",
+      "entry_rus": "ряд антисоветских акций",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a number of foreign influence sources",
+      "entry_rus": "ряд зарубежных источников влияния",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "a police Zhiguli vehicle",
+      "entry_rus": "автомашину ГАИ \"Жигули\"",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a positive view",
+      "entry_rus": "позитивное мнение",
+      "category": "Status and Condition",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "a resident",
+      "entry_rus": "житель",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A review was published",
+      "entry_rus": "помещена рецензия",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a series of articles organized in the British press",
+      "entry_rus": "в английской прессе организована серия публикаций",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "a set of special measures was carried out under Operation \"Pharisees.\"",
+      "entry_rus": "по операции \"Фарисеи\" проведен комплекс специальных мероприятий",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "a sheet of paper",
+      "entry_rus": "лист бумаги",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A significant blow",
+      "entry_rus": "Ощутимый урон",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a skip fell",
+      "entry_rus": "произошло падение скипа",
+      "category": "Events",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "a so-called \"Day of Ukrainian Unity\"",
+      "entry_rus": "так называемым \"днём украинского единства\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a so-called “symposium”",
+      "entry_rus": "так называемый \"симпозиум\"",
+      "category": "Events",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a special course",
+      "entry_rus": "специальный курс",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a special investigations unit",
+      "entry_rus": "отдел специальных расследований",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "a special ruling",
+      "entry_rus": "частное определение",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a total of 7 individuals",
+      "entry_rus": "всего 7 человек",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A. Bakhlul",
+      "entry_rus": "А. Бахлуль",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A. Bandera",
+      "entry_rus": "А.Бандера",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

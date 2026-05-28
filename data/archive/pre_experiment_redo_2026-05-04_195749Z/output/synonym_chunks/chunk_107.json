@@ -1,0 +1,126 @@
+{
+  "chunk_id": 107,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the advantages of the socialist socio-political system",
+      "entry_rus": "преимуществ социалистической общественно-политической системы",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "the adversary",
+      "entry_rus": "противника",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the adversary’s hostile actions",
+      "entry_rus": "враждебных акций противника",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "the alleged deliberate extermination of",
+      "entry_rus": "якобы имевшем место умышленном уничтожении",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the anniversary of the proclamation by the Central Rada (January 22, 1918)",
+      "entry_rus": "годовщине провозглашения Центральной радой (22 января 1918 г.)",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the anti-Soviet",
+      "entry_rus": "антисоветчик",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the anti-Soviet campaign concerning the “artificial famine”",
+      "entry_rus": "антисоветской кампании вокруг \"искусственного голода\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the anti-Soviet campaign launched by foreign centers of OUN",
+      "entry_rus": "развязанной зарубежными центрами ОУН",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the arms race",
+      "entry_rus": "гонки вооружений",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the assistant military attaché of the  Embassy",
+      "entry_rus": "помощник военного атташе посольства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the atrocities committed by fascist war criminals",
+      "entry_rus": "о злодеяниях фашистских военных преступников",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the atrocities of Nazi criminals",
+      "entry_rus": "злодеяний нацистских преступников",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the attaché of the  Embassy",
+      "entry_rus": "атташе посольства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the author [...] published in England",
+      "entry_rus": "автор изданной в Англии",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The author calls on",
+      "entry_rus": "Автор призывает",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "The Banderites",
+      "entry_rus": "Бандеровцы",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The book “Brown Shadows of the Past”",
+      "entry_rus": "книга \"Коричневые тени прошлого\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the book “Lest We Forget”",
+      "entry_rus": "книга «Чтобы мы не забыли»",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the book “We Accuse” [...] was distributed",
+      "entry_rus": "и распространена книга «Мы обвиняем»",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the books “Behind the Back of the Statue of Liberty”",
+      "entry_rus": "книг \"За спиной статуи Свободы\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

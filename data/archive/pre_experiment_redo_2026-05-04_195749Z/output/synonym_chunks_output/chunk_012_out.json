@@ -1,0 +1,164 @@
+{
+  "term_results": [
+    {
+      "entry_eng": "American citizenship",
+      "entry_rus": "американского гражданства",
+      "definition_eng": "Legal status; citizenship of the United States; genitive in Russian context.",
+      "definition_rus": "Правовой статус; гражданство США; родительный падеж в контексте.",
+      "synonyms_eng": ["U.S. citizenship", "American nationality", "citizenship of the United States", "U.S. nationals"],
+      "synonyms_rus": ["американского гражданства", "гражданства США", "американское гражданство", "гражданство Соединённых Штатов"]
+    },
+    {
+      "entry_eng": "American journalists",
+      "entry_rus": "американских журналистов",
+      "definition_eng": "Journalists from the United States; actor designation.",
+      "definition_rus": "Журналисты из США; обозначение акторов.",
+      "synonyms_eng": ["U.S. journalists", "American correspondents", "U.S. press", "American members of the press"],
+      "synonyms_rus": ["американских журналистов", "журналистов США", "американских корреспондентов", "представителей американской прессы"]
+    },
+    {
+      "entry_eng": "American weekly New York Times Book Review",
+      "entry_rus": "американском еженедельнике \"Нью-Йорк таймc бук ревью\"",
+      "definition_eng": "Publication title; American weekly supplement of the New York Times.",
+      "definition_rus": "Название издания; американский еженедельник-приложение к New York Times.",
+      "synonyms_eng": ["New York Times Book Review", "NYT Book Review", "New York Times book supplement"],
+      "synonyms_rus": ["Нью-Йорк таймc бук ревью", "книжное приложение Нью-Йорк таймс", "еженедельник NYT о книгах"]
+    },
+    {
+      "entry_eng": "among OUNites",
+      "entry_rus": "Среди оуновцев",
+      "definition_eng": "Within the ranks of OUN members; discrediting collective designation.",
+      "definition_rus": "Среди членов ОУН; дискредитирующее коллективное обозначение.",
+      "synonyms_eng": ["among OUN members", "within OUN ranks", "among OUNites", "in OUN circles"],
+      "synonyms_rus": ["среди оуновцев", "в среде оуновцев", "среди членов ОУН", "в кругах ОУН"]
+    },
+    {
+      "entry_eng": "among the clergy",
+      "entry_rus": "из числа церковников",
+      "definition_eng": "From among clergy; designates church personnel as a group.",
+      "definition_rus": "Из числа священнослужителей; обозначение церковного персонала как группы.",
+      "synonyms_eng": ["among the clergy", "from among clergy", "from clerical circles", "among churchmen"],
+      "synonyms_rus": ["из числа церковников", "среди духовенства", "из среды священнослужителей", "среди клира"]
+    },
+    {
+      "entry_eng": "among the OUN",
+      "entry_rus": "среди оуновских",
+      "definition_eng": "Among OUN adherents; adjectival form (оуновских = of OUN).",
+      "definition_rus": "Среди оуновцев; прилагательная форма.",
+      "synonyms_eng": ["among the OUN", "within OUN ranks", "among OUN members", "in OUN circles"],
+      "synonyms_rus": ["среди оуновских", "среди оуновцев", "в среде ОУН", "в кругах оуновцев"]
+    },
+    {
+      "entry_eng": "Among the speakers are",
+      "entry_rus": "В числе докладчиков",
+      "definition_eng": "Introductory phrase for listing speakers; institutional/event formulation.",
+      "definition_rus": "Вводная фраза для перечисления докладчиков; институциональная/мероприятийная формулировка.",
+      "synonyms_eng": ["Among the speakers are", "The speakers include", "In the number of speakers are", "Speakers include"],
+      "synonyms_rus": ["в числе докладчиков", "среди докладчиков", "в состав докладчиков входят", "докладчиками являются"]
+    },
+    {
+      "entry_eng": "Among them: brochure \"Human Rights and Freedoms\"",
+      "entry_rus": "Среди них: [брошюра] \"Права и свободы человека\"",
+      "definition_eng": "Item in a list; brochure titled Human Rights and Freedoms.",
+      "definition_rus": "Элемент перечня; брошюра «Права и свободы человека».",
+      "synonyms_eng": ["Among them: brochure Human Rights and Freedoms", "Including: Human Rights and Freedoms brochure", "Among which: Human Rights and Freedoms"],
+      "synonyms_rus": ["среди них: брошюра Права и свободы человека", "в том числе: Права и свободы человека", "включая брошюру о правах человека"]
+    },
+    {
+      "entry_eng": "Among these measures, [...] is planned",
+      "entry_rus": "В числе таких мер предусматривается",
+      "definition_eng": "Institutional formulation; among these measures, the following is planned (with redaction).",
+      "definition_rus": "Институциональная формулировка; в числе таких мер предусматривается (с ретушью).",
+      "synonyms_eng": ["Among these measures, the following is planned", "These measures include", "Planned among these measures", "Such measures provide for"],
+      "synonyms_rus": ["в числе таких мер предусматривается", "среди таких мер запланировано", "такие меры включают", "предусмотрено в рамках таких мер"]
+    },
+    {
+      "entry_eng": "among Ukrainian nationalists",
+      "entry_rus": "в среде украинских националистов",
+      "definition_eng": "Within Ukrainian nationalist circles; discrediting collective designation.",
+      "definition_rus": "В среде украинских националистов; дискредитирующее коллективное обозначение.",
+      "synonyms_eng": ["among Ukrainian nationalists", "within Ukrainian nationalist circles", "in Ukrainian nationalist ranks", "among Ukrainian nationalists"],
+      "synonyms_rus": ["в среде украинских националистов", "среди украинских националистов", "в кругах украинских националистов", "среди националистов Украины"]
+    },
+    {
+      "entry_eng": "among whom were the \"head\" of the Ukrainian Catholic Church",
+      "entry_rus": "в числе которых находились \"глава\" украинской католической церкви",
+      "definition_eng": "List inclusion; quotation marks signal Soviet skepticism toward the title 'head' of the Ukrainian Catholic Church.",
+      "definition_rus": "Включение в перечень; кавычки сигнализируют скептическое отношение к титулу «глава» УГКЦ.",
+      "synonyms_eng": ["among whom was the head of the Ukrainian Catholic Church", "including the Ukrainian Catholic Church head", "among them the leader of the Ukrainian Greek Catholic Church"],
+      "synonyms_rus": ["в числе которых находились глава УГКЦ", "среди них — руководитель УГКЦ", "включая главу украинской католической церкви"]
+    },
+    {
+      "entry_eng": "an accident",
+      "entry_rus": "аварии",
+      "definition_eng": "Incident; accident or mishap; Russian in genitive or plural form.",
+      "definition_rus": "Инцидент; авария или происшествие; в русском родительный/множественное.",
+      "synonyms_eng": ["an accident", "an incident", "a mishap", "an industrial accident"],
+      "synonyms_rus": ["аварии", "происшествия", "инцидента", "несчастного случая"]
+    },
+    {
+      "entry_eng": "an alleged policy of genocide against the Ukrainian people",
+      "entry_rus": "якобы проводимой политикой геноцида в отношении украинского народа",
+      "definition_eng": "Skeptical framing of Western/Soviet famine-genocide claims; allegedly signals rejection.",
+      "definition_rus": "Скептическая рамка западных/советских обвинений в геноциде; якобы указывает на отрицание.",
+      "synonyms_eng": ["an alleged policy of genocide against Ukrainians", "purported genocide policy", "so-called genocide against the Ukrainian people", "claimed policy of genocide"],
+      "synonyms_rus": ["якобы проводимой политикой геноцида украинского народа", "мнимой политикой геноцида", "так называемой политикой геноцида", "объявляемой политикой геноцида"]
+    },
+    {
+      "entry_eng": "an anti-Soviet demonstration",
+      "entry_rus": "антисоветская демонстрация",
+      "definition_eng": "Protest action framed as anti-Soviet; ideological discrediting designation.",
+      "definition_rus": "Акция протеста, обозначенная как антисоветская; идеологическая дискредитирующая рамка.",
+      "synonyms_eng": ["an anti-Soviet demonstration", "anti-Soviet protest", "demonstration against the USSR", "anti-Soviet rally"],
+      "synonyms_rus": ["антисоветская демонстрация", "антисоветский митинг", "демонстрация против СССР", "выступление антисоветского характера"]
+    },
+    {
+      "entry_eng": "an article [...] was published",
+      "entry_rus": "опубликована статья",
+      "definition_eng": "Publication event; an article was published (with redaction in English).",
+      "definition_rus": "Событие публикации; опубликована статья (с ретушью в английском).",
+      "synonyms_eng": ["an article was published", "a piece was published", "an article appeared", "publication of an article"],
+      "synonyms_rus": ["опубликована статья", "вышла статья", "опубликован материал", "появилась статья"]
+    },
+    {
+      "entry_eng": "an incident that occurred on October 7 of this year",
+      "entry_rus": "о происшедшей 7 октября с.г.",
+      "definition_eng": "Temporal and event reference; incident that occurred on October 7 of the current year.",
+      "definition_rus": "Временная и событийная отсылка; о происшедшей 7 октября с.г. (с.г. = сего года).",
+      "synonyms_eng": ["an incident that occurred on October 7 of this year", "regarding the October 7 incident", "the October 7 of this year incident", "incident of 7 October current year"],
+      "synonyms_rus": ["о происшедшей 7 октября с.г.", "об инциденте 7 октября текущего года", "о событии от 7 октября с.г.", "происшествие 7 октября"]
+    },
+    {
+      "entry_eng": "An investigation conducted",
+      "entry_rus": "Расследованием, проведённым",
+      "definition_eng": "Instrumental formulation; by an investigation that was conducted.",
+      "definition_rus": "Творительный падеж; расследованием, которое было проведено.",
+      "synonyms_eng": ["An investigation conducted", "By the investigation conducted", "Through an investigation carried out", "By means of the investigation"],
+      "synonyms_rus": ["расследованием, проведённым", "проведённым расследованием", "в результате расследования", "на основании проведённого расследования"]
+    },
+    {
+      "entry_eng": "An investigation is being conducted",
+      "entry_rus": "Расследование проводит",
+      "definition_eng": "Ongoing investigation; institutional formulation (investigation is conducted by X).",
+      "definition_rus": "Расследование в процессе; институциональная формулировка (расследование проводит X).",
+      "synonyms_eng": ["An investigation is being conducted", "An investigation is underway", "An investigation is in progress", "Investigation is being carried out"],
+      "synonyms_rus": ["расследование проводит", "ведётся расследование", "расследование проводится", "осуществляется расследование"]
+    },
+    {
+      "entry_eng": "an investigation is underway",
+      "entry_rus": "расследование проводится",
+      "definition_eng": "Standard formulation for ongoing investigation; passive construction.",
+      "definition_rus": "Стандартная формулировка для проводимого расследования; пассивная конструкция.",
+      "synonyms_eng": ["an investigation is underway", "an investigation is in progress", "investigation is being conducted", "a probe is underway"],
+      "synonyms_rus": ["расследование проводится", "ведётся расследование", "расследование ведётся", "осуществляется расследование"]
+    },
+    {
+      "entry_eng": "an off-site session",
+      "entry_rus": "выездная сессия",
+      "definition_eng": "Judicial or institutional session held outside the regular venue; Soviet legal/institutional term.",
+      "definition_rus": "Судебная или институциональная сессия вне обычного места проведения; советский юридический/институциональный термин.",
+      "synonyms_eng": ["an off-site session", "a field session", "an away session", "a session held on location"],
+      "synonyms_rus": ["выездная сессия", "выездное заседание", "сессия на месте", "заседание вне постоянного места"]
+    }
+  ]
+}

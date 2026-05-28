@@ -1,0 +1,126 @@
+{
+  "chunk_id": 28,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "businessmen",
+      "entry_rus": "и бизнесменов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "but did not attach any sign to it",
+      "entry_rus": "но никакой записки к нему не прикрепляли",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by 10:00 p.m. that same day",
+      "entry_rus": "к 22 часам того же дня",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by a departmental commission",
+      "entry_rus": "ведомственной комиссией",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by a forensic medical examiner",
+      "entry_rus": "врачем судебно-медицинской экспертизы",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by a traffic police post",
+      "entry_rus": "поста ГАИ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by a “blessing of the land”",
+      "entry_rus": "\"освящение земли\"",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "By assisting creative collectives and individual authors",
+      "entry_rus": "оказывая помощь творческим коллективам и отдельным авторам",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "by chemical analyses",
+      "entry_rus": "химическими анализами",
+      "category": "Methods",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by enterprises using the substance",
+      "entry_rus": "предприятиями, применяющими",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by foreign OUN centers",
+      "entry_rus": "зарубежными ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "by hanging",
+      "entry_rus": "путем повешения",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by invitation of the city executive committee",
+      "entry_rus": "по приглашению горисполкома",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by invitation of the USSR Ministry of Higher Education",
+      "entry_rus": "по приглашению Минвуза СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by its discharge into the Dnister River",
+      "entry_rus": "его сбросом в реку Днестр",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by M. Shulman",
+      "entry_rus": "М. Шульмана",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by OUN ringleaders",
+      "entry_rus": "главарями ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "by OUNites",
+      "entry_rus": "оуновцами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "by reactionary political circles",
+      "entry_rus": "реакционных политических кругов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "by religious fanatics",
+      "entry_rus": "религиозными фанатиками",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

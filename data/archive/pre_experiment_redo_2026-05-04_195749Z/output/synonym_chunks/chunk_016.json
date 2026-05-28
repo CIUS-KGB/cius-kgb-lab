@@ -1,0 +1,126 @@
+{
+  "chunk_id": 16,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "and later",
+      "entry_rus": "и позже",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and on the provision of the population",
+      "entry_rus": "а также обеспечением населения",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and one from Italy — 15",
+      "entry_rus": "и из Италии 15 человек",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and other anti-Soviet organizations",
+      "entry_rus": "и других антисоветских организаций",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and other fascist accomplicies",
+      "entry_rus": "и других фашистских пособников,",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and other gatherings",
+      "entry_rus": "и иные сборища",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and other major U.S. cities",
+      "entry_rus": "и других крупных городах США",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and other socialist countries",
+      "entry_rus": "и других социалистических стран",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and party committee",
+      "entry_rus": "и парткома",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and performing the work",
+      "entry_rus": "и производившие указанные работы",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "and public debate",
+      "entry_rus": "и публичную полемику",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and R. Poechke",
+      "entry_rus": "и Р. Поечке",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and reader conferences",
+      "entry_rus": "и читательских конференций",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and reinforcing the Vatican’s perception",
+      "entry_rus": "закреплению в Ватикане мнения",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and restoring",
+      "entry_rus": "реставрации",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and sent a corresponding note",
+      "entry_rus": "и направил соответствующую ноту",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and sentencing",
+      "entry_rus": "и объявления приговора",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and sharply criticizes the government’s stance",
+      "entry_rus": "и резко критикует позицию правительства",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "and Soviet peoples",
+      "entry_rus": "и советского народов",
+      "category": "Actors",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and students",
+      "entry_rus": "студентов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

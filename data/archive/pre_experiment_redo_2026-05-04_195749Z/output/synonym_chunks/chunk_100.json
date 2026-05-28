@@ -1,0 +1,126 @@
+{
+  "chunk_id": 100,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Republic",
+      "entry_rus": "республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "reside",
+      "entry_rus": "о проживающих",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "resident",
+      "entry_rus": "житель",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "resident of Kutuzovka settlement",
+      "entry_rus": "проживавшего в пос. Кутузовка",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "resident of the city of Myrhorod",
+      "entry_rus": "жителя г. Миргорода",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "resident of the city of Rybnitsa",
+      "entry_rus": "проживавшего в г. Рыбнице",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "residing in Canada",
+      "entry_rus": "проживающих в Канаде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "restarted after one day",
+      "entry_rus": "запущена через сутки",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "retired and reserve officers of the KGB bodies and troops were actively involved in such events",
+      "entry_rus": "Активно привлекались к таким мероприятиям находящиеся в отставке и запасе сотрудники органов и войск КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "revealing the criminal ties of OUN members with the Hitlerites",
+      "entry_rus": "и  разоблачающих преступные связи оуновцев с гитлеровцами",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "review",
+      "entry_rus": "рецензия",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "ringleaders",
+      "entry_rus": "Главарями",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "ringleaders of the Banderite",
+      "entry_rus": "главарей бандеровских",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "S. Ako",
+      "entry_rus": "С. Ако",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "S. Chander",
+      "entry_rus": "С. Чандер",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "S. Ghosh",
+      "entry_rus": "С. Гхош",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "S. MUKHA",
+      "entry_rus": "С. МУХА",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "S. Mukha",
+      "entry_rus": "С. Муха",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "S. Mukha",
+      "entry_rus": "С. МУХА",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "S. MUKHA",
+      "entry_rus": "С.МУХА",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

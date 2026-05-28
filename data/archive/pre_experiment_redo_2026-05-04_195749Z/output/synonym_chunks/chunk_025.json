@@ -1,0 +1,126 @@
+{
+  "chunk_id": 25,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "at the said “institute”",
+      "entry_rus": "в указанном \"институте\"",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the same furnace",
+      "entry_rus": "на указанной печи по той же причине",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "At the same time, targeted efforts were carried out",
+      "entry_rus": "Наряду с этим проводилась целенаправленная работа",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "At the same time, the OUNites",
+      "entry_rus": "При этом оуновцы",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "At the time of the suicide",
+      "entry_rus": "В момент совершения самоубийства",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the Ukrainian Society for Cultural Relations with Foreign Countries",
+      "entry_rus": "в Украинское общество культурных связей с зарубежными странами",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the White House",
+      "entry_rus": "в Белом доме",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "at the “Dnister” water pumping station",
+      "entry_rus": "на водонасосной станции \"Днестр\"",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the “Tsentralna Belyanka” mine",
+      "entry_rus": "на шахте «Центральная Белянка»",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "attaché of the Embassy",
+      "entry_rus": "атташе посольства",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Attaché of the Nigerian Embassy",
+      "entry_rus": "атташе посольства Нигерии",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "attempted to distribute leaflets",
+      "entry_rus": "предприняло попытку распространить листовки",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "attended daily",
+      "entry_rus": "присутствовало ежедневно",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Australia",
+      "entry_rus": "Австралии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "aviation production association",
+      "entry_rus": "в авиационное производственное объединение",
+      "category": "Places",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "aviation production association",
+      "entry_rus": "авиационное производственное объединение",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "B. Bociurkiw (USA), and others",
+      "entry_rus": "Б. Боцюркив и другие",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "B. I. Mikhailchuk",
+      "entry_rus": "Михальчук Б. И.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "B. M. Voronov",
+      "entry_rus": "Воронов Б. М.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "B. Nahajlo",
+      "entry_rus": "Б. Нагайло",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

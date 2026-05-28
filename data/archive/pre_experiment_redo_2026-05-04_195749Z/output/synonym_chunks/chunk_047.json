@@ -1,0 +1,126 @@
+{
+  "chunk_id": 47,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "from the country",
+      "entry_rus": "за пределы страны",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from the Federal Republic of Germany",
+      "entry_rus": "из ФРГ",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from the FRG",
+      "entry_rus": "из ФРГ",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the FRG — 117",
+      "entry_rus": "из ФРГ 117",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from the justice authorities",
+      "entry_rus": "от органов юстиции",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from the KGB under the Council of Ministers of the Ukrainian SSR",
+      "entry_rus": "КГБ при СМ Украинской ССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "from the KGB under the USSR Council of Ministers",
+      "entry_rus": "из КГБ при СМ СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "from the Polish People’s Republic – 3,424",
+      "entry_rus": "из ПНР – 3424",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from the Polish People’s Republic — 5,449",
+      "entry_rus": "из ПНР 5 449",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from the Polish People’s Republic — 5,488",
+      "entry_rus": "из ПНР 5 488",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the U.S.",
+      "entry_rus": "из США 50",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the U.S. — 198",
+      "entry_rus": "из США 198",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the U.S. — 32",
+      "entry_rus": "Из США – 32",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the U.S. — 55",
+      "entry_rus": "из США 55",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from the USA",
+      "entry_rus": "из США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the USA",
+      "entry_rus": "из США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the USA – 53",
+      "entry_rus": "Из США – 53",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "From the USA — 16",
+      "entry_rus": "из США 16",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from Turkey",
+      "entry_rus": "из Турции",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "from universities",
+      "entry_rus": "высших учебных заведений",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

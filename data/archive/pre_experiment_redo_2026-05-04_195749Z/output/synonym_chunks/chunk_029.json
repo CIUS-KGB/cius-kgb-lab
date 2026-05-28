@@ -1,0 +1,126 @@
+{
+  "chunk_id": 29,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "by representatives",
+      "entry_rus": "представителями",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by the 7th border detachment",
+      "entry_rus": "7 погранотряд",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the Committee for State Security of the republic",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the deceased",
+      "entry_rus": "погибшими",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by the International Committee for Aid to Famine Victims in the Volga region",
+      "entry_rus": "Международным комитетом помощи голодающим Поволжья",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by the KGB Directorate",
+      "entry_rus": "Управлением КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the KGB of the republic",
+      "entry_rus": "органами КГБ республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the KGB of the Ukrainian SSR",
+      "entry_rus": "КГБ УССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the military prosecutor’s office",
+      "entry_rus": "военной прокуратурой",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the motor ship Ion Soltys",
+      "entry_rus": "теплоходом \"Ион Солтыс\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "by the navigation service",
+      "entry_rus": "служба мореплавания",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the OUN",
+      "entry_rus": "ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "by the OUN ringleaders",
+      "entry_rus": "главарями ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "by the OUNites",
+      "entry_rus": "оуновцами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "by the prosecutor’s office",
+      "entry_rus": "органами прокуратуры",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the republic’s State Security Committee",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "by the sanitary service",
+      "entry_rus": "санитарной службой",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "called the book “Soviet propaganda.”",
+      "entry_rus": "назвал изданную книгу \"советской пропагандой\"",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "calling for",
+      "entry_rus": "с призывом",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "calling on the public and religious circles of the country",
+      "entry_rus": "призывающую общественность и религиозные круги страны",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

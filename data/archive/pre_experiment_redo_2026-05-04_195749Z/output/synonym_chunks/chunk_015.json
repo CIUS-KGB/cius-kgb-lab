@@ -1,0 +1,126 @@
+{
+  "chunk_id": 15,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "and Hitlerite occupiers",
+      "entry_rus": "и гитлеровскими оккупантами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and hostile actions of foreigners on the territory of the republic",
+      "entry_rus": "враждебные действия иностранцев на территории республики",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and ideological centers",
+      "entry_rus": "и идеологических центров",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and ideological subversion",
+      "entry_rus": "и идеологическими диверсиями",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and imperialist intelligence",
+      "entry_rus": "империалистическими разведками",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and in 1974",
+      "entry_rus": "и в 1974 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and in August of this year",
+      "entry_rus": "и в августе с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and in raising the political vigilance of the toiling people",
+      "entry_rus": "и повышению политической бдительности трудящихся",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and in the book of the reactionary \"Sovietologist\" R. Conquest \"The Harvest of Sorrow\"",
+      "entry_rus": "и книге реакционного \"советолога\" Р. Конквеста \"Жатва скорби\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and increasing the political vigilance",
+      "entry_rus": "повышение политической бдительности",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and India",
+      "entry_rus": "и Индии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and insufficient cooling of the bosh area",
+      "entry_rus": "и недостаточное охлаждение заплечиков",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and intelligence agencies of the West",
+      "entry_rus": "и спецслужб Запада",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and is being investigated",
+      "entry_rus": "где сейчас ведется следствие",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and is under control by the KGB Directorate",
+      "entry_rus": "контролируется УКГБ",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and it is planned to inform Western public opinion",
+      "entry_rus": "о чём планируется довести до западной общественности",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and Japan",
+      "entry_rus": "и Японии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and K. al-Wash",
+      "entry_rus": "и К. аль-Ваш",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and KGB Directorates",
+      "entry_rus": "и Управлениями КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and Koziy",
+      "entry_rus": "и Козий",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

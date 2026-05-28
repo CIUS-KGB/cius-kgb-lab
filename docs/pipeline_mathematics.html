@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vozmezdie pipeline — mathematics &amp; proofs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"/>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  --bg: #1a1814;
+  --bg-card: #252019;
+  --ink: #ece6dc;
+  --muted: #a89f91;
+  --accent: #c45c26;
+  --accent-dim: rgba(196, 92, 38, 0.35);
+  --border: rgba(139, 115, 85, 0.45);
+  --proof: #7aab7a;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --serif: "IBM Plex Serif", Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 1.05rem;
+}
+@media (min-width: 900px) { body { font-size: 1.1rem; } }
+.wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+header h1 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.55rem, 4vw, 2.1rem);
+  margin-bottom: 0.5rem;
+}
+header .sub { color: var(--muted); font-size: 0.98rem; }
+
+.main-tab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+.main-tab-row button {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--muted);
+  cursor: pointer;
+}
+.main-tab-row button.active {
+  border-color: var(--accent);
+  color: var(--ink);
+  background: var(--accent-dim);
+}
+.main-panel { display: none; }
+.main-panel.active { display: block; }
+
+nav.toc {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: linear-gradient(180deg, var(--bg) 70%, transparent);
+  padding: 0.75rem 0 1rem;
+  margin: -0.5rem 0 1.5rem;
+}
+nav.toc-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+nav.toc a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+nav.toc a:hover { border-bottom-color: var(--accent); }
+
+section.fig {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.35rem 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+section.fig h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--ink);
+}
+section.fig h2 span.tag {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+section.fig p, section.fig li { color: var(--muted); margin-bottom: 0.65rem; }
+section.fig ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
+section.fig strong { color: var(--ink); font-weight: 600; }
+
+.block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.2rem 1.35rem;
+  margin-bottom: 1.75rem;
+}
+.block h2 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  color: var(--accent);
+}
+.block h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: var(--ink);
+}
+.block p, .block li { color: var(--muted); margin-bottom: 0.65rem; }
+.block ul { padding-left: 1.2rem; }
+.block .statement { color: var(--ink); font-style: italic; margin-bottom: 0.55rem; }
+.block .proof {
+  border-left: 3px solid var(--proof);
+  padding-left: 1rem;
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+.block .proof strong {
+  color: var(--proof);
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+.pipeline-svg { width: 100%; height: auto; display: block; margin: 1rem 0; }
+.box { fill: var(--bg-card); stroke: var(--border); stroke-width: 1.5; }
+.box-title { fill: var(--ink); font-family: var(--mono); font-size: 11px; font-weight: 600; }
+.arrow { stroke: var(--muted); stroke-width: 1.5; fill: none; marker-end: url(#ah); }
+.small-cap { fill: var(--muted); font-family: var(--mono); font-size: 10px; }
+.diagram-caption {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+.doc-crosslink {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: -0.35rem 0 1.35rem;
+  line-height: 1.55;
+}
+.doc-crosslink a { color: var(--accent); }
+.doc-crosslink cite { font-style: normal; }
+
+.tab-row {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.75rem;
+}
+.tab-row button {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.tab-row button.active {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.panel-hidden { display: none; }
+.katex-block { overflow-x: auto; padding: 0.85rem 0; font-size: 1rem; }
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Vozmezdie pipeline</h1>
+    <p class="sub">Mathematical overview of the implementation: composition \(\Pi\), ingest, extraction (stub / LLM / agent), ground truth, alignment, metrics, report generation — aligned with <code style="font-family:var(--mono);font-size:0.88em;">run.py</code>, <code style="font-family:var(--mono);font-size:0.88em;">llm</code>, <code style="font-family:var(--mono);font-size:0.88em;">compare</code>, and <code style="font-family:var(--mono);font-size:0.88em;">report</code>. Linked reference on interpreting results as an experiment: <a href="experiment_primer.html"><cite>Experiment methods primer</cite></a>.</p>
+  </header>
+
+  <div class="main-tab-row" role="tablist" aria-label="Main sections">
+    <button type="button" class="active" data-main-panel="panel-overview" role="tab" aria-selected="true">Pipeline overview</button>
+    <button type="button" data-main-panel="panel-llm" role="tab" aria-selected="false">LLM &amp; extraction</button>
+    <button type="button" data-main-panel="panel-proofs" role="tab" aria-selected="false">Compare proofs</button>
+  </div>
+  <p class="doc-crosslink">Citable companion note (statistics / measurement framing): <a href="experiment_primer.html"><cite>experiment_primer.html</cite></a>.</p>
+
+  <!-- ========== OVERVIEW ========== -->
+  <div id="panel-overview" class="main-panel active" role="tabpanel">
+    <nav class="toc" aria-label="Overview figures">
+      <div class="toc-inner">
+        <a href="#fig0">Fig 0</a>
+        <a href="#fig1">Fig 1 · Ingest</a>
+        <a href="#fig2">Fig 2 · Extract</a>
+        <a href="#fig3">Fig 3 · GT</a>
+        <a href="#fig4">Fig 4 · Compare</a>
+        <a href="#fig5">Fig 5 · Metrics</a>
+        <a href="#fig6">Fig 6 · Report</a>
+      </div>
+    </nav>
+
+    <section class="fig" id="fig0">
+      <h2><span class="tag">FIG 0</span> End-to-end composition</h2>
+      <p>Let configuration and taxonomy be fixed inputs. The orchestrator implements a pipeline that maps corpus documents to static HTML and JSON artifacts:</p>
+      <div class="katex-block">\[
+        \Pi \;=\; \mathrm{Report}\;\circ\;\mathrm{Serialize}\;\circ\;\mathrm{Compare}\;\circ\;\bigl(\mathrm{GT},\,\mathrm{Pred}\bigr)\;\circ\;\mathrm{Ingest}.
+      \]</div>
+      <p>Here <strong>Pred</strong> is either an LLM-backed extractor, a deterministic stub, or rows loaded from agent assessments (same row schema). <strong>GT</strong> loads expert-coded rows per document.</p>
+      <svg class="pipeline-svg" viewBox="0 0 720 310" xmlns="http://www.w3.org/2000/svg" aria-label="Pipeline flowchart">
+        <defs>
+          <marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#a89f91"/>
+          </marker>
+        </defs>
+        <rect class="box" x="20" y="20" width="120" height="44" rx="4"/>
+        <text class="box-title" x="80" y="46" text-anchor="middle">Config</text>
+        <rect class="box" x="160" y="20" width="120" height="44" rx="4"/>
+        <text class="box-title" x="220" y="46" text-anchor="middle">Taxonomy</text>
+        <rect class="box" x="40" y="100" width="640" height="52" rx="4"/>
+        <text class="box-title" x="360" y="132" text-anchor="middle">Ingest → documents (raw_text, raw_text_en, …)</text>
+        <rect class="box" x="40" y="178" width="300" height="52" rx="4"/>
+        <text class="box-title" x="190" y="210" text-anchor="middle">Pred · LLM / stub / agent JSON</text>
+        <rect class="box" x="380" y="178" width="300" height="52" rx="4"/>
+        <text class="box-title" x="530" y="210" text-anchor="middle">GT · HTML / CSV / JSON rows</text>
+        <rect class="box" x="140" y="248" width="440" height="52" rx="4"/>
+        <text class="box-title" x="360" y="280" text-anchor="middle">Compare → aligned rows + metrics → Report → HTML</text>
+        <path class="arrow" d="M220 64 L220 85 L360 85 L360 100"/>
+        <path class="arrow" d="M360 152 L360 164 L190 164 L190 178"/>
+        <path class="arrow" d="M360 152 L360 164 L530 164 L530 178"/>
+        <path class="arrow" d="M190 230 L190 242 L360 242 L360 248"/>
+        <path class="arrow" d="M530 230 L530 242 L360 242"/>
+        <text class="small-cap" x="370" y="78">Taxonomy T feeds prompts &amp; UI</text>
+      </svg>
+    </section>
+
+    <section class="fig" id="fig1">
+      <h2><span class="tag">FIG 1</span> Ingestion as a structured mapping</h2>
+      <p>For document map mode, let \(\mathcal{M}\) be the set of map entries. Each entry yields one pipeline document \(d\) with identifiers and texts read from disk:</p>
+      <div class="katex-block">\[
+        \mathrm{Ingest}(\mathcal{M}) \;=\; \bigl\{\,\phi(i) : i \in \mathcal{M}\,\bigr\},\quad
+        \phi(i) = \bigl(\mathrm{id}_i,\;\mathrm{RUS}_i,\;\mathrm{ENG}_i,\ldots\bigr).
+      \]</div>
+      <ul>
+        <li>\(\mathrm{RUS}_i\) is loaded from <code>data/russian_originals/{id}.txt</code> (after sync from dev).</li>
+        <li>\(\mathrm{ENG}_i\) tries <code>data/input/{id}.txt</code>, spaced variants, display-name paths, optional <code>en_filename</code>, then derives filenames from the Russian source filename under <code>dev/english_translations</code> so CI clones still get full English.</li>
+      </ul>
+      <p>The <strong>segmentation surface</strong> for extraction is primarily \(\mathrm{RUS}_i\) (Russian-first); English full text is used for bilingual display and corpus-level English token statistics.</p>
+    </section>
+
+    <section class="fig" id="fig2">
+      <h2><span class="tag">FIG 2</span> Extraction: model as conditional mapping</h2>
+      <p>Let \(\mathcal{C}\) and \(\mathcal{F}\) be finite category and framing label sets from taxonomy \(T\). A <strong>row</strong> lives in:</p>
+      <div class="katex-block">\[
+        r \;\in\; \mathcal{S} \;=\; \mathrm{Section}\times\Sigma^\ast\times\Sigma^\ast\times\mathcal{C}\times\mathcal{F}\times\Sigma^\ast.
+      \]</div>
+      <div class="tab-row" role="tablist" aria-label="Extraction mode">
+        <button type="button" class="active" data-panel="p-stub" role="tab" aria-selected="true">Stub / fixture</button>
+        <button type="button" data-panel="p-ollama" role="tab" aria-selected="false">Ollama</button>
+        <button type="button" data-panel="p-agent" role="tab" aria-selected="false">Agent assessments</button>
+      </div>
+      <div id="p-stub" class="panel">
+        <p><strong>Stub</strong> (no live LLM): split \(\mathrm{RUS}_i\) into short phrases \(p_1,\ldots,p_K\) by newlines and sentence-like breaks; keep \(p_j\) with length \(\ge 4\), cap \(K\le 25\). Labels cycle through taxonomy lists:</p>
+        <div class="katex-block">\[
+          \mathrm{Pred}_{\mathrm{stub}}(i) \;=\; \Bigl\{\,\bigl(j,\,\varepsilon,\,p_j,\,c_{j \bmod m},\,f_{j \bmod n},\,p_j\bigr)\,\Bigr\}_{j=1}^K,\quad m=|\mathcal{C}|,\; n=|\mathcal{F}|.
+        \]</div>
+      </div>
+      <div id="p-ollama" class="panel panel-hidden">
+        <p><strong>Ollama</strong>: build prompt \(P_i\) containing truncated Russian document \(\mathrm{truncate}(\mathrm{RUS}_i,8000)\) and enumerated allowed labels. The model implements a stochastic map; the adapter parses JSON lines into \(\mathcal{S}\):</p>
+        <div class="katex-block">\[
+          \mathrm{Pred}_{\mathrm{LLM}}(i) \;=\; \mathrm{Parse}\bigl(\mathcal{A}_\theta(P_i)\bigr),\quad
+          P_i = \mathrm{Prompt}\bigl(\mathrm{truncate}(\mathrm{RUS}_i,\,8000),\,\mathcal{C},\,\mathcal{F}\bigr).
+        \]</div>
+        <p>If the request fails or parsing yields nothing, the pipeline falls back to \(\mathrm{Pred}_{\mathrm{stub}}(i)\).</p>
+      </div>
+      <div id="p-agent" class="panel panel-hidden">
+        <p><strong>Agent assessments</strong>: \(\mathrm{Pred}_{\mathrm{agent}}(i)\) is read directly from JSON keyed by \(\mathrm{id}_i\). Rows must match the same schema so downstream \(\mathrm{Compare}\) is unchanged.</p>
+      </div>
+    </section>
+
+    <section class="fig" id="fig3">
+      <h2><span class="tag">FIG 3</span> Ground truth</h2>
+      <p>Expert annotations yield an ordered list \(\mathrm{GT}(i) = (g_1,\ldots,g_{n_i}) \in \mathcal{S}^{n_i}\) with the same schema as \(\mathrm{Pred}\). Loading normalizes labels to canonical taxonomy strings for storage and comparison.</p>
+      <div class="katex-block">\[
+        \mathrm{GT}\colon \mathrm{id}\;\mapsto\;(g_1,\ldots,g_{n_i}),\qquad g_k\in\mathcal{S}.
+      \]</div>
+    </section>
+
+    <section class="fig" id="fig4">
+      <h2><span class="tag">FIG 4</span> Alignment as bipartite pairing</h2>
+      <p>Let \(L=\mathrm{Pred}(i)\) and \(G=\mathrm{GT}(i)\) with \(|G|=n_H\), \(|L|=n_L\). Normalize phrase text:</p>
+      <div class="katex-block">\[
+        \eta(s) \;=\; \mathrm{lower}\bigl(\text{collapse-ws}(\mathrm{strip}(s))\bigr).
+      \]</div>
+      <p><strong>Content alignment</strong> (default <code>content_rus</code>): bipartite edges when \(\eta(\texttt{entry\_rus})\) matches exactly <em>or</em> one normalized string contains the other (minimum length 4). Greedy passes assign each GT row at most one LLM partner.</p>
+      <div class="katex-block">\[
+        \mathcal{P}_i \;\subseteq\;\{1,\ldots,n_H\}\times\{1,\ldots,n_L\},\quad
+        |\mathcal{P}_i| \le \min(n_H,n_L).
+      \]</div>
+      <p><strong>Index alignment</strong> (<code>match_by: index</code>): rows pair by position \(k\) up to \(\max(n_H,n_L)\).</p>
+    </section>
+
+    <section class="fig" id="fig5">
+      <h2><span class="tag">FIG 5</span> Accuracy metrics</h2>
+      <div class="katex-block">\[
+        \mathrm{cat}(r)=\mathbf{1}\{\texttt{llm\_category}=\texttt{human\_category}\},\quad
+        \mathrm{fram}(r)=\mathbf{1}\{\texttt{llm\_framing}=\texttt{human\_framing}\}.
+      \]</div>
+      <div class="tab-row" role="tablist" aria-label="Metric mode">
+        <button type="button" class="active" data-panel="m-content" role="tab" aria-selected="true">Content / content_rus</button>
+        <button type="button" data-panel="m-index" role="tab" aria-selected="false">Index</button>
+      </div>
+      <div id="m-content" class="panel">
+        <p>Let \(\mathcal{R}^{\mathrm{p}}_i\) be paired rows. Percentages use only paired rows:</p>
+        <div class="katex-block">\[
+          \mathrm{Acc}^{\mathrm{cat}}_i \;=\; \frac{100}{|\mathcal{R}^{\mathrm{p}}_i|}\sum_{r\in\mathcal{R}^{\mathrm{p}}_i}\mathrm{cat}(r),\quad
+          \mathrm{Acc}^{\mathrm{fram}}_i \;=\; \frac{100}{|\mathcal{R}^{\mathrm{p}}_i|}\sum_{r\in\mathcal{R}^{\mathrm{p}}_i}\mathrm{fram}(r),
+        \]</div>
+        <div class="katex-block">\[
+          \mathrm{Acc}^{\mathrm{both}}_i \;=\; \frac{100}{|\mathcal{R}^{\mathrm{p}}_i|}\sum_{r\in\mathcal{R}^{\mathrm{p}}_i}\mathrm{cat}(r)\cdot\mathrm{fram}(r).
+        \]</div>
+        <p>If \(|\mathcal{R}^{\mathrm{p}}_i|=0\), all three reported percentages are \(0\).</p>
+      </div>
+      <div id="m-index" class="panel panel-hidden">
+        <p>Under index alignment, denominator \(|\mathcal{A}_i|=\max(n_H,n_L)\).</p>
+        <div class="katex-block">\[
+          \mathrm{Acc}^{\mathrm{cat}}_i \;=\; \frac{100}{|\mathcal{A}_i|}\sum_{r\in\mathcal{A}_i}\mathrm{cat}(r).
+        \]</div>
+      </div>
+    </section>
+
+    <section class="fig" id="fig6">
+      <h2><span class="tag">FIG 6</span> Report and bilingual highlighting</h2>
+      <p>The serializer writes \(\{\texttt{documents},\texttt{comparison\_by\_doc}\}\) to JSON. Document panels show \(\mathrm{ENG}_i\) and \(\mathrm{RUS}_i\) with spans at \(\texttt{entry\_eng}\) / \(\texttt{entry\_rus}\). Repeated phrases consume occurrences <strong>in row order</strong>; overlapping spans resolve with shorter segments preferred after sorting by \((\mathrm{length},\mathrm{index})\).</p>
+      <div class="katex-block">\[
+        \mathrm{Report}\bigl(\mathrm{Compare}(\mathrm{Pred},\mathrm{GT}),\,\mathrm{Ingest}(\mathcal{M}),\,T\bigr)\;\to\;\mathrm{HTML}.
+      \]</div>
+    </section>
+  </div>
+
+  <!-- ========== LLM ========== -->
+  <div id="panel-llm" class="main-panel" role="tabpanel" hidden>
+    <nav class="toc" aria-label="LLM sections">
+      <div class="toc-inner">
+        <a href="#llm-setup">L1 Interface</a>
+        <a href="#llm-prompt">L2 Prompt</a>
+        <a href="#llm-compose">L3 Composition</a>
+        <a href="#llm-parse">L4 Parse &amp; coercion</a>
+        <a href="#llm-fallback">L5 Fallback</a>
+        <a href="#llm-stub">L6 Stub geometry</a>
+        <a href="#llm-arch">L7 Neural architecture</a>
+      </div>
+    </nav>
+
+    <section class="block" id="llm-setup">
+      <h2>L1 · HTTP interface (Ollama)</h2>
+      <p>Fix hyperparameters \(\theta = (\texttt{model\_id},\,\tau,\,M,\,t_{\mathrm{out}})\): model name, sampling temperature \(\tau\), maximum predicted tokens \(M\), HTTP timeout. The adapter sends a JSON body whose semantic content is the pair \((\texttt{model},\,P_i,\,\texttt{options})\) with \(\texttt{options}=\{\texttt{temperature}:\tau,\texttt{num\_predict}:M\}\).</p>
+      <div class="katex-block">\[
+        \mathrm{HTTP}_\theta \colon \Sigma^\ast \to \Sigma^\ast,\quad \mathrm{HTTP}_\theta(P_i) \in \Sigma^\ast \cup \{\bot\},
+      \]</div>
+      <p>where \(\bot\) denotes transport failure, HTTP error, or empty decode — formally collapsing all failures so \(\mathrm{Parse}(\bot)=\emptyset\) by convention.</p>
+    </section>
+
+    <section class="block" id="llm-prompt">
+      <h2>L2 · Truncation &amp; prompt functional</h2>
+      <p>Let \(X_i=\mathrm{RUS}_i\) be the Russian document string from ingest. Define prefix truncation \(\pi_k\colon \Sigma^\ast\to\Sigma^\ast\) keeping the first \(k\) characters (implementation uses \(k=8000\)):</p>
+      <div class="katex-block">\[
+        \pi_k(X) = X_{[1:k]}.
+      \]</div>
+      <p>The prompt functional \(\mathrm{Prompt}\colon \Sigma^\ast \times 2^{\mathcal{C}} \times 2^{\mathcal{F}} \to \Sigma^\ast\) concatenates instructions, enumerates \(\mathcal{C}\) and \(\mathcal{F}\), and embeds \(\pi_k(X_i)\). Thus</p>
+      <div class="katex-block">\[
+        P_i := \mathrm{Prompt}(\pi_k(X_i),\mathcal{C},\mathcal{F}).
+      \]</div>
+    </section>
+
+    <section class="block" id="llm-compose">
+      <h2>L3 · End-to-end extraction map</h2>
+      <p>The neural generator \(\mathcal{A}_\theta\) is a stochastic kernel; after fixing randomness it becomes a function \(\Sigma^\ast\to\Sigma^\ast\). The adapter extracts the textual field <code>response</code> from JSON and applies deterministic parsing:</p>
+      <div class="katex-block">\[
+        \mathrm{Pred}_{\mathrm{LLM}}(i) \;=\; \mathrm{Parse}\Bigl(\mathrm{Sel}_{\texttt{response}}\bigl(\mathrm{HTTP}_\theta(P_i)\bigr)\Bigr),
+      \]</div>
+      <p>where \(\mathrm{Sel}_{\texttt{response}}\) is undefined on failure (yielding parseable empty input). Section&nbsp;<strong>L7</strong> factorizes the stochastic map inside \(\mathrm{HTTP}_\theta\) into tokenization, a causal language model, and sampling.</p>
+    </section>
+
+    <section class="block" id="llm-parse">
+      <h2>L4 · Parse &amp; label coercion</h2>
+      <p>\(\mathrm{Parse}\) scans lines of the model output; each line that decodes as JSON dict contributes at most one row. Missing category/framing strings are replaced by the <strong>first</strong> taxonomy element when absent from \(\mathcal{C}\) or \(\mathcal{F}\).</p>
+      <p class="statement"><strong>Proposition L4.1.</strong> Every row emitted by \(\mathrm{Parse}\) satisfies \(\texttt{content\_category}\in\mathcal{C}\) and \(\texttt{framing}\in\mathcal{F}\) after coercion.</p>
+      <div class="proof"><strong>Proof.</strong> The implementation tests membership and, on failure, assigns \(c_0\in\mathcal{C}\) or \(f_0\in\mathcal{F}\) as first list entries (or empty string only if lists empty — taxonomy loader guarantees nonempty lists in practice). \(\square\)</div>
+      <p class="statement"><strong>Remark.</strong> Coercion is <em>not</em> semantically neutral: arbitrary strings collapse to default labels, which can inflate superficial agreement unless models obey the closed vocabulary.</p>
+    </section>
+
+    <section class="block" id="llm-fallback">
+      <h2>L5 · Total predictive closure</h2>
+      <p class="statement"><strong>Theorem L5.1.</strong> Define the pipeline predictor \(\mathrm{Pred}^\ast(i)\) by</p>
+      <div class="katex-block">\[
+        \mathrm{Pred}^\ast(i) \;=\;
+        \begin{cases}
+          \mathrm{Pred}_{\mathrm{LLM}}(i) & \text{if Ollama mode is enabled and } \mathrm{Pred}_{\mathrm{LLM}}(i)\neq\emptyset,\\
+          \mathrm{Pred}_{\mathrm{stub}}(i) & \text{otherwise (fixture mode or fallback).}
+        \end{cases}
+      \]</div>
+      <div class="proof"><strong>Proof.</strong> Matches <code>llm/__init__.py</code>: on exceptions or empty parsed rows, control assigns \(\mathrm{Pred}_{\mathrm{stub}}(i)\). The stub always returns a nonempty finite list (including a degenerate row when no phrase qualifies). \(\square\)</div>
+    </section>
+
+    <section class="block" id="llm-stub">
+      <h2>L6 · Stub as partition-like segmentation</h2>
+      <p>Let \(\mathrm{Split}\colon \Sigma^\ast \to (\Sigma^\ast)^\ast\) be the deterministic splitting rule (newline + sentence-dot heuristic). Let \(\mathrm{Filter}_{\ge \ell}\) remove strings shorter than \(\ell=4\). Let \(\mathrm{Take}_{\le K}\) keep the first \(K=25\) survivors.</p>
+      <div class="katex-block">\[
+        (p_1,\ldots,p_{K'}) \;=\; \mathrm{Take}_{\le K}\bigl(\mathrm{Filter}_{\ge \ell}(\mathrm{Split}(X_i))\bigr),\quad K'\le K.
+      \]</div>
+      <p class="statement"><strong>Lemma L6.1.</strong> \(\mathrm{Pred}_{\mathrm{stub}}(i)\) has length \(\le 25\) and each phrase \(p_j\) has \(\lvert p_j\rvert \ge 4\) unless the degenerate “no text” row fires.</p>
+      <div class="proof"><strong>Proof.</strong> Immediate from guards <code>MIN_PHRASE_LEN</code> and slice <code>[:25]</code> in <code>llm/__init__.py</code>. \(\square\)</div>
+    </section>
+
+    <section class="block" id="llm-arch">
+      <h2>L7 · Neural generator: prompts → text assessments</h2>
+      <p>This abstracts what happens <em>after</em> the Python adapter posts <code>prompt</code> to Ollama’s <code>/api/generate</code> with <code>stream: false</code>. The identifier <code>model_id</code> selects a frozen parameter vector \(\theta\) (e.g. Llama-class <strong>decoder-only</strong> transformer weights loaded by the server). Our pipeline treats the server as implementing one draw from a conditional distribution over continuation strings.</p>
+
+      <h3>L7.1 · Deployment architecture</h3>
+      <p>The assessment string \(Y_i\in\Sigma^\ast\) is produced outside the Vozmezdie process boundary: the client only sends \(P_i\) and decoding knobs \((\tau,M)\); the server runs kernel schedules, KV-cache updates, and sampling until a stopping rule fires.</p>
+      <svg class="pipeline-svg" viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" aria-label="Client server LLM stack">
+        <defs>
+          <marker id="ah-llm1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#a89f91"/>
+          </marker>
+        </defs>
+        <rect class="box" x="16" y="36" width="130" height="56" rx="4"/>
+        <text class="box-title" x="81" y="62" text-anchor="middle">llm / adapter</text>
+        <text class="small-cap" x="81" y="78" text-anchor="middle">Python · urllib</text>
+        <path class="arrow" style="marker-end:url(#ah-llm1)" d="M146 64 H200"/>
+        <rect class="box" x="200" y="28" width="168" height="72" rx="4"/>
+        <text class="box-title" x="284" y="56" text-anchor="middle">HTTP POST</text>
+        <text class="small-cap" x="284" y="74" text-anchor="middle">model, prompt, options</text>
+        <text class="small-cap" x="284" y="88" text-anchor="middle">temperature τ · num_predict M</text>
+        <path class="arrow" style="marker-end:url(#ah-llm1)" d="M368 64 H422"/>
+        <rect class="box" x="422" y="36" width="150" height="56" rx="4"/>
+        <text class="box-title" x="497" y="62" text-anchor="middle">Ollama runtime</text>
+        <text class="small-cap" x="497" y="78" text-anchor="middle">loads θ, tokenizer</text>
+        <path class="arrow" style="marker-end:url(#ah-llm1)" d="M572 64 H626"/>
+        <rect class="box" x="626" y="24" width="118" height="80" rx="4"/>
+        <text class="box-title" x="685" y="52" text-anchor="middle">Causal LM</text>
+        <text class="small-cap" x="685" y="70" text-anchor="middle">decoder-only</text>
+        <text class="small-cap" x="685" y="84" text-anchor="middle">autoregressive</text>
+        <text class="small-cap" x="685" y="98" text-anchor="middle">sample → Y_i</text>
+        <path class="arrow" style="marker-end:url(#ah-llm1)" d="M685 104 V138"/>
+        <rect class="box" x="602" y="138" width="166" height="44" rx="4"/>
+        <text class="box-title" x="685" y="166" text-anchor="middle">JSON { response: Y_i }</text>
+        <path class="arrow" style="marker-end:url(#ah-llm1)" d="M602 160 H284 V200"/>
+        <rect class="box" x="200" y="200" width="168" height="44" rx="4"/>
+        <text class="box-title" x="284" y="228" text-anchor="middle">Parse(JSON lines)</text>
+        <path class="arrow" style="marker-end:url(#ah-llm1)" d="M200 222 H116"/>
+        <text class="small-cap" x="380" y="20">Fig L7a · Boundary: stochastic assessment lives server-side; Parse is deterministic client-side.</text>
+      </svg>
+      <p class="diagram-caption">Fig L7a — Request body matches <code>ollama_adapter.py</code>: <code>stream: false</code> waits for the full continuation before returning one JSON payload.</p>
+
+      <h3>L7.2 · Discrete channel: tokens &amp; vocabulary</h3>
+      <p>Let \(\mathcal{V}\) be the model’s finite vocabulary (including specials such as BOS, EOS, padding). The server-side tokenizer implements</p>
+      <div class="katex-block">\[
+        \mathrm{Tok}\colon \Sigma^\ast \to \mathcal{V}^L,\qquad L=L(P_i),
+      \]</div>
+      <p>a deterministic map from Unicode prompt text to a length-\(L\) token sequence \(z_{1:L}\). Let \(\mathrm{Detok}\colon \mathcal{V}^\ast\to\Sigma^\ast\) invert fragments by concatenating decoded pieces (implementation-defined joins). The prompt occupies positions \(1,\ldots,L\); generation appends \(z_{L+1},z_{L+2},\ldots\).</p>
+      <svg class="pipeline-svg" viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" aria-label="Token and LM head pipeline">
+        <defs>
+          <marker id="ah-llm2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#a89f91"/>
+          </marker>
+        </defs>
+        <rect class="box" x="20" y="52" width="88" height="44" rx="4"/>
+        <text class="box-title" x="64" y="78" text-anchor="middle">P_i</text>
+        <path class="arrow" style="marker-end:url(#ah-llm2)" d="M108 74 H132"/>
+        <rect class="box" x="132" y="46" width="100" height="56" rx="4"/>
+        <text class="box-title" x="182" y="72" text-anchor="middle">Tok</text>
+        <text class="small-cap" x="182" y="88" text-anchor="middle">BPE-style</text>
+        <path class="arrow" style="marker-end:url(#ah-llm2)" d="M232 74 H256"/>
+        <rect class="box" x="256" y="40" width="120" height="68" rx="4"/>
+        <text class="box-title" x="316" y="66" text-anchor="middle">z_{1:L}</text>
+        <text class="small-cap" x="316" y="84" text-anchor="middle">prompt tokens</text>
+        <text class="small-cap" x="316" y="98" text-anchor="middle">RoPE positions</text>
+        <path class="arrow" style="marker-end:url(#ah-llm2)" d="M376 74 H400"/>
+        <rect class="box" x="400" y="34" width="140" height="80" rx="4"/>
+        <text class="box-title" x="470" y="60" text-anchor="middle">Transformer</text>
+        <text class="small-cap" x="470" y="78" text-anchor="middle">masked self-attn</text>
+        <text class="small-cap" x="470" y="92" text-anchor="middle">feed-forward · norms</text>
+        <text class="small-cap" x="470" y="106" text-anchor="middle">blocks × depth</text>
+        <path class="arrow" style="marker-end:url(#ah-llm2)" d="M540 74 H564"/>
+        <rect class="box" x="564" y="46" width="88" height="56" rx="4"/>
+        <text class="box-title" x="608" y="72" text-anchor="middle">h_L</text>
+        <text class="small-cap" x="608" y="88" text-anchor="middle">last state</text>
+        <path class="arrow" style="marker-end:url(#ah-llm2)" d="M652 74 H684"/>
+        <rect class="box" x="684" y="48" width="56" height="52" rx="4"/>
+        <text class="box-title" x="712" y="78" text-anchor="middle">W_{\mathrm{lm}}</text>
+        <path class="arrow" style="marker-end:url(#ah-llm2)" d="M712 100 V140"/>
+        <rect class="box" x="638" y="140" width="148" height="44" rx="4"/>
+        <text class="box-title" x="712" y="168" text-anchor="middle">logits u in R^{|V|}</text>
+        <text class="small-cap" x="360" y="24">Fig L7b · One forward step at boundary L yields logits for z_{L+1}; generation repeats with growing prefix.</text>
+      </svg>
+      <p class="diagram-caption">Fig L7b — Decoder-only models apply causal masking so position \(t\) never attends to \(t{+}1,\ldots\); the hidden \(h_t\) at the final prompt index feeds the language-model head.</p>
+
+      <h3>L7.3 · Autoregressive assessment distribution</h3>
+      <p>Conditioned on prompt tokens \(z_{1:L}\), the model defines a distribution over continuations by chaining conditional categoricals. Writing \(\tilde{z}_{1:t}=(z_1,\ldots,z_t)\) for the growing prefix,</p>
+      <div class="katex-block">\[
+        p_\theta\bigl(z_{L+1:T}\mid z_{1:L}\bigr)
+        \;=\;\prod_{t=L}^{T-1} p_\theta\bigl(z_{t+1}\mid \tilde{z}_{1:t}\bigr),
+        \qquad
+        p_\theta(\cdot\mid \tilde{z}_{1:t})=\mathrm{Categorical}\bigl(\mathrm{softmax}(u_t)\bigr),
+      \]</div>
+      <p>where \(u_t\in\mathbb{R}^{|\mathcal{V}|}\) are logits produced by one forward pass on \(\tilde{z}_{1:t}\). The adapter passes temperature \(\tau>0\); sampling applies temperature scaling before softmax,</p>
+      <div class="katex-block">\[
+        \mathbb{P}(z_{t+1}=v\mid \tilde{z}_{1:t})\;\propto\;\exp\bigl(u_{t,v}/\tau\bigr),\qquad v\in\mathcal{V}.
+      \]</div>
+      <p>Low \(\tau\) sharpens the distribution toward greedy-like behaviour; \(\tau\to 0^+\) approximates \(\arg\max_v u_{t,v}\) when ties are resolved per implementation.</p>
+
+      <svg class="pipeline-svg" viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" aria-label="Autoregressive decoding loop">
+        <defs>
+          <marker id="ah-llm3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#a89f91"/>
+          </marker>
+        </defs>
+        <rect class="box" x="24" y="40" width="140" height="48" rx="4"/>
+        <text class="box-title" x="94" y="68" text-anchor="middle">prefix z_{1:t}</text>
+        <path class="arrow" style="marker-end:url(#ah-llm3)" d="M164 64 H196"/>
+        <rect class="box" x="196" y="34" width="160" height="60" rx="4"/>
+        <text class="box-title" x="276" y="58" text-anchor="middle">forward_θ</text>
+        <text class="small-cap" x="276" y="76" text-anchor="middle">KV-cache reuse</text>
+        <path class="arrow" style="marker-end:url(#ah-llm3)" d="M356 64 H388"/>
+        <rect class="box" x="388" y="40" width="120" height="48" rx="4"/>
+        <text class="box-title" x="448" y="68" text-anchor="middle">softmax(u_t / τ)</text>
+        <path class="arrow" style="marker-end:url(#ah-llm3)" d="M508 64 H540"/>
+        <rect class="box" x="540" y="40" width="100" height="48" rx="4"/>
+        <text class="box-title" x="590" y="68" text-anchor="middle">sample z_{t+1}</text>
+        <path class="arrow" style="marker-end:url(#ah-llm3)" d="M590 88 V150 H94 V88"/>
+        <text class="small-cap" x="340" y="130">append · stop?</text>
+        <rect class="box" x="268" y="158" width="224" height="48" rx="4"/>
+        <text class="box-title" x="380" y="186" text-anchor="middle">stop if EOS or ≥ M new tokens (num_predict)</text>
+        <path class="arrow" style="marker-end:url(#ah-llm3)" d="M492 158 V130"/>
+        <text class="small-cap" x="380" y="24">Fig L7c · Each new assessment token conditions on all prior tokens (prompt + generated).</text>
+      </svg>
+      <p class="diagram-caption">Fig L7c — Ollama maps our <code>max_tokens</code> (Python) to <code>num_predict</code>: an upper bound on how many tokens may be <em>generated</em> after the prompt. Together with EOS sampling this bounds continuation length.</p>
+
+      <h3>L7.4 · From generated text to extraction rows</h3>
+      <p>Let \(Z=z_{1:T}\) be the full token sequence after stopping, and \(Y_i=\mathrm{Detok}(z_{L+1:T})\) the continuation text (assessment surface). The pipeline constrains admissible \(Y_i\) only <em>softly</em> via the prompt (“JSON lines only”); there is no grammar-constrained decoder in code. Thus \(\mathrm{Parse}\) from L4 is a deterministic <strong>partial</strong> map: only newline-separated substrings that decode as JSON objects contribute rows; all other lines are dropped.</p>
+      <div class="katex-block">\[
+        \mathrm{Pred}_{\mathrm{LLM}}(i)\;=\;\mathrm{Parse}\bigl(Y_i\bigr),\qquad
+        Y_i\sim p_\theta(\cdot\mid z_{1:L}(P_i)),
+      \]</div>
+      <p class="statement"><strong>Remark (eligibility).</strong> Unlike constrained decoding, invalid JSON does not block sampling; it yields fewer rows after \(\mathrm{Parse}\), which can trigger stub fallback (L5). The “architecture” responsible for <em>structured</em> assessments is therefore the joint effect of instruction tuning + greedy-ish decoding (\(\tau\approx 0.3\) default) + post-parse coercion (L4), not a separate classification head.</p>
+    </section>
+  </div>
+
+  <!-- ========== COMPARE PROOFS ========== -->
+  <div id="panel-proofs" class="main-panel" role="tabpanel" hidden>
+    <nav class="toc" aria-label="Proof sections">
+      <div class="toc-inner">
+        <a href="#pr-setup">§1 Setup</a>
+        <a href="#pr-lemma-eta">§2 η</a>
+        <a href="#pr-algo">§3 Algorithm</a>
+        <a href="#pr-thm-inj">§4 Matching</a>
+        <a href="#pr-exact">§5 Exact</a>
+        <a href="#pr-metrics">§6 Metrics</a>
+        <a href="#pr-index">§7 Index</a>
+        <a href="#pr-both">§8 both_match</a>
+      </div>
+    </nav>
+
+    <section class="block" id="pr-setup">
+      <h2>§1 · Setup</h2>
+      <p>Fix a document index. Let \(G=(g_0,\ldots,g_{n_H-1})\) and \(L=(\ell_0,\ldots,\ell_{n_L-1})\) be finite sequences of annotation rows. Choose \(\tau\) mapping rows to match strings (<code>entry_rus</code> or <code>entry_eng</code>). Write \(T_i=\tau(g_i)\), \(U_j=\tau(\ell_j)\).</p>
+      <div class="katex-block">\[
+        \eta(s)\;:=\;\mathrm{lower}\bigl(\mathrm{strip}(\mathrm{collapse}(s))\bigr),\qquad \Sigma^\ast\to\Sigma^\ast.
+      \]</div>
+      <p>\(\mathrm{collapse}\) replaces maximal whitespace runs by one ASCII space (Python <code>" ".join(s.split())</code>).</p>
+    </section>
+
+    <section class="block" id="pr-lemma-eta">
+      <h2>§2 · Lemma (Idempotence)</h2>
+      <p class="statement"><strong>Lemma 2.1.</strong> For all \(s\in\Sigma^\ast\), \(\eta(\eta(s))=\eta(s)\).</p>
+      <div class="proof"><strong>Proof.</strong> If \(\eta(s)=\varepsilon\), stripping/collapsing stays empty. Else \(\eta(s)\) is normalized whitespace-wise; second application is idle; lower is idempotent. \(\square\)</div>
+    </section>
+
+    <section class="block" id="pr-algo">
+      <h2>§3 · Algorithm \(\mathcal{A}\) (content pairing)</h2>
+      <ul>
+        <li><strong>Phase A.</strong> Scan \(j=0,\ldots,n_L-1\). For unused \(j\) with \(\eta(U_j)\neq\varepsilon\), pair with smallest unused \(i\) having \(\eta(T_i)=\eta(U_j)\).</li>
+        <li><strong>Phase B.</strong> For unused \(i\) in ascending order, scan ascending \(j\) for substring containment with \(\min(|a|,|b|)\ge 4\) on \(a=\eta(T_i)\), \(b=\eta(U_j)\).</li>
+      </ul>
+    </section>
+
+    <section class="block" id="pr-thm-inj">
+      <h2>§4 · Theorem (Partial matching)</h2>
+      <p class="statement"><strong>Theorem 4.1.</strong> Output \(P\) satisfies at-most-one partner per GT index and per LLM index; \(|P|\le\min(n_H,n_L)\).</p>
+      <div class="proof"><strong>Proof.</strong> Each pairing marks both endpoints used; guards forbid reuse. \(\square\)</div>
+      <h3>Remark</h3>
+      <p>\(\mathcal{A}\) is greedy and need not maximize \(|P|\).</p>
+    </section>
+
+    <section class="block" id="pr-exact">
+      <h2>§5 · Proposition (Exact-consistency)</h2>
+      <p class="statement"><strong>Proposition 5.1.</strong> If \(\eta(T_i)=\eta(U_j)\neq\varepsilon\) and both remain unused when Phase&nbsp;A scans \(j\), then \(i\) pairs with some \(j'\le j\); under further hypotheses on earlier skips, \(j'=j\).</p>
+      <div class="proof"><strong>Proof.</strong> At iteration \(j\), smallest unused GT with label \(\eta(U_j)\) wins; \(i\) is eligible unless consumed earlier. \(\square\)</div>
+    </section>
+
+    <section class="block" id="pr-metrics">
+      <h2>§6 · Content-mode accuracy</h2>
+      <p>Let \(\mathcal{R}^{\mathrm{p}}=\{r:\texttt{paired\_with\_llm}=\mathrm{true}\}\), \(m=|\mathcal{R}^{\mathrm{p}}|\).</p>
+      <div class="katex-block">\[
+        \mathrm{cat}(r)=\mathbf{1}\{\texttt{human\_category}=\texttt{llm\_category}\},\quad
+        \mathrm{fram}(r)=\mathbf{1}\{\texttt{human\_framing}=\texttt{llm\_framing}\}.
+      \]</div>
+      <p class="statement"><strong>Theorem 6.1.</strong> For \(m>0\), \(\mathrm{Acc}^{\mathrm{cat}},\mathrm{Acc}^{\mathrm{fram}},\mathrm{Acc}^{\mathrm{both}}\in[0,100]\).</p>
+      <div class="proof"><strong>Proof.</strong> Average of indicators times \(100\). \(\square\)</div>
+      <p class="statement"><strong>Theorem 6.2.</strong> \(\mathrm{Acc}^{\mathrm{both}}\le \mathrm{Acc}^{\mathrm{cat}}\) and \(\le \mathrm{Acc}^{\mathrm{fram}}\).</p>
+      <div class="proof"><strong>Proof.</strong> Pointwise \(\mathrm{cat}\cdot\mathrm{fram}\le \mathrm{cat},\mathrm{fram}\). \(\square\)</div>
+      <p class="statement"><strong>Corollary 6.3.</strong> \(\mathrm{Acc}^{\mathrm{both}}\le \min(\mathrm{Acc}^{\mathrm{cat}},\mathrm{Acc}^{\mathrm{fram}})\).</p>
+      <p>If \(m=0\), the implementation sets all three accuracies to \(0\).</p>
+    </section>
+
+    <section class="block" id="pr-index">
+      <h2>§7 · Index-mode accuracy</h2>
+      <p>With \(N=\max(n_H,n_L)\), accuracies are \(100/N\) times sums of indicators over padded aligned rows — again in \([0,100]\) if \(N>0\).</p>
+    </section>
+
+    <section class="block" id="pr-both">
+      <h2>§8 · \(\texttt{both\_match}\)</h2>
+      <p class="statement"><strong>Proposition 8.1.</strong> \(\texttt{both\_match}\) iff \(\mathrm{cat}(r)\cdot\mathrm{fram}(r)=1\) for \(\{0,1\}\) indicators.</p>
+      <div class="proof"><strong>Proof.</strong> Code conjunction equals product of Boolean indicators. \(\square\)</div>
+    </section>
+  </div>
+
+  <footer>
+    Vozmezdie reference · <a href="experiment_primer.html">Experiment primer</a>
+    · <a href="index.html">Research Lab</a>
+    · LaTeX whitepaper: <code style="font-family:var(--mono);font-size:0.85em;">docs/overleaf_whitepaper/main.tex</code> (Overleaf)
+  </footer>
+</div>
+
+<script>
+(function() {
+  document.querySelectorAll(".main-tab-row button").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var pid = btn.getAttribute("data-main-panel");
+      document.querySelectorAll(".main-tab-row button").forEach(function(b) {
+        var on = b === btn;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      document.querySelectorAll(".main-panel").forEach(function(p) {
+        var show = p.id === pid;
+        p.classList.toggle("active", show);
+        if (show) { p.removeAttribute("hidden"); }
+        else { p.setAttribute("hidden", "hidden"); }
+      });
+    });
+  });
+
+  document.querySelectorAll(".tab-row").forEach(function(row) {
+    row.querySelectorAll("button").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        var panelId = btn.getAttribute("data-panel");
+        row.querySelectorAll("button").forEach(function(b) {
+          b.classList.toggle("active", b === btn);
+          b.setAttribute("aria-selected", b === btn ? "true" : "false");
+        });
+        var scope = btn.closest("section.fig");
+        if (!scope) return;
+        scope.querySelectorAll(".panel").forEach(function(p) {
+          p.classList.toggle("panel-hidden", p.id !== panelId);
+        });
+      });
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof renderMathInElement !== "undefined") {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "\\(", right: "\\)", display: false},
+          {left: "\\[", right: "\\]", display: true}
+        ],
+        throwOnError: false
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

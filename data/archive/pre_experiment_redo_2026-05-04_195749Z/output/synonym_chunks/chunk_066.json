@@ -1,0 +1,126 @@
+{
+  "chunk_id": 66,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Ivano-Frankivsk — 22",
+      "entry_rus": "Ивано-Франковской – 22",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ivano-Frankivsk — 29",
+      "entry_rus": "в Ивано-Франковской 29",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "J. Mace",
+      "entry_rus": "Дж. Мейс",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "J. Patterson",
+      "entry_rus": "Дж. Паттерсону",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "J. Sauvé",
+      "entry_rus": "Ж. Сове",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "January 1987",
+      "entry_rus": "январского /1987 г./",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "January 28, 1983",
+      "entry_rus": "28 января 1983 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Jewish nationalist",
+      "entry_rus": "еврейским националистом",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "judicial authorities of the republic",
+      "entry_rus": "судебными органами республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "justice authorities of the United States",
+      "entry_rus": "органы юстиции США",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "k.n. Vik.",
+      "entry_rus": "к.н. Вик.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Karimov hijacked",
+      "entry_rus": "Каримов угнал",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "KGB authorities",
+      "entry_rus": "Органами КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "KGB bodies of the Republic",
+      "entry_rus": "органы КГБ республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "KGB of the Ukrainian SSR",
+      "entry_rus": "КГБ УССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "KGB of the USSR",
+      "entry_rus": "КГБ СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "KGB of the USSR has been informed",
+      "entry_rus": "КГБ СССР доложено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "KGB of the USSR has been informed",
+      "entry_rus": "КГБ СССР известно",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "KGB under the USSR Council of Ministers",
+      "entry_rus": "КГБ при СМ СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Kharkiv",
+      "entry_rus": "Харькове",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 6,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "[they were] recovered",
+      "entry_rus": "изъяты",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "[were] postgraduates, interns, students, and technical/vocational school students",
+      "entry_rus": "аспиранты, стажёры, студенты, учащиеся техникумов и училищ",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a \"demonstration\" is planned",
+      "entry_rus": "намечается демонстрация",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a book titled \"Deception, Famine, and Fascism\"",
+      "entry_rus": "книга \"Обман, голод и фашизм\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a border patrol discovered",
+      "entry_rus": "пограничным нарядом были обнаружены",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "a British journalist connected to intelligence services",
+      "entry_rus": "связанный со спецслужбами английский журналист",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a collision occurred",
+      "entry_rus": "произошло их столкновение",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a collision occurred",
+      "entry_rus": "произошло столкновение",
+      "category": "Events",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "a demonstration of Soviet feature and documentary films has been organized",
+      "entry_rus": "организована демонстрация советских художественных и документальных фильмов",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "a detained border violator",
+      "entry_rus": "задержанного им нарушителя границы",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "a dummy hanging",
+      "entry_rus": "подвешенное чучело",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a gathering organized [...] took place",
+      "entry_rus": "состоялось организованное [...] сборище",
+      "category": "Events",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "a handwritten leaflet was found",
+      "entry_rus": "была обнаружена исполненная от руки листовка",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a leaflet",
+      "entry_rus": "листовку",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a long-term character",
+      "entry_rus": "долговременный характер",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a member of the Komsomol",
+      "entry_rus": "член ВЛКСМ",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "a military vehicle UAZ-452",
+      "entry_rus": "военную машину УАЗ-452",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a new [version] was published",
+      "entry_rus": "издан новый",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "a new impetus has been given",
+      "entry_rus": "придан новый импульс",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "a note was published",
+      "entry_rus": "была опубликована заметка",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

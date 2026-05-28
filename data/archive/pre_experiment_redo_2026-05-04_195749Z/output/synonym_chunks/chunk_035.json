@@ -1,0 +1,126 @@
+{
+  "chunk_id": 35,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "dated February 27, 1987",
+      "entry_rus": "27 февраля 1987 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "dated May 25, 1983,",
+      "entry_rus": "25 мая 1983 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "December 14, 1976",
+      "entry_rus": "14 декабря 1976 года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "December 1976",
+      "entry_rus": "декабре 1976 года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "December 29, 1986",
+      "entry_rus": "29 декабря 1986 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "decided",
+      "entry_rus": "приняло решение",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "decided to pardon him",
+      "entry_rus": "принял решение о его помиловании",
+      "category": "Actions",
+      "framing": "Legal Framework"
+    },
+    {
+      "entry_eng": "dedicated to",
+      "entry_rus": "приуроченных к",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "dedicated to the 1000th anniversary of the Baptism of Rus’",
+      "entry_rus": "по поводу 1000-летия крещения Руси",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "dedicated to the “1000th anniversary of the baptism of Rus’.”",
+      "entry_rus": "приуроченых к «1000-летию крещения Руси»",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Delegation members – 10",
+      "entry_rus": "членов делегаций – 10",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Delegation Members – 2",
+      "entry_rus": "членов делегаций – 2",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Delegation members – 3",
+      "entry_rus": "членов делегаций 3",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Delegation Members – 4",
+      "entry_rus": "членов делегаций 4",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Delegation members — 24",
+      "entry_rus": "членов делегаций 24",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "delegation of scientists",
+      "entry_rus": "делегация ученых",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "deliberate concealment of former members of the SS \"Galicia\" Division and other executioners",
+      "entry_rus": "в преднамеренном укрывательстве бывших участников дивизии СС \"Галичина\" и других карателей",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "demanding the extradition",
+      "entry_rus": "с требованием экстрадиции",
+      "category": "Actions",
+      "framing": "Legal Framework"
+    },
+    {
+      "entry_eng": "Demjanjuk",
+      "entry_rus": "Демьянюка",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "democratic transformations",
+      "entry_rus": "демократическим преобразованиям",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    }
+  ]
+}

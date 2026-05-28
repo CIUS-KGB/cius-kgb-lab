@@ -1,0 +1,126 @@
+{
+  "chunk_id": 73,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "measuring 14×6.5 cm",
+      "entry_rus": "размером 14×6,5 см",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "meeting took place",
+      "entry_rus": "состоялась встреча",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "member of the Komsomol",
+      "entry_rus": "член ВЛКСМ",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "members of delegations",
+      "entry_rus": "членов делегации",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Mikitas V.L.",
+      "entry_rus": "Микитасю В.Л.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Military Attaché",
+      "entry_rus": "военный атташе",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Military Attaché of the Embassy of the Federal Republic of Germany",
+      "entry_rus": "военный атташе посольства ФРГ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Military Attaché of the U.S. Embassy",
+      "entry_rus": "военный атташе посольства США",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Military Attaché staff member",
+      "entry_rus": "сотрудник военного атташе этого посольства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Mine Accident",
+      "entry_rus": "Авария на шахте",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ministry of Atomic Energy of the USSR",
+      "entry_rus": "Минатомэнерго СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "modeled after the Zionist institute “Yad Vashem”",
+      "entry_rus": "по типу сионистского института \"Яд Вашем\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Moldavian SSR",
+      "entry_rus": "Молдавской ССР",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "more than 40 war criminals",
+      "entry_rus": "более 40 военных преступниках",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "More than 80 anti-OUN articles were published",
+      "entry_rus": "опубликовано свыше 80 статей антиоуновской направленности",
+      "category": "Material Resources",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "most American journalists accredited",
+      "entry_rus": "большинство аккредитованных",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Munich",
+      "entry_rus": "в Мюнхене",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "N. A. Horbal",
+      "entry_rus": "Горбаля Н. А.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "N. Golushko",
+      "entry_rus": "Н. Голушко",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "N. Golushko",
+      "entry_rus": "Н.Голушко",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

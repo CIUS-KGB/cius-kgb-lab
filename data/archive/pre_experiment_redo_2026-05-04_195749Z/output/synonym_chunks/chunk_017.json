@@ -1,0 +1,126 @@
+{
+  "chunk_id": 17,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "and submitted an appeal to the authorities",
+      "entry_rus": "и обратился в инстанции",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and T. Mazouz",
+      "entry_rus": "и Т. Мазуз",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and T. Nakata",
+      "entry_rus": "и Т. Наката",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and Ternopil Oblast",
+      "entry_rus": "и Тернопольской областях",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and the \"artificial famine\"",
+      "entry_rus": "\"искусственным голодом\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and the \"Ukrainian American Coordinating Council\" in the United States",
+      "entry_rus": "и \"Украинского американского координационного совета\" в США",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and the \"World Congress of Free Ukrainians\"",
+      "entry_rus": "и \"Всемирном конгрессе свободных украинцев\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and the arrest",
+      "entry_rus": "и аресте",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "and the ceremonial gangway",
+      "entry_rus": "и парадный трап",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and the crimes they committed",
+      "entry_rus": "и совершенных ими преступлениях",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and the directives of the All-Union Conference (May 1986) that followed from them",
+      "entry_rus": "установки Всесоюзного совещания",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and the documentary \"The Commissar of the Special Forces Unit\"",
+      "entry_rus": "и документальный  - \"Комиссар отряда особого назначения\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and the expectations of the new generation of emigrants",
+      "entry_rus": "и требованиям нового поколения эмиграции",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and the foreign nationalist",
+      "entry_rus": "и зарубежных националистических [организаций]",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and the growing interest in the republic from the emigre community",
+      "entry_rus": "роста интереса к республике со стороны эмиграции",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and the hostile activities of Israeli intelligence services",
+      "entry_rus": "враждебной деятельности израильских спецслужб",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and the KGB Directorate",
+      "entry_rus": "и УКГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and the KGB under the Council of Ministers of the Moldavian SSR",
+      "entry_rus": "и КГБ при СМ Молдавской ССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and the measures taken",
+      "entry_rus": "и предпринимаемых мерах",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and the Ministry of the Merchant Fleet of the USSR",
+      "entry_rus": "и Министерства морского флота СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

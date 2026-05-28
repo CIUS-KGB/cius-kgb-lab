@@ -1,0 +1,126 @@
+{
+  "chunk_id": 103,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "situation",
+      "entry_rus": "обстановка",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "slanderous fabrications",
+      "entry_rus": "клеветнические измышления",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "slightly wounded",
+      "entry_rus": "легко ранили",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "slipped",
+      "entry_rus": "оступился",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "so-called \"Ukrainian Helsinki Group\"",
+      "entry_rus": "так называемой \"украинской хельсинкской группы\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "socialist countries",
+      "entry_rus": "социалистических стран",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "Sokal Raion",
+      "entry_rus": "Сокальского района",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "solving one of the important tasks",
+      "entry_rus": "Решая одну из важных задач",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Soviet justice",
+      "entry_rus": "советского правосудия",
+      "category": "Legal Framework",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "Speaking about their attitude",
+      "entry_rus": "Говоря о своем отношении",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "special attention was paid",
+      "entry_rus": "Серьезное внимание уделялось",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "special government commission",
+      "entry_rus": "специальная правительственная комиссия",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "specialists",
+      "entry_rus": "специалистов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Specialists explain the appearance of phenol",
+      "entry_rus": "Появление фенола в воде специалисты объясняют",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "specialists – 2,647",
+      "entry_rus": "специалистов – 2647",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Specialists — 159",
+      "entry_rus": "специалистов 159",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "specialists — 4,687",
+      "entry_rus": "специалистов 4 687",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "specially prepared programs produced in the republic have been broadcast",
+      "entry_rus": "распространение подготовленных в республике программ",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "specially revised for Canadian reader",
+      "entry_rus": "специально переработанный для канадского читателя",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "specific facts cited in the book",
+      "entry_rus": "приводимые в книге конкретные факты",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

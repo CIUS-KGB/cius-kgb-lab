@@ -1,0 +1,126 @@
+{
+  "chunk_id": 62,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "including specific facts about their criminal activities",
+      "entry_rus": "приводятся конкретные факты их преступной деятельности",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "including the former German consul in Kyiv",
+      "entry_rus": "бывший германский консул в Киеве",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including Ukrainian bourgeois nationalists",
+      "entry_rus": "в том числе украинских буржуазных националистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "including with",
+      "entry_rus": "в том числе по находящемуся в",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including: thirteen ships",
+      "entry_rus": "из них тринадцать судов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Incoming reports",
+      "entry_rus": "Поступающие данные",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "increased doses of chlorine were introduced",
+      "entry_rus": "в воду началась подача повышенных доз хлора",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "increased their lobbying efforts",
+      "entry_rus": "усилили обработку",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "indicate that",
+      "entry_rus": "свидетельствуют о том, что",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "individuals committed crimes",
+      "entry_rus": "лиц совершивших преступления",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "influencing members of the American delegation",
+      "entry_rus": "рассчитывая через них склонить участников американской делегации",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "influencing members of the American delegation to raise questions",
+      "entry_rus": "склонить участников американской делегации к обсуждению",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "informed",
+      "entry_rus": "докладывалось",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "initiated by the “Canadian Institute of Ukrainian Studies”",
+      "entry_rus": "по инициативе \"Канадского института украинских исследований\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "instigation of nationalist manifestations",
+      "entry_rus": "инспирацию националистических проявлений",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Institute of Literature of the Academy of Sciences of the Ukrainian SSR",
+      "entry_rus": "институте литературы АН УССР",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "instructed",
+      "entry_rus": "поручено",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "instructed to proceed as scheduled",
+      "entry_rus": "дано указание следовать",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "intelligence services of the main adversary",
+      "entry_rus": "Спецслужбы главного противника",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "intend",
+      "entry_rus": "намерены",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    }
+  ]
+}

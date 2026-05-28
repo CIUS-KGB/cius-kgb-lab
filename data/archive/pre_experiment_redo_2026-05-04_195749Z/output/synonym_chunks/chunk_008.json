@@ -1,0 +1,126 @@
+{
+  "chunk_id": 8,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "A. E. Ivantsov",
+      "entry_rus": "Иванцов А. Е.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A. G. Kholod",
+      "entry_rus": "Холод А. Г.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A. Tkachuk",
+      "entry_rus": "А. Ткачука",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "A. Zhukovsky",
+      "entry_rus": "А. Жуковский",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A.D. Lapin",
+      "entry_rus": "Лапину А. Д.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "A.Klimchuk",
+      "entry_rus": "А.Климчуке",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "about [...] taking place",
+      "entry_rus": "о происходящих",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "about crimes they committed",
+      "entry_rus": "совершенных ими преступлений",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "about KGB efforts documenting",
+      "entry_rus": "о проведенной органами КГБ документации",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "about OUN’s activities",
+      "entry_rus": "о деятельности ОУН",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "about the \"negative consequences\" of this action for OUN",
+      "entry_rus": "по поводу \"негативных последствий\" этой акции для ОУН",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "about the criminal past",
+      "entry_rus": "о преступном прошлом",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "about the executionist activity",
+      "entry_rus": "о карательной деятельности",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "about the subversive plans and schemes",
+      "entry_rus": "о подрывных планах и замыслах",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "about the use of this unit by the Nazis",
+      "entry_rus": "об использовании нацистами данного формирования",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "about the “artificial famine”",
+      "entry_rus": "об \"искусственном голоде\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "about war criminals",
+      "entry_rus": "о военных преступниках",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Abroad",
+      "entry_rus": "за рубежом",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "abroad",
+      "entry_rus": "за рубежом",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "accompanying a delegation from that country",
+      "entry_rus": "сопровождает делегацию этой страны",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

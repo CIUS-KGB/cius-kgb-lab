@@ -1,0 +1,126 @@
+{
+  "chunk_id": 105,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "supplying the city with drinking water",
+      "entry_rus": "снабжающей город питьевой водой",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "support of the progressive public",
+      "entry_rus": "поддержку прогрессивной общественности",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "surrounding the creation",
+      "entry_rus": "по поводу создания",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "suspected of involvement with enemy intelligence agencies",
+      "entry_rus": "подозреваемых в причастности к спецслужбам противника",
+      "category": "Status and Condition",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Syrian military cadets",
+      "entry_rus": "сирийских военных курсантов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "taken",
+      "entry_rus": "заснятые",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Taking into account data on changes",
+      "entry_rus": "С учетом данных об изменениях",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Taking into account the expansion of foreign contacts of Soviet Ukraine",
+      "entry_rus": "С учетом расширения внешних связей Советской Украины",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Taking into account the positive development",
+      "entry_rus": "С учетом успешного развития",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "talks",
+      "entry_rus": "и бесед",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "television",
+      "entry_rus": "телевидения",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "testimony from “eyewitnesses”",
+      "entry_rus": "показания \"очевидцев\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "that a group of schoolchildren found the dummy",
+      "entry_rus": "чучело нашли несколько школьников",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "that arrived via the All-Union Central Council of Trade Unions (VTSPS)",
+      "entry_rus": "прибывшую по линии ВЦСПС",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "that could be used",
+      "entry_rus": "которая может быть использована",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "that expose the falsifications about the “artificial nature of the famine”",
+      "entry_rus": "разоблачающие фальсификации об “искусственном характере голода”",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "that exposed to the world public",
+      "entry_rus": "в которых разоблачалась перед мировой общественностью",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "that he would use his visit to the USSR",
+      "entry_rus": "что использует визит в СССР",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "that Kobyzyev",
+      "entry_rus": "что Кобызев",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "that reactionary circles",
+      "entry_rus": "что реакционные круги",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

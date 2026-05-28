@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-label="Agreement breakdown: how many segments fall into each outcome?">
+<rect x="0.00" y="0.00" width="1200.00" height="500.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="44.00" y="50.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Agreement breakdown: how many segments fall into each outcome?</text>
+<line x1="321.00" y1="102.00" x2="321.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="321.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">0</text>
+<line x1="587.33" y1="102.00" x2="587.33" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="587.33" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">200</text>
+<line x1="853.67" y1="102.00" x2="853.67" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="853.67" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">400</text>
+<line x1="1120.00" y1="102.00" x2="1120.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1120.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">600</text>
+<line x1="321.00" y1="108.00" x2="321.00" y2="432.00" stroke="#111827" stroke-width="1.3"/>
+<text x="720.50" y="490.00" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">Segments (count)</text>
+<rect x="321.00" y="108.00" width="799.00" height="75.75" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="321.00" y="108.00" width="728.42" height="75.75" fill="#16a34a" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="311.00" y="161.03" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Both agreed</text>
+<text x="1041.42" y="161.03" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">547</text>
+<rect x="321.00" y="190.75" width="799.00" height="75.75" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="321.00" y="190.75" width="218.39" height="75.75" fill="#f59e0b" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="311.00" y="243.78" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Framing agreed, category did not</text>
+<text x="531.39" y="243.78" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">164</text>
+<rect x="321.00" y="273.50" width="799.00" height="75.75" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="321.00" y="273.50" width="173.12" height="75.75" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="311.00" y="326.52" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Category agreed, framing did not</text>
+<text x="486.12" y="326.52" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">130</text>
+<rect x="321.00" y="356.25" width="799.00" height="75.75" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="321.00" y="356.25" width="122.51" height="75.75" fill="#dc2626" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="311.00" y="409.27" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Neither agreed</text>
+<text x="435.51" y="409.27" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">92</text>
+</svg>

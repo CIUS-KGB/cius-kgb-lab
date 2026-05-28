@@ -1,0 +1,126 @@
+{
+  "chunk_id": 14,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "and became entangled",
+      "entry_rus": "и завис",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "and brought it into the yard",
+      "entry_rus": "и принесли во двор",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "and Canada",
+      "entry_rus": "и Канаде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and Canada",
+      "entry_rus": "и Канаду",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and carrying 20 passengers",
+      "entry_rus": "с 20 пассажирами",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and centers of ideological subversion of",
+      "entry_rus": "и центров идеологической диверсии",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and committed crimes",
+      "entry_rus": "совершивших преступления",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and concerns have been raised",
+      "entry_rus": "высказывается обеспокоенность",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "and consumer goods",
+      "entry_rus": "и промышленными товарами",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and counter-propaganda materials",
+      "entry_rus": "и контрпропагандистских материалов",
+      "category": "Material Resources",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "and created a number of “committees”",
+      "entry_rus": "создали ряд \"комитетов\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and crossed into the territory",
+      "entry_rus": "и попал на территорию",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "and departed for Odesa",
+      "entry_rus": "убыли в Одессу",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "and E. Wilkoshevsky",
+      "entry_rus": "и Э. Вилькошевский",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and economic nature",
+      "entry_rus": "и экономического характера",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and electromechanic",
+      "entry_rus": "и электрослесарь",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and exposing the provocative campaigns in the West",
+      "entry_rus": "разоблачающие ведущиеся на Западе провокационные кампании",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and foreign OUN",
+      "entry_rus": "и зарубежные ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "and four universities in the province",
+      "entry_rus": "и четырех университетов провинции",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "and health authorities",
+      "entry_rus": "и органов здравоохранения",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

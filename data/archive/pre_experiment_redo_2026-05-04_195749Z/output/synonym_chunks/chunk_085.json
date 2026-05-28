@@ -1,0 +1,126 @@
+{
+  "chunk_id": 85,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "On March 23, 1983",
+      "entry_rus": "23 марта 1983 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on March 29, 1985",
+      "entry_rus": "29 марта 1985 г.)",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On March 2–3",
+      "entry_rus": "2–3 марта",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On March 30, 1987",
+      "entry_rus": "30 марта 1987 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on March 9 of this year",
+      "entry_rus": "от 9 марта с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on May 18 of this year",
+      "entry_rus": "18 мая с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on May 2 of this year",
+      "entry_rus": "2 мая сего года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on May 24 of this year",
+      "entry_rus": "24 мая с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on May 29",
+      "entry_rus": "29 мая",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On May 3 of this year",
+      "entry_rus": "3 мая сего года",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on May 31",
+      "entry_rus": "31 мая",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On Measures for the Discreditation",
+      "entry_rus": "О мерах по компрометации",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "On Measures to Discredit",
+      "entry_rus": "О мерах по компрометации",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "On measures to implement in the Republic the guidelines of the XXVII Congress of the Party",
+      "entry_rus": "\"О мерах по реализации в республике установок ХХVII съезда партии",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "on October 12, at 12:15 a.m.",
+      "entry_rus": "12 октября с.г. в 0 часов 15 минут",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on October 13",
+      "entry_rus": "13 октября",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on October 9, 1983",
+      "entry_rus": "9 октября 1983 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on persons who died",
+      "entry_rus": "о лицах, умерших",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On Planned Anti-Soviet Actions",
+      "entry_rus": "О планируемых [...] антисоветских акциях",
+      "category": "Events",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "On Planned Anti-Soviet Gathering",
+      "entry_rus": "О намечаемом антисоветском сборище",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

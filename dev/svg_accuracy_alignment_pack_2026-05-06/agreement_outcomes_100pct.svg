@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="Accuracy story in one line: 100% of segments, split by agreement outcome">
+<rect x="0.00" y="0.00" width="1200.00" height="420.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="44.00" y="50.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Accuracy story in one line: 100% of segments, split by agreement outcome</text>
+<line x1="80.00" y1="110.00" x2="80.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="80.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">0%</text>
+<line x1="184.00" y1="110.00" x2="184.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="184.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">10%</text>
+<line x1="288.00" y1="110.00" x2="288.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="288.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">20%</text>
+<line x1="392.00" y1="110.00" x2="392.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="392.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">30%</text>
+<line x1="496.00" y1="110.00" x2="496.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="496.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">40%</text>
+<line x1="600.00" y1="110.00" x2="600.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="600.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">50%</text>
+<line x1="704.00" y1="110.00" x2="704.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="704.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">60%</text>
+<line x1="808.00" y1="110.00" x2="808.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="808.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">70%</text>
+<line x1="912.00" y1="110.00" x2="912.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="912.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">80%</text>
+<line x1="1016.00" y1="110.00" x2="1016.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1016.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">90%</text>
+<line x1="1120.00" y1="110.00" x2="1120.00" y2="190.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1120.00" y="210.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">100%</text>
+<rect x="80.00" y="120.00" width="1040.00" height="56.00" fill="#dedad4" stroke="none" stroke-width="1.0" rx="6" ry="6"/>
+<rect x="80.00" y="120.00" width="609.73" height="56.00" fill="#16a34a" stroke="none" stroke-width="1.0" rx="6" ry="6"/>
+<text x="384.87" y="157.52" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">Both agreed — 547 (59%)</text>
+<rect x="689.73" y="120.00" width="182.81" height="56.00" fill="#f59e0b" stroke="none" stroke-width="1.0" rx="6" ry="6"/>
+<rect x="872.54" y="120.00" width="144.91" height="56.00" fill="#2563eb" stroke="none" stroke-width="1.0" rx="6" ry="6"/>
+<rect x="1017.45" y="120.00" width="102.55" height="56.00" fill="#dc2626" stroke="none" stroke-width="1.0" rx="6" ry="6"/>
+<rect x="80.00" y="232.00" width="14.00" height="14.00" fill="#16a34a" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="98.00" y="244.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Both agreed: 547 (59%)</text>
+<rect x="80.00" y="250.00" width="14.00" height="14.00" fill="#f59e0b" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="98.00" y="262.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Framing agreed, category did not: 164 (18%)</text>
+<rect x="80.00" y="268.00" width="14.00" height="14.00" fill="#2563eb" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="98.00" y="280.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Category agreed, framing did not: 130 (14%)</text>
+<rect x="80.00" y="286.00" width="14.00" height="14.00" fill="#dc2626" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="98.00" y="298.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Neither agreed: 92 (9.9%)</text>
+</svg>

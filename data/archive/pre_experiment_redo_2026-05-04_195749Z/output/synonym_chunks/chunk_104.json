@@ -1,0 +1,126 @@
+{
+  "chunk_id": 104,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "spent 1.2 million dollars",
+      "entry_rus": "израсходовал 1,2 миллиона долларов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "State Security CommitteeUkrainian SSR",
+      "entry_rus": "Комитет государственной безопасности Украинской ССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "stating its harmlessness",
+      "entry_rus": "сообщалось о её безвредности",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "stationed in the village of Davydkivtsi",
+      "entry_rus": "дислоцируется в с. Давыдковцы",
+      "category": "Places",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "strengthening international and patriotic education",
+      "entry_rus": "усиления интернационального и патриотического воспитания\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "student of GPTU-39",
+      "entry_rus": "учащийся ГПТУ-39",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "student of the Kryvyi Rih College of Mining Electromechanics",
+      "entry_rus": "учащийся Криворожского техникума горной электромеханики",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "students",
+      "entry_rus": "студентов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "students of technical schools",
+      "entry_rus": "учащихся техникумов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "students – 721",
+      "entry_rus": "учащихся – 721",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "students — 728",
+      "entry_rus": "учащихся 728",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "studying in higher education institutions",
+      "entry_rus": "обучающихся в вузах",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "submitted a report to the government",
+      "entry_rus": "представила правительству отчет",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "submitted an appeal to the authorities",
+      "entry_rus": "обратился в инстанции",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Submitted for informational purposes",
+      "entry_rus": "Докладываем в порядке информации",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "substantiated data",
+      "entry_rus": "аргументированных данных",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "such enterprises exist",
+      "entry_rus": "они имеются",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Sumy region",
+      "entry_rus": "Сумской области",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Sumy — 12",
+      "entry_rus": "в Сумской 12",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Sumy — 22",
+      "entry_rus": "в Сумской 22",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

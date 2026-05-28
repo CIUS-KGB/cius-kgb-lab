@@ -1,0 +1,126 @@
+{
+  "chunk_id": 21,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "are fabricated",
+      "entry_rus": "являются подложными",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "are implementing a set of special measures to counteract",
+      "entry_rus": "осуществляется комплекс специальных мероприятий по противодействию",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "are making persistent attempts to",
+      "entry_rus": "предпринимают настойчивые попытки к",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are monitoring",
+      "entry_rus": "контролируется",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "are planned to be published",
+      "entry_rus": "намечается опубликовать",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "are under control",
+      "entry_rus": "розыскные мероприятия взяты на контроль",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Argentina",
+      "entry_rus": "Аргентине",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "around 22:30",
+      "entry_rus": "около 22 часов 30 мин.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "around the so-called \"Soviet military threat\"",
+      "entry_rus": "вокруг так называемой \"советской военной угрозы\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "Arrest of a Former Punitive Collaborator",
+      "entry_rus": "Арест бывшего карателя",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "arrived",
+      "entry_rus": "прибыли",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "arrived",
+      "entry_rus": "прибыл",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Arrived",
+      "entry_rus": "прибывших",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Arrived at the High-Voltage Equipment Plant of the USSR Ministry of Electrical Industry",
+      "entry_rus": "прибыл на завод высоковольтной аппаратуры Минэлектротехпрома СССР",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "arrived at the Ministry of Coal Industry of the Ukrainian SSR",
+      "entry_rus": "прибыли в Минуглепром УССР",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "arrived at the Ukrainian Society for Cultural Relations with Foreign Countries",
+      "entry_rus": "прибыли в Украинское общество культурных связей с зарубежными странами",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "arrived at the Ukrainian Society for Friendship and Cultural Relations with Foreign Countries",
+      "entry_rus": "прибыли в Украинское общество дружбы и культурной связи с зарубежными странами",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Arrived October 11",
+      "entry_rus": "с 11 октября с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Arrived on October 12 of this year",
+      "entry_rus": "с 12 октября с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "arrived on private business",
+      "entry_rus": "прибывших по частным делам",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "term_results": [
+    {
+      "entry_eng": "120 persons",
+      "entry_rus": "120 чел.",
+      "definition_eng": "Headcount; numerical designation of individuals in bureaucratic report.",
+      "definition_rus": "Численность; количественное обозначение лиц в бюрократическом отчете.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "1366 radio and television programs (1985 - 1394)",
+      "entry_rus": "радиотелепередач (1985 г.- 1394)",
+      "definition_eng": "Count of broadcast programs with year notation; figure appears to conflate year and quantity (1394 likely typo or different metric).",
+      "definition_rus": "Количество радиотелепередач с указанием года; цифры, вероятно, смешивают год и количество.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "14.Х.87",
+      "entry_rus": "14.Х.87 г.",
+      "definition_eng": "Date in European format (14 October 1987); Roman numeral for month.",
+      "definition_rus": "Дата в европейском формате (14 октября 1987 г.); римская цифра для обозначения месяца.",
+      "synonyms_eng": ["14 October 1987", "14.10.87", "October 14, 1987"],
+      "synonyms_rus": ["14.Х.87", "14 октября 1987 г.", "14.10.1987"]
+    },
+    {
+      "entry_eng": "16 radio and TV programs",
+      "entry_rus": "16 радиотелепередач",
+      "definition_eng": "Count of broadcast media output; activity or production statistic.",
+      "definition_rus": "Количество радиотелепередач; статистика деятельности или производства.",
+      "synonyms_eng": ["16 broadcasts", "16 radio/TV programs", "sixteen programs"],
+      "synonyms_rus": ["16 радиотелепередач", "16 передач", "шестнадцать программ"]
+    },
+    {
+      "entry_eng": "17,232 foreigners",
+      "entry_rus": "17 232 иностранца",
+      "definition_eng": "Headcount of non-citizens; typical formulation in Soviet travel or border statistics.",
+      "definition_rus": "Численность иностранных граждан; типичная формулировка в советской статистике въезда или границы.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "18,538 citizens of socialist countries",
+      "entry_rus": "18538 граждан социалистических стран",
+      "definition_eng": "Headcount of visitors or travelers from Warsaw Pact and allied socialist states; category used in Soviet tourism and border reporting.",
+      "definition_rus": "Численность посетителей или путешественников из стран соцлагеря; категория советской туристической и пограничной отчетности.",
+      "synonyms_eng": ["18,538 nationals of socialist countries", "18,538 visitors from socialist bloc", "socialist-country nationals: 18,538"],
+      "synonyms_rus": ["18538 граждан соцстран", "18538 граждан социалистических стран", "граждан соцлагеря: 18538"]
+    },
+    {
+      "entry_eng": "19,856 foreigners",
+      "entry_rus": "19 856 иностранцев",
+      "definition_eng": "Headcount of non-citizens in bureaucratic statistics.",
+      "definition_rus": "Численность иностранных граждан в бюрократической статистике.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "19,877 foreigners",
+      "entry_rus": "19877 инностранцев",
+      "definition_eng": "Headcount of non-citizens; Russian contains typo (инностранцев for иностранцев).",
+      "definition_rus": "Численность иностранных граждан; опечатка в оригинале (инностранцев вместо иностранцев).",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "1987",
+      "entry_rus": "на 1987 год",
+      "definition_eng": "Calendar year designation; temporal reference in reports.",
+      "definition_rus": "Обозначение календарного года; временная отсылка в отчетах.",
+      "synonyms_eng": ["year 1987", "1987", "in 1987"],
+      "synonyms_rus": ["1987 год", "на 1987 г.", "в 1987 году"]
+    },
+    {
+      "entry_eng": "1988",
+      "entry_rus": "1988 год",
+      "definition_eng": "Calendar year designation; temporal reference.",
+      "definition_rus": "Обозначение календарного года; временная отсылка.",
+      "synonyms_eng": ["year 1988", "1988", "in 1988"],
+      "synonyms_rus": ["1988 год", "в 1988 г.", "год 1988"]
+    },
+    {
+      "entry_eng": "2 from India — 114",
+      "entry_rus": "2 из Индии 114",
+      "definition_eng": "Country-of-origin breakdown with numeric codes; fragment of visitor or personnel statistics.",
+      "definition_rus": "Разбивка по странам происхождения с цифровыми кодами; фрагмент статистики посетителей или кадров.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "2 from Japan",
+      "entry_rus": "2 из Японии",
+      "definition_eng": "Two persons originating from Japan; country-of-origin designation in travel or personnel statistics.",
+      "definition_rus": "Два лица из Японии; указание страны происхождения в туристической или кадровой статистике.",
+      "synonyms_eng": ["2 from Japan", "two Japanese nationals", "2 Japanese visitors"],
+      "synonyms_rus": ["2 из Японии", "двое из Японии", "2 гражданина Японии"]
+    },
+    {
+      "entry_eng": "2 from the FRG — 71",
+      "entry_rus": "2 из ФРГ 71",
+      "definition_eng": "Country-of-origin designation (FRG = West Germany) with numeric code; fragment of statistics.",
+      "definition_rus": "Указание страны происхождения (ФРГ) с цифровым кодом; фрагмент статистики.",
+      "synonyms_eng": ["2 from West Germany", "2 from FRG"],
+      "synonyms_rus": ["2 из ФРГ", "2 из Западной Германии"]
+    },
+    {
+      "entry_eng": "2 from the U.S.",
+      "entry_rus": "2 из США",
+      "definition_eng": "Two persons originating from the United States; country-of-origin designation.",
+      "definition_rus": "Два лица из США; указание страны происхождения.",
+      "synonyms_eng": ["2 from the United States", "2 American nationals", "two from USA"],
+      "synonyms_rus": ["2 из США", "двое из США", "2 гражданина США"]
+    },
+    {
+      "entry_eng": "2 from Turkey",
+      "entry_rus": "2 из Турции",
+      "definition_eng": "Two persons originating from Turkey; country-of-origin designation.",
+      "definition_rus": "Два лица из Турции; указание страны происхождения.",
+      "synonyms_eng": ["2 from Turkey", "two Turkish nationals", "2 Turkish visitors"],
+      "synonyms_rus": ["2 из Турции", "двое из Турции", "2 гражданина Турции"]
+    },
+    {
+      "entry_eng": "20,132 foreigners",
+      "entry_rus": "20 132 иностранца",
+      "definition_eng": "Headcount of non-citizens; bureaucratic statistics.",
+      "definition_rus": "Численность иностранных граждан; бюрократическая статистика.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "21,050 citizens of socialist countries",
+      "entry_rus": "21050 граждан социалистических стран",
+      "definition_eng": "Headcount of nationals from socialist bloc states; Soviet reporting category.",
+      "definition_rus": "Численность граждан стран социалистического лагеря; категория советской отчетности.",
+      "synonyms_eng": ["21,050 socialist-country nationals", "21,050 visitors from socialist bloc"],
+      "synonyms_rus": ["21050 граждан соцстран", "21050 граждан социалистических стран"]
+    },
+    {
+      "entry_eng": "21,374 citizens of socialist countries",
+      "entry_rus": "21374 гражданина социалистических стран",
+      "definition_eng": "Headcount of nationals from socialist bloc states.",
+      "definition_rus": "Численность граждан стран социалистического лагеря.",
+      "synonyms_eng": ["21,374 socialist-country nationals", "21,374 from socialist bloc"],
+      "synonyms_rus": ["21374 гражданина соцстран", "21374 гражданина социалистических стран"]
+    },
+    {
+      "entry_eng": "21,385 foreigners",
+      "entry_rus": "21 385 иностранцев",
+      "definition_eng": "Headcount of non-citizens; bureaucratic statistics.",
+      "definition_rus": "Численность иностранных граждан; бюрократическая статистика.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "23,184 citizens of socialist countries",
+      "entry_rus": "23 184 гражданина социалистических стран",
+      "definition_eng": "Headcount of nationals from socialist bloc states.",
+      "definition_rus": "Численность граждан стран социалистического лагеря.",
+      "synonyms_eng": ["23,184 socialist-country nationals", "23,184 from socialist bloc"],
+      "synonyms_rus": ["23184 гражданина соцстран", "23184 гражданина социалистических стран"]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 133,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "which resulted in the termination of negotiations on the planned unification of foreign nationalist centers",
+      "entry_rus": "что повлекло за собой прекращение переговоров о намечавшемся объединении зарубежных националистических центров",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "which significantly undermined Western public confidence",
+      "entry_rus": "что существенно подорвало доверие западной общественности",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "which were aimed at exposing the machinations",
+      "entry_rus": "которые були направлены на разоблачение происков",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "which were pushed out through operational and other capabilities",
+      "entry_rus": "которые через оперативные и иные возможности продвинуты",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "which, in opposition to Bandera-led efforts to boycott the Ukrainian SSR",
+      "entry_rus": "которые в противовес бандеровским установкам на бойкот УССР",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "while exiting the bath",
+      "entry_rus": "во время выхода из воды",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "while intoxicated",
+      "entry_rus": "находясь в нетрезвом состоянии",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who also served",
+      "entry_rus": "который также являлся",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who are on a reconnaissance trip",
+      "entry_rus": "совершающие разведпоездку",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "who are to be sent into the Ukrainian SSR",
+      "entry_rus": "направляемым в УССР",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "who arrived at the invitation",
+      "entry_rus": "прибывшая по приглашению",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who committed this act",
+      "entry_rus": "совершившего это проявление",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "who committed this act",
+      "entry_rus": "совершившего данное проявление",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "who emigrated",
+      "entry_rus": "выехавшим",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who escaped to the West to avoid",
+      "entry_rus": "скрывшихся на Западе от",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who had participated in atrocities",
+      "entry_rus": "участников злодеяний",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "who had settled",
+      "entry_rus": "осевших там на жительство",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who personally participated",
+      "entry_rus": "принимавших личное участие",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "who proceeded through the crossing despite the stop signal",
+      "entry_rus": "несмотря на запрещающий сигнал светофора",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "who settled in Canada",
+      "entry_rus": "осевших в Канаде",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

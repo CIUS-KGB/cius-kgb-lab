@@ -1,0 +1,126 @@
+{
+  "chunk_id": 77,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "of about 20 Soviet citizens",
+      "entry_rus": "около 20 советских граждан",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of American diplomats",
+      "entry_rus": "американских дипломатов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of an atmosphere of distrust toward their activities",
+      "entry_rus": "атмосферы недоверия к их деятельности",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of an operative officer",
+      "entry_rus": "оперуполномоченного",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of anti-Soviet, nationalist content",
+      "entry_rus": "антисоветского, националистического содержания",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of Bandera and Uniate ringleaders in exile",
+      "entry_rus": "бандеровских и униатских главарей в эмиграции",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of church-sectarian elements",
+      "entry_rus": "церковно-сектантских элементов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of churches and Roman Catholic parishes",
+      "entry_rus": "церквей и костёлов",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of clerical-nationalist centers",
+      "entry_rus": "клерикально-националистических центров",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of committing the said crime",
+      "entry_rus": "в совершении данного преступления,",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of components of electronic equipment",
+      "entry_rus": "деталей электронного оборудования",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of disseminating slanderous fabrications",
+      "entry_rus": "распространению клеветнических измышлений",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of fascist accomplices’ atrocities",
+      "entry_rus": "о злодеяниях фашистских пособников",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of foreign clerical centers",
+      "entry_rus": "зарубежных клерикальных центров",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of foreign nationalist centers",
+      "entry_rus": "зарубежных наццентров",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of former officers",
+      "entry_rus": "бывших полицейских",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of four documentary and television movies",
+      "entry_rus": "4 документальных кино- и телефильмов",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of his apartment",
+      "entry_rus": "своей квартиры",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of hostile actions being planned",
+      "entry_rus": "о планируемых  [...] враждебных акциях",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of imperialism",
+      "entry_rus": "империализма",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

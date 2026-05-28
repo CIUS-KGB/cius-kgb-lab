@@ -1,0 +1,126 @@
+{
+  "chunk_id": 54,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "in his apartment",
+      "entry_rus": "в своей квартире",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in holding 3120 thematic evenings",
+      "entry_rus": "в проведении 3120 тематических вечеров",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "in honor of the so-called “Free Ukraine”",
+      "entry_rus": "в честь так называемой \"свободной Украины\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in hostile activities against the Soviet Union",
+      "entry_rus": "во враждебной деятельности против Советского Союза",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in its efforts to counter [the activities]",
+      "entry_rus": "в работе против",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "in its work against foreign OUN",
+      "entry_rus": "в работе против зарубежных ОУН",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in January of this year",
+      "entry_rus": "в январе с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Jerusalem",
+      "entry_rus": "в Иерусалиме",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in July–August 1987",
+      "entry_rus": "который в июле-августе 1987 года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Kharkiv",
+      "entry_rus": "в Харькове",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Kharkiv -- 2",
+      "entry_rus": "в Харькове -- 2",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Kharkiv Oblast — 12",
+      "entry_rus": "в Харьковской области – 12",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Kirovohrad",
+      "entry_rus": "в Кировограде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Kobyzyev’s behavior",
+      "entry_rus": "в поведении Кобызева",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Kyiv",
+      "entry_rus": "в Киеве",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Kyiv",
+      "entry_rus": "в Киеве",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Kyiv",
+      "entry_rus": "Киеве",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Kyiv Oblast – 9",
+      "entry_rus": "в Киевской области – 9",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Kyiv Oblast — 12",
+      "entry_rus": "в Киевской обл. 12",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Kyiv Oblast — 14",
+      "entry_rus": "в Киевской области 14",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

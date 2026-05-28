@@ -1,0 +1,242 @@
+[
+  {
+    "section": 16,
+    "entry_eng": "On Measures to Discredit",
+    "entry_rus": "О мерах по компрометации",
+    "content_category": "Context and Concepts",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "On Measures to Discredit"
+  },
+  {
+    "section": 17,
+    "entry_eng": "Ukrainian Bourgeois Nationalists",
+    "entry_rus": "украинских буржуазных националистов",
+    "content_category": "Actors",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "Ukrainian Bourgeois Nationalists"
+  },
+  {
+    "section": 18,
+    "entry_eng": "Abroad",
+    "entry_rus": "за рубежом",
+    "content_category": "Places",
+    "framing": "Generic / Neutral",
+    "context": "Abroad"
+  },
+  {
+    "section": 19,
+    "entry_eng": "October 4 and 6, 1976",
+    "entry_rus": "4 и 6 октября 1976 г.",
+    "content_category": "Time",
+    "framing": "Generic / Neutral",
+    "context": "October 4 and 6, 1976"
+  },
+  {
+    "section": 20,
+    "entry_eng": "[Reports] No. 364/sv and 366/sv",
+    "entry_rus": "№№364/св и 366/св",
+    "content_category": "Documents",
+    "framing": "Generic / Neutral",
+    "context": "[Reports] No. 364/sv and 366/sv"
+  },
+  {
+    "section": 21,
+    "entry_eng": "informed",
+    "entry_rus": "докладывалось",
+    "content_category": "Actions",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "informed"
+  },
+  {
+    "section": 22,
+    "entry_eng": "about KGB efforts documenting",
+    "entry_rus": "о проведенной органами КГБ документации",
+    "content_category": "Actions",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "about KGB efforts documenting"
+  },
+  {
+    "section": 23,
+    "entry_eng": "the criminal activities",
+    "entry_rus": "преступной деятельности",
+    "content_category": "Actions",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "the criminal activities"
+  },
+  {
+    "section": 24,
+    "entry_eng": "of individuals residing in the United States",
+    "entry_rus": "проживающих в США",
+    "content_category": "Actors",
+    "framing": "Generic / Neutral",
+    "context": "of individuals residing in the United States"
+  },
+  {
+    "section": 25,
+    "entry_eng": "who had participated in atrocities",
+    "entry_rus": "участников злодеяний",
+    "content_category": "Actions",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "who had participated in atrocities"
+  },
+  {
+    "section": 26,
+    "entry_eng": "on the temporarily Hitlerites-occupied territory of Ukraine",
+    "entry_rus": "на временно оккупированной гитлеровцами территории Украины",
+    "content_category": "Places",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "on the temporarily Hitlerites-occupied territory of Ukraine"
+  },
+  {
+    "section": 27,
+    "entry_eng": "and about the ensuing investigation in the U.S.",
+    "entry_rus": "и о начатом в связи с этим в Соединенных Штатах Америки расследовании",
+    "content_category": "Actions",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "and about the ensuing investigation in the U.S."
+  },
+  {
+    "section": 28,
+    "entry_eng": "against several war criminals",
+    "entry_rus": "в отношении ряда военных преступников",
+    "content_category": "Actors",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "against several war criminals"
+  },
+  {
+    "section": 29,
+    "entry_eng": "In order to discredit",
+    "entry_rus": "В целях компрометации",
+    "content_category": "Context and Concepts",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "In order to discredit"
+  },
+  {
+    "section": 30,
+    "entry_eng": "Ukrainian bourgeois nationalists who had settled in Canada",
+    "entry_rus": "осевших в Канаде украинских буржуазных националистов",
+    "content_category": "Actors",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "Ukrainian bourgeois nationalists who had settled in Canada"
+  },
+  {
+    "section": 31,
+    "entry_eng": "and committed crimes",
+    "entry_rus": "совершивших преступления",
+    "content_category": "Actions",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "and committed crimes"
+  },
+  {
+    "section": 32,
+    "entry_eng": "during the Second World War",
+    "entry_rus": "в период второй мировой войны",
+    "content_category": "Time",
+    "framing": "Generic / Neutral",
+    "context": "during the Second World War"
+  },
+  {
+    "section": 33,
+    "entry_eng": "and to intensify the campaign",
+    "entry_rus": "и активизации кампании",
+    "content_category": "Actions",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "and to intensify the campaign"
+  },
+  {
+    "section": 34,
+    "entry_eng": "for holding them criminally accountable",
+    "entry_rus": "за привлечение их к уголовной ответственности",
+    "content_category": "Legal Framework",
+    "framing": "Generic / Neutral",
+    "context": "for holding them criminally accountable"
+  },
+  {
+    "section": 35,
+    "entry_eng": "the republican Committee for State Security",
+    "entry_rus": "Комитетом госбезопасности республики",
+    "content_category": "Actors",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "the republican Committee for State Security"
+  },
+  {
+    "section": 36,
+    "entry_eng": "compiled additional materials",
+    "entry_rus": "были подобраны дополнительные материалы",
+    "content_category": "Actions",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "compiled additional materials"
+  },
+  {
+    "section": 37,
+    "entry_eng": "and in August of this year",
+    "entry_rus": "и в августе с.г.",
+    "content_category": "Time",
+    "framing": "Generic / Neutral",
+    "context": "and in August of this year"
+  },
+  {
+    "section": 38,
+    "entry_eng": "in Toronto",
+    "entry_rus": "в гор.Торонто",
+    "content_category": "Places",
+    "framing": "Generic / Neutral",
+    "context": "in Toronto"
+  },
+  {
+    "section": 39,
+    "entry_eng": "a new [version] was published",
+    "entry_rus": "издан новый",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral",
+    "context": "a new [version] was published"
+  },
+  {
+    "section": 40,
+    "entry_eng": "specially revised for Canadian reader",
+    "entry_rus": "специально переработанный для канадского читателя",
+    "content_category": "Actions",
+    "framing": "Ideological Phrasing (Normalizing)",
+    "context": "specially revised for Canadian reader"
+  },
+  {
+    "section": 41,
+    "entry_eng": "version of the book “So That We Do Not Forget”",
+    "entry_rus": "вариант книги \"Чтобы мы не забыли\"",
+    "content_category": "Documents",
+    "framing": "Generic / Neutral",
+    "context": "version of the book “So That We Do Not Forget”"
+  },
+  {
+    "section": 42,
+    "entry_eng": "Prior to the book’s publication",
+    "entry_rus": "До опубликования этой книги",
+    "content_category": "Time",
+    "framing": "Generic / Neutral",
+    "context": "Prior to the book’s publication"
+  },
+  {
+    "section": 43,
+    "entry_eng": "its publisher, M. Hanusiak",
+    "entry_rus": "ее издатель М.Ганусяк",
+    "content_category": "Actors",
+    "framing": "Generic / Neutral",
+    "context": "its publisher, M. Hanusiak"
+  },
+  {
+    "section": 44,
+    "entry_eng": "visited Ukraine",
+    "entry_rus": "посетил Украину",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral",
+    "context": "visited Ukraine"
+  },
+  {
+    "section": 45,
+    "entry_eng": "he had the opportunity to personally review archival materials and meet",
+    "entry_rus": "ему была предоставлена возможность лично ознакомиться с материалами архивов, встретиться",
+    "content_category": "Actions",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "he had the opportunity to personally review archival materials and meet"
+  }
+]

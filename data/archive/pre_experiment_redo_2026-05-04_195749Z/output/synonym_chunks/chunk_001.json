@@ -1,0 +1,126 @@
+{
+  "chunk_id": 1,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "\"Admiral Nakhimov\"",
+      "entry_rus": "\"Адмирал Нахимов\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Brothers in the Dollar\"",
+      "entry_rus": "\"Братья во долларе\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Committee of Ukrainians in Canada\"",
+      "entry_rus": "“Комитет украинцев Канады”",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"committees in defense of Demjanjuk\"",
+      "entry_rus": "\"комитеты в защиту Демьянюка\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "\"Cultural Ties – The Basis of Mutual Understanding\"",
+      "entry_rus": "[брошюра] \"Культурные связи - основа взаимопонимания\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"False Prophets\"",
+      "entry_rus": "\"Лжепророки\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "\"Foreign Representation of the Ukrainian Supreme Liberation Council\" (ZP UGVr)",
+      "entry_rus": "\"Закордонного представительства Украинского главного освободительного совета\" (ЗП УГВР)",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"In the Name of the Law of Memory\"",
+      "entry_rus": "\"Именем закона памяти\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"non-Ukrainian\" churches",
+      "entry_rus": "\"неукраинских\" церквей",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Petr Vasev\"",
+      "entry_rus": "\"Петр Васев\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Retribution\"",
+      "entry_rus": "\"Возмездие\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Sowers of Hatred\"",
+      "entry_rus": "\"Сеятели ненависти\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "\"testimonies of famine witnesses\"",
+      "entry_rus": "\"показания свидетелей голода\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "\"The Face of Hatred\"",
+      "entry_rus": "\"Лицо ненависти\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "\"The Shameful Alliance\"",
+      "entry_rus": "\"Позорный альянс\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"The Ukraine Society\"",
+      "entry_rus": "[брошюра] \"Общество Украина\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"this should not significantly affect",
+      "entry_rus": "\"это не должно существенным образом повлиять",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Ukraine Today\"",
+      "entry_rus": "[брошюра] \"Украина сегодня\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"We Accuse\"",
+      "entry_rus": "\"Мы обвиняем\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "\"We Invite You to Travel Through Ukraine\"",
+      "entry_rus": "[брошюра] \"Приглашаем в путешествие по Украине\" и др.",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 95,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "planned",
+      "entry_rus": "запланирована",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Plenum of the Central Committee of the CPSU",
+      "entry_rus": "Пленума ЦК КПСС",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Plenum of the CPSU Central Committee",
+      "entry_rus": "Пленума ЦК КПСС",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "police officers found",
+      "entry_rus": "работниками милиции было обнаружено",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Politizdat",
+      "entry_rus": "Политиздату",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Poltava Oblast",
+      "entry_rus": "Полтавская область",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "port [...] of the Black Sea basin",
+      "entry_rus": "портов Черноморского бассейна",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "poses no health danger",
+      "entry_rus": "опасности для здоровья человека не представляет",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "postgraduate student",
+      "entry_rus": "аспиранта",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduate students",
+      "entry_rus": "аспирантов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "postgraduate students",
+      "entry_rus": "аспирантов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduate students, trainees, university students, and students of technical schools and vocational colleges — 16,271",
+      "entry_rus": "аспирантов, стажёров, студентов, учащихся техникумов и училищ 16 271",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduates, interns, students, and technical/vocational school students",
+      "entry_rus": "аспирантов, стажёров, студентов, учащихся техникумов и училищ",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduates, interns, students, technical and vocational school students – 15,080",
+      "entry_rus": "аспирантов, стажеров, студентов, учащихся техникумов и училищ – 15080",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduates, interns, students, technical and vocational school students – 16,408",
+      "entry_rus": "аспирантов, стажёров, студентов, учащихся техникумов и училищ 16 408",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduates, interns, students, technical and vocational school students — 13,562",
+      "entry_rus": "аспирантов, стажёров, студентов, учащихся техникумов и училищ 13 562",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduates, interns, students, technical and vocational school students — 15,161",
+      "entry_rus": "аспирантов, стажёров, студентов, учащихся техникумов и училищ 15 161",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduates, Interns, Students, Technical School and Vocational School Students – 6,940",
+      "entry_rus": "аспирантов, стажеров, студентов, учащихся техникумов и училищ – 6940",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Postgraduates, Interns, Students, Technical School and Vocational School Students – 6,985",
+      "entry_rus": "аспирантов, стажеров, студентов, учащихся техникумов и училищ 6985",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "prepared for publication",
+      "entry_rus": "готовящегося к изданию",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

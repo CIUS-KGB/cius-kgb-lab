@@ -1,0 +1,242 @@
+[
+  {
+    "section": 46,
+    "entry_eng": "eyewitnesses",
+    "entry_rus": "с очевидцами",
+    "content_category": "Actors",
+    "framing": "Generic / Neutral",
+    "context": "eyewitnesses"
+  },
+  {
+    "section": 47,
+    "entry_eng": "to the crimes",
+    "entry_rus": "преступлений",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral",
+    "context": "to the crimes"
+  },
+  {
+    "section": 48,
+    "entry_eng": "According to data received",
+    "entry_rus": "По поступившим [...] данным",
+    "content_category": "Information",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "According to data received"
+  },
+  {
+    "section": 49,
+    "entry_eng": "from the KGB under the USSR Council of Ministers",
+    "entry_rus": "из КГБ при СМ СССР",
+    "content_category": "Actors",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "from the KGB under the USSR Council of Ministers"
+  },
+  {
+    "section": 50,
+    "entry_eng": "to popularize the book",
+    "entry_rus": "для популяризации этой книги",
+    "content_category": "Actions",
+    "framing": "Ideological Phrasing (Normalizing)",
+    "context": "to popularize the book"
+  },
+  {
+    "section": 51,
+    "entry_eng": "in November of this year",
+    "entry_rus": "в ноябре с.г.",
+    "content_category": "Time",
+    "framing": "Generic / Neutral",
+    "context": "in November of this year"
+  },
+  {
+    "section": 52,
+    "entry_eng": "D. Hanusiak",
+    "entry_rus": "Д.Ганусяк",
+    "content_category": "Actors",
+    "framing": "Generic / Neutral",
+    "context": "D. Hanusiak"
+  },
+  {
+    "section": 53,
+    "entry_eng": "held a press conference",
+    "entry_rus": "провел пресс-конференцию",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral",
+    "context": "held a press conference"
+  },
+  {
+    "section": 54,
+    "entry_eng": "with representatives of the progressive Ukrainian, Jewish, and other émigré press",
+    "entry_rus": "с представителями прогрессивной украинской, еврейской и другой эмигрантской печати",
+    "content_category": "Actors",
+    "framing": "Ideological Phrasing (Normalizing)",
+    "context": "with representatives of the progressive Ukrainian, Jewish, and other émigré press"
+  },
+  {
+    "section": 55,
+    "entry_eng": "with correspondents from Canadian television and major bourgeois newspapers",
+    "entry_rus": "корреспондентами канадского телевидения и крупных буржуазных газет",
+    "content_category": "Actors",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "with correspondents from Canadian television and major bourgeois newspapers"
+  },
+  {
+    "section": 56,
+    "entry_eng": "Copies of the book were sent",
+    "entry_rus": "Экземпляры книги были направлены",
+    "content_category": "Actions",
+    "framing": "Institutional / Bureaucratic Lingo",
+    "context": "Copies of the book were sent"
+  },
+  {
+    "section": 57,
+    "entry_eng": "to members of the Canadian Parliament",
+    "entry_rus": "членам канадского парламента",
+    "content_category": "Actors",
+    "framing": "Generic / Neutral",
+    "context": "to members of the Canadian Parliament"
+  },
+  {
+    "section": 58,
+    "entry_eng": "and to mass media outlets",
+    "entry_rus": "и в органы массовой информации",
+    "content_category": "Actors",
+    "framing": "Generic / Neutral",
+    "context": "and to mass media outlets"
+  },
+  {
+    "section": 59,
+    "entry_eng": "In December of this year",
+    "entry_rus": "В декабре с.г.",
+    "content_category": "Time",
+    "framing": "Generic / Neutral",
+    "context": "In December of this year"
+  },
+  {
+    "section": 60,
+    "entry_eng": "the Toronto television program Global",
+    "entry_rus": "торонтской телевизионной программой \"Глобал\"",
+    "content_category": "Information",
+    "framing": "Generic / Neutral",
+    "context": "the Toronto television program Global"
+  },
+  {
+    "section": 61,
+    "entry_eng": "began a series of broadcasts",
+    "entry_rus": "начат цикл передач",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral",
+    "context": "began a series of broadcasts"
+  },
+  {
+    "section": 62,
+    "entry_eng": "about war criminals",
+    "entry_rus": "о военных преступниках",
+    "content_category": "Actors",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "about war criminals"
+  },
+  {
+    "section": 63,
+    "entry_eng": "and the crimes they committed",
+    "entry_rus": "и совершенных ими преступлениях",
+    "content_category": "Actions",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "and the crimes they committed"
+  },
+  {
+    "section": 64,
+    "entry_eng": "in the Ukraine",
+    "entry_rus": "на Украине",
+    "content_category": "Documents",
+    "framing": "Ideological Phrasing (Normalizing)",
+    "context": "in the Ukraine"
+  },
+  {
+    "section": 65,
+    "entry_eng": "The newspaper Toronto Star",
+    "entry_rus": "В газете \"Торонто стар\"",
+    "content_category": "Information",
+    "framing": "Generic / Neutral",
+    "context": "The newspaper Toronto Star"
+  },
+  {
+    "section": 66,
+    "entry_eng": "published an article",
+    "entry_rus": "опубликована статья",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral",
+    "context": "published an article"
+  },
+  {
+    "section": 67,
+    "entry_eng": "based on materials from So That We Do Not Forget",
+    "entry_rus": "в которой на основании материалов книги \"Чтобы мы не забыли\"",
+    "content_category": "Information",
+    "framing": "Generic / Neutral",
+    "context": "based on materials from So That We Do Not Forget"
+  },
+  {
+    "section": 68,
+    "entry_eng": "provided information",
+    "entry_rus": "сообщаются данные",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral",
+    "context": "provided information"
+  },
+  {
+    "section": 69,
+    "entry_eng": "regarding 50 war criminals residing in Canada",
+    "entry_rus": "в отношении 50 проживающих в Канаде военных преступников",
+    "content_category": "Actors",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "regarding 50 war criminals residing in Canada"
+  },
+  {
+    "section": 70,
+    "entry_eng": "including specific facts about their criminal activities",
+    "entry_rus": "приводятся конкретные факты их преступной деятельности",
+    "content_category": "Actions",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "including specific facts about their criminal activities"
+  },
+  {
+    "section": 71,
+    "entry_eng": "The publication of the book",
+    "entry_rus": "Публикация книги",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral Language",
+    "context": "The publication of the book"
+  },
+  {
+    "section": 72,
+    "entry_eng": "the press conference, and the related reports",
+    "entry_rus": "пресс-конференция и связанные с этим выступления",
+    "content_category": "Actions",
+    "framing": "Generic / Neutral Language",
+    "context": "the press conference, and the related reports"
+  },
+  {
+    "section": 73,
+    "entry_eng": "in the Canadian press",
+    "entry_rus": "канадской печати",
+    "content_category": "Actors",
+    "framing": "Generic / Neutral Language",
+    "context": "in the Canadian press"
+  },
+  {
+    "section": 74,
+    "entry_eng": "caused confusion",
+    "entry_rus": "вызвали растерянность",
+    "content_category": "Status and Condition",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "caused confusion"
+  },
+  {
+    "section": 75,
+    "entry_eng": "among Ukrainian nationalists",
+    "entry_rus": "в среде украинских националистов",
+    "content_category": "Actors",
+    "framing": "Ideological Framing (Discrediting)",
+    "context": "among Ukrainian nationalists"
+  }
+]

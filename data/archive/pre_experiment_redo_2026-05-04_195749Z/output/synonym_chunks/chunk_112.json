@@ -1,0 +1,126 @@
+{
+  "chunk_id": 112,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the materials [...] were pushed out",
+      "entry_rus": "продвинуты материалы",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "The materials from the \"symposium\"",
+      "entry_rus": "Материалы \"симпозиума\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the measures carried out",
+      "entry_rus": "осуществляемые [...] мероприятия",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the measures taken by the Central Committee of the CPSU and the Soviet Government",
+      "entry_rus": "осуществляемых ЦК КПСС и Советским правительством мероприятий",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the Melnykite “Ukrainian-American Coordinating Council,”",
+      "entry_rus": "мельниковского \"Украинско-американского координационного совета\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the mentioned commission",
+      "entry_rus": "указанная комиссия",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the military and air attachés of the [...] Embassy",
+      "entry_rus": "военный и военно-воздушный атташе посольства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the millennium of the Baptism",
+      "entry_rus": "тысячелетие крещения",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the millennium of the Baptism of Kyivan Rus",
+      "entry_rus": "тысячелетия крещения Киевской Руси",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The nationalist press’s",
+      "entry_rus": "в националистической прессе",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The New York Times",
+      "entry_rus": "газеты “Нью-Йорк таймс”",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The newspaper Toronto Star",
+      "entry_rus": "В газете \"Торонто стар\"",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the others are in satisfactory condition",
+      "entry_rus": "остальных удовлетворительное",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the OUN and clerical centers",
+      "entry_rus": "оуновские и клерикальные центры",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the OUN members",
+      "entry_rus": "оуновцев",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the OUNites",
+      "entry_rus": "оуновцы",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the participation of U.S. citizens in events",
+      "entry_rus": "и участие граждан США в мероприятиях",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the party's domestic policy",
+      "entry_rus": "внутриполитическому курсу партии",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "The Permanent Representative of the Ukrainian SSR to the UN",
+      "entry_rus": "Постоянный представитель УССР при ООН",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the permissible limit by GOST",
+      "entry_rus": "норма по ГОСТу",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

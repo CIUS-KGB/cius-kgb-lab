@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accuracy: Specific Details vs Ideological Layers</title>
+    <style>
+      :root{
+        --bg:#0b0f19;
+        --panel:#0f172a;
+        --ink:#e5e7eb;
+        --muted:#a7b0c0;
+        --grid:#27324a;
+        --blue:#2563eb;
+        --yellow:#f59e0b;
+        --green:#16a34a;
+        --red:#dc2626;
+      }
+      html,body{height:100%;}
+      body{
+        margin:0;
+        background:radial-gradient(1200px 800px at 20% -10%, rgba(37,99,235,.22), transparent 60%),
+                   radial-gradient(1000px 700px at 90% 10%, rgba(245,158,11,.16), transparent 60%),
+                   radial-gradient(1000px 700px at 50% 120%, rgba(22,163,74,.14), transparent 60%),
+                   var(--bg);
+        color:var(--ink);
+        font:16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      }
+      a{color:#c7d2fe;}
+      /* "Slide deck" layout (PowerPoint-like) */
+      .wrap{max-width:1280px;margin:0 auto;padding:0 18px 80px;}
+      .slide{
+        min-height: min(980px, 100vh);
+        padding: 34px 0 26px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+      }
+      .slide + .slide{
+        border-top:1px solid rgba(255,255,255,.08);
+      }
+      header{
+        padding:22px 22px 18px;
+        border:1px solid rgba(255,255,255,.10);
+        background:linear-gradient(180deg, rgba(15,23,42,.92), rgba(15,23,42,.72));
+        border-radius:16px;
+        box-shadow:0 24px 60px rgba(0,0,0,.42);
+      }
+      h1{margin:0 0 10px;font-size:34px;letter-spacing:.2px;}
+      p{margin:10px 0;color:var(--muted);}
+      .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+      .pill{
+        display:inline-flex;align-items:center;gap:9px;
+        border:1px solid rgba(255,255,255,.12);
+        background:rgba(255,255,255,.06);
+        padding:8px 10px;border-radius:999px;
+        color:var(--ink);font-size:13px;
+      }
+      .dot{width:10px;height:10px;border-radius:99px;display:inline-block}
+      .dot.blue{background:var(--blue)}
+      .dot.yellow{background:var(--yellow)}
+      .dot.green{background:var(--green)}
+      .dot.red{background:var(--red)}
+
+      section{margin-top:18px;}
+      .grid{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:18px;
+        margin-top:14px;
+      }
+      @media (min-width: 960px){
+        .grid.two{grid-template-columns:1fr 1fr;}
+      }
+      .card{
+        border:1px solid rgba(255,255,255,.10);
+        background:linear-gradient(180deg, rgba(15,23,42,.78), rgba(15,23,42,.55));
+        border-radius:16px;
+        overflow:hidden;
+      }
+      .card .hd{
+        padding:14px 16px 10px;
+        border-bottom:1px solid rgba(255,255,255,.08);
+        background:rgba(255,255,255,.04);
+      }
+      .card .hd h2{
+        margin:0;
+        font-size:16px;
+        letter-spacing:.2px;
+      }
+      .card .bd{padding:14px 16px 16px;}
+      .card .bd p{margin:8px 0 0;}
+
+      .viz{
+        width:100%;
+        display:block;
+        border:0;
+        background:#0b1020;
+      }
+      .vizwrap{
+        background:#0b1020;
+        padding:12px;
+        border-radius:14px;
+      }
+      .viz{
+        width:100%;
+        height:auto;
+        max-height: 74vh;
+        object-fit: contain;
+        display:block;
+        border:0;
+        background:#0b1020;
+      }
+      .viz.big{
+        max-height: 78vh;
+      }
+      .caption{
+        margin-top:10px;
+        color:var(--muted);
+        font-size:13px;
+      }
+      code{
+        color:#e0e7ff;
+        background:rgba(99,102,241,.12);
+        border:1px solid rgba(99,102,241,.18);
+        padding:2px 6px;border-radius:8px;
+      }
+      ul{margin:10px 0 0 18px;color:var(--muted);}
+      li{margin:6px 0;}
+      .callout{
+        border-left:3px solid rgba(255,255,255,.22);
+        padding:10px 12px;
+        background:rgba(255,255,255,.04);
+        border-radius:10px;
+        color:var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap" id="deck">
+      <div class="deck-nav" aria-hidden="true"></div>
+
+      <!-- Slide 1 -->
+      <section class="slide active" data-title="Intro">
+        <header style="margin:0 0 16px;">
+          <h1>Accuracy, explained: Specific Details vs Ideological Layers</h1>
+          <p>
+            Use ←/→ (or A/D), Space, or click the edges to navigate. Press <b>F</b> for fullscreen.
+          </p>
+          <div class="pillrow">
+            <span class="pill"><span class="dot blue"></span>Specific Details agreement</span>
+            <span class="pill"><span class="dot yellow"></span>Ideological Layers agreement</span>
+            <span class="pill"><span class="dot green"></span>Full agreement (both)</span>
+            <span class="pill"><span class="dot red"></span>Mismatch / room for growth</span>
+          </div>
+          <p class="caption">
+            Data source: <code>docs/fixtures/comparison_results.json</code> (computed from <code>comparison_by_doc[*].aligned_rows[*]</code>).
+            Memo: <code>dev/ACCURACY_MEMO_Specific_Details_vs_Ideological_Layers.md</code>.
+          </p>
+        </header>
+        <div class="callout">
+          This deck is meant to support the paper’s core claims: the taxonomy is a human-led CDA scaffold; AI is a secondary instrument;
+          “accuracy” means agreement with expert labels (not truth); and disagreements are structured enough to study as discursive mechanisms.
+        </div>
+      </section>
+
+      <!-- Slide 2 -->
+      <section class="slide" data-title="Outcomes 100%">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Accuracy story in one line: outcome buckets (100% of segments)</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Agreement outcomes 100%" src="svg_accuracy_alignment_pack_2026-05-06/agreement_outcomes_100pct.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3 -->
+      <section class="slide" data-title="Topline">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Topline: how often each dimension agrees</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Overall alignment rates" src="svg_accuracy_alignment_pack_2026-05-06/overall_alignment_rates.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4 -->
+      <section class="slide" data-title="Docs (volume)">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Where to look first: largest documents by segment volume</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Agreement rate by document (top 12 by volume)" src="svg_accuracy_alignment_pack_2026-05-06/both_match_by_document_top12.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5 -->
+      <section class="slide" data-title="Docs (best)">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Positive counterpart: where the AI is strongest</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Best documents by full agreement" src="svg_accuracy_alignment_pack_2026-05-06/best_documents_by_full_agreement_top12.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6 -->
+      <section class="slide" data-title="By SD label">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Full agreement by Specific Details label</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Both match by human category" src="svg_accuracy_alignment_pack_2026-05-06/both_match_by_human_category.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7 -->
+      <section class="slide" data-title="By IL label">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Full agreement by Ideological Layers label</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Both match by human framing" src="svg_accuracy_alignment_pack_2026-05-06/both_match_by_human_framing.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 8 -->
+      <section class="slide" data-title="Confusion (SD)">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>What the AI confuses: Specific Details</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Confusion matrix: Specific Details" src="svg_accuracy_alignment_pack_2026-05-06/confusion_category.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9 -->
+      <section class="slide" data-title="Confusion (IL)">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>What the AI confuses: Ideological Layers</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Confusion matrix: Ideological Layers" src="svg_accuracy_alignment_pack_2026-05-06/confusion_framing.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 10 -->
+      <section class="slide" data-title="Morpheme cues">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Ideological morphemes (proxy): cue words behind the biggest Ideological Layers swap</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Cue words behind biggest ideological swap" src="svg_accuracy_alignment_pack_2026-05-06/ideological_morpheme_cues_biggest_swap_dumbbell.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 11 -->
+      <section class="slide" data-title="Length bins">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Evidence against “it’s just long segments”: length buckets vs agreement</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Length buckets vs agreement" src="svg_accuracy_alignment_pack_2026-05-06/length_bins_both_agree_vs_not.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 12 -->
+      <section class="slide" data-title="Swap arrows">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Supporting view: top directional swaps (Ideological Layers)</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Top directional swaps (Ideological Layers)" src="svg_accuracy_alignment_pack_2026-05-06/ideological_layers_top_swaps_arrows.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 13 -->
+      <section class="slide" data-title="SD swaps">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Most frequent Specific Details swaps (action list)</h2></div>
+          <div class="bd" style="display:flex; flex-direction:column; gap:12px; flex:1;">
+            <div class="vizwrap" style="flex:1; display:flex;">
+              <img class="viz big" alt="Top category divergences" src="svg_accuracy_alignment_pack_2026-05-06/top_category_divergences.svg" />
+            </div>
+            <!-- captions removed (too AI-sounding) -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 14 -->
+      <section class="slide" data-title="Next ideas">
+        <div class="card" style="height:100%; display:flex; flex-direction:column;">
+          <div class="hd"><h2>Whitepaper-inspired next visualizations</h2></div>
+          <div class="bd">
+            <p>Reading <code>docs/overleaf_whitepaper/main.tex</code> suggests these additions:</p>
+            <ul>
+              <li><b>Cohen’s κ</b>: chance-corrected agreement so skewed priors don’t masquerade as mastery.</li>
+              <li><b>Benjamini–Hochberg</b>: multiplicity control if we compare many labels/docs/experiments.</li>
+              <li><b>Mismatch-flow matrix</b>: expand directional swap explanations beyond top 3.</li>
+              <li><b>Doc fingerprints + cosine</b>: rhetorical mixture similarity (careful: similarity ≠ adjacency).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="deck-hint" aria-hidden="true"></div>
+    </div>
+
+    <style>
+      /* slideshow behavior */
+      #deck{position:relative;}
+      .slide{display:none;}
+      .slide.active{display:flex;}
+      .deck-hint{
+        position:fixed; left:18px; bottom:16px; z-index:20;
+        color:rgba(229,231,235,.9);
+        font-size:12px;
+        background:rgba(0,0,0,.28);
+        border:1px solid rgba(255,255,255,.10);
+        padding:8px 10px;
+        border-radius:999px;
+        backdrop-filter: blur(10px);
+      }
+      .deck-click{
+        position:fixed; top:0; bottom:0; width:18vw; z-index:10;
+      }
+      .deck-click.left{left:0;}
+      .deck-click.right{right:0;}
+      .deck-click:hover{background:rgba(255,255,255,.02);}
+      .deck-topbar{
+        position:fixed; right:18px; top:14px; z-index:20;
+        display:flex; gap:10px; align-items:center;
+        font-size:12px; color:rgba(229,231,235,.9);
+      }
+      .deck-btn{
+        border:1px solid rgba(255,255,255,.14);
+        background:rgba(255,255,255,.06);
+        color:rgba(229,231,235,.92);
+        padding:8px 10px;
+        border-radius:10px;
+        cursor:pointer;
+      }
+      .deck-btn:active{transform:translateY(1px);}
+    </style>
+    <div class="deck-click left" title="Previous"></div>
+    <div class="deck-click right" title="Next"></div>
+    <div class="deck-topbar" aria-hidden="true">
+      <button class="deck-btn" id="prevBtn">← Prev</button>
+      <button class="deck-btn" id="nextBtn">Next →</button>
+      <button class="deck-btn" id="fsBtn">Fullscreen (F)</button>
+    </div>
+    <script>
+      (function(){
+        const slides = Array.from(document.querySelectorAll('#deck .slide'));
+        const hint = document.querySelector('.deck-hint');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const fsBtn = document.getElementById('fsBtn');
+        const left = document.querySelector('.deck-click.left');
+        const right = document.querySelector('.deck-click.right');
+        let i = Math.max(0, slides.findIndex(s => s.classList.contains('active')));
+        if (i < 0) i = 0;
+
+        function show(idx){
+          i = Math.max(0, Math.min(slides.length - 1, idx));
+          slides.forEach((s, j) => s.classList.toggle('active', j === i));
+          const t = slides[i].getAttribute('data-title') || `Slide ${i+1}`;
+          hint.textContent = `${i+1}/${slides.length} — ${t}  ·  ←/→, Space, F`;
+          window.location.hash = `slide-${i+1}`;
+        }
+
+        function next(){ show(i + 1); }
+        function prev(){ show(i - 1); }
+
+        function toggleFullscreen(){
+          const el = document.documentElement;
+          if (!document.fullscreenElement) el.requestFullscreen?.();
+          else document.exitFullscreen?.();
+        }
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'd' || e.key === 'D') { e.preventDefault(); next(); }
+          if (e.key === 'ArrowLeft'  || e.key === 'a' || e.key === 'A') { e.preventDefault(); prev(); }
+          if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFullscreen(); }
+        });
+
+        prevBtn.addEventListener('click', prev);
+        nextBtn.addEventListener('click', next);
+        fsBtn.addEventListener('click', toggleFullscreen);
+        left.addEventListener('click', prev);
+        right.addEventListener('click', next);
+
+        // deep link support
+        const m = (window.location.hash || '').match(/slide-(\d+)/);
+        if (m) show(parseInt(m[1], 10) - 1);
+        else show(i);
+      })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 106,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "that support for the commission’s “conclusions,” which are based on lies",
+      "entry_rus": "поддержка основанного на лжи \"заключения\" комиссии",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "that the accident occurred",
+      "entry_rus": "что авария произошла",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "that the crime was committed by local residents",
+      "entry_rus": "что это преступление совершили местные жители",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "that they broke into the unguarded shop twice",
+      "entry_rus": "что в неохраняемое помещение цеха проникали дважды",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "that they condemned it",
+      "entry_rus": "что осуждают его",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "that they used the trip",
+      "entry_rus": "что они использовали указанную поездку",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "that were presented as being “in opposition” to the Bandera and Melnyk leaderships, respectively",
+      "entry_rus": "\"находящихся в оппозиции\" соответственно к бандеровской и мельниковской верхушкам",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "that, returning",
+      "entry_rus": "что, возвращаясь",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the \"Franko Society\"",
+      "entry_rus": "\"Общество им. И. Франко\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the \"international tribunal on the artificial famine in Ukraine in 1932-1933\" they are planning",
+      "entry_rus": "на замышляемый ими “международный трибунал по искусственному голоду на Украине в 1932-1933 гг.”",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the \"leader\" of the information service",
+      "entry_rus": "\"руководитель\" информационной службы",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the \"Nachtigall\" Battalion",
+      "entry_rus": "батальона \"Нахтигаль\"",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The \"Presidium\" of the nationalist \"World Congress of Free Ukrainians\"",
+      "entry_rus": "\"Президиум\" националистического \"Всемирного конгресса свободных украинцев\"",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the \"Shevchenko Society\"",
+      "entry_rus": "\"Общество им. Т. Шевченко\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the \"Ukrainian Congress Committee of America\"",
+      "entry_rus": "\"Украинского конгрессового комитета Америки\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the 1000th anniversary",
+      "entry_rus": "1000-летию",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the accident was caused by the bus driver",
+      "entry_rus": "авария произошла по вине водителя автобуса",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the achievements of Soviet Ukraine",
+      "entry_rus": "достижения Советской Украины",
+      "category": "Status and Condition",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "the actions of ideological subversion",
+      "entry_rus": "акции идеологической диверсии",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the additional distribution of the book “We Accuse”",
+      "entry_rus": "дополнительную рассылку книги \"Мы обвиняем\"",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

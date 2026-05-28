@@ -1,0 +1,126 @@
+{
+  "chunk_id": 110,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the furnace has been switched",
+      "entry_rus": "печь переведена",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "The gathering will feature reports",
+      "entry_rus": "На сборище будут заслушаны доклады",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the guidelines of the All-Union (May 1986) Conference",
+      "entry_rus": "вытекающими из них установками Всесоюзного (май 1986 г.) совещания",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the head",
+      "entry_rus": "начальник",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the heroism, courage, and selflessness of state security officers",
+      "entry_rus": "героизм, мужество и самоотверженность сотрудников госбезопасности",
+      "category": "Status and Condition",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "the hostile actions",
+      "entry_rus": "враждебным акциям",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The individuals named have been arrested",
+      "entry_rus": "названные лица арестованы",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "the influence campaigns",
+      "entry_rus": "акции влияния оказали",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "the initiation of a criminal case",
+      "entry_rus": "о возбуждении уголовного дела",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The initiative of the PUN",
+      "entry_rus": "Однако инициатива ПУН",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The inscription was made",
+      "entry_rus": "Надпись исполнена",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the instructor of the general department",
+      "entry_rus": "инструктор общего отдела",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The investigation into the death",
+      "entry_rus": "Расследование по акту смерти",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The investigation is being conducted",
+      "entry_rus": "Расследование проводится",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the investigation is being conducted by the internal affairs authorities",
+      "entry_rus": "расследование проводится органами внутренних дел",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The investigation is being conducted by the Ministry of Internal Affairs",
+      "entry_rus": "расследование проводится органами внутренних дел",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The investigation is ongoing",
+      "entry_rus": "Расследование продолжается",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The investigative measures",
+      "entry_rus": "Осуществляемые Управлением КГБ",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the KGB bodies and divitions of the republic",
+      "entry_rus": "органы и подразделения КГБ республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The KGB Directorate has taken measures",
+      "entry_rus": "Управлением КГБ приняты меры",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

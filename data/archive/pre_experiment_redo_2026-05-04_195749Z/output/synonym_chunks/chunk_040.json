@@ -1,0 +1,126 @@
+{
+  "chunk_id": 40,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "during the war",
+      "entry_rus": "в годы войны",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during the years of Soviet rule",
+      "entry_rus": "за годы Советской власти",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "during World War II",
+      "entry_rus": "в годы Второй мировой войны",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "E. Driuna",
+      "entry_rus": "Е. Дрюна",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "each from Canada",
+      "entry_rus": "из Канады",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Edmonton",
+      "entry_rus": "г. Эдмонтон",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "education – 7 grades",
+      "entry_rus": "образование — 7 классов",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "electronics technician of the mentioned shop",
+      "entry_rus": "наладчик электронного оборудования указанного цеха",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "emissaries of foreign centers of the OUN",
+      "entry_rus": "эмиссарах закордонных центров ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "employee of the U.S. Embassy",
+      "entry_rus": "сотрудник посольства США",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "employees of diplomatic missions",
+      "entry_rus": "сотрудников дипломатических представительств",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "En route to Moscow",
+      "entry_rus": "следует в Москву",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "encouraging them to make public statements in the mass media",
+      "entry_rus": "побуждая их выступить в средствах массовой информации",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "England",
+      "entry_rus": "Англии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "England",
+      "entry_rus": "из Англии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "escalating mutual attacks and accusations",
+      "entry_rus": "обострены их взаимные нападки и обвинения",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "especially Bandera-aligned factions",
+      "entry_rus": "и, прежде всего, бандеровских группировок",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "essays",
+      "entry_rus": "очерки",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "established",
+      "entry_rus": "установлено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "established by OUNites",
+      "entry_rus": "Созданные оуновцами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

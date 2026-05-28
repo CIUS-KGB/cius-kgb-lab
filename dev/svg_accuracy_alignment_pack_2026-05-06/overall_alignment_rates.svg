@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-label="Overall: how often does the AI agree with human reviewers?">
+<rect x="0.00" y="0.00" width="1200.00" height="500.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="44.00" y="50.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Overall: how often does the AI agree with human reviewers?</text>
+<line x1="265.00" y1="102.00" x2="265.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="265.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">0%</text>
+<line x1="350.50" y1="102.00" x2="350.50" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="350.50" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">10%</text>
+<line x1="436.00" y1="102.00" x2="436.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="436.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">20%</text>
+<line x1="521.50" y1="102.00" x2="521.50" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="521.50" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">30%</text>
+<line x1="607.00" y1="102.00" x2="607.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="607.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">40%</text>
+<line x1="692.50" y1="102.00" x2="692.50" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="692.50" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">50%</text>
+<line x1="778.00" y1="102.00" x2="778.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="778.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">60%</text>
+<line x1="863.50" y1="102.00" x2="863.50" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="863.50" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">70%</text>
+<line x1="949.00" y1="102.00" x2="949.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="949.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">80%</text>
+<line x1="1034.50" y1="102.00" x2="1034.50" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1034.50" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">90%</text>
+<line x1="1120.00" y1="102.00" x2="1120.00" y2="432.00" stroke="#dedad4" stroke-width="1"/>
+<text x="1120.00" y="449.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">100%</text>
+<line x1="265.00" y1="108.00" x2="265.00" y2="432.00" stroke="#111827" stroke-width="1.3"/>
+<text x="692.50" y="490.00" font-size="12" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">Percent of segments</text>
+<rect x="265.00" y="108.00" width="855.00" height="103.33" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="265.00" y="108.00" width="620.40" height="103.33" fill="#2563eb" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="255.00" y="180.33" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Specific Details agreed</text>
+<text x="877.40" y="180.33" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">73%</text>
+<rect x="265.00" y="218.33" width="855.00" height="103.33" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="265.00" y="218.33" width="651.56" height="103.33" fill="#f59e0b" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="255.00" y="290.67" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Ideological Layers agreed</text>
+<text x="908.56" y="290.67" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">76%</text>
+<rect x="265.00" y="328.67" width="855.00" height="103.33" fill="#dedad4" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<rect x="265.00" y="328.67" width="501.27" height="103.33" fill="#16a34a" stroke="none" stroke-width="1.0" rx="4" ry="4"/>
+<text x="255.00" y="401.00" font-size="13" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Both agreed</text>
+<text x="758.27" y="401.00" font-size="13" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">59%</text>
+</svg>

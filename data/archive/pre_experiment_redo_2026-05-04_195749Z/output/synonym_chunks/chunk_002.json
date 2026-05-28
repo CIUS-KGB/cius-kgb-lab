@@ -1,0 +1,126 @@
+{
+  "chunk_id": 2,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "\"Werewolves\"",
+      "entry_rus": "\"Оборотни\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Your Brain in the Crosshairs\"",
+      "entry_rus": "\"На прицеле ваш мозг\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "\"Zionism is Accused\"",
+      "entry_rus": "\"Обвиняется сионизм\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "(28, 125, and 116 persons, respectively)",
+      "entry_rus": "28, 125 и 116 чел.",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "(b. 1947)",
+      "entry_rus": "1947 года рождения",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "(b. 1962)",
+      "entry_rus": "1962 года рождения",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "(Operation “Retribution”)",
+      "entry_rus": "(операция \"Возмездие\")",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "(Pavlohrad)",
+      "entry_rus": "г. Павлоград",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "(the beginning of the trial",
+      "entry_rus": "(о начале судебного процесса",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "(until August 1988)",
+      "entry_rus": "(до августа 1988 г.)",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "(valued at approximately 57,000 rubles)",
+      "entry_rus": "стоимость около 57 тыс. рублей",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "0.01 milligrams per liter of water",
+      "entry_rus": "0,01 миллиграмма на один литр воды",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "1 ship each",
+      "entry_rus": "по 1 судну",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "1,300 tons of pig iron were not produced",
+      "entry_rus": "недодано 1300 тонн чугуна",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "104 private visitors. Of which 7,168 were",
+      "entry_rus": "частнодельцев 104, из них 7 168",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "109 articles",
+      "entry_rus": "109 статей",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "11 books",
+      "entry_rus": "11 книг",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "115 thematic evenings",
+      "entry_rus": "115 тематических вечеров",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "12 Hitler's collaborators",
+      "entry_rus": "12 гитлеровских пособников",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "12 people",
+      "entry_rus": "12 человек",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 52,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "in 23 émigré publications (12 of them nationalist)",
+      "entry_rus": "в 23 эмигрантских изданиях (из них 12 националистических)",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in a clothesline",
+      "entry_rus": "на натянутой там бельевой верёвке",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in a correctional labor colony",
+      "entry_rus": "в исправительно-трудовой колонии",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in a number of countries",
+      "entry_rus": "ряда стран",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in a suburb of Washington (State of Maryland)",
+      "entry_rus": "в пригороде Вашингтона (штат Мэриленд)",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In accordance with the decisions of the 27th Congress of the CPSU",
+      "entry_rus": "В соответствии с решениями ХХVII съезда КПСС",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "In accordance with the resolution of the Central Committee of the Communist Party of Ukraine",
+      "entry_rus": "В соответствии с постановлением ЦК Компартии Украины",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "In addition, in Kharkiv, there were present",
+      "entry_rus": "кроме того, в Харькове находятся",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In addition, in Kyiv there are",
+      "entry_rus": "кроме того, в Киеве находятся",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In addition, the Banderites",
+      "entry_rus": "Наряду с этим бандеровцами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "In an attempt to convince Western intelligence services and reactionary circles",
+      "entry_rus": "В попытках убедить спецслужбы и реакционные круги Запада",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in an intoxicated state",
+      "entry_rus": "в нетрезвом состоянии",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in assembling radio and light-music devices",
+      "entry_rus": "для изготовления радио- и светомузыкальных приборов",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Canada",
+      "entry_rus": "в Канаде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Canada",
+      "entry_rus": "Канады",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Canada",
+      "entry_rus": "В Канаде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Canada, [...] have been established",
+      "entry_rus": "в Канаде созданы",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "in Chernivtsi Oblast",
+      "entry_rus": "Черновицкой",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Chernivtsi – 2",
+      "entry_rus": "в Черновцах – 2",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in connection with",
+      "entry_rus": "приуроченных",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 97,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "propaganda [materials]",
+      "entry_rus": "пропагандистских материалов",
+      "category": "Material Resources",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "propaganda pamphlets",
+      "entry_rus": "пропагандистских брошюр",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "proposed that Reagan [...] to meet",
+      "entry_rus": "предложили Рейгану [...] встретиться",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "provided concrete assistance to the authors",
+      "entry_rus": "оказана конкретная помощь авторам",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "provided information",
+      "entry_rus": "сообщаются данные",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "provides concrete facts",
+      "entry_rus": "и приводятся конкретные факты",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "public, political and religious figures",
+      "entry_rus": "общественных, политических и религиозных деятелей",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "publication of this collection",
+      "entry_rus": "выпуск указанного сборника",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "publications",
+      "entry_rus": "публикации",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "publications in the émigré press",
+      "entry_rus": "выступления в эмигрантской прессе",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "publications on the “famine,”",
+      "entry_rus": "публикации о \"голоде\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "published 74 articles, prepared 29 radio and television programs and 153 thematic evenings",
+      "entry_rus": "опубликовано 74 статьи, подготовлено 29 радиотелепередач, 153 тематических вечера",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "published an article",
+      "entry_rus": "опубликована статья",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "published and distributed abroad",
+      "entry_rus": "издано и распространено за рубежом",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "published articles",
+      "entry_rus": "опубликовала статьи",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "R. al-Zuabi",
+      "entry_rus": "Р. аль-Зуаби",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "R. Conquest",
+      "entry_rus": "Р.Конквест",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "R. Reagan",
+      "entry_rus": "Р. Рейган",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "R. Reagan met",
+      "entry_rus": "Р. Рейган встретился",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "R. Reagan’s signing of the resolution",
+      "entry_rus": "подписание Р. Рейганом указанной резолюции",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

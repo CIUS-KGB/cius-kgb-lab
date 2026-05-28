@@ -1,0 +1,164 @@
+{
+  "term_results": [
+    {
+      "entry_eng": "\"Werewolves\"",
+      "entry_rus": "\"Оборотни\"",
+      "definition_eng": "Publication title; metaphor for hidden or disguised actors, often used in Cold War discourse for covert operatives or collaborators.",
+      "definition_rus": "Название публикации; метафора скрытых или замаскированных деятелей, в дискурсе холодной войны — агенты или пособники.",
+      "synonyms_eng": ["shape-shifters", "hidden agents", "covert collaborators", "disguised operatives"],
+      "synonyms_rus": ["оборотни", "скрытые агенты", "замаскированные пособники"]
+    },
+    {
+      "entry_eng": "\"Your Brain in the Crosshairs\"",
+      "entry_rus": "\"На прицеле ваш мозг\"",
+      "definition_eng": "Publication title; frames psychological or ideological influence as a target of hostile operations.",
+      "definition_rus": "Название публикации; представляет психологическое или идеологическое воздействие как цель враждебных операций.",
+      "synonyms_eng": ["Your Mind Under Fire", "Brain as Target", "Psychological Crosshairs"],
+      "synonyms_rus": ["ваш мозг на прицеле", "сознание как цель", "психологическая мишень"]
+    },
+    {
+      "entry_eng": "\"Zionism is Accused\"",
+      "entry_rus": "\"Обвиняется сионизм\"",
+      "definition_eng": "Publication title; polemical framing of Zionism as subject of indictment in Soviet anti-Zionist campaign.",
+      "definition_rus": "Название публикации; полемическая рамка сионизма как объекта обвинения в советской антисионистской кампании.",
+      "synonyms_eng": ["Zionism on trial", "Zionism accused", "Indictment of Zionism"],
+      "synonyms_rus": ["обвиняется сионизм", "сионизм на скамье подсудимых", "обвинение сионизма"]
+    },
+    {
+      "entry_eng": "(28, 125, and 116 persons, respectively)",
+      "entry_rus": "28, 125 и 116 чел.",
+      "definition_eng": "Statistical enumeration; headcount figures in bureaucratic report.",
+      "definition_rus": "Статистическая сводка; данные о численности в бюрократическом отчете.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "(b. 1947)",
+      "entry_rus": "1947 года рождения",
+      "definition_eng": "Birth year notation; standard biographical marker in intelligence or personnel files.",
+      "definition_rus": "Указание года рождения; стандартная биографическая помета в разведывательных или кадровых документах.",
+      "synonyms_eng": ["born 1947", "year of birth 1947", "b. 1947"],
+      "synonyms_rus": ["1947 г.р.", "родился в 1947", "год рождения 1947"]
+    },
+    {
+      "entry_eng": "(b. 1962)",
+      "entry_rus": "1962 года рождения",
+      "definition_eng": "Birth year notation; standard biographical marker.",
+      "definition_rus": "Указание года рождения; стандартная биографическая помета.",
+      "synonyms_eng": ["born 1962", "year of birth 1962", "b. 1962"],
+      "synonyms_rus": ["1962 г.р.", "родился в 1962", "год рождения 1962"]
+    },
+    {
+      "entry_eng": "(Operation \"Retribution\")",
+      "entry_rus": "(операция \"Возмездие\")",
+      "definition_eng": "Designation of a named intelligence or military operation; institutional terminology.",
+      "definition_rus": "Обозначение именованной разведывательной или военной операции; институциональная терминология.",
+      "synonyms_eng": ["Operation Retribution", "Op. Retribution", "Retribution operation"],
+      "synonyms_rus": ["операция \"Возмездие\"", "операция Возмездие", "оперативное мероприятие Возмездие"]
+    },
+    {
+      "entry_eng": "(Pavlohrad)",
+      "entry_rus": "г. Павлоград",
+      "definition_eng": "Geographic designation; city in Ukraine.",
+      "definition_rus": "Географическое обозначение; город на Украине.",
+      "synonyms_eng": ["Pavlohrad", "city of Pavlohrad", "Pavlohrad (city)"],
+      "synonyms_rus": ["г. Павлоград", "Павлоград", "город Павлоград"]
+    },
+    {
+      "entry_eng": "(the beginning of the trial",
+      "entry_rus": "(о начале судебного процесса",
+      "definition_eng": "Fragment referring to trial commencement; document or report excerpt.",
+      "definition_rus": "Фрагмент, относящийся к началу судебного процесса; выдержка из документа или отчета.",
+      "synonyms_eng": ["on the trial's outset", "regarding trial commencement", "at the trial's start"],
+      "synonyms_rus": ["о начале судебного процесса", "к началу процесса", "с момента начала процесса"]
+    },
+    {
+      "entry_eng": "(until August 1988)",
+      "entry_rus": "(до августа 1988 г.)",
+      "definition_eng": "Temporal boundary; cutoff date in administrative or operational context.",
+      "definition_rus": "Временная граница; конечная дата в административном или оперативном контексте.",
+      "synonyms_eng": ["through August 1988", "up to August 1988", "before September 1988"],
+      "synonyms_rus": ["до августа 1988 г.", "по август 1988", "до 01.09.1988"]
+    },
+    {
+      "entry_eng": "(valued at approximately 57,000 rubles)",
+      "entry_rus": "стоимость около 57 тыс. рублей",
+      "definition_eng": "Valuation in Soviet currency; standard formulation in material or financial reports.",
+      "definition_rus": "Оценка в советской валюте; стандартная формулировка в материальных или финансовых отчетах.",
+      "synonyms_eng": ["estimated at 57,000 rubles", "worth approximately 57K rubles", "valued at ~57,000 rub"],
+      "synonyms_rus": ["стоимость около 57 тыс. руб.", "оценочная стоимость 57 тыс. руб.", "на сумму ~57 тыс. руб."]
+    },
+    {
+      "entry_eng": "0.01 milligrams per liter of water",
+      "entry_rus": "0,01 миллиграмма на один литр воды",
+      "definition_eng": "Concentration measurement; technical specification for water quality or contamination levels.",
+      "definition_rus": "Измерение концентрации; техническая спецификация качества воды или уровня загрязнения.",
+      "synonyms_eng": ["0.01 mg/L", "0.01 milligrams per liter", "trace concentration"],
+      "synonyms_rus": ["0,01 мг/л", "0,01 миллиграмма на литр", "следовая концентрация"]
+    },
+    {
+      "entry_eng": "1 ship each",
+      "entry_rus": "по 1 судну",
+      "definition_eng": "Allocation of one vessel per unit or category; nautical or logistical designation.",
+      "definition_rus": "Выделение по одному судну на единицу или категорию; морское или логистическое обозначение.",
+      "synonyms_eng": ["one ship apiece", "one vessel each", "per ship allocation"],
+      "synonyms_rus": ["по одному судну", "по 1 судну", "одно судно на единицу"]
+    },
+    {
+      "entry_eng": "1,300 tons of pig iron were not produced",
+      "entry_rus": "недодано 1300 тонн чугуна",
+      "definition_eng": "Shortfall in production quota; formulation typical of Soviet industrial reporting.",
+      "definition_rus": "Недовыполнение производственного плана; формулировка, типичная для советской промышленной отчетности.",
+      "synonyms_eng": ["production shortfall of 1,300 tons pig iron", "1,300 tons pig iron shortfall", "underproduction of 1,300 tons"],
+      "synonyms_rus": ["недодано 1300 т чугуна", "недовыполнение 1300 т чугуна", "дефицит производства 1300 т"]
+    },
+    {
+      "entry_eng": "104 private visitors. Of which 7,168 were",
+      "entry_rus": "частнодельцев 104, из них 7 168",
+      "definition_eng": "Fragment of visitor statistics; appears truncated or inconsistent (numbers mismatch).",
+      "definition_rus": "Фрагмент статистики посетителей; возможно обрезан или содержит несоответствие цифр.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "109 articles",
+      "entry_rus": "109 статей",
+      "definition_eng": "Quantitative count of published items; statistical notation.",
+      "definition_rus": "Количественный подсчет опубликованных материалов; статистическая помета.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "11 books",
+      "entry_rus": "11 книг",
+      "definition_eng": "Quantitative count of books; statistical notation.",
+      "definition_rus": "Количественный подсчет книг; статистическая помета.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "115 thematic evenings",
+      "entry_rus": "115 тематических вечеров",
+      "definition_eng": "Count of organized cultural or propaganda events; Soviet-era activity reporting.",
+      "definition_rus": "Количество организованных культурных или пропагандистских мероприятий; советская отчетность о деятельности.",
+      "synonyms_eng": ["115 theme evenings", "115 thematic events", "115 themed gatherings"],
+      "synonyms_rus": ["115 тематических вечеров", "115 тематических мероприятий", "115 вечеров по темам"]
+    },
+    {
+      "entry_eng": "12 Hitler's collaborators",
+      "entry_rus": "12 гитлеровских пособников",
+      "definition_eng": "Designation of persons accused of collaboration with Nazi Germany; ideologically charged term in Soviet discourse.",
+      "definition_rus": "Обозначение лиц, обвиняемых в сотрудничестве с нацистской Германией; идеологически нагруженный термин в советском дискурсе.",
+      "synonyms_eng": ["12 Nazi collaborators", "12 Hitler collaborators", "twelve collaborators with Hitler", "12 fascist accomplices"],
+      "synonyms_rus": ["12 гитлеровских пособников", "12 нацистских пособников", "12 пособников фашизма", "двенадцать коллаборационистов"]
+    },
+    {
+      "entry_eng": "12 people",
+      "entry_rus": "12 человек",
+      "definition_eng": "Headcount; numeric designation of persons.",
+      "definition_rus": "Численность; количественное обозначение лиц.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    }
+  ]
+}

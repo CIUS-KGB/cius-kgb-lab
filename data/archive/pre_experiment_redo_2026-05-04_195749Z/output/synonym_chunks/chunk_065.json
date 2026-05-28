@@ -1,0 +1,126 @@
+{
+  "chunk_id": 65,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "it is increasingly stated that",
+      "entry_rus": "стало высказываться мнение о том, что",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "It is planned that a museum will be established at its base",
+      "entry_rus": "В его основании предполагается создать",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "It is planned to concentrate within it",
+      "entry_rus": "В нём предполагается сосредоточить",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "It is supposed to include",
+      "entry_rus": "предполагается включить",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "It is then planned to promote",
+      "entry_rus": "Затем планируется продвинуть",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "it reports",
+      "entry_rus": "сообщается",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "It was deemed appropriate",
+      "entry_rus": "Признано целесообразным",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "It was established",
+      "entry_rus": "Как установлено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "It was established",
+      "entry_rus": "Установлено",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "it was established",
+      "entry_rus": "установлено",
+      "category": "Methods",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Italy",
+      "entry_rus": "Италии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "its publisher, M. Hanusiak",
+      "entry_rus": "ее издатель М.Ганусяк",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "its reactionary ideology",
+      "entry_rus": "его реакционной идеологии",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "its Russification",
+      "entry_rus": "и его русификацией",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Ivan Demjanjuk",
+      "entry_rus": "Ивану Демьянюку",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ivano-Frankivsk Oblast",
+      "entry_rus": "Ивано-Франковской",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ivano-Frankivsk Oblast — 18",
+      "entry_rus": "в Ивано-Франковской 18",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ivano-Frankivsk region",
+      "entry_rus": "Ивано-Франковской",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ivano-Frankivsk region",
+      "entry_rus": "в Ивано-Франковской",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ivano-Frankivsk — 19",
+      "entry_rus": "в Ивано-Франковской 19",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

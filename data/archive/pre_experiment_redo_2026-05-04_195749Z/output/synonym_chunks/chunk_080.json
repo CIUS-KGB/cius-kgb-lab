@@ -1,0 +1,126 @@
+{
+  "chunk_id": 80,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "of the Black Sea Shipping Company",
+      "entry_rus": "Черноморского пароходства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the Black Sea Shipping Company",
+      "entry_rus": "Черноморского морского пароходства",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the book Harvest of Sorrow",
+      "entry_rus": "книги \"Жатва скорби\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the book “Lest We Forget”",
+      "entry_rus": "книги \"Чтобы мы не забыли\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Canadian Embassy",
+      "entry_rus": "посольства Канады",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Catholic Church in the Ukraine",
+      "entry_rus": "католической церкви на Украине",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Central Committee of the Communist Party of Ukraine",
+      "entry_rus": "ЦК КП Украины",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the Chekist operative activity",
+      "entry_rus": "оперативно-чекистской деятельности",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the Collegium for Criminal Cases",
+      "entry_rus": "коллегии по уголовным делам",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the Communist Party of Ukraine",
+      "entry_rus": "обкомам Компартии Украины",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the Criminal Code of the Ukrainian SSR",
+      "entry_rus": "УК УССР",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the drinking water",
+      "entry_rus": "питьевой воды",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the dubious nature of their demands",
+      "entry_rus": "мнения о нечистоплотности их домогательств",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the Embassy",
+      "entry_rus": "посольства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "of the Embassy of Yemen",
+      "entry_rus": "посольства Йемена",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the foreign branches of the OUN",
+      "entry_rus": "зарубежных ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "of the former captains of the ships",
+      "entry_rus": "над бывшими капитанами судов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the former senior passenger assistant captain",
+      "entry_rus": "бывшего старшего пассажирского помощника капитана",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the headgear",
+      "entry_rus": "копра",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "of the imperialist special services",
+      "entry_rus": "империалистических спецслужб",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

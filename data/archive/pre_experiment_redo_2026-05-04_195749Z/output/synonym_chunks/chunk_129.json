@@ -1,0 +1,126 @@
+{
+  "chunk_id": 129,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "up to 3 cm tall",
+      "entry_rus": "высотой до 3 см",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Upon examination of the body",
+      "entry_rus": "При осмотре трупа Кобызева",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Upon learning that an investigation was underway",
+      "entry_rus": "узнав что по факту ведётся следствие",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "urging them",
+      "entry_rus": "обращения с предложением",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "USA — 94",
+      "entry_rus": "из США 94",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "use witness testimonies",
+      "entry_rus": "использовать свидетельские показания",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "using a regional American radio station",
+      "entry_rus": "а с использованием региональной американской радиостанции",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "using an additional device",
+      "entry_rus": "с помощью дополнительного устройства",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "using block letters",
+      "entry_rus": "печатными буквами",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "USSR",
+      "entry_rus": "СССР",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "USSR Ministry of Aviation Industry",
+      "entry_rus": "Минавиапрома СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "utilizes documentary data prepared",
+      "entry_rus": "использованы подготовленные [...] документальные данные",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "V. E. Kobyzyev",
+      "entry_rus": "Кобызева В. Е.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "V. FEDORCHUK",
+      "entry_rus": "В. ФЕДОРЧУК",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "V. Jerath",
+      "entry_rus": "В. Джератх",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "V. N. Konovalov",
+      "entry_rus": "Коновалов В. Н.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "V. V. Ovsiyenko",
+      "entry_rus": "Овсиенко В. В.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "V.E. Prosvirin",
+      "entry_rus": "Просвирина В.Е.,",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "V.G. Markov",
+      "entry_rus": "Маркова В.Г.,",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "V.I. Tkachenko",
+      "entry_rus": "Ткаченко В.И.,",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

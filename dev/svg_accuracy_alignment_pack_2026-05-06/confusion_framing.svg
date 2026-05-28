@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="596" viewBox="0 0 650 596" role="img" aria-label="Ideological Layers: where does the AI agree and where does it go wrong?">
+<rect x="0.00" y="0.00" width="650.00" height="596.00" fill="#f5f4f0" stroke="none" stroke-width="1.0"/>
+<text x="36.00" y="44.00" font-size="21" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Ideological Layers: where does the AI agree and where does it go wrong?</text>
+<text x="425.00" y="52.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">AI&#39;s Ideological Layers</text>
+<text x="18.00" y="371.00" font-size="14" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle" transform="rotate(-90 18.0 371.0)">Human&#39;s Ideological Layers</text>
+<text x="293.00" y="196.00" font-size="11" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end" transform="rotate(-45 293.00 196.00)">Institutional / Burea...</text>
+<text x="359.00" y="196.00" font-size="11" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end" transform="rotate(-45 359.00 196.00)">Ideological Framing (...</text>
+<text x="425.00" y="196.00" font-size="11" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end" transform="rotate(-45 425.00 196.00)">Action-Focused Langua...</text>
+<text x="491.00" y="196.00" font-size="11" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end" transform="rotate(-45 491.00 196.00)">Ideological Phrasing...</text>
+<text x="557.00" y="196.00" font-size="11" font-weight="600" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end" transform="rotate(-45 557.00 196.00)">Other</text>
+<text x="250.00" y="243.00" font-size="11" font-weight="400" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Institutional / Bureaucrati...</text>
+<text x="250.00" y="309.00" font-size="11" font-weight="400" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Ideological Framing (Discre...</text>
+<text x="250.00" y="375.00" font-size="11" font-weight="400" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Action-Focused Language</text>
+<text x="250.00" y="441.00" font-size="11" font-weight="400" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Ideological Phrasing (Norma...</text>
+<text x="250.00" y="507.00" font-size="11" font-weight="400" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="end">Other</text>
+<rect x="260.00" y="206.00" width="66.00" height="66.00" fill="rgba(37,99,235,0.79)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="293.00" y="244.00" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">277</text>
+<rect x="326.00" y="206.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.17)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="359.00" y="244.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">5</text>
+<rect x="392.00" y="206.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.33)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="425.00" y="244.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">35</text>
+<rect x="458.00" y="206.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.17)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="491.00" y="244.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">5</text>
+<rect x="524.00" y="206.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="260.00" y="272.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.29)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="293.00" y="310.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">26</text>
+<rect x="326.00" y="272.00" width="66.00" height="66.00" fill="rgba(37,99,235,0.80)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="359.00" y="310.00" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">282</text>
+<rect x="392.00" y="272.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.20)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="425.00" y="310.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">9</text>
+<rect x="458.00" y="272.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.28)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="491.00" y="310.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">24</text>
+<rect x="524.00" y="272.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="260.00" y="338.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.48)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="293.00" y="376.00" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">87</text>
+<rect x="326.00" y="338.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.25)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="359.00" y="376.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">17</text>
+<rect x="392.00" y="338.00" width="66.00" height="66.00" fill="rgba(37,99,235,0.59)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="425.00" y="376.00" font-size="12" font-weight="700" fill="#ffffff" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">142</text>
+<rect x="458.00" y="338.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.17)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="491.00" y="376.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">5</text>
+<rect x="524.00" y="338.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="260.00" y="404.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.19)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="293.00" y="442.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">7</text>
+<rect x="326.00" y="404.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="392.00" y="404.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.13)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="425.00" y="442.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">2</text>
+<rect x="458.00" y="404.00" width="66.00" height="66.00" fill="rgba(37,99,235,0.21)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<text x="491.00" y="442.00" font-size="12" font-weight="700" fill="#111827" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="middle">10</text>
+<rect x="524.00" y="404.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="260.00" y="470.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="326.00" y="470.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="392.00" y="470.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="458.00" y="470.00" width="66.00" height="66.00" fill="rgba(220,38,38,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="524.00" y="470.00" width="66.00" height="66.00" fill="rgba(37,99,235,0.07)" stroke="rgba(26,26,46,0.08)" stroke-width="1"/>
+<rect x="260.00" y="560.00" width="14.00" height="14.00" fill="#2563eb" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="278.00" y="572.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Agreed (on the diagonal)</text>
+<rect x="480.00" y="560.00" width="14.00" height="14.00" fill="#dc2626" stroke="none" stroke-width="1.0" rx="2" ry="2"/>
+<text x="498.00" y="572.00" font-size="11" font-weight="400" fill="#4b5563" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" text-anchor="start">Disagreed (off-diagonal)</text>
+</svg>

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 42,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "fabrications of OUN propaganda",
+      "entry_rus": "измышлений оуновской пропаганды",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Falsifications of historical facts and documents [...] were exposed",
+      "entry_rus": "Были разоблачены подтасовки исторических фактов и документов",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Fan Punxuan",
+      "entry_rus": "Фан Пунсюань",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "featuring an exhibition",
+      "entry_rus": "музей с экспозицией",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "featuring positive reviews of the Soviet reality",
+      "entry_rus": "с положительными отзывами о советской действительности",
+      "category": "Status and Condition",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "February 24, 2013",
+      "entry_rus": "24.02.13 р.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "February 9, 1988",
+      "entry_rus": "9 февраля 1988 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Federal Republic of Germany (FRG)",
+      "entry_rus": "ФРГ",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Fedorenko",
+      "entry_rus": "Федоренко",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Fetisov",
+      "entry_rus": "Фетисов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "film-forgery \"Harvest of Despair\"",
+      "entry_rus": "кинофальшивке \"Урожай отчаяния\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "films “Betrayal is Their Craft”",
+      "entry_rus": "фильмов \"Предательство - их ремесло\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "First and Second Secretaries",
+      "entry_rus": "первый и второй секретари",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "First and Second Secretaries of the Embassy of the People’s Republic of China",
+      "entry_rus": "первый и второй секретари посольства КНР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "First Counselor of the Embassy of Gabon",
+      "entry_rus": "первый советник посольства Габона",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "First Secretary of the British Embassy",
+      "entry_rus": "первому секретарю посольства Англии",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "First Secretary of the Embassy",
+      "entry_rus": "первый секретарь посольства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "First Secretary of the Embassy of Afghanistan",
+      "entry_rus": "первый секретарь посольства Афганистана",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "five from India — 279",
+      "entry_rus": "пять из Индии 279",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "five passengers sustained bodily injuries",
+      "entry_rus": "пять пассажиров получили телесные повреждения",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

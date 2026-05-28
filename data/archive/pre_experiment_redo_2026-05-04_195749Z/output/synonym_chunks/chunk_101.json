@@ -1,0 +1,126 @@
+{
+  "chunk_id": 101,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "S. Nkuo-Kankaka",
+      "entry_rus": "С. Нкуо-Канкака",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Savytskyi was arrested",
+      "entry_rus": "Савицкий арестован",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "scheduled to depart [...] on June 2",
+      "entry_rus": "2 июня убывает",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "scholars",
+      "entry_rus": "ученых",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Second Secretaries of the Embassy of the People's Republic of China",
+      "entry_rus": "вторые секретари посольства КНР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Second Secretary and Attaché of the Embassy of Japan in the USSR",
+      "entry_rus": "второй секретарь и атташе посольства Японии в СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Second Secretary, and Embassy Staff",
+      "entry_rus": "второй секретарь и сотрудник посольства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "secondary education",
+      "entry_rus": "образование среднее",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Secretary-Archivist of the U.S. Embassy in Moscow",
+      "entry_rus": "секретарь-архивист посольства США в Москве",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "seeking to organize self-defense",
+      "entry_rus": "стремясь организовать самозащиту",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "seized",
+      "entry_rus": "захватили",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "self-exposing articles",
+      "entry_rus": "саморазоблачительные статьи",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "self-proclaimed \"patriarch\" of the UCC",
+      "entry_rus": "самозванного \"патриарха\" УКЦ",
+      "category": "Actors",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "senators",
+      "entry_rus": "сенаторов",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "senior economist",
+      "entry_rus": "старшего экономиста",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Senior Lieutenant",
+      "entry_rus": "старший лейтенант",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Senior Lieutenant",
+      "entry_rus": "старшего лейтенанта",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Senior Lieutenant V. T. Korneyuk",
+      "entry_rus": "старшего лейтенанта Корнеюка В. Т.",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "senior researcher",
+      "entry_rus": "ведущему научному сотруднику",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "settlement of Yurivka",
+      "entry_rus": "пос. Юрьевка",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

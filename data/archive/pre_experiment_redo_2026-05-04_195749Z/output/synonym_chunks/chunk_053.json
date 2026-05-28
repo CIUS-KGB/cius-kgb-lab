@@ -1,0 +1,126 @@
+{
+  "chunk_id": 53,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "in Connection with the 1000th Anniversary of the Christianization of Rus’",
+      "entry_rus": "в связи с 1000-летием принятия христианства на Руси",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in connection with the conclusion of the trial",
+      "entry_rus": "в связи с окончанием судебного процесса",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In connection with the death sentence issued by an Israeli court",
+      "entry_rus": "В связи с вынесением израильским судом смертного приговора",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in connection with the Soviet-American summit",
+      "entry_rus": "что в связи с советско-американской встречей на высшем уровне",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In conversations",
+      "entry_rus": "В беседах",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in coordination with anti-Soviet clerical centers",
+      "entry_rus": "совместно с антисоветскими клерикальными центрами",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "in coordination with the KGB of the USSR",
+      "entry_rus": "по согласованию с КГБ СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "in crimes against civilians",
+      "entry_rus": "к преступлениям против мирного населения",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "In December 1941",
+      "entry_rus": "В декабре 1941 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In December of this year",
+      "entry_rus": "В декабре с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in determining",
+      "entry_rus": "по определению",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Donetsk",
+      "entry_rus": "в Донецке",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Donetsk Oblast — 21",
+      "entry_rus": "в Донецкой области 21",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Donetsk Oblast — 29",
+      "entry_rus": "в Донецкой области 29",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Donetsk — 4",
+      "entry_rus": "в Донецке 4",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in establishing any possible additional motives behind the crime",
+      "entry_rus": "в установлении возможных иных мотивов совершённого ими преступления",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "in February 1985",
+      "entry_rus": "в феврале 1985 года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in February of this year",
+      "entry_rus": "в феврале с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in foreign countries",
+      "entry_rus": "на зарубежные страны",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in front of the provincial parliament building",
+      "entry_rus": "перед зданием провинциального парламент",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

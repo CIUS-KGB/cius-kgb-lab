@@ -1,0 +1,126 @@
+{
+  "chunk_id": 70,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "lecture propaganda",
+      "entry_rus": "лекционная пропаганда",
+      "category": "Methods",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "left his post",
+      "entry_rus": "ушел с поста",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Libyan",
+      "entry_rus": "Ливии",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "lieutenant of the internal service",
+      "entry_rus": "лейтенант внутренней службы",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "lists of its “victims”",
+      "entry_rus": "списки его \"жертв\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Liu Zhangyao and Zhang Ning",
+      "entry_rus": "Лю Чжаньяо и Чжан Нин",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "living in Krasnosillia",
+      "entry_rus": "проживающих в с. Красноселье",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "living in the building",
+      "entry_rus": "проживающих в этом доме",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "located in the Dnister basin",
+      "entry_rus": "отдельные районы которых расположены в бассейне Днестра",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "located on the skip",
+      "entry_rus": "находившиеся на скипе",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lutuhyne Raion",
+      "entry_rus": "Лутугинского района",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv",
+      "entry_rus": "Львове",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv",
+      "entry_rus": "во Львове",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv Oblast",
+      "entry_rus": "Львовская область",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv Oblast",
+      "entry_rus": "Львовской",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv Oblast – 9",
+      "entry_rus": "Львовской – 9",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv Oblast — 11",
+      "entry_rus": "во Львовской 11",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv Oblast — 21",
+      "entry_rus": "во Львовской 21",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv Oblast — 4",
+      "entry_rus": "во Львовской 4",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Lviv – 949",
+      "entry_rus": "Львове – 949",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

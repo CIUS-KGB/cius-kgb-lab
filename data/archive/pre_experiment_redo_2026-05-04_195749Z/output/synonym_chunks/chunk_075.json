@@ -1,0 +1,126 @@
+{
+  "chunk_id": 75,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "no family members were present",
+      "entry_rus": "никого из членов семьи не было",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "no more than 0.03",
+      "entry_rus": "не свыше 0,03",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "no phenol was detected",
+      "entry_rus": "наличие фенола не обнаруживалось",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "no signs of violent death were found",
+      "entry_rus": "признаков насильственной смерти не обнаружено",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "No undesirable manifestations were noted",
+      "entry_rus": "Каких-либо нежелательных проявлений не отмечено",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "No. 119/sv",
+      "entry_rus": "№ 119/св",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "No. 21/sv",
+      "entry_rus": "№ 21/св",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "non-party",
+      "entry_rus": "беспартийный",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "non-party",
+      "entry_rus": "беспартийного",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "non-party member",
+      "entry_rus": "беспартийный",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "not to participate in the celebrations",
+      "entry_rus": "не участвовать в торжествах",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "nothing unusual was observed",
+      "entry_rus": "ничего необычного не отмечалось",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "notified of the death",
+      "entry_rus": "докладывалось о смерти",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "O. Pritsak",
+      "entry_rus": "О. Прицак",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "O.Berdnik",
+      "entry_rus": "О.Бердника",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "obtained from the USSR",
+      "entry_rus": "полученные из СССР",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "October 1987",
+      "entry_rus": "В октябре 1987",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "October 4 and 6, 1976",
+      "entry_rus": "4 и 6 октября 1976 г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Odesa",
+      "entry_rus": "Одессе",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Odesa",
+      "entry_rus": "в Одессе",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

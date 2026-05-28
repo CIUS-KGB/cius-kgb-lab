@@ -1,0 +1,126 @@
+{
+  "chunk_id": 24,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "at 08:40",
+      "entry_rus": "в 08 часов 40 мин.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "At 10:50 p.m.",
+      "entry_rus": "В 22 часа 50 мин.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at 12:05 a.m.",
+      "entry_rus": "в 00 часов 05 мин.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at 18:00",
+      "entry_rus": "в 18 часов",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at 6:00 a.m.",
+      "entry_rus": "в 6 часов утра",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at 9:30 p.m.",
+      "entry_rus": "в 21 час 30 мин.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at [...] held between August and October 1987",
+      "entry_rus": "на состоявшихся в августе-октябре 1987 года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at a dump",
+      "entry_rus": "на свалке",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at an unguarded railway crossing",
+      "entry_rus": "на неохраняемом переезде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at blast furnace No. 1",
+      "entry_rus": "на доменной печи № 1",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "At present",
+      "entry_rus": "В настоящее время",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the Academy of Sciences of the Ukrainian SSR",
+      "entry_rus": "в Академию наук УССР",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the monument’s construction site",
+      "entry_rus": "на месте строительства \"монумента\"",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the port of Novorossiysk",
+      "entry_rus": "Новороссийского порта",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "At the ports of Odesa and Zhdanov",
+      "entry_rus": "в Одесском и Ждановском портах",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "At the ports of Odesa, Bilhorod-Dnistrovskyi, Illichivsk, Izmail, Yuzhne, and Zhdanov",
+      "entry_rus": "в Одесском, Белгород-Днестровском, Ильичёвском, Измаильском, Южном и Ждановском портах",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "At the ports of Odesa, Illichivsk, Izmail, Reni, Yuzhne, and Zhdanov",
+      "entry_rus": "в Одесском, Ильичёвском, Измаильском, Ренийском, Южном и Ждановском портах",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "At the ports of Odesa, Zhdanov, and Kherson",
+      "entry_rus": "в Одесском, Ждановском и Херсонском портах",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "at the regional postal transfer station",
+      "entry_rus": "на областном пункте почтовых перевозок",
+      "category": "Places",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "at the request of OUNites",
+      "entry_rus": "по просьбе оуновцев",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 64,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "is carrying out measures",
+      "entry_rus": "проводит мероприятия",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "is carrying out measures to expose and discredit",
+      "entry_rus": "осуществляются мероприятия по разоблачению и компрометации",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "is carrying out special measures",
+      "entry_rus": "осуществляются специальные мероприятия",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "is continuing activities",
+      "entry_rus": "проводит дальнейшие мероприятия",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "is informed",
+      "entry_rus": "известно",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "is planned to be assigned",
+      "entry_rus": "намечено поручить",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "is planned to be held",
+      "entry_rus": "планируется провести",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "is planned to hold demonstrations",
+      "entry_rus": "намечено провести демонстрации",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "is regarded by OUNites as a compromise of \"the entire Ukrainian liberation movement,\"",
+      "entry_rus": "оуновцами расценивается как компрометация \"всего украинского освободительного движения\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "is taking measures",
+      "entry_rus": "осуществляет мероприятия",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "is taking the above into account",
+      "entry_rus": "изложенное учитывает",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "is to be established",
+      "entry_rus": "намечается учредить",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "is undertaking measures",
+      "entry_rus": "осуществляет мероприятия",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Israel",
+      "entry_rus": "Израиле",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "issued",
+      "entry_rus": "по этому поводу опубликовали",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "issued in the name of several cover groups",
+      "entry_rus": "изданий от имени нескольких легендированных групп",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "It contained a handwritten text",
+      "entry_rus": "на котором от руки учинен текст",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "It is also planned to organize",
+      "entry_rus": "Планируется также организовывать",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "It is also planned to send warnings to senators and congressmen cautioning",
+      "entry_rus": "Предусматривается организация засылки сенаторам и конгрессменам предостережений",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "It is assumed",
+      "entry_rus": "Предположительно",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 61,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "in which they drove off",
+      "entry_rus": "на которой уехали",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "In Yalta",
+      "entry_rus": "в Ялте",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Yalta",
+      "entry_rus": "в Ялте",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Yalta – 220",
+      "entry_rus": "в Ялте – 220",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Yalta — 4",
+      "entry_rus": "в Ялте 4",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Yalta — 783",
+      "entry_rus": "в Ялте 783",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Yalta — 886",
+      "entry_rus": "в Ялте 886",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "In Zaporizhzhia",
+      "entry_rus": "в Запорожье",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "in Zaporizhzhia — 6",
+      "entry_rus": "в Запорожье 6",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Incident",
+      "entry_rus": "Проявление",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "including",
+      "entry_rus": "из них",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including 4,657 specialists",
+      "entry_rus": "специалистов 4 657",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Including 4,913 from the Polish People’s Republic",
+      "entry_rus": "из ПНР 4 913",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including 5 ships",
+      "entry_rus": "из них 5 судов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including 5,648 postgraduates, interns, students, and technical/vocational school students",
+      "entry_rus": "из них 5648 аспирантов, стажеров, студентов, учащихся техникумов и училищ",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including 5,721 postgraduates, interns, students, and technical/vocational school students",
+      "entry_rus": "из них 5721 аспирант, стажер, студент, учащийся техникумов и училищ",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including 8,707 postgraduates, interns, students, and technical/vocational school students",
+      "entry_rus": "из них 8 707 аспиранты, стажёры, студенты, учащиеся техникумов и училищ",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including 9,024 postgraduates, interns, students, and technical/vocational school students",
+      "entry_rus": "из них 9024 аспиранта, стажера, студента, учащихся техникумов и училищ",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "including [...] in the [...] publishing plan",
+      "entry_rus": "включении в план",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "including seven ships",
+      "entry_rus": "из них семь судов",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

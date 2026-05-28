@@ -1,0 +1,126 @@
+{
+  "chunk_id": 43,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "fled to the Latin America",
+      "entry_rus": "бежали в Латинскую Америку",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Flirting with reactionary circles",
+      "entry_rus": "Заигрывая с реакционными кругами",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "flown from municipal buildings",
+      "entry_rus": "с вывешиванием на зданиях мэрий",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "following a series of publications organized by us in the American press about his crimes",
+      "entry_rus": "после организованной нами серии публикаций в американской прессе о его преступлениях",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Following the publication of this article",
+      "entry_rus": "После опубликования этой статьи",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "footage from Soviet newsreels about the blockade",
+      "entry_rus": "кадры советской кинохроники о блокаде",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for alcohol abuse",
+      "entry_rus": "за злоупотребление спиртными напитками",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for crimes against humanity",
+      "entry_rus": "за преступления против человечества",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for criminal responsibility",
+      "entry_rus": "для привлечения его к уголовной ответственности",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "for December 20, 1983",
+      "entry_rus": "за 20 декабря 1983 года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for distribution in the country and abroad",
+      "entry_rus": "для распространения в стране и за рубежом",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "For equipment acceptance",
+      "entry_rus": "для приёмки оборудования",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for holding them criminally accountable",
+      "entry_rus": "за привлечение их к уголовной ответственности",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for losing his party card",
+      "entry_rus": "за утерю партийного билета",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "for Moscow",
+      "entry_rus": "в Москву",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for private business",
+      "entry_rus": "по частным делам",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for prosecuting",
+      "entry_rus": "для привлечения к ответственности",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for schools and institutions of higher learning",
+      "entry_rus": "для школ и высших учебных заведений",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for the period",
+      "entry_rus": "на период",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "for the Pope of Rome",
+      "entry_rus": "папы римского",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

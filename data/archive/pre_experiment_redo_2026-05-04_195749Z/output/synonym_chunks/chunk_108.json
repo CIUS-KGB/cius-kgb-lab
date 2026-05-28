@@ -1,0 +1,126 @@
+{
+  "chunk_id": 108,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the bulwark",
+      "entry_rus": "фальшборт",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the bulwark was damaged",
+      "entry_rus": "повреждён фальшборт",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the campaign launched against them",
+      "entry_rus": "начатой против них кампании",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the Canadian government",
+      "entry_rus": "правительство Канады",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The Canadian newspaper The Globe and Mail",
+      "entry_rus": "Канадская газета \"Глоб энд мэйл\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the Canadian Parliament",
+      "entry_rus": "парламент Канады",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the cathedrals allegedly “destroyed by the Soviets.”",
+      "entry_rus": "«разрушенных советами» соборов",
+      "category": "Places",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the cause of the accident",
+      "entry_rus": "причина аварии",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the changes",
+      "entry_rus": "изменениях",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the children hung the dummy on the crossbar",
+      "entry_rus": "дети подвесили чучело к перекладине",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "the city of Khmilnyk",
+      "entry_rus": "гор. Хмельника",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the coke container",
+      "entry_rus": "ёмкость для кокса",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the collections taken from rank-and-file OUN members to pay legal expenses",
+      "entry_rus": "поборы с рядовых членов ОУН на оплату судебных издержек",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The command of the military unit",
+      "entry_rus": "Командованием войсковой части",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the commission demanded",
+      "entry_rus": "комиссия потребовала",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The Committee for State Security",
+      "entry_rus": "Комитетом государственной безопасности",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The Committee for State Security of the republic",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The Committee for State Security of the republic",
+      "entry_rus": "Комитет госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the Committee of State Security of the republic is taking measures",
+      "entry_rus": "Комитет госбезопасности республики принимает меры к",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the condition of one is serious",
+      "entry_rus": "состояние здоровья одного из них тяжёлое",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

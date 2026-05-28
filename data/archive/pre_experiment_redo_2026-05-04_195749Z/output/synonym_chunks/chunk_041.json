@@ -1,0 +1,126 @@
+{
+  "chunk_id": 41,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Every nationalist in the United States is now seen by the average person",
+      "entry_rus": "На каждого националиста в США обыватель смотрит теперь как на",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Evidence of confusion and disarray",
+      "entry_rus": "Свидетельством замешательства и растерянности",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "evidence was obtained",
+      "entry_rus": "получены доказательства",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "expected to include",
+      "entry_rus": "предполагается включить",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "explaining the cause of the specific odor",
+      "entry_rus": "в которой разъяснялись причины появления специфического запаха",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "exposing subversive actions",
+      "entry_rus": "разоблачающих подрывные акции",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the British government",
+      "entry_rus": "разоблачающих правительство Великобритании",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the complicity of the OUN in crimes",
+      "entry_rus": "разоблачающие соучастие ОУН в преступления",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the cooperation of the OUN members with the fascists during the war",
+      "entry_rus": "разоблачающая сотрудничество оуновцев с фашистами в годы войны",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the ideology",
+      "entry_rus": "разоблачающих идеологию",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the ideology",
+      "entry_rus": "разоблачающие идеологию",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "exposing the organizers of the campaign for their falsifications and political adventurism",
+      "entry_rus": "изобличающая организаторов кампании в фальсификациях и политическом авантюризме",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the political motives behind the OUN’s falsifications of the issue",
+      "entry_rus": "разоблачающей политические мотивы фальсификаций проблемы оуновцами",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the power struggle initiated by the cardinal and his successors within the Bandera faction over the \"Ukrainian Patriarchate\"",
+      "entry_rus": "разоблачающие затеянную кардиналом и его преемниками склоку в бандеровском \"проводе\" вокруг \"украинского патриархата\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing the subversive activities",
+      "entry_rus": "разоблачающих подрывную деятельность",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "exposing these falsifications has significantly undermined public trust",
+      "entry_rus": "разоблачением указанных фальсификаций существенно подорвано доверие общественности",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "expressed",
+      "entry_rus": "разделяли",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "expressed a protest to",
+      "entry_rus": "заявил в этой связи [...] протест",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "eyewitnesses",
+      "entry_rus": "с очевидцами",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "F. Baringer",
+      "entry_rus": "Ф. Барингер",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

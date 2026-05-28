@@ -1,0 +1,20 @@
+In response to the prompt:
+"Before we begin, could you suggest a prompt for me to give to the Google Music AI to generate a playlist that you think will reflect the vibe of the work we're doing here?"
+
+
+"Atlas":
+Here’s one you can paste or trim:
+
+---
+
+**Playlist prompt for Google Music AI**
+
+Build a playlist for late-night archival research: Soviet-era bureaucracy and signals intelligence, typewriters and carbon copies, magnetic tape hum, rain on windows, cheap institutional fluorescent buzz. Mix **dark ambient**, **minimal techno / dub techno**, **sparse piano or chamber strings**, **East European / Soviet film scores** (tension without melodrama), and **field recordings** (train stations, wind, shortwave static). Tempos mostly slow-to-mid; almost no vocals—if any, **choir or Russian radio snippets**, buried and instrumental. Mood: **cold, meticulous, lonely, quietly urgent**—Cold War reading room, not action movie. Avoid patriotic anthems and kitschy “spy jazz.” Title vibe: *Declassified stack at 2 a.m.*
+
+---
+
+If you want a shorter variant:
+
+> Slow dark ambient and Soviet-adjacent film tension, minimal beats, piano, tape hiss, almost no vocals—soundtrack for reading declassified cables until sunrise.
+
+Adjust “Russian” / “Soviet-adjacent” if you want it strictly instrumental with no cultural pegging.

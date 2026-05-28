@@ -1,0 +1,126 @@
+{
+  "chunk_id": 94,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "outside the building of the Permanent Mission of the USSR to the United Nations",
+      "entry_rus": "у здания Постоянного представительства СССР при ООН",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "P. Jürgens",
+      "entry_rus": "П. Юргенс",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "P. Muthani",
+      "entry_rus": "П. Мутхани",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "P. Roberts",
+      "entry_rus": "П. Робертс",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "P. V. Ruban and others",
+      "entry_rus": "Рубана П. В. и других",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Panama",
+      "entry_rus": "Панамы",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "parliamentarians",
+      "entry_rus": "парламентариев",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "participate in “events”",
+      "entry_rus": "для участия в «мероприятиях»",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "participated in the production",
+      "entry_rus": "принимали участие в создании",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "patriotic and internationalist upbringing",
+      "entry_rus": "патриотическому и интернациональному воспитанию",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "pensioner",
+      "entry_rus": "пенсионера",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "people of all faiths",
+      "entry_rus": "народам всех вероисповеданий",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Perez",
+      "entry_rus": "Перез",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Personnel Incident",
+      "entry_rus": "Происшествие по личному составу",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Personnel Report",
+      "entry_rus": "По личному составу",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Persons arriving for private matters — 70",
+      "entry_rus": "прибывших по частным делам 70",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "phenol",
+      "entry_rus": "фенола",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Philadelphia",
+      "entry_rus": "Филадельфии",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "plan to hold",
+      "entry_rus": "планируют провести",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "plan to organize",
+      "entry_rus": "планируют организовать",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

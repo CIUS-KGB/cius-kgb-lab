@@ -1,0 +1,126 @@
+{
+  "chunk_id": 22,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "articles [...] were also published",
+      "entry_rus": "опубликованы также статьи",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as a Nazi, a pogromist, a war criminal",
+      "entry_rus": "как на нациста, погромщика, военного преступника",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as a policeman",
+      "entry_rus": "полицейским",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "As a result",
+      "entry_rus": "В результате",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "As a result of",
+      "entry_rus": "В результате осуществления",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "As a result of measures carried out",
+      "entry_rus": "В результате осуществленных мероприятий",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "As a result of measures taken by the KGB Directorate in cooperation with police authorities it was established",
+      "entry_rus": "принятыми УКГБ совместно с органами милиции мерами установлено",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "as a result of the accident",
+      "entry_rus": "вследствие аварии",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "As a result of the chemical reaction",
+      "entry_rus": "В результате химической реакции",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as a result two individuals were fatally injured",
+      "entry_rus": "в результате два человека смертельно травмированы",
+      "category": "Events",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "As a result, the leaflets were confiscated",
+      "entry_rus": "листовки были изъяты",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "as a separate edition",
+      "entry_rus": "отдельным изданием",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as fascist accomplices",
+      "entry_rus": "как фашистских пособников",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as Nazi accomplices",
+      "entry_rus": "как нацистских пособников",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as Nazi collaborators and executioners",
+      "entry_rus": "как нацистских пособников-карателей",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as not contributing to rapprochement",
+      "entry_rus": "как не способствующий сближению",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "As of 13:00 on January 7",
+      "entry_rus": "С 13 часов 7 января",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "As of 9 January of the current year,",
+      "entry_rus": "по состоянию на 9 января с.г.",
+      "category": "Time",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "As of April 28",
+      "entry_rus": "по состоянию на 28 апреля",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "As of December 20, 1983, there were",
+      "entry_rus": "20 декабря находились",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

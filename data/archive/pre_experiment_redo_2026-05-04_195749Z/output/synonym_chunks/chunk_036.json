@@ -1,0 +1,126 @@
+{
+  "chunk_id": 36,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Departed for Moscow on October 12",
+      "entry_rus": "12 октября убыли",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "departing",
+      "entry_rus": "убывает",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "departing on March 24",
+      "entry_rus": "24 марта",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "depicting history and activities of the VChK-KGB bodies",
+      "entry_rus": "отображающих историю и деятельность органов ВЧК-КГБ",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "described the situation of the Church and believers in the Ukraine",
+      "entry_rus": "изложили положение церкви и верующих на Украине",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Desertion with Weapons",
+      "entry_rus": "Дезертирство с оружием",
+      "category": "Events",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Detroit",
+      "entry_rus": "Детройта",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "developed by the 27th Congress of the Party",
+      "entry_rus": "выработанного ХХVII съездом партии",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "devoted to the activities of state security services",
+      "entry_rus": "посвященных деятельности органов государственной безопасности",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "devoted to the activities of the state security services",
+      "entry_rus": "посвященных деятельности органов госбезопасности",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "did not find support",
+      "entry_rus": "не нашла поддержки",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Diplomats",
+      "entry_rus": "дипломатов,",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Diplomats accredited in the USSR – 4",
+      "entry_rus": "дипломатов, аккредитованых в СССР, – 4",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Diplomats accredited in the USSR — 4",
+      "entry_rus": "дипломатов, аккредитованных в СССР 4",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Diplomats accredited in the USSR — 7",
+      "entry_rus": "дипломатов, аккредитованных в СССР 7",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Diplomats accredited to the USSR – 1",
+      "entry_rus": "дипломатов, аккредитованных в СССР 1",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Diplomats – 1",
+      "entry_rus": "дипломатов – 1",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Diplomats – 3",
+      "entry_rus": "дипломатов 3",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "directed at",
+      "entry_rus": "в отношении",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "discovered",
+      "entry_rus": "обнаружил",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    }
+  ]
+}

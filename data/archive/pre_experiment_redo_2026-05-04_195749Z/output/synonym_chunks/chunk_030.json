@@ -1,0 +1,126 @@
+{
+  "chunk_id": 30,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "calls to declare the republic a nuclear-free zone",
+      "entry_rus": "призывы объявить республику безъядерной зоной",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada",
+      "entry_rus": "Канаде",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada",
+      "entry_rus": "из Канады",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada – 14",
+      "entry_rus": "Канада – 14",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada — 13",
+      "entry_rus": "из Канады 13",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada — 267",
+      "entry_rus": "из Канады 267",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada — 34",
+      "entry_rus": "из Канады 34",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada — 7",
+      "entry_rus": "Канады – 7",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Canada’s Ministry of Manpower and Immigration",
+      "entry_rus": "министерство рабочей силы и иммиграции Канады",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "cand the ompromised foreign national centers",
+      "entry_rus": "компрометацию зарубежных наццентров",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "carried out",
+      "entry_rus": "осуществили",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "caused confusion",
+      "entry_rus": "вызвали растерянность",
+      "category": "Status and Condition",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "ceased unlawful activities",
+      "entry_rus": "прекратил противоправную деятельность",
+      "category": "Actions",
+      "framing": "Legal Framework"
+    },
+    {
+      "entry_eng": "centers of ideological subversion",
+      "entry_rus": "центров идеологической диверсии",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Central Committee of the Communist Party of Ukraine",
+      "entry_rus": "Центральный Комитет Коммунистической партии Украины",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Central Committee of the Communist Party of Ukraine",
+      "entry_rus": "Центральный Комитет Компартии Украины",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Central Committee of the Communist Party of Ukraine",
+      "entry_rus": "Центральный комитет Коммунистической партии Украины",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Central Committee of the Communist Party of Ukraine",
+      "entry_rus": "ЦК Компартии Украины",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "certain documents, discovered in the archives [...] were used",
+      "entry_rus": "использованы обнаруженные в архиве отдельные документы",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Chairman of the Committee",
+      "entry_rus": "Председатель Комитета",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

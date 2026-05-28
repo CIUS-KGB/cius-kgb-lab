@@ -1,0 +1,126 @@
+{
+  "chunk_id": 23,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "As of January 23, there were",
+      "entry_rus": "23 января находились",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "As of May 31",
+      "entry_rus": "31 мая",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "As of October 12, there were",
+      "entry_rus": "12 октября находились",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as part of the \"Seminar on the Problems of Religious Freedom in the USSR,\"",
+      "entry_rus": "в рамках \"семинара по проблемам религиозной свободы в СССР\"",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as the American authorities have done",
+      "entry_rus": "как это сделали американские власти",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as well as [...], who was expelled from the USSR",
+      "entry_rus": "а также выдворенная из СССР",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "as well as the  Governor-General of Canada",
+      "entry_rus": "генерал-губернатор Канады",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as well as the danger of the Catholic Church supporting demands",
+      "entry_rus": "и опасности для престола католической церкви линии на поддержку требований",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as well as the film publication \"Harvest of Despair.\"",
+      "entry_rus": "а также кинопубликация \"Урожай отчаяния\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as well as the isolation and transition into \"opposition\"",
+      "entry_rus": "изоляцию и переход в \"оппозицию\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "as well as the methods of blackmail, threats, and violence they employed against their opponents",
+      "entry_rus": "и применявшиеся ими методы шантажа, угроз и насилия по отношению к своим противникам",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as well as the orders and instructions",
+      "entry_rus": "требования приказов и указаний",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "as well as the presentation to government circles and the public in the West",
+      "entry_rus": "также доведение до правительственных кругов и общественности Запада",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "as well as to deepen the divisions among OUN factions and weaken their influence on the Ukrainian emigre community",
+      "entry_rus": "а также по углублению раскола между оуновскими формированиями и снижению их влияния на украинскую эмиграцию",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "as “unjustly” convicted",
+      "entry_rus": "как «несправедливо» осужденных",
+      "category": "Legal Framework",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "assistance was rendered",
+      "entry_rus": "оказана помощь",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "assistant",
+      "entry_rus": "помощник",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Assistant to the Military Attaché",
+      "entry_rus": "помощник военного атташе",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "assistants to the military attaché",
+      "entry_rus": "помощники военного атташе",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "At 00:30 on January 9",
+      "entry_rus": "В 00 часов 30 мин. 9 января",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

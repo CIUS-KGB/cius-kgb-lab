@@ -1,0 +1,126 @@
+{
+  "chunk_id": 69,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Kushla explained",
+      "entry_rus": "Кушла пояснил",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Kyiv",
+      "entry_rus": "в Киев",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv",
+      "entry_rus": "Киеве",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv",
+      "entry_rus": "в Киеве",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv Oblast – 30",
+      "entry_rus": "Киевской – 30",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv Oblast — 11",
+      "entry_rus": "в Киевской 11",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv Oblast — 20",
+      "entry_rus": "в Киевской 20",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv Oblast — 38",
+      "entry_rus": "в Киевской 38",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv Oblast — 4",
+      "entry_rus": "в Киевской 4",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv region",
+      "entry_rus": "Киевской",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv region",
+      "entry_rus": "в Киевской области",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv — 13",
+      "entry_rus": "в Киевской 13",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv — 25",
+      "entry_rus": "Киевской – 25",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv — 497",
+      "entry_rus": "в Киеве 497",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyiv — 637",
+      "entry_rus": "в Киеве 637",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Kyivan Rus’",
+      "entry_rus": "Киевской Руси",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "L. H. Lukyanenko",
+      "entry_rus": "Лукьяненко Л. Г.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "L. Kopelev",
+      "entry_rus": "Л.Копелев",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "L. Mercer",
+      "entry_rus": "Л. Мерсер",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "leading toward",
+      "entry_rus": "ведущие в сторону",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

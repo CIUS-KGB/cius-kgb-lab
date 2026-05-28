@@ -1,0 +1,126 @@
+{
+  "chunk_id": 49,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "has carried out a set of measures",
+      "entry_rus": "проведен комплекс мероприятий",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "has declared May 29",
+      "entry_rus": "объявил 29 мая",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "has placed a special stake in Ukrainian bourgeois nationalism",
+      "entry_rus": "особую ставку делает на украинский буржуазный национализм",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "has proposed the creation",
+      "entry_rus": "предложил создать",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "has reviewed",
+      "entry_rus": "Ознакомлен",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "have been directed toward conducting activities aimed at shifting certain ethnic groups to positions favorable to us",
+      "entry_rus": "направлен на проведение мероприятий по переводу отдельных этнических групп на выгодные нам позиции",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "have called on the Ukrainian emigre community",
+      "entry_rus": "призвали украинскую эмиграцию",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "have had a significant impact on shaping a negative perception of OUN members among Western public opinion",
+      "entry_rus": "существенное воздействие на формирование негативного отношения западной общественности к участникам ОУН в целом",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "have led to",
+      "entry_rus": "привели к созданию",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "have outlived themselves and no longer correspond",
+      "entry_rus": "себя изжили, не отвечают",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "have taken measures",
+      "entry_rus": "приняты меры",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Having confessed to the crime",
+      "entry_rus": "сознавшись в содеянном",
+      "category": "Actions",
+      "framing": "Legal Framework"
+    },
+    {
+      "entry_eng": "having considered the criminal case against",
+      "entry_rus": "рассмотрев уголовное дело по обвинению",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "having died by suicide",
+      "entry_rus": "покончивший жизнь самоубийством",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "he got lost",
+      "entry_rus": "заблудился",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "he had the opportunity to personally review archival materials and meet",
+      "entry_rus": "ему была предоставлена возможность лично ознакомиться с материалами архивов, встретиться",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "he handed it over",
+      "entry_rus": "он передал ее",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "he participated",
+      "entry_rus": "принимал участие",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "headed by lawyer Deschênes",
+      "entry_rus": "под руководством адвоката Дешена",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "height — more than 30 meters",
+      "entry_rus": "высота — более 30 м",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 123,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "to prevent similar accidents",
+      "entry_rus": "с целью недопущения подобных аварий",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "to prevent the leakage of information abroad",
+      "entry_rus": "по недопущению утечки за кордон информации",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "To prevent the spread of undesirable rumors",
+      "entry_rus": "В целях предотвращения распространения нежелательных слухов",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "to producing a lower-grade pig iron",
+      "entry_rus": "на выпуск чугуна пониженной марки",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to propagandize peaceful course",
+      "entry_rus": "по пропаганде миролюбивого курса",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "to prosecute",
+      "entry_rus": "по преследованию",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to prosecute",
+      "entry_rus": "вести дела",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to provide the Ukrainian émigré community",
+      "entry_rus": "по доведению до украинской эмиграции",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to providing consultations to creative workers in the preparation of publications",
+      "entry_rus": "консультативной помощи творческим работникам в подготовке публикаций",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to publish “scholarly works”",
+      "entry_rus": "издания \"научных трудов\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to push out materials through operational channels",
+      "entry_rus": "к продвижению по оперативным каналам",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "to push out to the West",
+      "entry_rus": "по продвижению на Запад",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "to put an end",
+      "entry_rus": "положить конец",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "to raise questions during negotiations",
+      "entry_rus": "к обсуждению в ходе переговоров вопросов",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to raise their political vigilance",
+      "entry_rus": "повышению их политической бдительности",
+      "category": "Actions",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "to reduce the anti-Soviet activity",
+      "entry_rus": "по снижению антисоветской активности",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "to search for",
+      "entry_rus": "к розыску",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "to seek from the Soviet authorities",
+      "entry_rus": "добиваться от советских властей",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "to seek permission [...] to visit",
+      "entry_rus": "предложения добиваться разрешения на приезд",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "to send a copy of “Lest We Forget.”",
+      "entry_rus": "о высылке книги \"Чтобы мы не забыли\"",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

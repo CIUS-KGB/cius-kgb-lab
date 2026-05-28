@@ -1,0 +1,126 @@
+{
+  "chunk_id": 124,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "to solve this issue at the expense of the reserve",
+      "entry_rus": "решить этот вопрос за счет резерва",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to Soviet justice",
+      "entry_rus": "советскому правосудию",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to stage rallies",
+      "entry_rus": "провести сборища",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "to strengthen",
+      "entry_rus": "укрепления",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "to study coal mining practices",
+      "entry_rus": "для изучения опыта угледобычи",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to suppress subversive actions of the enemy",
+      "entry_rus": "по пресечению подрывных акций противника",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "to terminate investigations",
+      "entry_rus": "прекратить расследование",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to the \"prestige\" of OUN centers",
+      "entry_rus": "\"престижу\" оуновских центров",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "to the attempts of the ruling circles to use",
+      "entry_rus": "по попыткам использовать правящими кругами",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "to the City Department of the KGB",
+      "entry_rus": "в ГО КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "to the city KGB office",
+      "entry_rus": "в горотдел КГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "to the crimes",
+      "entry_rus": "преступлений",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to the current political climate",
+      "entry_rus": "современной обстановке",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to the governments of Western countries",
+      "entry_rus": "правительствам западных стран",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "To the Head of the Propaganda and Agitation",
+      "entry_rus": "Заведующему отделом пропаганды и агитации",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "to the influential newspaper “Toronto Star”",
+      "entry_rus": "во влиятельную газету \"Торонто стар\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to the judicial authorities",
+      "entry_rus": "органам юстиции",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to the long-term \"Retribution\" Operation",
+      "entry_rus": "долговременной акции \"Возмездие\"",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to the mass media and the United States authorities",
+      "entry_rus": "в СМИ и официальные органы США",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "to the metal frame",
+      "entry_rus": "к металлической раме",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

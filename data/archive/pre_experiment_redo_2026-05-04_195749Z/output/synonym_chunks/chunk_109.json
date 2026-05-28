@@ -1,0 +1,126 @@
+{
+  "chunk_id": 109,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the conference of ZP UGV [the Foreign Representation of the Ukrainian Supreme Liberation Council]",
+      "entry_rus": "конференция ЗП УГВР",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The court issued",
+      "entry_rus": "Судом вынесено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the CPSU",
+      "entry_rus": "КПСС и",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the criminal activities",
+      "entry_rus": "преступной деятельности",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the criminal anti-people activity of the OUNites",
+      "entry_rus": "преступной антинародной деятельности оуновцев",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the criminal case",
+      "entry_rus": "уголовное дело",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the defense of the executioner",
+      "entry_rus": "защита карателя",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The diplomats",
+      "entry_rus": "Дипломаты",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The director of the “Ukrainian Research Institute” at Harvard University",
+      "entry_rus": "Директор \"украинского научного института\" при Гарвардском университете",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the dissemination abroad of four books based on our materials",
+      "entry_rus": "распространение за рубежом четырех книг, подготовленных по нашим материалам",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The diversion of efforts by foreign OUN centers from anti-Soviet activity",
+      "entry_rus": "Отвлечению усилий зарубежных центров ОУН от антисоветской деятельности",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the drinking water acquired an unpleasant odor",
+      "entry_rus": "питьевая вода приобрела неприятный запах",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the Dzerzhinsky collective farm in the Pavlohrad district",
+      "entry_rus": "колхоза имени Дзержинского Павлоградского района",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The estimated cost of constructing the \"monument\"",
+      "entry_rus": "стоимость строительства \"монумента\"",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The exposure of Lebed as a Nazi accomplice and CIA agent",
+      "entry_rus": "Изобличение Лебедя как нацистского пособника и агента ЦРУ",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the fake film includes photographs",
+      "entry_rus": "в кинофальшиивку вмонтированы фотографии",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The favorable to us public opinion created as a result of these actions",
+      "entry_rus": "Созданное в результате этого выгодное нам общественное мнение",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the foreign OUNs",
+      "entry_rus": "зарубежные ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the former captain of the [...] ship",
+      "entry_rus": "бывшего капитана парохода",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the former captain of the motor ship",
+      "entry_rus": "бывшего капитана теплохода",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

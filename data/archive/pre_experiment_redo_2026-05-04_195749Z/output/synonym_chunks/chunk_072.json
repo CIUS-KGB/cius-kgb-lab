@@ -1,0 +1,126 @@
+{
+  "chunk_id": 72,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "made with blue dye",
+      "entry_rus": "синим красителем",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "manuscript of the collection",
+      "entry_rus": "рукопись сборника",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "March 25–26 of this year",
+      "entry_rus": "25–26 марта с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "March 5, 1987",
+      "entry_rus": "5 марта 1987 года",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "March 6",
+      "entry_rus": "6 марта",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "marches",
+      "entry_rus": "шествия",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Markov",
+      "entry_rus": "Марков",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "married",
+      "entry_rus": "женат",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Mass marches",
+      "entry_rus": "\"массовые шествия\"",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "mass media",
+      "entry_rus": "средств массовой информации",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "mass media [were widely used]",
+      "entry_rus": "широко использовались средства массовой информации",
+      "category": "Methods",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "mass prayers",
+      "entry_rus": "массовые богослужения",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Materials",
+      "entry_rus": "Материалы",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "materials concerning",
+      "entry_rus": "некоторые материалы в отношении",
+      "category": "Material Resources",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "materials were disseminated through operational channels",
+      "entry_rus": "Указанные материалы по оперативным каналам были доведены до",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "may harm their reputations",
+      "entry_rus": "может нанести ущерб их престиж",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "mayors",
+      "entry_rus": "Мэры",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Measures are being taken",
+      "entry_rus": "Принимаются меры",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "measures carried out [...] to discredit",
+      "entry_rus": "мероприятий по компрометации",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "measures were taken by the KGB to launch a similar campaign",
+      "entry_rus": "КГБ провел аналогичную кампанию",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 50,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "held a press conference",
+      "entry_rus": "провел пресс-конференцию",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "held in the Soviet Union",
+      "entry_rus": "проводимых в Советском Союзе",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "held several “congresses” and “conferences”",
+      "entry_rus": "провели несколько \"съездов\" и \"конференций\"",
+      "category": "Events",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "hiding in the West",
+      "entry_rus": "скрывающихся на Западе",
+      "category": "Actors",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "higher education",
+      "entry_rus": "образование — высшее",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "his argument about the “artificial nature of the famine”",
+      "entry_rus": "его аргументация \"искусственного характера голода\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "his participation in forming",
+      "entry_rus": "участие в формировании",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "home port Odesa",
+      "entry_rus": "порт приписки Одесса",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "hostile",
+      "entry_rus": "враждебных",
+      "category": "Status and Condition",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "hostile activities aimed at undermining trust in the policy of perestroika",
+      "entry_rus": "враждебной деятельности, направленной на подрыв доверия к политике перестройки",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "human footprints",
+      "entry_rus": "следы человека",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "hype",
+      "entry_rus": "Шумиха",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "I. A. Kandyba",
+      "entry_rus": "Кандыбы И. А.",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "I. Demjanjuk",
+      "entry_rus": "И. Демьянюком",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "I. H. Sokulsky",
+      "entry_rus": "Сокульского И. Г.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "I. Hryhorenko",
+      "entry_rus": "И.Григоренко",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "I. Kawakatsu",
+      "entry_rus": "И. Кавакацу",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "I. Nasif",
+      "entry_rus": "И. Насиф",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "I. V. Savenkov",
+      "entry_rus": "Савенков И. В.",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "I.Dziuba",
+      "entry_rus": "И.Дзюбы",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

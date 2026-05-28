@@ -1,0 +1,126 @@
+{
+  "chunk_id": 113,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the Polish People’s Republic",
+      "entry_rus": "ПНР",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the possibilities of [...] are being more widely used",
+      "entry_rus": "шире используются возможности",
+      "category": "Methods",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the preparation and delivery to the mass audience",
+      "entry_rus": "подготовке и доведению до массовой аудитории",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the presence of a chemical substance was detected",
+      "entry_rus": "было обнаружено наличие химического вещества",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the Presidium of the Supreme Soviet of the Ukrainian SSR",
+      "entry_rus": "Президиум Верховного Совета УССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the press conference, and the related reports",
+      "entry_rus": "пресс-конференция и связанные с этим выступления",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the public and mass media",
+      "entry_rus": "общественности и средств массовой информации",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the publication and distribution abroad",
+      "entry_rus": "публикацию и распространение за кордоном",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The publication of the book",
+      "entry_rus": "Публикация книги",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the publisher M. Hanusiak",
+      "entry_rus": "издательство М. Ганусяка",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the reactionary essence of this ideology",
+      "entry_rus": "реакционной сущности его идеологии",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The Regional Committee of the Communist Party of Ukraine has been informed",
+      "entry_rus": "Обкому Компартии Украины доложено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the regional committee of the Communist Party of Ukraine has been informed",
+      "entry_rus": "обкому Компартии Украины доложено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the Regional Committee of the Communist Party of Ukraine has been informed",
+      "entry_rus": "обком Компартии Украины информирован",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the regional committee of the Communist Party of Ukraine has been notified",
+      "entry_rus": "обком Компартии Украины информирован",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the release",
+      "entry_rus": "выход",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the republic's KGB is conducting the counter-propaganda efforts",
+      "entry_rus": "проводимая органами КГБ республики контрпропагандистская работа",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the republican Committee for State Security",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "The Republican Committee for State Security",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the Republican Committee for State Security",
+      "entry_rus": "Комитет госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "term_results": [
+    {
+      "entry_eng": "A. E. Ivantsov",
+      "entry_rus": "Иванцов А. Е.",
+      "definition_eng": "Proper name; person identified in document.",
+      "definition_rus": "Имя собственное; лицо, упомянутое в документе.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "A. G. Kholod",
+      "entry_rus": "Холод А. Г.",
+      "definition_eng": "Proper name; person identified in document.",
+      "definition_rus": "Имя собственное; лицо, упомянутое в документе.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "A. Tkachuk",
+      "entry_rus": "А. Ткачука",
+      "definition_eng": "Proper name; person identified in document, framed in discrediting context.",
+      "definition_rus": "Имя собственное; лицо, упомянутое в документе в дискредитирующем контексте.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "A. Zhukovsky",
+      "entry_rus": "А. Жуковский",
+      "definition_eng": "Proper name; person identified in document.",
+      "definition_rus": "Имя собственное; лицо, упомянутое в документе.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "A.D. Lapin",
+      "entry_rus": "Лапину А. Д.",
+      "definition_eng": "Proper name; person identified in document.",
+      "definition_rus": "Имя собственное; лицо, упомянутое в документе.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "A.Klimchuk",
+      "entry_rus": "А.Климчуке",
+      "definition_eng": "Proper name; person identified in document. Russian has dative/locative ending (Климчуке).",
+      "definition_rus": "Имя собственное; лицо, упомянутое в документе. В оригинале дательный/местный падеж.",
+      "synonyms_eng": [],
+      "synonyms_rus": []
+    },
+    {
+      "entry_eng": "about [...] taking place",
+      "entry_rus": "о происходящих",
+      "definition_eng": "Fragment: regarding events or occurrences; context-dependent.",
+      "definition_rus": "Фрагмент: о происходящих событиях; контекстуально зависимо.",
+      "synonyms_eng": ["about events taking place", "regarding ongoing", "concerning what is occurring"],
+      "synonyms_rus": ["о происходящих", "относительно происходящего", "о текущих событиях"]
+    },
+    {
+      "entry_eng": "about crimes they committed",
+      "entry_rus": "совершенных ими преступлений",
+      "definition_eng": "Regarding offenses perpetrated by the subject; judicial or ideological framing.",
+      "definition_rus": "Относительно преступлений, совершенных субъектом; судебная или идеологическая рамка.",
+      "synonyms_eng": ["about crimes committed", "regarding offenses perpetrated", "concerning crimes they committed"],
+      "synonyms_rus": ["о совершенных ими преступлениях", "относительно их преступлений", "о преступлениях, ими совершенных"]
+    },
+    {
+      "entry_eng": "about KGB efforts documenting",
+      "entry_rus": "о проведенной органами КГБ документации",
+      "definition_eng": "Regarding documentation work carried out by KGB; institutional phrasing.",
+      "definition_rus": "Относительно документальной работы, проведенной органами КГБ; институциональная формулировка.",
+      "synonyms_eng": ["about KGB documentation efforts", "regarding KGB documenting", "concerning KGB documentation work"],
+      "synonyms_rus": ["о проведенной КГБ документации", "относительно документации органов КГБ", "о работе КГБ по документированию"]
+    },
+    {
+      "entry_eng": "about OUN's activities",
+      "entry_rus": "о деятельности ОУН",
+      "definition_eng": "Regarding activities of the Organization of Ukrainian Nationalists; intelligence or ideological context.",
+      "definition_rus": "Относительно деятельности ОУН; разведывательный или идеологический контекст.",
+      "synonyms_eng": ["about OUN activities", "regarding OUN operations", "concerning nationalist organization activities"],
+      "synonyms_rus": ["о деятельности ОУН", "относительно деятельности ОУН", "о работе националистической организации"]
+    },
+    {
+      "entry_eng": "about the \"negative consequences\" of this action for OUN",
+      "entry_rus": "по поводу \"негативных последствий\" этой акции для ОУН",
+      "definition_eng": "Regarding adverse effects of an action on OUN; quoted to signal Soviet framing or reported speech.",
+      "definition_rus": "Относительно негативных последствий акции для ОУН; кавычки указывают на советскую рамку или цитату.",
+      "synonyms_eng": ["about negative consequences for OUN", "regarding adverse effects on OUN", "concerning fallout for nationalist organization"],
+      "synonyms_rus": ["о негативных последствиях для ОУН", "относительно ущерба для ОУН", "по поводу последствий акции для ОУН"]
+    },
+    {
+      "entry_eng": "about the criminal past",
+      "entry_rus": "о преступном прошлом",
+      "definition_eng": "Regarding prior criminal record or history; discrediting framing.",
+      "definition_rus": "Относительно преступного прошлого; дискредитирующая рамка.",
+      "synonyms_eng": ["about criminal past", "regarding criminal history", "concerning prior offenses", "about criminal record"],
+      "synonyms_rus": ["о преступном прошлом", "относительно криминального прошлого", "о судимости", "о криминальной истории"]
+    },
+    {
+      "entry_eng": "about the executionist activity",
+      "entry_rus": "о карательной деятельности",
+      "definition_eng": "Regarding punitive or execution-style actions; ideologically charged term.",
+      "definition_rus": "Относительно карательной деятельности; идеологически нагруженный термин.",
+      "synonyms_eng": ["about punitive activity", "regarding executionist conduct", "concerning repressive actions"],
+      "synonyms_rus": ["о карательной деятельности", "относительно репрессивной деятельности", "о карательных мерах"]
+    },
+    {
+      "entry_eng": "about the subversive plans and schemes",
+      "entry_rus": "о подрывных планах и замыслах",
+      "definition_eng": "Regarding plans and designs intended to undermine; intelligence or ideological formulation.",
+      "definition_rus": "Относительно подрывных планов и замыслов; разведывательная или идеологическая формулировка.",
+      "synonyms_eng": ["about subversive plans", "regarding hostile schemes", "concerning subversive designs", "about destabilization plans"],
+      "synonyms_rus": ["о подрывных планах", "относительно враждебных замыслов", "о подрывных замыслах", "о планах подрыва"]
+    },
+    {
+      "entry_eng": "about the use of this unit by the Nazis",
+      "entry_rus": "об использовании нацистами данного формирования",
+      "definition_eng": "Regarding Nazi employment of a given formation or unit; historical or judicial context.",
+      "definition_rus": "Относительно использования нацистами данного формирования; исторический или судебный контекст.",
+      "synonyms_eng": ["about Nazi use of this unit", "regarding Nazi employment of formation", "concerning Nazi utilization of unit"],
+      "synonyms_rus": ["об использовании нацистами формирования", "относительно нацистского использования подразделения", "о применении нацистами данного формирования"]
+    },
+    {
+      "entry_eng": "about the \"artificial famine\"",
+      "entry_rus": "об \"искусственном голоде\"",
+      "definition_eng": "Regarding the Holodomor or man-made famine discourse; quoted term in contested memory politics.",
+      "definition_rus": "Относительно дискурса об искусственном голоде (голодоморе); цитируемый термин в спорной политике памяти.",
+      "synonyms_eng": ["about artificial famine", "regarding man-made famine", "concerning Holodomor discourse"],
+      "synonyms_rus": ["об искусственном голоде", "относительно искусственного голода", "о голоде 1932-1933"]
+    },
+    {
+      "entry_eng": "about war criminals",
+      "entry_rus": "о военных преступниках",
+      "definition_eng": "Regarding persons accused of wartime offenses; judicial or ideological framing.",
+      "definition_rus": "Относительно военных преступников; судебная или идеологическая рамка.",
+      "synonyms_eng": ["about war criminals", "regarding war criminals", "concerning war crime accused"],
+      "synonyms_rus": ["о военных преступниках", "относительно военных преступников", "о обвиняемых в военных преступлениях"]
+    },
+    {
+      "entry_eng": "Abroad",
+      "entry_rus": "за рубежом",
+      "definition_eng": "In or to foreign countries; outside Soviet or national territory.",
+      "definition_rus": "За границей; вне советской или национальной территории.",
+      "synonyms_eng": ["abroad", "overseas", "in foreign countries", "beyond the border"],
+      "synonyms_rus": ["за рубежом", "за границей", "в иностранных государствах", "за кордоном"]
+    },
+    {
+      "entry_eng": "abroad",
+      "entry_rus": "за рубежом",
+      "definition_eng": "In or to foreign countries; outside national territory.",
+      "definition_rus": "За границей; вне национальной территории.",
+      "synonyms_eng": ["abroad", "overseas", "in foreign countries", "beyond the border"],
+      "synonyms_rus": ["за рубежом", "за границей", "в иностранных государствах", "за кордоном"]
+    },
+    {
+      "entry_eng": "accompanying a delegation from that country",
+      "entry_rus": "сопровождает делегацию этой страны",
+      "definition_eng": "Act of escorting or attending a delegation originating from the referenced country; diplomatic or visit context.",
+      "definition_rus": "Действие сопровождения делегации из указанной страны; дипломатический или визитный контекст.",
+      "synonyms_eng": ["accompanying a delegation", "escorting delegation from that country", "attending delegation from that state"],
+      "synonyms_rus": ["сопровождает делегацию этой страны", "сопровождает делегацию", "сопровождение делегации из этой страны"]
+    }
+  ]
+}

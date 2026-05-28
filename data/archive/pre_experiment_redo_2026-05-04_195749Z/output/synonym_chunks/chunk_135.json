@@ -1,0 +1,126 @@
+{
+  "chunk_id": 135,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "with foreigners - participants of international meetings",
+      "entry_rus": "У иностранцев - участников международных встреч",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with labor collectives and the public",
+      "entry_rus": "с трудовыми коллективами и общественностью",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with one dependent child",
+      "entry_rus": "на иждивении один ребенок",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with representatives",
+      "entry_rus": "с представителями",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "with representatives of the progressive Ukrainian, Jewish, and other émigré press",
+      "entry_rus": "с представителями прогрессивной украинской, еврейской и другой эмигрантской печати",
+      "category": "Actors",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "with the employee",
+      "entry_rus": "c сотрудником",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with the fascists",
+      "entry_rus": "с фашистами",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "with the goal of reopening",
+      "entry_rus": "с целью открытия",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "with the laying of a \"monument\"",
+      "entry_rus": "закладке \"монумента\"",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "with the participation",
+      "entry_rus": "с участием",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with the participation of several reactionary senators and members of Congress",
+      "entry_rus": "с участием ряда реакционно настроенных сенаторов и конгрессменов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "with the participation of the KGB Directorate",
+      "entry_rus": "с участием УКГБ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "with the sentence to be served",
+      "entry_rus": "с отбытием наказания",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "with Ukrainian nationalist flags",
+      "entry_rus": "флагов украинских националистов",
+      "category": "Material Resources",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "within the crew",
+      "entry_rus": "в коллективе экипажа",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Within the framework of this campaign",
+      "entry_rus": "В рамках этой кампании",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "within the Ministry of Justice",
+      "entry_rus": "в Министерстве юстиции",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "within the Ukrainian émigré community",
+      "entry_rus": "в среде украинской эмиграции",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Work also continued on assisting creative collectives and individual authors",
+      "entry_rus": "Продолжалась также работа по оказанию помощи творческим коллективам и отдельным авторам",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "worker of Mine No. 4",
+      "entry_rus": "рабочий шахты № 4",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

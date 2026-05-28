@@ -1,0 +1,126 @@
+{
+  "chunk_id": 99,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "relatives of the deceased",
+      "entry_rus": "родственники погибших",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "relevant publications",
+      "entry_rus": "актуальные публикации",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "removed from official registration",
+      "entry_rus": "снятых с регистрации",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "renegates",
+      "entry_rus": "отщепенцев",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "repair work was completed",
+      "entry_rus": "восстановительные работы завершены",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "Report",
+      "entry_rus": "Докладная записка",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "report [...] described [...] conducted",
+      "entry_rus": "докладывалось о проводимых",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "report informed",
+      "entry_rus": "докладывалось",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Report No. 126/sv [...] informed",
+      "entry_rus": "№ 126/св докладывалось",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Report No. 244/sv [...] concerned",
+      "entry_rus": "№ 244/св докладывалось",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "report No. 28/sv detailed",
+      "entry_rus": "№ 28/св докладывалось",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Report No. 449/sv of December 14, 1976",
+      "entry_rus": "14 декабря 1976 года № 449/св",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Report Note",
+      "entry_rus": "Докладная записка",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "reported",
+      "entry_rus": "докладывалось",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Reported for informational purposes",
+      "entry_rus": "Сообщается в порядке информации",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "reported in No. 69/sv",
+      "entry_rus": "(докладывалось № 69/св",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "reported to the Central Committee of the Communist Party of Ukraine No. 47/sv",
+      "entry_rus": "докладывалось в ЦК КП Украины № 47/св от",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "reported to the KGB of the USSR",
+      "entry_rus": "В КГБ СССР доложено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "represented by the ringleaders of the OUN",
+      "entry_rus": "в лице главарей ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "republic",
+      "entry_rus": "республике",
+      "category": "Places",
+      "framing": "Institutional / Bureaucratic Lingo"
+    }
+  ]
+}

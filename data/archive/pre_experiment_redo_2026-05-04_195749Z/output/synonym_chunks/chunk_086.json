@@ -1,0 +1,126 @@
+{
+  "chunk_id": 86,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "on recent",
+      "entry_rus": "состоявшихся в последнее время",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on September 10 of this year",
+      "entry_rus": "10 сентября с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on serious deficiencies",
+      "entry_rus": "о серьезных недостатках",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on shortcomings in the work",
+      "entry_rus": "о недостатках в работе",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On special measures against",
+      "entry_rus": "О специальных мероприятиях против",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "On special measures against foreign OUN centers",
+      "entry_rus": "О специальных мероприятиях против зарубежных центров ОУН",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "on the \"artificial famine in Ukraine and its consequences\"",
+      "entry_rus": "\"об искусственном голоде на Украине и его последствиях\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "On the Accident at the Blast Furnace",
+      "entry_rus": "Об аварии на доменной печи",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on the atrocities of war criminals who had taken refuge in these countries",
+      "entry_rus": "о злодеяниях укрывшихся в этих странах военных преступников",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "On the basis of the materials we prepared",
+      "entry_rus": "На основе подготовленных нами материалов",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "on the basis of the tasks of ensuring state security",
+      "entry_rus": "исходя из задач по обеспечению государственной безопасности",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "on the bulletin board",
+      "entry_rus": "на доске объявлений",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On the campaign",
+      "entry_rus": "О кампании",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "On the Collision of a Train with a Scheduled Bus",
+      "entry_rus": "О столкновении поезда с рейсовым автобусом",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "On the conclusion of the trial",
+      "entry_rus": "Об окончании судебного процесса",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "on the control and tracking strip",
+      "entry_rus": "на контрольно-следовой полосе",
+      "category": "Places",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "on the criminal inaction",
+      "entry_rus": "о преступной бездеятельности",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "On the Detection of Foreign Chemical Substances in Drinking Water",
+      "entry_rus": "Об обнаружении в питьевой воде примеси постороннего химического вещества",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "On the Development of Measures for Operation “Pharisees”",
+      "entry_rus": "О развитии мероприятий по операции “Фарисеи”",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "on the failure",
+      "entry_rus": "о несостоятельности",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

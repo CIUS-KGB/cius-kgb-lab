@@ -1,0 +1,126 @@
+{
+  "chunk_id": 115,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "the task of instigating",
+      "entry_rus": "задания по инспирированию",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "The text was handwritten",
+      "entry_rus": "Текст исполнен рукописью",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the Toronto television program Global",
+      "entry_rus": "торонтской телевизионной программой \"Глобал\"",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the trial of former executioner",
+      "entry_rus": "судебный процесс над бывшим карателем",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the UK — 1",
+      "entry_rus": "из Англии 1",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the Ukrainian Catholic and Orthodox Churches",
+      "entry_rus": "украинской католической и православной церквей",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "The Ukrainian state security services",
+      "entry_rus": "органы госбезопасности Украины",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the unauthorized reopening",
+      "entry_rus": "самовольного открытия",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the USA",
+      "entry_rus": "США",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the use of foreign OUN by ruling circles and intelligence services of the adversary in intelligence and subversive activities against the USSR",
+      "entry_rus": "использованию правящими кругами и спецслужбами противника зарубежных ОУН в разведывательно-подрывной работе против СССР",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the USSR Register",
+      "entry_rus": "Регистра СССР",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "the Vinnytsia Regional Committee",
+      "entry_rus": "Винницкому",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "the “artificial nature of the famine in Ukraine in 1932–1933,”",
+      "entry_rus": "об \"искусственном характере голода на Украине в 1932–1933 годах\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "the “chronicle episodes” in the film Harvest of Despair",
+      "entry_rus": "\"эпизоды хроники\" фильма \"Жатва отчаяния\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "The “Ukraine” Society",
+      "entry_rus": "Обществом \"Украина\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "their close ties",
+      "entry_rus": "их тесных связей",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "their connection with the special services of the USA",
+      "entry_rus": "их связь со спецслужбами США",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "their criminal past",
+      "entry_rus": "их преступного прошлого",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "their death",
+      "entry_rus": "их смертью",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "their deportation",
+      "entry_rus": "их депортации",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

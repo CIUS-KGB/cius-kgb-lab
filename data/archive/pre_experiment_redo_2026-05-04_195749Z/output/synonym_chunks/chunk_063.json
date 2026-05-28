@@ -1,0 +1,126 @@
+{
+  "chunk_id": 63,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "intend to assign",
+      "entry_rus": "намерены поручать",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "intensified counter-propaganda and general preventive measures",
+      "entry_rus": "активизировали проведение контрпропагандистских и общепрофилактических мероприятий",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "intensifying subversive activities,",
+      "entry_rus": "активизацию своей подрывной работы",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "into 238 cases",
+      "entry_rus": "По 238 делам",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "into the river",
+      "entry_rus": "в реку",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "into the shaft",
+      "entry_rus": "в ствол",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "introductory visit",
+      "entry_rus": "ознакомительная поездка",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Investigations [...] will continue",
+      "entry_rus": "разбирательство будет продолжено",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "invited by the Committee of Youth Organisations",
+      "entry_rus": "по приглашению КМО СССР (Комитет молодёжных организаций)",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "invited by the Writers’ Union of the USSR",
+      "entry_rus": "по приглашению Союза писателей СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "involving faculty",
+      "entry_rus": "с участием преподавателей",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "involving representatives of government circles",
+      "entry_rus": "с привлечением представителей правительственных кругов",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Ion Soltys’s captain",
+      "entry_rus": "капитану \"Иона Солтыса\"",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "is accused of bias",
+      "entry_rus": "обвиняется в тенденциозности",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "is approximately $12 million",
+      "entry_rus": "составит около 12 млн долларов",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "is assisting in the publication abroad of a documentary book",
+      "entry_rus": "оказывает содействие в издании за рубежом документальной книги",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "is aware of this matter",
+      "entry_rus": "об изложенном известно",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "is based on “evidence”",
+      "entry_rus": "основана на \"доказательствах”",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "is being conducted",
+      "entry_rus": "проводится",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "is being used [...] to intensify",
+      "entry_rus": "используется [...] для активизации",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    }
+  ]
+}

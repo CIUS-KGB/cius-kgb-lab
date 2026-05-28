@@ -1,0 +1,126 @@
+{
+  "chunk_id": 9,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "According to [...] correspondent",
+      "entry_rus": "По заявлению корреспондента",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "According to Baringer",
+      "entry_rus": "По мнению Барингер",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "According to data received",
+      "entry_rus": "По поступившим [...] данным",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to information obtained by the KGB of the Ukrainian SSR",
+      "entry_rus": "По полученным КГБ УССР данным",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to information received",
+      "entry_rus": "По поступившим [...] данным",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to information received by the KGB of the Ukrainian SSR",
+      "entry_rus": "По полученным КГБ УССР данным",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to neighbors",
+      "entry_rus": "Со слов соседей",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "According to operational data",
+      "entry_rus": "По оперативным данным",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to operational data obtained",
+      "entry_rus": "По полученным оперативным данным",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to operational data received",
+      "entry_rus": "По полученным оперативным данным",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to operational data received by the KGB of the Ukrainian SSR",
+      "entry_rus": "По полученным КГБ УССР оперативным данным",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to operational information received",
+      "entry_rus": "По полученным [...] оперативным данным",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to preliminary calculations by OUN ringleaders",
+      "entry_rus": "По предварительным подсчетам оуновских главарей",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "according to preliminary data",
+      "entry_rus": "по предварительным данным",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "According to specialists",
+      "entry_rus": "По заключению специалистов",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to the admission of an active nationalist",
+      "entry_rus": "По признанию активного националиста",
+      "category": "Context and Concepts",
+      "framing": "Ideological Phrasing (Normalizing)"
+    },
+    {
+      "entry_eng": "According to the assessment of the KGB of the USSR",
+      "entry_rus": "По оценке КГБ СССР",
+      "category": "Information",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "According to the Black Sea Shipping Company",
+      "entry_rus": "По сообщению Черноморского пароходства",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "according to the preliminary conclusion of specialists",
+      "entry_rus": "по предварительному заключению специалистов",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "accredited in the USSR — 3",
+      "entry_rus": "аккредитованных в СССР, 3",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

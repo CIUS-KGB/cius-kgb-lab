@@ -1,0 +1,126 @@
+{
+  "chunk_id": 137,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "Zaporizhzhia — 317",
+      "entry_rus": "в Запорожье 317",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Zaporizhzhia — 9",
+      "entry_rus": "в Запорожской 9",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Zaporizhzhia — 957",
+      "entry_rus": "в Запорожье 957",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Zaporizhzhia — 977",
+      "entry_rus": "в Запорожье 977",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Zaporizhzhia — 995",
+      "entry_rus": "в Запорожье 995",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Zhdanov ports",
+      "entry_rus": "Ждановском портах",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Zhytomyr Oblast",
+      "entry_rus": "Житомирская область",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Zionist [organizations]",
+      "entry_rus": "сионистских [организаций]",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Zionist organizations",
+      "entry_rus": "сионистских [организаций]",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Zionists",
+      "entry_rus": "и сионистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "émigré centers of the Organization of Ukrainian Nationalists (OUN)",
+      "entry_rus": "зарубежные центры ОУН",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "В националистической среде",
+      "entry_rus": "националистической среде",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "“appeals” to the Ukrainian émigré community",
+      "entry_rus": "\"обращения\" к украинской эмиграции",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "“Essays on the Union Republics”",
+      "entry_rus": "\"Очерки о союзных республиках\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "“Foreign Sections of the OUN”",
+      "entry_rus": "\"Закордонных частей ОУН\"",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "“Journey through Ukraine”",
+      "entry_rus": "\"Путешествие по Украине\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "“Lemkos' Fates”",
+      "entry_rus": "\"Лемковские судьбы\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "“materials on the history of Ukrainians' struggle for a free Ukraine”",
+      "entry_rus": "\"материалов по истории борьбы украинцев за свободную Украину\"",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "“monument-mausoleum to the fallen fighters for Ukraine’s freedom and the victims of the artificial famine of 1932–1933”",
+      "entry_rus": "\"памятник-мавзолей павшим борцам за свободу Украины и жертвам искусственного голода 1932–1933 годов\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "“oppression of believers,”",
+      "entry_rus": "\"притеснении верующих\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    }
+  ]
+}

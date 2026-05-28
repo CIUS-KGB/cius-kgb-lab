@@ -1,0 +1,126 @@
+{
+  "chunk_id": 32,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "clerical  [organizations]",
+      "entry_rus": "клерикальных [организаций]",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Cleveland",
+      "entry_rus": "Кливленда",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "co-author",
+      "entry_rus": "соавтор",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "collection",
+      "entry_rus": "сборник",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "collection of materials under the title “Sami pro sebe” [About Ourselves]",
+      "entry_rus": "сборник материалов под названием \"Самі про себе\"",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Collision of Ships",
+      "entry_rus": "Столкновение судов",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "commander of Fire Station No. 6",
+      "entry_rus": "начальник караула военизированной пожарной части № 6",
+      "category": "Status and Condition",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "committed by the Hitlerites",
+      "entry_rus": "гитлеровцев",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "committed crimes",
+      "entry_rus": "совершивших преступления",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Committee for State Security of the republic",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Committee for State Security of the Republic",
+      "entry_rus": "Комитетом госбезопасности республики",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "compensation for material damage",
+      "entry_rus": "возмещения материального ущерба",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "compilation of the collection",
+      "entry_rus": "Упорядочение сборника",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "compiled additional materials",
+      "entry_rus": "были подобраны дополнительные материалы",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Comrade A.A. Tatarenko",
+      "entry_rus": "Тов. Татаренко А.А.",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Comrade Kravchuk L.M.",
+      "entry_rus": "товарищу Кравчуку Л.М.",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "conceived it as",
+      "entry_rus": "он задуман как",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "concerning 20 executioners",
+      "entry_rus": "в отношении 20 карателей",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Concerning 314 of them",
+      "entry_rus": "В отношении 314 из них",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "concerning the collaboration",
+      "entry_rus": "сотрудничества",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "chunk_id": 12,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "American citizenship",
+      "entry_rus": "американского гражданства",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "American journalists",
+      "entry_rus": "американских журналистов",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "American weekly New York Times Book Review",
+      "entry_rus": "американском еженедельнике \"Нью-Йорк таймc бук ревью\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "among OUNites",
+      "entry_rus": "Среди оуновцев",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "among the clergy",
+      "entry_rus": "из числа церковников",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "among the OUN",
+      "entry_rus": "среди оуновских",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Among the speakers are",
+      "entry_rus": "В числе докладчиков",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Among them: brochure \"Human Rights and Freedoms\"",
+      "entry_rus": "Среди них: [брошюра] \"Права и свободы человека\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Among these measures, [...] is planned",
+      "entry_rus": "В числе таких мер предусматривается",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "among Ukrainian nationalists",
+      "entry_rus": "в среде украинских националистов",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "among whom were the \"head\" of the Ukrainian Catholic Church",
+      "entry_rus": "в числе которых находились \"глава\" украинской католической церкви",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "an accident",
+      "entry_rus": "аварии",
+      "category": "Events",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "an alleged policy of genocide against the Ukrainian people",
+      "entry_rus": "якобы проводимой политикой геноцида в отношении украинского народа",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "an anti-Soviet demonstration",
+      "entry_rus": "антисоветская демонстрация",
+      "category": "Events",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "an article [...] was published",
+      "entry_rus": "опубликована статья",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "an incident that occurred on October 7 of this year",
+      "entry_rus": "о происшедшей 7 октября с.г.",
+      "category": "Time",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "An investigation conducted",
+      "entry_rus": "Расследованием, проведённым",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "An investigation is being conducted",
+      "entry_rus": "Расследование проводит",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "an investigation is underway",
+      "entry_rus": "расследование проводится",
+      "category": "Legal Framework",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "an off-site session",
+      "entry_rus": "выездная сессия",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

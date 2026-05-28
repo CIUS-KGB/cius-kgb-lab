@@ -1,0 +1,126 @@
+{
+  "chunk_id": 130,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "V.Kuk",
+      "entry_rus": "В.Кука",
+      "category": "Actors",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "V.M. Yevtushenko",
+      "entry_rus": "Евтушенко В.М.",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "V.Nebesnyi",
+      "entry_rus": "В.Небесного",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Varenik",
+      "entry_rus": "Вареник",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Vatican",
+      "entry_rus": "перед Ватиканом",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Verbally agreed upon",
+      "entry_rus": "Устно согласовано",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "version of the book “So That We Do Not Forget”",
+      "entry_rus": "вариант книги \"Чтобы мы не забыли\"",
+      "category": "Documents",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "via the USSR Ministry of the Coal Industry",
+      "entry_rus": "по линии Минуглепрома СССР",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "vicious attacks on",
+      "entry_rus": "злобные нападки на",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "victims",
+      "entry_rus": "и пострадавшие",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "village of Biliaivka",
+      "entry_rus": "пос. Беляевка",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Vinnytsia Oblast",
+      "entry_rus": "Винницкой области",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Vinnytsia Oblast",
+      "entry_rus": "Винницкой",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "violation of safety rules",
+      "entry_rus": "нарушение правил безопасности",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Violation of the State Border of the USSR",
+      "entry_rus": "Нарушение государственной границы СССР",
+      "category": "Events",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "visited Ukraine",
+      "entry_rus": "посетил Украину",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "visiting",
+      "entry_rus": "посещение",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "visiting Afghan students (10 persons)",
+      "entry_rus": "посещение афганских студентов (10 чел.)",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "visiting compatriots",
+      "entry_rus": "посещение соотечественников",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "visiting compatriots studying at the city’s military academies",
+      "entry_rus": "посещение соотечественников, обучающихся в военных училищах города",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}

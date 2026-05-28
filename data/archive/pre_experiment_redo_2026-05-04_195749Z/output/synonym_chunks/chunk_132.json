@@ -1,0 +1,126 @@
+{
+  "chunk_id": 132,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "was reported in No. 56/sv",
+      "entry_rus": "докладывалось № 56/св",
+      "category": "Documents",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "was republished in English",
+      "entry_rus": "Переиздана на английском языке",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "was the destruction of the lining",
+      "entry_rus": "разрушение футеровки",
+      "category": "Status and Condition",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Washington",
+      "entry_rus": "Вашингтона",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "we are preparing to publish",
+      "entry_rus": "нами готовится к изданию",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "we ask you to consider",
+      "entry_rus": "Просим рассмотреть",
+      "category": "Actors",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "we have developed an action plan",
+      "entry_rus": "нами разработан план мероприятий",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "we prepared [...] twice republished and distributed",
+      "entry_rus": "нами подготовлена [...] дважды переиздана и распространена",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "We report this for informational purposes",
+      "entry_rus": "Докладываем в порядке информации",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "well-argued materials have been puched out",
+      "entry_rus": "были продвинуты аргументированные материалы",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "were",
+      "entry_rus": "находились",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "were classified as particularly important",
+      "entry_rus": "квалифицированы как особо важные",
+      "category": "Context and Concepts",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "were involved in the harboring of Nazi criminals",
+      "entry_rus": "укрывают нацистских преступников",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "were sentenced",
+      "entry_rus": "приговорены",
+      "category": "Actions",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "which began collecting data",
+      "entry_rus": "которая начала сбор данных",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "which continue",
+      "entry_rus": "которые продолжают",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "which is one of the reasons prompting Melnykite functionaries to speak out against its organization",
+      "entry_rus": "что является одной из причин, побуждающих мельниковских функционеров высказываться против его проведения",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "which led to severe consequences",
+      "entry_rus": "повлекшего тяжелые последствия",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "which published a series of critical commentaries and articles",
+      "entry_rus": "которые опубликовали ряд критических комментариев и статей",
+      "category": "Actions",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "which resulted in a stream of gas ejecting onto the floor",
+      "entry_rus": "в результате чего струёй газа на пол было выброшено",
+      "category": "Events",
+      "framing": "Action-Focused Language"
+    }
+  ]
+}

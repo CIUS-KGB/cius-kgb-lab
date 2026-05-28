@@ -1,0 +1,126 @@
+{
+  "chunk_id": 11,
+  "total_chunks": 138,
+  "terms": [
+    {
+      "entry_eng": "aimed at ensuring an offensive approach in the fight",
+      "entry_rus": "об обеспечении наступательности в борьбе",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "aimed at exposing",
+      "entry_rus": "была направлена на разоблачение",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "aimed at exposing",
+      "entry_rus": "материалов, направленных на разоблачение",
+      "category": "Places",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Aimed at exposing international Zionism",
+      "entry_rus": "На разоблачение международного сионизма",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "aimed at publicly exposing the ringleader",
+      "entry_rus": "нацеленной на публичное разоблачение главаря",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "aimed at undermining the authority",
+      "entry_rus": "преследующей цель подрыва авторитета",
+      "category": "Actions",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "Air Attaché of the Embassy of the Federal Republic of Germany",
+      "entry_rus": "военно-воздушный атташе посольства ФРГ",
+      "category": "Actors",
+      "framing": "Institutional / Bureaucratic Lingo"
+    },
+    {
+      "entry_eng": "Algerian",
+      "entry_rus": "Алжира",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "All in Kyiv",
+      "entry_rus": "все в Киеве",
+      "category": "Places",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "All these materials  forced U.S. authorities to set up",
+      "entry_rus": "Эти материалы вынудили власти США создать",
+      "category": "Actions",
+      "framing": "Action-Focused Language"
+    },
+    {
+      "entry_eng": "allegedly persecuted in the USSR",
+      "entry_rus": "якобы преследуемых в СССР",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "allowed us to create a favorable to us public opinion",
+      "entry_rus": "Создано благоприятное для нас общественное мнение",
+      "category": "Context and Concepts",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "allowing for the prosecution of war criminals residing in the country",
+      "entry_rus": "позволяющую привлекать к ответственности военных преступников, укрывающихся в стране",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "allowing judicial authorities",
+      "entry_rus": "разрешающих судебным органам",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "along with a list of Nazi OUN-accomplices",
+      "entry_rus": "со списком нацистских пособников-оуновцев",
+      "category": "Documents",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "along with new materials about the deliberate distortions of so-called “evidence” [presented]",
+      "entry_rus": "вместе с новыми материалами о преднамеренном искажении [...] т.н. \"доказательств\"",
+      "category": "Context and Concepts",
+      "framing": "Ideological Framing (Discrediting)"
+    },
+    {
+      "entry_eng": "also born 1957",
+      "entry_rus": "1957 года рождения",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "also present in the territory of Ukraine were",
+      "entry_rus": "на территории Украины также находились",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "Also present in Ukraine were",
+      "entry_rus": "На територии Украины также находились",
+      "category": "Information",
+      "framing": "Generic / Neutral Language"
+    },
+    {
+      "entry_eng": "amendments",
+      "entry_rus": "ряд поправок",
+      "category": "Legal Framework",
+      "framing": "Generic / Neutral Language"
+    }
+  ]
+}
