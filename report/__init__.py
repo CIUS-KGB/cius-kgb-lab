@@ -3307,6 +3307,7 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
         for p in places
     ], ensure_ascii=False)
     use_embedded = "true" if embedded else "false"
+    host_doc_js = json.dumps(doc_id_filter) if doc_id_filter else "null"
     html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3355,6 +3356,7 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
       var places = {places_js};
       var reportFile = places[0] && places[0].report ? places[0].report : 'manual_analysis_report.html';
       var useEmbedded = {use_embedded};
+      var hostDocId = {host_doc_js};
       function esc(s) {{ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }}
       function placesMapLabHost() {{
         var cur = window;
@@ -3372,19 +3374,21 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
       }}
       function placesMapSendNavigate(docId, rowIdx, eng, rus) {{
         try {{ if (typeof map !== 'undefined' && map && map.closePopup) map.closePopup(); }} catch (e) {{}}
+        var navDocId = (hostDocId && useEmbedded) ? hostDocId : docId;
+        if (!navDocId) return;
         var host = placesMapLabHost();
         if (host && typeof host.placesMapNavigateToSegment === 'function') {{
-          host.placesMapNavigateToSegment(docId, rowIdx, eng, rus);
+          host.placesMapNavigateToSegment(navDocId, rowIdx, eng, rus, hostDocId);
           return;
         }}
-        if (useEmbedded && docId && rowIdx >= 0 && host) {{
-          try {{ host.location.hash = '#tab-' + docId + '-row-' + rowIdx; }} catch (e3) {{}}
+        if (useEmbedded && navDocId && rowIdx >= 0 && host) {{
+          try {{ host.location.hash = '#tab-' + navDocId + '-row-' + rowIdx; }} catch (e3) {{}}
           return;
         }}
         try {{
           var target = host || window.parent;
           if (target && target !== window) {{
-            target.postMessage({{ type: 'places-map-navigate', docId: docId, rowIndex: rowIdx, entryEng: eng || '', entryRus: rus || '' }}, '*');
+            target.postMessage({{ type: 'places-map-navigate', docId: navDocId, rowIndex: rowIdx, entryEng: eng || '', entryRus: rus || '', hostDocId: hostDocId || '' }}, '*');
           }}
         }} catch (e4) {{}}
       }}
@@ -3421,7 +3425,7 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
             var docName = (p.doc_counts || []).find(function(d) {{ return d.doc_id === docId; }});
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
-            if (docId) {{
+            if (docId && (!hostDocId || docId === hostDocId)) {{
               var attrs = ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
                 + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
                 + ' onclick="return placesMapViewClick(this);"';
@@ -6111,13 +6115,13 @@ function syncDocVizForDocument(docId, idx) {
     if (det && det.open && typeof initDocViz === 'function') initDocViz(root);
   });
 }
-function buildDocumentTextView(tid) {
+function buildDocumentTextView(tid, comparisonRun) {
   var tabEl = document.getElementById('tab-' + tid);
   if (!tabEl) return;
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
-  var tbody = typeof getActiveComparisonTbody === 'function' ? getActiveComparisonTbody(tid) : (typeof getComparisonTbodyForRun === 'function' ? getComparisonTbodyForRun(tid, 0) : null);
+  var tbody = comparisonTbodyForHighlight(tid, comparisonRun);
   var catSelect = tabEl.querySelector('select.document-category-filter');
   var framSelect = tabEl.querySelector('select.document-framing-filter');
   var rows = tbody ? tbody.querySelectorAll('tr') : [];
@@ -6524,11 +6528,14 @@ function pulseIlluminatorVignette(tid) {
     panels.classList.remove('illuminator-vignette-pulse');
   }, 1400);
 }
-function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus) {
+function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDocId) {
+  if (hostDocId) docId = hostDocId;
   if (!docId) return;
   var tabId = 'tab-' + docId;
   if (!document.getElementById(tabId)) return;
-  showTab(tabId);
+  var active = document.querySelector('.tab-content.active');
+  var sameTab = active && active.id === tabId;
+  if (!sameTab) showTab(tabId);
   var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
   if (ri >= 0) {
     try { window.location.hash = '#tab-' + docId + '-row-' + ri; } catch (e) {}
@@ -6546,18 +6553,24 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus) {
     };
   }
   if (typeof openDocumentSection === 'function') openDocumentSection(docId, 'text');
+  var highlightOpts = { preserveText: sameTab, comparisonRun: 0 };
   setTimeout(function() {
-    if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger);
+    if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger, highlightOpts);
     var cmpSec = document.getElementById('doc-section-compare-' + docId);
     if (cmpSec && ri >= 0) {
-      var cmpRow = cmpSec.querySelector('tr[data-row-index="' + String(ri) + '"]');
+      var cmpRow = null;
+      if (typeof getComparisonTbodyForRun === 'function') {
+        var tb0 = getComparisonTbodyForRun(docId, 0);
+        if (tb0) cmpRow = tb0.querySelector('tr[data-row-index="' + String(ri) + '"]');
+      }
       if (!cmpRow && typeof getActiveComparisonTbody === 'function') {
         var tbAct = getActiveComparisonTbody(docId);
         if (tbAct) cmpRow = tbAct.querySelector('tr[data-row-index="' + String(ri) + '"]');
       }
+      if (!cmpRow) cmpRow = cmpSec.querySelector('tr[data-row-index="' + String(ri) + '"]');
       if (cmpRow) cmpRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-  }, 120);
+  }, sameTab ? 60 : 140);
 }
 window.placesMapNavigateToSegment = placesMapNavigateToSegment;
 if (!window.__placesMapMessageListener) {
@@ -6565,7 +6578,7 @@ if (!window.__placesMapMessageListener) {
   window.addEventListener('message', function(ev) {
     var d = ev && ev.data;
     if (!d || d.type !== 'places-map-navigate' || !d.docId) return;
-    placesMapNavigateToSegment(d.docId, d.rowIndex, d.entryEng, d.entryRus);
+    placesMapNavigateToSegment(d.docId, d.rowIndex, d.entryEng, d.entryRus, d.hostDocId || '');
   });
 }
 function normalizeIlluminatorEntryText(s) {
@@ -6582,7 +6595,13 @@ function illuminatorEntryTextsMatch(el, engNorm, rusNorm) {
   if (rusNorm && r !== rusNorm) return false;
   return true;
 }
-function findIlluminatorSpans(tid, rowIndex, triggerEl) {
+function comparisonTbodyForHighlight(tid, comparisonRun) {
+  if (comparisonRun === 0 || comparisonRun === 1) {
+    return typeof getComparisonTbodyForRun === 'function' ? getComparisonTbodyForRun(tid, comparisonRun) : null;
+  }
+  return typeof getActiveComparisonTbody === 'function' ? getActiveComparisonTbody(tid) : null;
+}
+function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   var spansEng = [];
@@ -6610,7 +6629,7 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl) {
   if (spansEng.length === 0 && spansRus.length === 0 && rowIndex >= 0) {
     var rowIdxStr2 = String(rowIndex);
     var row = null;
-    var tbodyAct = typeof getActiveComparisonTbody === 'function' ? getActiveComparisonTbody(tid) : null;
+    var tbodyAct = comparisonTbodyForHighlight(tid, comparisonRun);
     if (tbodyAct) row = tbodyAct.querySelector('tr[data-row-index="' + rowIdxStr2 + '"]');
     if (!row) row = document.querySelector('#table-' + tid + ' tr[data-row-index="' + rowIdxStr2 + '"]');
     if (!row) {
@@ -6630,22 +6649,36 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl) {
   }
   return { spansEng: spansEng, spansRus: spansRus, containerEng: containerEng, containerRus: containerRus };
 }
-function onSectionClickToView(tid, rowIndex, triggerEl) {
+function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
+  opts = opts || {};
   var detailsEl = document.getElementById('doc-section-text-' + tid) || document.getElementById('doc-text-view-details-' + tid);
   if (!detailsEl) return;
   detailsEl.open = true;
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
-  if (containerEng) containerEng.innerHTML = '';
-  if (containerRus) containerRus.innerHTML = '';
+  var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
+  var hasEntries = containerEng && containerEng.querySelector('.doc-entry');
+  var mustRebuild = !opts.preserveText || !hasEntries;
+  if (opts.preserveText && hasEntries && ri >= 0) {
+    var probe = containerEng.querySelector('.doc-entry[data-row-index="' + String(ri) + '"]');
+    if (!probe) mustRebuild = true;
+  }
+  if (mustRebuild) {
+    if (containerEng) containerEng.innerHTML = '';
+    if (containerRus) containerRus.innerHTML = '';
+    if (opts.comparisonRun === 0 || opts.comparisonRun === 1) {
+      buildDocumentTextView(tid, opts.comparisonRun);
+    } else {
+      buildDocumentTextView(tid);
+    }
+  }
   if (containerEng) containerEng.classList.remove('filter-active');
   if (containerRus) containerRus.classList.remove('filter-active');
-  buildDocumentTextView(tid);
   containerEng = document.getElementById('doc-text-eng-' + tid);
   containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
-  var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
-  var found = findIlluminatorSpans(tid, ri, triggerEl);
+  var cmpRun = (opts.comparisonRun === 0 || opts.comparisonRun === 1) ? opts.comparisonRun : null;
+  var found = findIlluminatorSpans(tid, ri, triggerEl, cmpRun);
   var spansEng = found.spansEng;
   var spansRus = found.spansRus;
   var allSpans = [];
