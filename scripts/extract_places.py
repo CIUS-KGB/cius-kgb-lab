@@ -266,7 +266,7 @@ def main() -> int:
 
     out_path = ROOT / "data" / "output" / "places_extracted.json"
     out_path.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"Extracted {len(place_counts)} unique places, {output['total_mentions']} total mentions")
+    print(f"Extracted {output['unique_places']} unique places, {output['total_mentions']} total mentions")
     print(f"Wrote {out_path}")
     return 0
 

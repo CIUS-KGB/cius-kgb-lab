@@ -8,6 +8,7 @@ import html as html_module
 import json
 import re
 import shutil
+import sys
 import unicodedata
 from pathlib import Path
 from urllib.parse import quote
@@ -984,6 +985,54 @@ def _normalize_segment_for_search(segment: str) -> str:
     return " ".join((segment or "").split())
 
 
+def _segment_search_candidates(row: Dict[str, Any], entry_key: str) -> List[str]:
+    """Ordered search strings for locating a comparison row in full document text."""
+    seen: Set[str] = set()
+    out: List[str] = []
+
+    def add(text: str) -> None:
+        t = (text or "").strip()
+        if not t or t in seen:
+            return
+        seen.add(t)
+        out.append(t)
+
+    add(str(row.get(entry_key) or ""))
+    other_key = "entry_rus" if entry_key == "entry_eng" else "entry_eng"
+    add(str(row.get(other_key) or ""))
+    add(str(row.get("context") or ""))
+    primary = (row.get(entry_key) or "").strip()
+    if primary:
+        parts = re.findall(
+            r"[A-Za-z\u0410-\u042f\u0450-\u0451][A-Za-z\u0410-\u042f\u0450-\u0451'\-]{2,}",
+            primary,
+        )
+        for part in sorted(parts, key=len, reverse=True):
+            if len(part) >= 4:
+                add(part)
+    return out
+
+
+def _assign_row_occurrence_in_full_text(
+    full_text: str,
+    row: Dict[str, Any],
+    entry_key: str,
+    next_occurrence: Dict[str, int],
+) -> Tuple[int, int, str, bool]:
+    """Assign the next matching occurrence for this row (idx, length, matched text, found)."""
+    if not full_text:
+        return 0, 0, "", False
+    for candidate in _segment_search_candidates(row, entry_key):
+        occ_key = _normalize_segment_for_search(candidate) or candidate
+        occ_list = _segment_occurrences(full_text, candidate)
+        k = next_occurrence.get(occ_key, 0)
+        if k < len(occ_list):
+            idx, matched = occ_list[k]
+            next_occurrence[occ_key] = k + 1
+            return idx, len(matched), matched, True
+    return 0, 0, "", False
+
+
 def _segment_occurrences(full_text: str, segment: str) -> List[Tuple[int, str]]:
     """All non-overlapping occurrences of segment in full_text (left to right).
 
@@ -1085,17 +1134,12 @@ def _get_accepted_segments(
     next_occurrence: Dict[str, int] = defaultdict(int)
     candidates: List[Tuple[int, int, str, Dict, int]] = []
     for row_index, r in enumerate(aligned):
-        segment = (r.get(entry_key) or "").strip()
-        if not segment:
+        idx, length, matched, found = _assign_row_occurrence_in_full_text(
+            full_text, r, entry_key, next_occurrence,
+        )
+        if not found:
             continue
-        occ_key = _normalize_segment_for_search(segment) or segment
-        occ_list = _segment_occurrences(full_text, segment)
-        k = next_occurrence[occ_key]
-        if k >= len(occ_list):
-            continue
-        idx, matched = occ_list[k]
-        next_occurrence[occ_key] += 1
-        candidates.append((idx, len(matched), matched, r, row_index))
+        candidates.append((idx, length, matched, r, row_index))
     candidates.sort(key=lambda x: (x[1], x[0]))
     accepted: List[Tuple[int, int, str, Dict, int]] = []
     for item in candidates:
@@ -1118,19 +1162,13 @@ def _illuminator_nav_occurrences(
     next_occurrence: Dict[str, int] = defaultdict(int)
     out: Dict[int, Dict[str, Any]] = {}
     for row_index, r in enumerate(aligned):
-        segment = (r.get(entry_key) or "").strip()
-        if not segment:
+        idx, length, _matched, found = _assign_row_occurrence_in_full_text(
+            full_text, r, entry_key, next_occurrence,
+        )
+        if not found:
             out[row_index] = {"start": -1, "end": -1, "found": False}
-            continue
-        occ_key = _normalize_segment_for_search(segment) or segment
-        occ_list = _segment_occurrences(full_text, segment)
-        k = next_occurrence[occ_key]
-        if k >= len(occ_list):
-            out[row_index] = {"start": -1, "end": -1, "found": False}
-            continue
-        idx, matched = occ_list[k]
-        next_occurrence[occ_key] += 1
-        out[row_index] = {"start": idx, "end": idx + len(matched), "found": True}
+        else:
+            out[row_index] = {"start": idx, "end": idx + length, "found": True}
     return out
 
 
@@ -1158,6 +1196,18 @@ def _import_extract_places_module() -> Any:
     spec = importlib.util.spec_from_file_location("vozmezdie_extract_places", path)
     if spec is None or spec.loader is None:
         raise ImportError(f"Cannot load extract_places from {path}")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _import_geocode_places_module() -> Any:
+    import importlib.util
+
+    path = _REPORT_ROOT / "scripts" / "geocode_places.py"
+    spec = importlib.util.spec_from_file_location("vozmezdie_geocode_places", path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot load geocode_places from {path}")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -1272,6 +1322,7 @@ def run(
 
     out_config = config.get("output", {})
     out_dir = Path(out_config.get("dir", "data/output"))
+    report_root = _REPORT_ROOT
     out_dir.mkdir(parents=True, exist_ok=True)
     keyboard_logo_href = _copy_cuis_logo_for_report(out_dir.resolve())
     html_name = out_config.get("report_html", "manual_analysis_report.html")
@@ -1492,6 +1543,12 @@ def run(
     viz_out_path.write_text("\n".join(standalone_parts), encoding="utf-8")
 
     out_path.write_text("\n".join(parts), encoding="utf-8")
+    try:
+        from report.places_sync import sync_places_artifacts
+
+        sync_places_artifacts(comparison_by_doc, config, report_root)
+    except Exception as exc:
+        print(f"Warning: places sync skipped ({exc})", file=sys.stderr)
     _write_places_map_html(config, out_dir, comparison_by_doc=comparison_by_doc)
     return out_path
 
@@ -2935,8 +2992,6 @@ def _load_places_map_data_enriched(
 ) -> List[Dict[str, Any]]:
     """Load geocoded places with segments, doc counts, doc names, and historical notes."""
     base_list = _load_places_map_data(config)
-    if not base_list:
-        return []
     base_dir = _places_map_data_dir(config)
     doc_map_path = _REPORT_ROOT / "config" / "document_map.json"
     doc_names: Dict[str, str] = {}
@@ -2965,9 +3020,23 @@ def _load_places_map_data_enriched(
                 place_segments = ext.get("place_segments", {})
             except Exception:
                 pass
+    coords_by_name = {p["name"]: p["coords"] for p in base_list if p.get("coords")}
+    if comparison_by_doc and place_segments:
+        try:
+            geo_mod = _import_geocode_places_module()
+            static = getattr(geo_mod, "STATIC_COORDS", {})
+            for place_name in place_segments:
+                if place_name in coords_by_name:
+                    continue
+                static_pair = static.get(place_name)
+                if static_pair:
+                    lat, lon = static_pair
+                    coords_by_name[place_name] = [lat, lon]
+        except Exception:
+            pass
     enriched: List[Dict[str, Any]] = []
-    for p in base_list:
-        name = p["name"]
+    for place_name, coords in coords_by_name.items():
+        name = place_name
         segs = place_segments.get(name, [])
         doc_counts: Dict[str, int] = {}
         for s in segs:
@@ -2979,7 +3048,7 @@ def _load_places_map_data_enriched(
         enriched.append({
             "name": name,
             "count": segment_count,
-            "coords": p["coords"],
+            "coords": coords,
             "segments": [
                 {"eng": s.get("entry_eng", ""), "rus": s.get("entry_rus", ""), "doc_id": s.get("doc_id", ""), "row_index": s.get("row_index", -1)}
                 for s in sample_segs

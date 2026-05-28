@@ -73,6 +73,14 @@ def main() -> int:
         return 1
 
     from report import run as report_run
+    from report.places_sync import sync_places_artifacts
+
+    try:
+        paths = sync_places_artifacts(comparison_by_doc, config, ROOT)
+        print(f"Places data: {paths['extracted'].name}, {paths['geocoded'].name}")
+    except Exception as exc:
+        print(f"Warning: places sync failed ({exc})")
+
     out_path = report_run(comparison_by_doc, documents, taxonomy, config)
     print(f"Report: {out_path}")
     return 0

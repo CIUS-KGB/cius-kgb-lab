@@ -113,29 +113,26 @@ def geocode_nominatim(place: str, user_agent: str = "vozmezdie-framework/1.0") -
     return None
 
 
-def main() -> int:
-    refresh = "--refresh" in sys.argv
-    in_path = ROOT / "data" / "output" / "places_extracted.json"
-    cache_path = ROOT / "data" / "output" / "places_geocoded.json"
-
-    if not in_path.exists():
-        print(f"Run extract_places.py first. Not found: {in_path}")
-        return 1
-
-    with open(in_path, encoding="utf-8") as f:
-        data = json.load(f)
-
-    places = data.get("places", [])
-    if not places:
-        print("No places to geocode.")
-        return 0
-
-    # Load cache
+def build_geocoded_from_extracted(
+    extracted: dict,
+    *,
+    use_nominatim: bool = False,
+    cache_path: Optional[Path] = None,
+) -> dict:
+    """Build geocoded places payload from extract_from_comparison_by_doc() output."""
+    places = extracted.get("places", [])
     coords_cache: dict[str, list[float]] = {}
-    if cache_path.exists() and not refresh:
-        with open(cache_path, encoding="utf-8") as f:
-            cached = json.load(f)
-        coords_cache = {p["name"]: p["coords"] for p in cached.get("places", []) if p.get("coords")}
+    if cache_path and cache_path.exists():
+        try:
+            with open(cache_path, encoding="utf-8") as f:
+                cached = json.load(f)
+            coords_cache = {
+                p["name"]: p["coords"]
+                for p in cached.get("places", [])
+                if p.get("coords")
+            }
+        except Exception:
+            coords_cache = {}
 
     results: list[dict] = []
     to_geocode: list[tuple[str, int]] = []
@@ -151,26 +148,54 @@ def main() -> int:
         else:
             to_geocode.append((name, count))
 
-    # Geocode remaining (rate limit 1/sec)
-    for i, (name, count) in enumerate(to_geocode):
-        name_lower = name.lower()
-        if name_lower in SKIP_GEOCODE or name_lower.startswith("other "):
-            results.append({"name": name, "count": count, "coords": None, "source": "skipped"})
-            continue
-        print(f"Geocoding ({i+1}/{len(to_geocode)}): {name}...", flush=True)
-        coords = geocode_nominatim(name)
-        if coords:
-            results.append({"name": name, "count": count, "coords": list(coords), "source": "nominatim"})
-            coords_cache[name] = list(coords)
-        else:
-            results.append({"name": name, "count": count, "coords": None, "source": "failed"})
-        time.sleep(1.1)
+    if use_nominatim:
+        for i, (name, count) in enumerate(to_geocode):
+            name_lower = name.lower()
+            if name_lower in SKIP_GEOCODE or name_lower.startswith("other "):
+                results.append({"name": name, "count": count, "coords": None, "source": "skipped"})
+                continue
+            print(f"Geocoding ({i+1}/{len(to_geocode)}): {name}...", flush=True)
+            coords = geocode_nominatim(name)
+            if coords:
+                results.append({"name": name, "count": count, "coords": list(coords), "source": "nominatim"})
+                coords_cache[name] = list(coords)
+            else:
+                results.append({"name": name, "count": count, "coords": None, "source": "failed"})
+            time.sleep(1.1)
+    else:
+        for name, count in to_geocode:
+            results.append({"name": name, "count": count, "coords": None, "source": "pending"})
 
-    output = {
+    return {
         "places": results,
         "total_geocoded": sum(1 for p in results if p.get("coords")),
         "total_failed": sum(1 for p in results if not p.get("coords")),
     }
+
+
+def main() -> int:
+    refresh = "--refresh" in sys.argv
+    use_nominatim = "--online" in sys.argv
+    in_path = ROOT / "data" / "output" / "places_extracted.json"
+    cache_path = ROOT / "data" / "output" / "places_geocoded.json"
+
+    if not in_path.exists():
+        print(f"Run extract_places.py first. Not found: {in_path}")
+        return 1
+
+    with open(in_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    places = data.get("places", [])
+    if not places:
+        print("No places to geocode.")
+        return 0
+
+    output = build_geocoded_from_extracted(
+        data,
+        use_nominatim=use_nominatim,
+        cache_path=None if refresh else cache_path,
+    )
     cache_path.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\nGeocoded {output['total_geocoded']} places, {output['total_failed']} failed")
     print(f"Wrote {cache_path}")
