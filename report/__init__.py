@@ -978,99 +978,13 @@ def _ensure_colours(categories: List[Dict], framings: List[Dict]) -> None:
                 used.add(c)
 
 
-def _normalize_segment_for_search(segment: str) -> str:
-    """Normalize segment for search: collapse consecutive whitespace to single space, strip. Makes search tolerant of line breaks, extra spaces, tabs."""
-    if not segment:
-        return ""
-    return " ".join((segment or "").split())
-
-
-def _segment_search_candidates(row: Dict[str, Any], entry_key: str) -> List[str]:
-    """Ordered search strings for locating a comparison row in full document text."""
-    seen: Set[str] = set()
-    out: List[str] = []
-
-    def add(text: str) -> None:
-        t = (text or "").strip()
-        if not t or t in seen:
-            return
-        seen.add(t)
-        out.append(t)
-
-    add(str(row.get(entry_key) or ""))
-    other_key = "entry_rus" if entry_key == "entry_eng" else "entry_eng"
-    add(str(row.get(other_key) or ""))
-    add(str(row.get("context") or ""))
-    primary = (row.get(entry_key) or "").strip()
-    if primary:
-        parts = re.findall(
-            r"[A-Za-z\u0410-\u042f\u0450-\u0451][A-Za-z\u0410-\u042f\u0450-\u0451'\-]{2,}",
-            primary,
-        )
-        for part in sorted(parts, key=len, reverse=True):
-            if len(part) >= 4:
-                add(part)
-    return out
-
-
-def _assign_row_occurrence_in_full_text(
-    full_text: str,
-    row: Dict[str, Any],
-    entry_key: str,
-    next_occurrence: Dict[str, int],
-) -> Tuple[int, int, str, bool]:
-    """Assign the next matching occurrence for this row (idx, length, matched text, found)."""
-    if not full_text:
-        return 0, 0, "", False
-    for candidate in _segment_search_candidates(row, entry_key):
-        occ_key = _normalize_segment_for_search(candidate) or candidate
-        occ_list = _segment_occurrences(full_text, candidate)
-        k = next_occurrence.get(occ_key, 0)
-        if k < len(occ_list):
-            idx, matched = occ_list[k]
-            next_occurrence[occ_key] = k + 1
-            return idx, len(matched), matched, True
-    return 0, 0, "", False
-
-
-def _segment_occurrences(full_text: str, segment: str) -> List[Tuple[int, str]]:
-    """All non-overlapping occurrences of segment in full_text (left to right).
-
-    Tries exact substring, then whitespace-normalized substring, then flexible-regex
-    between words (same strategy as legacy first-match, but every occurrence).
-    """
-    seg = (segment or "").strip()
-    if not seg or not full_text:
-        return []
-    out: List[Tuple[int, str]] = []
-    pos = 0
-    while True:
-        idx = full_text.find(seg, pos)
-        if idx == -1:
-            break
-        out.append((idx, seg))
-        pos = idx + max(1, len(seg))
-    if out:
-        return out
-    norm = _normalize_segment_for_search(seg)
-    if norm and norm != seg:
-        pos = 0
-        while True:
-            idx = full_text.find(norm, pos)
-            if idx == -1:
-                break
-            out.append((idx, norm))
-            pos = idx + max(1, len(norm))
-    if out:
-        return out
-    try:
-        parts = norm.split()
-        pattern = r"\s+".join(re.escape(p) for p in parts) if parts else re.escape(norm)
-        for m in re.finditer(pattern, full_text, re.IGNORECASE):
-            out.append((m.start(), m.group(0)))
-    except Exception:
-        pass
-    return out
+from report.text_anchor import (
+    assign_row_occurrence_in_full_text as _assign_row_occurrence_in_full_text,
+    illuminator_nav_occurrences as _illuminator_nav_occurrences_from_anchor,
+    normalize_segment_for_search as _normalize_segment_for_search,
+    segment_occurrences as _segment_occurrences,
+    segment_search_candidates as _segment_search_candidates,
+)
 
 
 def _normalize_term_key(s: str) -> str:
@@ -1156,20 +1070,15 @@ def _illuminator_nav_occurrences(
     aligned: List[Dict],
     entry_key: str,
 ) -> Dict[int, Dict[str, Any]]:
-    """Per aligned row: character offsets in full_text for the row's assigned occurrence (same order as table/illuminator logic)."""
-    if not full_text or not aligned:
-        return {}
-    next_occurrence: Dict[str, int] = defaultdict(int)
-    out: Dict[int, Dict[str, Any]] = {}
-    for row_index, r in enumerate(aligned):
-        idx, length, _matched, found = _assign_row_occurrence_in_full_text(
-            full_text, r, entry_key, next_occurrence,
-        )
-        if not found:
-            out[row_index] = {"start": -1, "end": -1, "found": False}
-        else:
-            out[row_index] = {"start": idx, "end": idx + length, "found": True}
-    return out
+    return _illuminator_nav_occurrences_from_anchor(full_text, aligned, entry_key)
+
+
+def _bilingual_alignments_path(config: Dict[str, Any]) -> Path:
+    out = config.get("output", {}).get("dir", "data/output")
+    path = Path(out)
+    if not path.is_absolute():
+        path = _REPORT_ROOT / path
+    return path / "bilingual_alignments.json"
 
 
 def _illuminator_nav_index_script(
@@ -1177,11 +1086,26 @@ def _illuminator_nav_index_script(
     aligned: List[Dict],
     full_text_eng: str,
     full_text_rus: str,
+    config: Optional[Dict[str, Any]] = None,
 ) -> str:
-    """Embedded JSON for client-side highlight when a row has no accepted illuminator span."""
-    eng = _illuminator_nav_occurrences(full_text_eng or "", aligned, "entry_eng")
-    rus = _illuminator_nav_occurrences(full_text_rus or "", aligned, "entry_rus")
-    payload = json.dumps({"eng": eng, "rus": rus}, separators=(",", ":"), ensure_ascii=False)
+    """Embedded JSON for bilingual illuminator navigation (precomputed EN↔RU passage anchors)."""
+    payload_obj: Optional[Dict[str, Any]] = None
+    if config:
+        try:
+            from align.bilingual import load_bilingual_alignments, nav_index_from_document
+
+            align_path = _bilingual_alignments_path(config)
+            align_data = load_bilingual_alignments(align_path)
+            doc_align = (align_data.get("by_doc") or {}).get(doc_id)
+            if doc_align:
+                payload_obj = nav_index_from_document(doc_align)
+        except Exception:
+            payload_obj = None
+    if payload_obj is None:
+        eng = _illuminator_nav_occurrences(full_text_eng or "", aligned, "entry_eng")
+        rus = _illuminator_nav_occurrences(full_text_rus or "", aligned, "entry_rus")
+        payload_obj = {"eng": eng, "rus": rus, "rows": {}}
+    payload = json.dumps(payload_obj, separators=(",", ":"), ensure_ascii=False)
     esc_id = html_module.escape(doc_id)
     return (
         f'<script type="application/json" id="illuminator-nav-{esc_id}" '
@@ -1335,6 +1259,13 @@ def run(
         )
     except Exception as exc:
         print(f"Warning: places sync skipped ({exc})", file=sys.stderr)
+    try:
+        from align.bilingual import build_bilingual_alignments, write_bilingual_alignments
+
+        align_payload = build_bilingual_alignments(documents, comparison_by_doc)
+        write_bilingual_alignments(align_payload, _bilingual_alignments_path(config))
+    except Exception as exc:
+        print(f"Warning: bilingual alignment skipped ({exc})", file=sys.stderr)
     keyboard_logo_href = _copy_cuis_logo_for_report(out_dir.resolve())
     html_name = out_config.get("report_html", "manual_analysis_report.html")
     viz_html_name = out_config.get("lab_visualization_html", "lab_visualization.html")
@@ -1506,6 +1437,7 @@ def run(
                 viz_experiment_labels=(viz_lab_a, viz_lab_b) if sec_cbd_docs else None,
                 experiment_b_agent_rows=exp_b_agent_rows_arg,
                 keyboard_logo_href=keyboard_logo_href,
+                config=config,
             )
         )
 
@@ -4971,6 +4903,7 @@ def _doc_tab(
     viz_experiment_labels: Optional[Tuple[str, str]] = None,
     experiment_b_agent_rows: Optional[List[Dict[str, Any]]] = None,
     keyboard_logo_href: Optional[str] = None,
+    config: Optional[Dict[str, Any]] = None,
 ) -> str:
     """One document tab: ``page_heading`` is the blue-gradient banner title (bibliographic citation when configured)."""
     active_class = " active" if active else ""
@@ -5012,7 +4945,7 @@ def _doc_tab(
         full_text_rus_html=rus_html,
     )
     illuminator_nav_script = _illuminator_nav_index_script(
-        doc_id, aligned, full_text_eng, full_text_rus,
+        doc_id, aligned, full_text_eng, full_text_rus, config=config,
     )
     if dual_compare:
         sc = secondary_cat_pct if secondary_cat_pct is not None else 0
@@ -6801,6 +6734,53 @@ function getIlluminatorNavIndex(tid) {
   if (!el) return null;
   try { return JSON.parse(el.textContent); } catch (e) { return null; }
 }
+function bilingualRowNav(tid, rowIndex) {
+  var nav = getIlluminatorNavIndex(tid);
+  if (!nav || !nav.rows) return null;
+  if (nav.rows[rowIndex] != null) return nav.rows[rowIndex];
+  return nav.rows[String(rowIndex)] || null;
+}
+function findBilingualPassageAtOffset(tid, lang, offset) {
+  var nav = getIlluminatorNavIndex(tid);
+  if (!nav || offset < 0) return null;
+  var list = (lang === 'rus') ? nav.offset_index_rus : nav.offset_index_eng;
+  if (!list || !list.length) return null;
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    if (item.start <= offset && offset < item.end) {
+      if (item.eng && item.ru) {
+        return {
+          alignment_id: item.alignment_id,
+          eng: item.eng,
+          ru: item.ru,
+          row_index: item.row_index,
+          pair_quality: item.pair_quality
+        };
+      }
+      var row = bilingualRowNav(tid, item.row_index);
+      if (row) return row;
+      return { alignment_id: item.alignment_id, eng: {}, rus: {}, row_index: item.row_index };
+    }
+  }
+  return null;
+}
+function highlightBilingualSides(tid, rowNav, opts) {
+  opts = opts || {};
+  if (!rowNav) return { spansEng: [], spansRus: [] };
+  var containerEng = document.getElementById('doc-text-eng-' + tid);
+  var containerRus = document.getElementById('doc-text-rus-' + tid);
+  var spansEng = [];
+  var spansRus = [];
+  var en = rowNav.eng || {};
+  var ru = rowNav.ru || {};
+  if (en.found && en.start >= 0 && containerEng) {
+    spansEng = highlightIlluminatorByOffsets(containerEng, en.start, en.end);
+  }
+  if (ru.found && ru.start >= 0 && containerRus) {
+    spansRus = highlightIlluminatorByOffsets(containerRus, ru.start, ru.end);
+  }
+  return { spansEng: spansEng, spansRus: spansRus };
+}
 function navOccForRow(panelMap, rowIndex) {
   if (!panelMap || rowIndex < 0) return null;
   if (panelMap[rowIndex] != null) return panelMap[rowIndex];
@@ -6852,8 +6832,15 @@ function findIlluminatorSpans(tid, rowIndex, triggerEl, comparisonRun) {
     return { spansEng: spansEng, spansRus: spansRus, containerEng: containerEng, containerRus: containerRus };
   }
   var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
-  var cmpRow = resolveHighlightTriggerRow(tid, ri, triggerEl, comparisonRun);
   if (ri >= 0) {
+    var rowNav = bilingualRowNav(tid, ri);
+    if (rowNav) {
+      var bi = highlightBilingualSides(tid, rowNav);
+      spansEng = bi.spansEng;
+      spansRus = bi.spansRus;
+    }
+  }
+  if (spansEng.length === 0 && spansRus.length === 0) {
     var rowIdxStr = String(ri);
     spansEng = Array.prototype.slice.call(containerEng.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
     spansRus = Array.prototype.slice.call(containerRus.querySelectorAll('.doc-entry[data-row-index="' + rowIdxStr + '"]'));
@@ -6933,11 +6920,28 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   var spansEng = [];
   var spansRus = [];
   if (opts.fromPlacesMap && (opts.offsetEng >= 0 || opts.offsetRus >= 0)) {
-    if (opts.offsetEng >= 0 && containerEng) {
-      spansEng = highlightIlluminatorByOffsets(containerEng, opts.offsetEng, opts.offsetEng + (opts.lengthEng || 0));
+    var rowNavPlaces = null;
+    if (opts.offsetEng >= 0) rowNavPlaces = findBilingualPassageAtOffset(tid, 'eng', opts.offsetEng);
+    if (!rowNavPlaces && opts.offsetRus >= 0) rowNavPlaces = findBilingualPassageAtOffset(tid, 'rus', opts.offsetRus);
+    if (rowNavPlaces && (rowNavPlaces.eng || rowNavPlaces.ru)) {
+      var biPlaces = highlightBilingualSides(tid, rowNavPlaces);
+      spansEng = biPlaces.spansEng;
+      spansRus = biPlaces.spansRus;
+    } else {
+      if (opts.offsetEng >= 0 && containerEng) {
+        spansEng = highlightIlluminatorByOffsets(containerEng, opts.offsetEng, opts.offsetEng + (opts.lengthEng || 0));
+      }
+      if (opts.offsetRus >= 0 && containerRus) {
+        spansRus = highlightIlluminatorByOffsets(containerRus, opts.offsetRus, opts.offsetRus + (opts.lengthRus || 0));
+      }
     }
-    if (opts.offsetRus >= 0 && containerRus) {
-      spansRus = highlightIlluminatorByOffsets(containerRus, opts.offsetRus, opts.offsetRus + (opts.lengthRus || 0));
+  }
+  if (ri >= 0 && spansEng.length === 0 && spansRus.length === 0) {
+    var rowNavClick = bilingualRowNav(tid, ri);
+    if (rowNavClick) {
+      var biClick = highlightBilingualSides(tid, rowNavClick);
+      spansEng = biClick.spansEng;
+      spansRus = biClick.spansRus;
     }
   }
   if (spansEng.length === 0 && spansRus.length === 0) {

@@ -83,6 +83,17 @@ def main() -> int:
     except Exception as exc:
         print(f"Warning: places sync failed ({exc})")
 
+    try:
+        from align.bilingual import build_bilingual_alignments, write_bilingual_alignments
+
+        out_dir = Path(config.get("output", {}).get("dir", "data/output"))
+        align_path = ROOT / out_dir / "bilingual_alignments.json"
+        align_payload = build_bilingual_alignments(documents, comparison_by_doc)
+        write_bilingual_alignments(align_payload, align_path)
+        print(f"Bilingual alignments: {align_path.name}")
+    except Exception as exc:
+        print(f"Warning: bilingual alignment failed ({exc})")
+
     out_path = report_run(comparison_by_doc, documents, taxonomy, config)
     print(f"Report: {out_path}")
     return 0
