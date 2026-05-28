@@ -49,6 +49,32 @@ def _copy_cuis_logo_for_report(out_dir: Path) -> Optional[str]:
     return _CUIS_LOGO_REPORT_NAME
 
 
+def _write_html_parts(path: Path, parts: List[str]) -> None:
+    """Write large HTML reports without building one giant in-memory string (Windows-safe)."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    with open(tmp, "w", encoding="utf-8", newline="\n") as f:
+        for i, part in enumerate(parts):
+            if i:
+                f.write("\n")
+            f.write(part)
+    try:
+        if path.exists():
+            path.unlink()
+        tmp.replace(path)
+    except OSError:
+        with open(path, "w", encoding="utf-8", newline="\n") as f:
+            for i, part in enumerate(parts):
+                if i:
+                    f.write("\n")
+                f.write(part)
+        try:
+            tmp.unlink(missing_ok=True)
+        except TypeError:
+            if tmp.exists():
+                tmp.unlink()
+
+
 def _load_allowed_taxonomy_ids_from_json(config: Dict[str, Any]) -> Tuple[frozenset, frozenset]:
     """Strict allowlists from taxonomy.json (project baseline categories / framings only)."""
     tax_cfg = config.get("taxonomy")
@@ -1483,10 +1509,11 @@ def run(
         ),
         "</body></html>",
     ]
-    viz_out_path.write_text("\n".join(standalone_parts), encoding="utf-8")
-
-    out_path.write_text("\n".join(parts), encoding="utf-8")
-    _write_places_map_html(config, out_dir, comparison_by_doc=comparison_by_doc)
+    _write_html_parts(viz_out_path, standalone_parts)
+    _write_html_parts(out_path, parts)
+    _write_places_map_html(
+        config, out_dir, comparison_by_doc=comparison_by_doc, documents=documents,
+    )
     return out_path
 
 
@@ -2257,6 +2284,9 @@ body.standalone-viz-page #viz-open-new-tab { display: none !important; }
 .document-text-content.filter-active .doc-entry.filter-match { opacity: 1 !important; color: inherit !important; }
 .document-text-content.filter-active .doc-entry.doc-entry-highlight-brief { opacity: 1 !important; color: inherit !important; }
 .document-text-content.filter-active .doc-entry.filter-match mark.doc-search-hit { opacity: 1 !important; color: inherit !important; background: rgba(255, 193, 7, 0.82) !important; }
+mark.illuminator-range-hit { background: rgba(255, 193, 7, 0.88); color: inherit; padding: 0 1px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(139, 0, 0, 0.25); animation: illuminatorRangeFade 2.1s ease-out forwards; }
+mark.illuminator-range-hit.filter-match { opacity: 1 !important; }
+@keyframes illuminatorRangeFade { 0% { background: rgba(255, 193, 7, 0.92); } 65% { background: rgba(255, 193, 7, 0.55); } 100% { background: transparent; box-shadow: none; } }
 .document-text-content mark.doc-search-hit { background: rgba(255, 193, 7, 0.72) !important; color: inherit !important; padding: 0 1px; border-radius: 2px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 @media (max-width: 900px) { .document-text-panels { grid-template-columns: 1fr; } }
 /* Glossary search and filter */
@@ -2933,71 +2963,43 @@ def _load_bilingual_alignments_by_doc(config: Dict[str, Any]) -> Dict[str, Dict[
         return {}
 
 
+def _document_texts_by_id(
+    documents: Optional[List[Dict[str, Any]]],
+) -> Dict[str, Dict[str, str]]:
+    out: Dict[str, Dict[str, str]] = {}
+    for doc in documents or []:
+        doc_id = doc.get("document_id") or doc.get("doc_id") or ""
+        if not doc_id:
+            continue
+        out[doc_id] = {
+            "en": doc.get("raw_text_en") or "",
+            "ru": doc.get("raw_text") or doc.get("raw_text_rus") or "",
+        }
+    return out
+
+
 def _place_segment_nav_fields(
     seg: Dict[str, Any],
-    align_by_doc: Dict[str, Dict[str, Any]],
+    place_name: str,
+    doc_texts: Dict[str, Dict[str, str]],
 ) -> Dict[str, Any]:
-    """Attach offset_eng / offset_rus for places map View (from bilingual alignment file)."""
+    """Tight mention offsets for places map View (not whole comparison rows or paragraphs)."""
+    from places.mention_nav import tight_mention_nav_fields
+
     doc_id = seg.get("doc_id", "")
-    doc_align = align_by_doc.get(doc_id) or {}
-    out = {
-        "eng": seg.get("entry_eng", ""),
-        "rus": seg.get("entry_rus", ""),
-        "doc_id": doc_id,
-        "row_index": seg.get("row_index", -1),
-        "offset": seg.get("offset", -1),
-        "length": seg.get("length", 0),
-        "lang": seg.get("lang", ""),
-        "offset_eng": -1,
-        "length_eng": 0,
-        "offset_rus": -1,
-        "length_rus": 0,
-    }
-    ri = int(seg.get("row_index", -1))
-    if ri >= 0:
-        try:
-            from align.bilingual import nav_index_from_document
-
-            nav = nav_index_from_document(doc_align)
-            row = (nav.get("rows") or {}).get(str(ri)) or (nav.get("rows") or {}).get(ri)
-            if row:
-                en = row.get("eng") or {}
-                ru = row.get("rus") or {}
-                if en.get("found"):
-                    out["offset_eng"] = en.get("start", -1)
-                    out["length_eng"] = max(0, int(en.get("end", 0)) - int(en.get("start", 0)))
-                if ru.get("found"):
-                    out["offset_rus"] = ru.get("start", -1)
-                    out["length_rus"] = max(0, int(ru.get("end", 0)) - int(ru.get("start", 0)))
-                return out
-        except Exception:
-            pass
-    lang = seg.get("lang", "")
-    off = int(seg.get("offset", -1))
-    if off >= 0 and lang in ("eng", "rus"):
-        try:
-            from align.bilingual import find_passage_for_offset
-
-            passage = find_passage_for_offset(doc_align, lang, off)
-            if passage:
-                en = passage.get("en") or {}
-                ru = passage.get("ru") or {}
-                if en.get("found"):
-                    out["offset_eng"] = en.get("start", -1)
-                    out["length_eng"] = max(0, int(en.get("end", 0)) - int(en.get("start", 0)))
-                if ru.get("found"):
-                    out["offset_rus"] = ru.get("start", -1)
-                    out["length_rus"] = max(0, int(ru.get("end", 0)) - int(ru.get("start", 0)))
-                if passage.get("row_index", -1) >= 0:
-                    out["row_index"] = passage["row_index"]
-        except Exception:
-            pass
-    return out
+    texts = doc_texts.get(doc_id) or {}
+    return tight_mention_nav_fields(
+        seg,
+        place_name or seg.get("place", ""),
+        texts.get("en", ""),
+        texts.get("ru", ""),
+    )
 
 
 def _load_places_map_data_enriched(
     config: Dict[str, Any],
     comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
+    documents: Optional[List[Dict[str, Any]]] = None,
 ) -> List[Dict[str, Any]]:
     """Load geocoded places with segments, doc counts, doc names, and historical notes."""
     base_list = _load_places_map_data(config)
@@ -3035,7 +3037,7 @@ def _load_places_map_data_enriched(
                     coords_by_name[place_name] = [lat, lon]
         except Exception:
             pass
-    align_by_doc = _load_bilingual_alignments_by_doc(config)
+    doc_texts = _document_texts_by_id(documents)
     enriched: List[Dict[str, Any]] = []
     for place_name, coords in coords_by_name.items():
         name = place_name
@@ -3052,7 +3054,7 @@ def _load_places_map_data_enriched(
             "count": segment_count,
             "coords": coords,
             "segments": [
-                _place_segment_nav_fields(s, align_by_doc)
+                _place_segment_nav_fields(s, name, doc_texts)
                 for s in sample_segs
             ],
             "doc_counts": [{"doc_id": did, "display_name": doc_names.get(did, did), "count": c} for did, c in sorted(doc_counts.items(), key=lambda x: -x[1])],
@@ -3297,7 +3299,11 @@ def _build_per_document_viz_section(
     heatmap_html = _heatmap_html(stats, cat_ids=cat_ids, config=config)
 
     places_html = _build_places_map_html(
-        config, embedded=True, doc_id_filter=doc_id, comparison_by_doc=comparison_by_doc,
+        config,
+        embedded=True,
+        doc_id_filter=doc_id,
+        comparison_by_doc=comparison_by_doc,
+        documents=documents,
     )
     places_fallback = '<p style="padding:2rem;color:#6b7280;">No places data for this document.</p>'
     lab_a, lab_b = viz_experiment_labels if viz_experiment_labels else _DEFAULT_VIZ_EXPERIMENT_LABELS
@@ -3431,9 +3437,12 @@ def _build_places_map_html(
     embedded: bool = False,
     doc_id_filter: Optional[str] = None,
     comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
+    documents: Optional[List[Dict[str, Any]]] = None,
 ) -> str:
     """Build places map HTML. If embedded=True, View links use parent.location.hash for same-doc navigation."""
-    places = _load_places_map_data_enriched(config, comparison_by_doc=comparison_by_doc)
+    places = _load_places_map_data_enriched(
+        config, comparison_by_doc=comparison_by_doc, documents=documents,
+    )
     if doc_id_filter:
         places = _filter_places_enriched_for_doc(places, doc_id_filter)
     if not places:
@@ -3469,22 +3478,71 @@ def _build_places_map_html(
     .demo-header p {{ margin: 0.5rem 0 0; font-size: 0.9rem; opacity: 0.9; }}
     .demo-header .demo-header-tagline {{ margin: 0.35rem 0 0; font-size: 0.82rem; opacity: 0.85; font-style: italic; }}
     #map {{ height: calc(100vh - 100px); min-height: 400px; }}
-    .leaflet-popup-content {{ margin: 0.5rem 0.75rem; font-family: 'Crimson Text', Georgia, serif; font-size: 0.9rem; max-width: 320px; max-height: 70vh; overflow-y: auto; }}
-    .leaflet-popup-content strong {{ color: #8b0000; }}
-    .leaflet-popup-content details {{ margin-top: 0.5rem; }}
-    .leaflet-popup-content details summary {{ cursor: pointer; font-weight: 600; color: #4a5568; }}
-    .leaflet-popup-content ul {{ margin: 0.25rem 0 0 1rem; padding: 0; }}
-    .leaflet-popup-content li {{ margin-bottom: 0.25rem; }}
-    .leaflet-popup-content .popup-historical {{ font-style: italic; color: #6b7280; margin-top: 0.5rem; font-size: 0.85rem; }}
-    .leaflet-popup-content .popup-doc-link,
-    .leaflet-popup-content .popup-doc-view-btn {{ color: #8b0000; text-decoration: none; font-weight: 600; white-space: nowrap; font-family: inherit; font-size: inherit; }}
-    .leaflet-popup-content .popup-doc-link:hover,
-    .leaflet-popup-content .popup-doc-view-btn:hover {{ text-decoration: underline; }}
-    .leaflet-popup-content .popup-doc-view-btn {{ background: none; border: none; padding: 0; cursor: pointer; }}
-    .leaflet-popup-content .popup-segments-table {{ width: 100%; border-collapse: collapse; margin-top: 0.25rem; font-size: 0.85rem; }}
-    .leaflet-popup-content .popup-segments-table th {{ text-align: left; padding: 0.2rem 0.4rem; border-bottom: 1px solid #c4b5a0; color: #4a5568; }}
-    .leaflet-popup-content .popup-segments-table td {{ padding: 0.25rem 0.4rem; border-bottom: 1px solid #e8e4dc; vertical-align: top; }}
-    .leaflet-popup-content .popup-segments-table .segment-text {{ max-width: 180px; overflow: hidden; text-overflow: ellipsis; }}
+    .places-map-popup.leaflet-popup {{ margin-bottom: 14px; }}
+    .places-map-popup .leaflet-popup-content-wrapper {{
+      width: 440px !important;
+      max-width: min(440px, calc(100vw - 28px)) !important;
+    }}
+    .places-map-popup .leaflet-popup-content {{
+      margin: 0;
+      width: 440px;
+      max-width: min(440px, calc(100vw - 28px));
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 0.9rem;
+      line-height: 1.35;
+      overflow: visible;
+    }}
+    .places-popup-inner {{ display: flex; flex-direction: column; max-width: 100%; }}
+    .places-popup-header {{
+      flex: 0 0 auto;
+      padding: 0.55rem 0.75rem 0.45rem;
+      border-bottom: 1px solid #e8e4dc;
+    }}
+    .places-popup-header strong {{ color: #8b0000; }}
+    .places-popup-scroll {{
+      flex: 1 1 auto;
+      max-height: min(340px, 58vh);
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding: 0.45rem 0.75rem 0.6rem;
+      scrollbar-gutter: stable;
+      -webkit-overflow-scrolling: touch;
+    }}
+    .places-popup-scroll details {{ margin-top: 0.5rem; }}
+    .places-popup-scroll details:first-child {{ margin-top: 0.15rem; }}
+    .places-popup-scroll details summary {{ cursor: pointer; font-weight: 600; color: #4a5568; }}
+    .places-popup-scroll ul {{ margin: 0.25rem 0 0 1rem; padding: 0; }}
+    .places-popup-scroll li {{ margin-bottom: 0.25rem; word-break: break-word; }}
+    .places-popup-scroll .popup-historical {{
+      font-style: italic; color: #6b7280; margin: 0.5rem 0 0; font-size: 0.85rem; word-break: break-word;
+    }}
+    .places-popup-scroll .popup-doc-link,
+    .places-popup-scroll .popup-doc-view-btn {{
+      color: #8b0000; text-decoration: none; font-weight: 600; white-space: nowrap;
+      font-family: inherit; font-size: inherit;
+    }}
+    .places-popup-scroll .popup-doc-link:hover,
+    .places-popup-scroll .popup-doc-view-btn:hover {{ text-decoration: underline; }}
+    .places-popup-scroll .popup-doc-view-btn {{
+      background: none; border: none; padding: 0; cursor: pointer;
+    }}
+    .places-popup-scroll .popup-segments-table {{
+      width: 100%; border-collapse: collapse; margin-top: 0.25rem; font-size: 0.85rem;
+      table-layout: fixed;
+    }}
+    .places-popup-scroll .popup-segments-table th {{
+      text-align: left; padding: 0.2rem 0.35rem; border-bottom: 1px solid #c4b5a0; color: #4a5568;
+    }}
+    .places-popup-scroll .popup-segments-table td {{
+      padding: 0.25rem 0.35rem; border-bottom: 1px solid #e8e4dc; vertical-align: top;
+      word-break: break-word; overflow-wrap: anywhere;
+    }}
+    .places-popup-scroll .popup-segments-table .col-segment {{ width: 50%; }}
+    .places-popup-scroll .popup-segments-table .col-doc {{ width: 34%; }}
+    .places-popup-scroll .popup-segments-table .col-action {{ width: 16%; text-align: right; white-space: nowrap; }}
+    .places-popup-scroll .popup-segments-table .segment-text {{
+      display: block; max-height: 4.5em; overflow: hidden; text-overflow: ellipsis;
+    }}
     .eye-marker {{ background: transparent; border: none; }}
   </style>
 </head>
@@ -3534,7 +3592,19 @@ def _build_places_map_html(
         try {{
           var target = host || window.parent;
           if (target && target !== window) {{
-            target.postMessage({{ type: 'places-map-navigate', docId: navDocId, rowIndex: rowIdx, entryEng: eng || '', entryRus: rus || '', hostDocId: hostDocId || '' }}, '*');
+            target.postMessage({{
+              type: 'places-map-navigate',
+              docId: navDocId,
+              rowIndex: rowIdx,
+              entryEng: eng || '',
+              entryRus: rus || '',
+              hostDocId: hostDocId || '',
+              offsetEng: navExtra.offsetEng,
+              lengthEng: navExtra.lengthEng,
+              offsetRus: navExtra.offsetRus,
+              lengthRus: navExtra.lengthRus,
+              place: navExtra.place || ''
+            }}, '*');
           }}
         }} catch (e4) {{}}
       }}
@@ -3552,6 +3622,8 @@ def _build_places_map_html(
         var lRus = parseInt(anchor.getAttribute('data-length-rus'), 10);
         if (!isNaN(oEng) && oEng >= 0) {{ navExtra.offsetEng = oEng; navExtra.lengthEng = isNaN(lEng) ? 0 : lEng; }}
         if (!isNaN(oRus) && oRus >= 0) {{ navExtra.offsetRus = oRus; navExtra.lengthRus = isNaN(lRus) ? 0 : lRus; }}
+        var placeName = anchor.getAttribute('data-place') || '';
+        if (placeName) navExtra.place = placeName;
         placesMapSendNavigate(docId, rowIdx, eng, rus, navExtra);
         return false;
       }}
@@ -3567,11 +3639,16 @@ def _build_places_map_html(
         }});
       }}
       window.placesMapViewClick = placesMapViewClick;
+      var PLACES_POPUP_WIDTH = 440;
       function popupHtml(p) {{
-        var h = '<strong>' + esc(p.name) + '</strong><br/>' + p.count + ' segment(s)';
+        var h = '<div class="places-popup-inner">';
+        h += '<div class="places-popup-header"><strong>' + esc(p.name) + '</strong><br/>' + p.count + ' segment(s)</div>';
+        h += '<div class="places-popup-scroll">';
         if (p.segments && p.segments.length > 0) {{
           h += '<details><summary>Segments mentioning this place</summary>';
-          h += '<table class="popup-segments-table"><thead><tr><th>Segment</th><th>Document</th><th></th></tr></thead><tbody>';
+          h += '<table class="popup-segments-table"><thead><tr>'
+            + '<th class="col-segment">Segment</th><th class="col-doc">Document</th><th class="col-action"></th>'
+            + '</tr></thead><tbody>';
           p.segments.forEach(function(s) {{
             var eng = esc(s.eng), rus = esc(s.rus), docId = s.doc_id || '', rowIdx = s.row_index;
             var text = (eng || rus) + (eng && rus ? ' / ' + rus : '');
@@ -3586,9 +3663,11 @@ def _build_places_map_html(
               : ((s.lang === 'rus' && s.offset >= 0) ? s.offset : -1);
             var lenRus = (typeof s.length_rus === 'number' && s.length_rus > 0) ? s.length_rus
               : ((s.lang === 'rus' && s.length > 0) ? s.length : 0);
+            var placeAttr = esc(s.place || p.name || '');
             if (docId && (!hostDocId || docId === hostDocId)) {{
               var attrs = ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
                 + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
+                + ' data-place="' + placeAttr + '"'
                 + ' data-offset-eng="' + offEng + '" data-length-eng="' + lenEng
                 + '" data-offset-rus="' + offRus + '" data-length-rus="' + lenRus + '"'
                 + ' onclick="return placesMapViewClick(this);"';
@@ -3599,7 +3678,8 @@ def _build_places_map_html(
                 link = '<a class="popup-doc-link" href="' + href + '" target="_blank" rel="noopener"' + attrs + '>View</a>';
               }}
             }}
-            h += '<tr><td class="segment-text" title="' + text + '">' + text + '</td><td>' + docName + '</td><td>' + link + '</td></tr>';
+            h += '<tr><td class="segment-text col-segment" title="' + text + '">' + text + '</td>'
+              + '<td class="col-doc">' + docName + '</td><td class="col-action">' + link + '</td></tr>';
           }});
           h += '</tbody></table></details>';
         }}
@@ -3613,6 +3693,7 @@ def _build_places_map_html(
         if (p.historical) {{
           h += '<p class="popup-historical">Historical: ' + esc(p.historical) + ' (Soviet era)</p>';
         }}
+        h += '</div></div>';
         return h;
       }}
       var counts = places.map(function(p) {{ return p.count; }});
@@ -3629,10 +3710,40 @@ def _build_places_map_html(
         var popupEl = ev.popup && ev.popup.getElement ? ev.popup.getElement() : null;
         placesMapBindPopupViewButtons(popupEl);
       }});
-      places.forEach(function(p) {{
+      function spreadMarkerLatLngs(placesList) {{
+        var out = placesList.map(function(p) {{ return {{ lat: p.coords[0], lng: p.coords[1] }}; }});
+        var buckets = {{}};
+        placesList.forEach(function(p, idx) {{
+          var key = p.coords[0].toFixed(4) + ',' + p.coords[1].toFixed(4);
+          if (!buckets[key]) buckets[key] = [];
+          buckets[key].push(idx);
+        }});
+        Object.keys(buckets).forEach(function(key) {{
+          var idxs = buckets[key];
+          if (idxs.length <= 1) return;
+          var base = placesList[idxs[0]].coords;
+          var latRad = base[0] * Math.PI / 180;
+          var ring = 0.12 + Math.min(idxs.length * 0.02, 0.15);
+          idxs.forEach(function(pi, j) {{
+            var angle = (2 * Math.PI * j) / idxs.length;
+            out[pi].lat = base[0] + ring * Math.cos(angle);
+            out[pi].lng = base[1] + (ring * Math.sin(angle)) / Math.max(Math.cos(latRad), 0.35);
+          }});
+        }});
+        return out;
+      }}
+      var markerPositions = spreadMarkerLatLngs(places);
+      places.forEach(function(p, idx) {{
         var sz = sizeForCount(p.count);
         var icon = L.divIcon({{ html: eyeSvg(sz), className: 'eye-marker', iconSize: [sz, sz], iconAnchor: [sz/2, sz/2] }});
-        L.marker([p.coords[0], p.coords[1]], {{ icon: icon }}).addTo(map).bindPopup(popupHtml(p));
+        var pos = markerPositions[idx];
+        L.marker([pos.lat, pos.lng], {{ icon: icon }}).addTo(map).bindPopup(popupHtml(p), {{
+          className: 'places-map-popup',
+          maxWidth: PLACES_POPUP_WIDTH,
+          minWidth: PLACES_POPUP_WIDTH,
+          autoPan: true,
+          keepInView: true
+        }});
       }});
     }})();
   </script>
@@ -3646,9 +3757,19 @@ def _write_places_map_html(
     config: Dict[str, Any],
     out_dir: Path,
     comparison_by_doc: Optional[Dict[str, Dict[str, Any]]] = None,
+    documents: Optional[List[Dict[str, Any]]] = None,
 ) -> None:
     """Write places_map.html to output dir for opening in new window."""
-    html = _build_places_map_html(config, embedded=False, comparison_by_doc=comparison_by_doc)
+    if documents is None:
+        try:
+            from ingest import run as ingest_run
+
+            documents = ingest_run(config, _REPORT_ROOT)
+        except Exception:
+            documents = []
+    html = _build_places_map_html(
+        config, embedded=False, comparison_by_doc=comparison_by_doc, documents=documents,
+    )
     if html:
         (out_dir / "places_map.html").write_text(html, encoding="utf-8")
 
@@ -4713,7 +4834,9 @@ def _homepage(
         fram_colours,
     )
 
-    places_map_html = _build_places_map_html(config, embedded=True, comparison_by_doc=comparison_by_doc)
+    places_map_html = _build_places_map_html(
+        config, embedded=True, comparison_by_doc=comparison_by_doc, documents=documents,
+    )
     if places_map_html:
         places_map_srcdoc = _places_map_lab_embed_markup(places_map_html)
     else:
@@ -5746,6 +5869,21 @@ def _glossary_tab(
     )
 
 
+def _place_mention_patterns_json() -> str:
+    """Canonical place name -> regex strings for illuminator text search (RU aliases + Latin)."""
+    import re
+
+    from places.place_aliases import PLACE_RU_ALIASES
+
+    out: Dict[str, List[str]] = {}
+    for name, patterns in PLACE_RU_ALIASES.items():
+        stripped = name.strip()
+        esc = re.escape(stripped)
+        latin = [esc] if " " in stripped else [r"\b" + esc + r"\b"]
+        out[name] = list(patterns) + latin
+    return json.dumps(out, ensure_ascii=False)
+
+
 def _script(
     categories: List[Dict],
     framings: List[Dict],
@@ -5775,6 +5913,7 @@ def _script(
         "var TERM_SYNONYMS = " + term_synonyms_json + ";\n"
         "var TAXONOMY_DEFINITIONS = " + taxonomy_defs_json + ";\n"
         "var UI_TRANSLATIONS = " + ui_translations_json + ";\n"
+        "var PLACE_MENTION_PATTERNS = " + _place_mention_patterns_json() + ";\n"
     )
     return prefix + """
 var UI_LANG = (function(){ try { return localStorage.getItem('vozmezdie_ui_lang') || 'en'; } catch(e){ return 'en'; } })();
@@ -6053,6 +6192,51 @@ function scrollIlluminatorPanelToSpan(container, span) {
   var maxTop = container.scrollHeight - container.clientHeight;
   if (targetTop > maxTop) targetTop = maxTop;
   container.scrollTo({ top: targetTop, behavior: 'smooth' });
+}
+function getIlluminatorTextLength(container) {
+  if (!container) return 0;
+  var len = 0;
+  var walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+  while (walker.nextNode()) len += walker.currentNode.textContent.length;
+  return len;
+}
+function scrollIlluminatorPanelToOffset(container, offset) {
+  if (!container || offset < 0) return;
+  var len = getIlluminatorTextLength(container);
+  if (len <= 0) return;
+  var ratio = Math.max(0, Math.min(offset / len, 1));
+  var maxTop = Math.max(container.scrollHeight - container.clientHeight, 0);
+  container.scrollTop = ratio * maxTop;
+}
+function scrollIlluminatorPanelsAfterHighlight(tid, spansEng, spansRus, offsetEng, offsetRus) {
+  var containerEng = document.getElementById('doc-text-eng-' + tid);
+  var containerRus = document.getElementById('doc-text-rus-' + tid);
+  if (!containerEng || !containerRus) return;
+  if (spansEng.length > 0) scrollIlluminatorPanelToSpan(containerEng, spansEng[0]);
+  else if (placesNavOffset(offsetEng) >= 0) scrollIlluminatorPanelToOffset(containerEng, placesNavOffset(offsetEng));
+  if (spansRus.length > 0) scrollIlluminatorPanelToSpan(containerRus, spansRus[0]);
+  else if (placesNavOffset(offsetRus) >= 0) scrollIlluminatorPanelToOffset(containerRus, placesNavOffset(offsetRus));
+}
+function clearIlluminatorRangeMarks(marks) {
+  if (!marks || !marks.length) return;
+  marks.forEach(function(mark) {
+    if (!mark || !mark.parentNode) return;
+    var parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent || ''), mark);
+    if (parent.normalize) parent.normalize();
+  });
+}
+function clearPlacesMapHighlights(tid) {
+  var stash = window.__illuminatorPlaceMarks && window.__illuminatorPlaceMarks[tid];
+  if (!stash) return;
+  clearIlluminatorRangeMarks(stash.eng || []);
+  clearIlluminatorRangeMarks(stash.rus || []);
+  delete window.__illuminatorPlaceMarks[tid];
+}
+function stashPlacesMapHighlights(tid, spansEng, spansRus) {
+  if (!window.__illuminatorPlaceMarks) window.__illuminatorPlaceMarks = {};
+  clearPlacesMapHighlights(tid);
+  window.__illuminatorPlaceMarks[tid] = { eng: spansEng || [], rus: spansRus || [] };
 }
 function showTaxonomyDefinitionPopover(taxonomyId, anchorEl) {
   if (!taxonomyId || !anchorEl) return;
@@ -6718,13 +6902,15 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
   var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
   var highlightRun = 0;
   var trigger = typeof comparisonRowForHighlight === 'function' ? comparisonRowForHighlight(docId, ri, highlightRun) : null;
-  if (!trigger && (entryEng || entryRus)) {
+  if (!trigger && (entryEng || entryRus || navExtra.place)) {
     entryEng = entryEng || '';
     entryRus = entryRus || '';
+    var placeForTrigger = navExtra.place || '';
     trigger = {
       getAttribute: function(name) {
         if (name === 'data-entry-eng') return entryEng;
         if (name === 'data-entry-rus') return entryRus;
+        if (name === 'data-place') return placeForTrigger;
         return '';
       }
     };
@@ -6737,7 +6923,8 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus, hostDoc
     offsetEng: navExtra.offsetEng,
     lengthEng: navExtra.lengthEng,
     offsetRus: navExtra.offsetRus,
-    lengthRus: navExtra.lengthRus
+    lengthRus: navExtra.lengthRus,
+    place: navExtra.place || ''
   };
   var delayMs = sameTab ? 120 : 320;
   setTimeout(function() {
@@ -6768,7 +6955,8 @@ if (!window.__placesMapMessageListener) {
       offsetEng: d.offsetEng,
       lengthEng: d.lengthEng,
       offsetRus: d.offsetRus,
-      lengthRus: d.lengthRus
+      lengthRus: d.lengthRus,
+      place: d.place || ''
     });
   });
 }
@@ -6810,6 +6998,149 @@ function bilingualRowNav(tid, rowIndex) {
   if (nav.rows[rowIndex] != null) return nav.rows[rowIndex];
   return nav.rows[String(rowIndex)] || null;
 }
+function placesNavOffset(v) {
+  var n = parseInt(v, 10);
+  return (isNaN(n) || n < 0) ? -1 : n;
+}
+function placesNavLength(v) {
+  var n = parseInt(v, 10);
+  return (isNaN(n) || n < 0) ? 0 : n;
+}
+function rowNavSide(rowNav, lang) {
+  if (!rowNav) return {};
+  if (lang === 'ru' || lang === 'rus') return rowNav.ru || rowNav.rus || {};
+  return rowNav.eng || {};
+}
+function normalizeBilingualPassage(passage) {
+  if (!passage) return null;
+  var ru = passage.ru || passage.rus || {};
+  return {
+    alignment_id: passage.alignment_id,
+    eng: passage.eng || {},
+    ru: ru,
+    rus: ru,
+    row_index: passage.row_index,
+    pair_quality: passage.pair_quality
+  };
+}
+function jsRegexFromPattern(pattern) {
+  var src = String(pattern || '');
+  if (/[^\\x00-\\x7F]/.test(src)) {
+    src = src.replace(/\\w\*/g, '[\\u0400-\\u04FFa-zA-Z0-9_]+')
+      .replace(/\\w\+/g, '[\\u0400-\\u04FFa-zA-Z0-9_]+')
+      .replace(/\\w/g, '[\\u0400-\\u04FFa-zA-Z0-9_]');
+  }
+  return src;
+}
+function regexExecAllNear(re, text, center, maxHits) {
+  var hits = [];
+  var m;
+  var guard = 0;
+  var limit = maxHits || 48;
+  re.lastIndex = 0;
+  while ((m = re.exec(text)) !== null) {
+    if (!m[0].length) {
+      re.lastIndex++;
+      continue;
+    }
+    hits.push({ index: m.index, end: m.index + m[0].length, len: m[0].length });
+    if (hits.length >= limit || ++guard > 5000) break;
+    if (re.lastIndex === m.index) re.lastIndex++;
+  }
+  if (!hits.length) return null;
+  var best = hits[0];
+  var bestDist = Math.abs(best.index - center);
+  for (var i = 1; i < hits.length; i++) {
+    var dist = Math.abs(hits[i].index - center);
+    if (dist < bestDist) {
+      best = hits[i];
+      bestDist = dist;
+    }
+  }
+  return { start: best.index, end: best.end };
+}
+function placeMentionRegexList(placeName) {
+  if (!placeName) return [];
+  var patterns = (typeof PLACE_MENTION_PATTERNS !== 'undefined' && PLACE_MENTION_PATTERNS)
+    ? PLACE_MENTION_PATTERNS[placeName] : null;
+  if (!patterns || !patterns.length) {
+    var esc = String(placeName).replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');
+    patterns = (String(placeName).indexOf(' ') >= 0) ? [esc] : ['\\\\b' + esc + '\\\\b'];
+  }
+  var out = [];
+  for (var i = 0; i < patterns.length; i++) {
+    try { out.push(new RegExp(jsRegexFromPattern(patterns[i]), 'i')); } catch (e) {}
+  }
+  return out;
+}
+function highlightPlacesMapMentions(tid, opts) {
+  var containerEng = document.getElementById('doc-text-eng-' + tid);
+  var containerRus = document.getElementById('doc-text-rus-' + tid);
+  var placeName = (opts && opts.place) ? String(opts.place).trim() : '';
+  var offE = placesNavOffset(opts && opts.offsetEng);
+  var offR = placesNavOffset(opts && opts.offsetRus);
+  var lenE = placesNavLength(opts && opts.lengthEng);
+  var lenR = placesNavLength(opts && opts.lengthRus);
+  if (!lenE && placeName) lenE = placeName.length;
+  if (!lenR && placeName) lenR = placeName.length;
+  clearPlacesMapHighlights(tid);
+  var spansEng = [];
+  var spansRus = [];
+  if (!containerEng || !containerRus) return { spansEng: spansEng, spansRus: spansRus, offE: offE, offR: offR };
+  if (offE >= 0) {
+    spansEng = highlightIlluminatorByOffsets(containerEng, offE, offE + (lenE > 0 ? lenE : 1), { precise: true });
+  }
+  if (offR >= 0) {
+    spansRus = highlightIlluminatorByOffsets(containerRus, offR, offR + (lenR > 0 ? lenR : 1), { precise: true });
+  }
+  if (placeName) {
+    if (spansEng.length === 0) spansEng = highlightPlaceMentionInContainer(containerEng, placeName, offE, lenE, { precise: true });
+    if (spansRus.length === 0) spansRus = highlightPlaceMentionInContainer(containerRus, placeName, offR, lenR, { precise: true });
+  }
+  stashPlacesMapHighlights(tid, spansEng, spansRus);
+  return { spansEng: spansEng, spansRus: spansRus, offE: offE, offR: offR };
+}
+function findPlaceMentionRangeInContainer(container, placeName, preferOffset, lengthHint) {
+  if (!container || !placeName) return null;
+  var full = container.textContent || '';
+  if (!full) return null;
+  var off = placesNavOffset(preferOffset);
+  var hint = placesNavLength(lengthHint);
+  if (!hint && placeName) hint = String(placeName).length;
+  if (off >= 0 && hint > 0 && off + hint <= full.length) {
+    return { start: off, end: off + hint };
+  }
+  var center = off >= 0 ? off : Math.floor(full.length / 2);
+  var SEARCH_RADIUS = 1400;
+  var winStart = Math.max(0, center - SEARCH_RADIUS);
+  var winEnd = Math.min(full.length, center + SEARCH_RADIUS);
+  var slice = full.slice(winStart, winEnd);
+  var patterns = placeMentionRegexList(placeName);
+  var best = null;
+  var bestDist = 1e12;
+  var MAX_MENTION_LEN = 96;
+  for (var p = 0; p < patterns.length; p++) {
+    var hit = regexExecAllNear(patterns[p], slice, center - winStart, 48);
+    if (!hit) continue;
+    var dist = Math.abs(hit.start + winStart - center);
+    if (dist < bestDist) {
+      bestDist = dist;
+      var end = hit.end + winStart;
+      if (end - (hit.start + winStart) > MAX_MENTION_LEN) end = hit.start + winStart + MAX_MENTION_LEN;
+      best = { start: hit.start + winStart, end: end };
+    }
+  }
+  if (best) return best;
+  if (off >= 0 && hint > 0 && off < full.length) {
+    return { start: off, end: Math.min(off + hint, full.length) };
+  }
+  return null;
+}
+function highlightPlaceMentionInContainer(container, placeName, preferOffset, lengthHint, opts) {
+  var range = findPlaceMentionRangeInContainer(container, placeName, preferOffset, lengthHint);
+  if (!range) return [];
+  return highlightIlluminatorByOffsets(container, range.start, range.end, opts || { precise: true });
+}
 function findBilingualPassageAtOffset(tid, lang, offset) {
   var nav = getIlluminatorNavIndex(tid);
   if (!nav || offset < 0) return null;
@@ -6828,8 +7159,8 @@ function findBilingualPassageAtOffset(tid, lang, offset) {
         };
       }
       var row = bilingualRowNav(tid, item.row_index);
-      if (row) return row;
-      return { alignment_id: item.alignment_id, eng: {}, rus: {}, row_index: item.row_index };
+      if (row) return normalizeBilingualPassage(row);
+      return normalizeBilingualPassage({ alignment_id: item.alignment_id, eng: {}, rus: {}, row_index: item.row_index });
     }
   }
   return null;
@@ -6841,13 +7172,20 @@ function highlightBilingualSides(tid, rowNav, opts) {
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   var spansEng = [];
   var spansRus = [];
-  var en = rowNav.eng || {};
-  var ru = rowNav.ru || {};
-  if (en.found && en.start >= 0 && containerEng) {
-    spansEng = highlightIlluminatorByOffsets(containerEng, en.start, en.end);
+  var precise = !!opts.precise;
+  var en = rowNavSide(rowNav, 'eng');
+  var ru = rowNavSide(rowNav, 'ru');
+  if (placesNavOffset(en.start) >= 0 && containerEng) {
+    var enStart = placesNavOffset(en.start);
+    var enEnd = placesNavOffset(en.end);
+    if (enEnd <= enStart) enEnd = enStart + 1;
+    spansEng = highlightIlluminatorByOffsets(containerEng, enStart, enEnd, { precise: precise });
   }
-  if (ru.found && ru.start >= 0 && containerRus) {
-    spansRus = highlightIlluminatorByOffsets(containerRus, ru.start, ru.end);
+  if (placesNavOffset(ru.start) >= 0 && containerRus) {
+    var ruStart = placesNavOffset(ru.start);
+    var ruEnd = placesNavOffset(ru.end);
+    if (ruEnd <= ruStart) ruEnd = ruStart + 1;
+    spansRus = highlightIlluminatorByOffsets(containerRus, ruStart, ruEnd, { precise: precise });
   }
   return { spansEng: spansEng, spansRus: spansRus };
 }
@@ -6856,7 +7194,44 @@ function navOccForRow(panelMap, rowIndex) {
   if (panelMap[rowIndex] != null) return panelMap[rowIndex];
   return panelMap[String(rowIndex)] || null;
 }
-function highlightIlluminatorByOffsets(container, start, end) {
+function highlightIlluminatorRangePrecise(container, start, end) {
+  if (!container || start < 0) return [];
+  if (end <= start) end = start + 1;
+  var marks = [];
+  var nodes = [];
+  var walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+  var pos = 0;
+  while (walker.nextNode()) {
+    var n = walker.currentNode;
+    var len = n.textContent.length;
+    nodes.push({ node: n, start: pos, end: pos + len });
+    pos += len;
+  }
+  for (var i = 0; i < nodes.length; i++) {
+    var nd = nodes[i];
+    if (nd.end <= start || nd.start >= end) continue;
+    var sliceStart = Math.max(start, nd.start) - nd.start;
+    var sliceEnd = Math.min(end, nd.end) - nd.start;
+    var text = nd.node.textContent;
+    var mid = text.slice(sliceStart, sliceEnd);
+    if (!mid) continue;
+    var mark = document.createElement('mark');
+    mark.className = 'illuminator-range-hit filter-match doc-entry-highlight-brief';
+    mark.textContent = mid;
+    var parent = nd.node.parentNode;
+    if (!parent) continue;
+    var frag = document.createDocumentFragment();
+    if (sliceStart > 0) frag.appendChild(document.createTextNode(text.slice(0, sliceStart)));
+    frag.appendChild(mark);
+    if (sliceEnd < text.length) frag.appendChild(document.createTextNode(text.slice(sliceEnd)));
+    parent.replaceChild(frag, nd.node);
+    marks.push(mark);
+  }
+  return marks;
+}
+function highlightIlluminatorByOffsets(container, start, end, opts) {
+  opts = opts || {};
+  if (opts.precise) return highlightIlluminatorRangePrecise(container, start, end);
   if (!container || start < 0) return [];
   if (end <= start) end = start + 1;
   var highlighted = [];
@@ -6991,29 +7366,17 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   if (!containerEng || !containerRus) return;
   var spansEng = [];
   var spansRus = [];
-  if (opts.fromPlacesMap && ri >= 0) {
-    var foundPlacesRow = findIlluminatorSpans(tid, ri, triggerEl, cmpRun);
-    spansEng = foundPlacesRow.spansEng;
-    spansRus = foundPlacesRow.spansRus;
-  }
-  if (opts.fromPlacesMap && spansEng.length === 0 && spansRus.length === 0 && (opts.offsetEng >= 0 || opts.offsetRus >= 0)) {
-    var rowNavPlaces = null;
-    if (opts.offsetEng >= 0) rowNavPlaces = findBilingualPassageAtOffset(tid, 'eng', opts.offsetEng);
-    if (!rowNavPlaces && opts.offsetRus >= 0) rowNavPlaces = findBilingualPassageAtOffset(tid, 'rus', opts.offsetRus);
-    if (rowNavPlaces && (rowNavPlaces.eng || rowNavPlaces.ru)) {
-      var biPlaces = highlightBilingualSides(tid, rowNavPlaces);
-      spansEng = biPlaces.spansEng;
-      spansRus = biPlaces.spansRus;
-    } else {
-      var lenE = opts.lengthEng > 0 ? opts.lengthEng : 1;
-      var lenR = opts.lengthRus > 0 ? opts.lengthRus : 1;
-      if (opts.offsetEng >= 0 && containerEng) {
-        spansEng = highlightIlluminatorByOffsets(containerEng, opts.offsetEng, opts.offsetEng + lenE);
-      }
-      if (opts.offsetRus >= 0 && containerRus) {
-        spansRus = highlightIlluminatorByOffsets(containerRus, opts.offsetRus, opts.offsetRus + lenR);
-      }
+  if (opts.fromPlacesMap && (placesNavOffset(opts.offsetEng) >= 0 || placesNavOffset(opts.offsetRus) >= 0 || (opts.place && String(opts.place).trim()))) {
+    var placeName = (opts.place || '').trim();
+    if (!placeName && triggerEl && triggerEl.getAttribute) {
+      placeName = (triggerEl.getAttribute('data-place') || '').trim();
     }
+    opts.place = placeName;
+    var pm = highlightPlacesMapMentions(tid, opts);
+    spansEng = pm.spansEng;
+    spansRus = pm.spansRus;
+    opts._placesOffE = pm.offE;
+    opts._placesOffR = pm.offR;
   }
   if (spansEng.length === 0 && spansRus.length === 0) {
     var found = findIlluminatorSpans(tid, ri, triggerEl, cmpRun);
@@ -7029,8 +7392,16 @@ function onSectionClickToView(tid, rowIndex, triggerEl, opts) {
   });
   setTimeout(function() {
     if (detailsEl) detailsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (spansEng.length > 0) scrollIlluminatorPanelToSpan(containerEng, spansEng[0]);
-    if (spansRus.length > 0) scrollIlluminatorPanelToSpan(containerRus, spansRus[0]);
+    if (opts.fromPlacesMap) {
+      scrollIlluminatorPanelsAfterHighlight(
+        tid, spansEng, spansRus,
+        opts._placesOffE != null ? opts._placesOffE : (opts.offsetEng >= 0 ? opts.offsetEng : -1),
+        opts._placesOffR != null ? opts._placesOffR : (opts.offsetRus >= 0 ? opts.offsetRus : -1)
+      );
+    } else {
+      if (spansEng.length > 0) scrollIlluminatorPanelToSpan(containerEng, spansEng[0]);
+      if (spansRus.length > 0) scrollIlluminatorPanelToSpan(containerRus, spansRus[0]);
+    }
   }, 80);
   setTimeout(function() {
     allSpans.forEach(function(s) {

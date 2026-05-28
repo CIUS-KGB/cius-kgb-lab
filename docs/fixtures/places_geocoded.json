@@ -13,8 +13,8 @@
       "name": "Soviet Union",
       "count": 141,
       "coords": [
-        55.7558,
-        37.6173
+        61.5,
+        69.0
       ],
       "source": "static"
     },
@@ -190,6 +190,15 @@
       "source": "static"
     },
     {
+      "name": "Turkey",
+      "count": 8,
+      "coords": [
+        38.9637,
+        35.2433
+      ],
+      "source": "static"
+    },
+    {
       "name": "Vinnytsia",
       "count": 8,
       "coords": [
@@ -249,6 +258,15 @@
       "coords": [
         55.3781,
         -3.436
+      ],
+      "source": "static"
+    },
+    {
+      "name": "Belgium",
+      "count": 4,
+      "coords": [
+        50.5039,
+        4.4699
       ],
       "source": "static"
     },
@@ -379,6 +397,15 @@
       "source": "static"
     },
     {
+      "name": "Romania",
+      "count": 2,
+      "coords": [
+        45.9432,
+        24.9668
+      ],
+      "source": "static"
+    },
+    {
       "name": "Yuzhny",
       "count": 2,
       "coords": [
@@ -460,6 +487,6 @@
       "source": "pending"
     }
   ],
-  "total_geocoded": 49,
+  "total_geocoded": 52,
   "total_failed": 3
 }

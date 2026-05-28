@@ -16,6 +16,9 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 EXTRA_GAZETTEER_NAMES = (
     "Berdychiv",
     "Kryvyi Rih",
+    "Turkey",
+    "Romania",
+    "Belgium",
     "United Kingdom",
     "Great Britain",
     "Dnipro",
@@ -75,6 +78,9 @@ CYRILLIC_PATTERNS: Tuple[Tuple[str, str], ...] = (
     (r"Ровн\w*", "Rivne"),
     (r"Мюнхен\w*", "Munich"),
     (r"Иерусалим\w*", "Jerusalem"),
+    (r"Турци\w*", "Turkey"),
+    (r"Румын\w*", "Romania"),
+    (r"Бельги\w*", "Belgium"),
 )
 
 SNIPPET_RADIUS = 72
@@ -237,6 +243,14 @@ def _attach_related_row_hints(
             entry = (row.get(entry_key) or "").strip()
             if not entry or len(entry) < 4:
                 continue
+            try:
+                from places.mention_nav import should_skip_row_hint
+
+                if should_skip_row_hint(entry, anchor):
+                    continue
+            except Exception:
+                if len(entry) > 120:
+                    continue
             if entry in needle or needle in entry:
                 dist = 0
             elif entry[:20] in anchor:
@@ -284,7 +298,8 @@ def extract_from_documents(
             # Legacy fields for map popup / navigation
             seg = {
                 "doc_id": doc_id,
-                "row_index": m.get("row_index", -1),
+                "row_index": -1,
+                "place": place,
                 "entry_eng": m.get("anchor_eng") or place,
                 "entry_rus": m.get("anchor_rus") or "",
                 "count": 1,

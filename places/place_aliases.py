@@ -1,0 +1,55 @@
+"""Russian (and other) surface forms for canonical place names used in cross-language navigation."""
+
+from __future__ import annotations
+
+from typing import Dict, Tuple
+
+# Regex patterns searched in raw Russian text (inflected/adjective forms included).
+PLACE_RU_ALIASES: Dict[str, Tuple[str, ...]] = {
+    # Use \S (not \w): JS RegExp \w is ASCII-only; inflected RU forms need Cyrillic suffixes.
+    "Reni": (r"Рений\S*", r"Рени\S*"),
+    "Illichivsk": (r"Ильич[ёе]\S*",),
+    "Izmail": (r"Измаил\S*",),
+    "Yuzhne": (r"Южн\S*",),
+    "Yuzhny": (r"Южн\S*",),
+    "Zhdanov": (r"Жданов\S*",),
+    "Bilhorod-Dnistrovskyi": (r"Белгород-Днестровск\S*", r"Білгород-Дністровськ\S*"),
+    "Novorossiysk": (r"Новороссийск\S*",),
+    "Kirovohrad": (r"Кировоград\S*",),
+    "Chernihiv": (r"Чернигов\S*",),
+    "Poltava": (r"Полтав\S*",),
+    "Mykolaiv": (r"Николаев\S*",),
+    "Vinnytsia": (r"Винниц\S*",),
+    "Zhytomyr": (r"Житомир\S*",),
+    "Khmelnytskyi": (r"Хмельниц\S*",),
+    "Chernivtsi": (r"Черновиц\S*",),
+    "Ivano-Frankivsk": (r"Ивано-Франковск\S*",),
+    "Kropyvnytskyi": (r"Кропивниц\S*",),
+    "Luhansk": (r"Луганск\S*",),
+    "Voroshylovhrad": (r"Ворошиловград\S*",),
+    "Simferopol": (r"Симферопол\S*",),
+    "Mariupol": (r"Мариупол\S*",),
+    "Berdychiv": (r"Бердичев\S*",),
+    "Kryvyi Rih": (r"Криворог\S*", r"Кривой\s+Рог\S*"),
+    "Dnipro": (r"Днепр\S*",),
+    "Donetsk": (r"Донецк\S*",),
+    "Kharkiv": (r"Харьков\S*",),
+    "Odesa": (r"Одесс\S*",),
+    "Lviv": (r"Львов\S*",),
+    "Kyiv": (r"Киев\S*",),
+    "Ukraine": (r"Украин\S*",),
+    "Moscow": (r"Москв\S*",),
+    "Soviet Union": (r"СССР", r"Советск\w+\s+Союз"),
+    "Germany": (r"Германи\S*",),
+    "France": (r"Франци\S*",),
+    "Turkey": (r"Турци\S*",),
+    "Romania": (r"Румын\S*",),
+    "Belgium": (r"Бельги\S*",),
+    "United States": (r"США", r"Америк\S*"),
+    "Canada": (r"Канад\S*",),
+    "United Kingdom": (r"Великобритани\S*", r"Англи\S*"),
+    "Japan": (r"Япони\S*",),
+    "Moldova": (r"Молдав\S*",),
+    "Munich": (r"Мюнхен\S*",),
+    "Jerusalem": (r"Иерусалим\S*",),
+}
