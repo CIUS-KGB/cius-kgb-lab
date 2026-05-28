@@ -3655,9 +3655,12 @@ def _build_places_map_html(
             + '</tr></thead><tbody>';
           p.segments.forEach(function(s) {{
             var eng = esc(s.eng), rus = esc(s.rus), docId = s.doc_id || '', rowIdx = s.row_index;
-            var text = '';
-            if (eng && rus) text = eng + ' · ' + rus;
-            else text = eng || rus;
+            var preview = esc((s.preview || '').trim());
+            var text = preview;
+            if (!text) {{
+              if (eng && rus) text = eng + ' · ' + rus;
+              else text = eng || rus;
+            }}
             var docName = (p.doc_counts || []).find(function(d) {{ return d.doc_id === docId; }});
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
@@ -4940,7 +4943,9 @@ def _comparison_table_rows_html(
         human_cat_hex = _report_category_colour(human_cat_raw, cat_colours)
         llm_fram_hex = _report_framing_colour(llm_fram_raw, fram_colours)
         human_fram_hex = _report_framing_colour(human_fram_raw, fram_colours)
-        section = html_module.escape(str(r.get("section", "")))
+        # Reader-facing 1…N row label; navigation stays on data-row-index (0-based).
+        display_section = str(row_idx + 1)
+        section = html_module.escape(display_section)
         entry_eng_plain = str(r.get("entry_eng", ""))
         entry_rus_plain = str(r.get("entry_rus", ""))
         entry_eng = html_module.escape(entry_eng_plain)
@@ -4989,7 +4994,7 @@ def _comparison_table_rows_html(
             f'<button type="button" class="section-click-to-view" data-tab="{doc_id}" data-row-index="{row_idx}" '
             f'data-entry-eng="{entry_eng}" data-entry-rus="{entry_rus}" '
             f'data-i18n-title="comparison_open_illuminator_tooltip" '
-            f'title="Open the Document Text Illuminator and highlight this passage">{r.get("section", "")}</button>'
+            f'title="Open the Document Text Illuminator and highlight this passage">{display_section}</button>'
         )
         doc_id_esc = html_module.escape(doc_id)
         suggest_btn = (

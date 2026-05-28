@@ -38,7 +38,14 @@ EXTRA_GAZETTEER_NAMES = (
     "Australia",
 )
 
-from places.ru_gazetteer import cyrillic_canonical_set, cyrillic_scan_patterns, map_pin_canonical
+from places.ru_gazetteer import (
+    compile_place_token_pattern,
+    cyrillic_canonical_set,
+    cyrillic_scan_patterns,
+    latin_alias_surfaces_for_place,
+    map_pin_canonical,
+    patterns_for_place,
+)
 
 # Cyrillic regex -> canonical English (inflection-aware stems from ru_gazetteer)
 CYRILLIC_PATTERNS: Tuple[Tuple[str, str], ...] = cyrillic_scan_patterns()
@@ -47,7 +54,12 @@ SNIPPET_RADIUS = 72
 PREVIEW_MAX_LEN = 200
 PREVIEW_HALF_WIDTH = 90
 PREVIEW_CLAUSE_MAX = 88
+PREVIEW_WORDS_BEFORE = 2
+PREVIEW_WORDS_AFTER = 2
 SAME_LANG_OFFSET_SLOP = 10
+
+_PLACE_COUNT_ON_LINE = re.compile(r"[—–\-]\s*\d+")
+_WORD_TOKEN = re.compile(r"[\w\u0400-\u04FF][\w\u0400-\u04FF''-]*")
 
 _STAT_COUNT = re.compile(r"[—–\-]\s*\d+")
 _INSTITUTIONAL_UKRAINE_EN = re.compile(
@@ -59,6 +71,73 @@ _INSTITUTIONAL_UKRAINE_RU = re.compile(
     re.IGNORECASE,
 )
 CYRILLIC_CANONICAL = cyrillic_canonical_set()
+
+
+def _is_place_count_line(text: str, line_start: int, line_end: int, place_name: str) -> bool:
+    """Single bulletin item like ``In Lutsk — 3 persons`` (not a multi-country stat row)."""
+    if not place_name:
+        return False
+    line = text[line_start:line_end]
+    if not _PLACE_COUNT_ON_LINE.search(line):
+        return False
+    esc = re.escape(place_name.strip())
+    return bool(re.search(rf"\b{esc}\b\s*[—–\-]\s*\d", line, re.IGNORECASE))
+
+
+def _word_token_spans(text: str) -> List[Tuple[int, int]]:
+    return [(m.start(), m.end()) for m in _WORD_TOKEN.finditer(text)]
+
+
+def _preview_bounds_place_words(
+    text: str,
+    ps: int,
+    pe: int,
+    *,
+    words_before: int = PREVIEW_WORDS_BEFORE,
+    words_after: int = PREVIEW_WORDS_AFTER,
+) -> Tuple[int, int]:
+    """Slice bounds: N words before the place token(s) and M words after."""
+    n = len(text)
+    ps = max(0, min(ps, n))
+    pe = max(ps + 1, min(pe, n))
+    spans = _word_token_spans(text)
+    if not spans:
+        return ps, pe
+
+    match_start_idx = None
+    match_end_idx = None
+    for i, (a, b) in enumerate(spans):
+        if b <= ps:
+            continue
+        if a >= pe:
+            break
+        if match_start_idx is None:
+            match_start_idx = i
+        match_end_idx = i
+
+    if match_start_idx is None:
+        for i, (a, b) in enumerate(spans):
+            if a <= ps < b or (ps <= a and pe >= b):
+                match_start_idx = match_end_idx = i
+                break
+    if match_start_idx is None:
+        return ps, pe
+
+    lo = max(0, match_start_idx - words_before)
+    hi = min(len(spans) - 1, (match_end_idx or match_start_idx) + words_after)
+    return spans[lo][0], spans[hi][1]
+
+
+def _format_preview_slice(text: str, a: int, b: int) -> str:
+    """Collapse line breaks so narrow popups show one continuous phrase."""
+    s = " ".join(text[a:b].split())
+    if not s:
+        return ""
+    if a > 0:
+        s = "…" + s
+    if b < len(text):
+        s = s + "…"
+    return s
 
 
 def _is_institutional_header_place(
@@ -139,6 +218,89 @@ def mention_clause_bounds(
     return a, b
 
 
+def _preview_patterns_for_place(place_name: str) -> List[re.Pattern[str]]:
+    """Latin + Cyrillic patterns for verifying a preview slice mentions this place."""
+    if not place_name:
+        return []
+    compiled: List[re.Pattern[str]] = []
+    seen: set[str] = set()
+    for raw in (place_name.strip(), *latin_alias_surfaces_for_place(place_name)):
+        if not raw:
+            continue
+        pat = compile_place_token_pattern(raw)
+        if pat.pattern in seen:
+            continue
+        seen.add(pat.pattern)
+        compiled.append(pat)
+    for pat_str in patterns_for_place(place_name):
+        if pat_str in seen:
+            continue
+        seen.add(pat_str)
+        try:
+            compiled.append(re.compile(pat_str, re.IGNORECASE))
+        except re.error:
+            pass
+    return compiled
+
+
+def find_place_string_match(
+    text: str,
+    place_name: str,
+    prefer_offset: int = -1,
+) -> Optional[Tuple[int, int]]:
+    """Nearest literal (Latin) or regex (Cyrillic) hit for place_name in text."""
+    if not text or not place_name:
+        return None
+    prefer = prefer_offset if prefer_offset >= 0 else len(text) // 2
+    best: Optional[Tuple[int, int]] = None
+    best_dist = 10**12
+
+    def consider(start: int, end: int) -> None:
+        nonlocal best, best_dist
+        dist = abs(start - prefer)
+        if dist < best_dist:
+            best_dist = dist
+            best = (start, end)
+
+    for pat in _preview_patterns_for_place(place_name):
+        for m in pat.finditer(text):
+            consider(m.start(), m.end())
+    return best
+
+
+def preview_contains_place(preview: str, place_name: str) -> bool:
+    """True when a rendered preview slice includes this place (name or alias)."""
+    if not preview or not place_name:
+        return False
+    chunk = preview.replace("…", "")
+    for pat in _preview_patterns_for_place(place_name):
+        if pat.search(chunk):
+            return True
+    return False
+
+
+def _preview_slice_contains_place(text: str, start: int, end: int, place_name: str) -> bool:
+    if not text or not place_name or start >= end:
+        return not place_name
+    chunk = text[start:end]
+    if not chunk:
+        return False
+    cyr = bool(re.search(r"[\u0400-\u04FF]", chunk))
+    patterns = _preview_patterns_for_place(place_name)
+    if cyr:
+        for pat in patterns:
+            if pat.search(chunk):
+                return True
+        return False
+    for pat in patterns:
+        if pat.pattern.startswith(r"\b") or "." in pat.pattern or " " in place_name:
+            if pat.search(chunk):
+                return True
+        elif pat.search(chunk):
+            return True
+    return False
+
+
 def mention_preview_bounds(
     text: str,
     start: int,
@@ -196,19 +358,39 @@ def mention_preview_text(
     half_width: int = PREVIEW_HALF_WIDTH,
     max_len: int = PREVIEW_MAX_LEN,
 ) -> str:
-    """Reader-facing snippet focused on this mention (not an entire multi-country count line)."""
-    if not text or start < 0:
+    """Reader-facing snippet with the place name found via string/alias matching."""
+    if not text:
+        return ""
+    prefer = start if start >= 0 else 0
+
+    if place_name:
+        hit = find_place_string_match(text, place_name, prefer)
+        if hit:
+            ps, pe = hit
+            line_start = text.rfind("\n", 0, ps) + 1
+            line_end = text.find("\n", pe)
+            if line_end < 0:
+                line_end = len(text)
+            if _is_stat_list_line(text, line_start, line_end):
+                a, b = mention_clause_bounds(text, ps, pe, place_name)
+            elif _is_place_count_line(text, line_start, line_end, place_name):
+                a, b = mention_clause_bounds(text, ps, pe, place_name)
+            else:
+                a, b = _preview_bounds_place_words(text, ps, pe)
+            s = _format_preview_slice(text, a, b)
+            if s:
+                return s
+        if start < 0:
+            return ""
+
+    if start < 0:
         return ""
     a, b = mention_preview_bounds(
-        text, start, end, place_name=place_name, half_width=half_width, max_len=max_len,
+        text, start, max(end, start + 1), place_name="", half_width=half_width, max_len=max_len,
     )
-    s = text[a:b].strip()
+    s = _format_preview_slice(text, a, b)
     if not s:
         return ""
-    if a > 0:
-        s = "…" + s
-    if b < len(text):
-        s = s + "…"
     return s
 
 
@@ -453,6 +635,23 @@ def _pair_cross_lang_mentions(
     return merged
 
 
+def _dedupe_resolved_mentions(mentions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Drop rows that resolve to the same doc + EN/RU mention offsets."""
+    out: List[Dict[str, Any]] = []
+    seen: set[Tuple[str, int, int]] = set()
+    for m in mentions:
+        key = (
+            str(m.get("doc_id", "")),
+            int(m.get("offset_eng", -1)),
+            int(m.get("offset_rus", -1)),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(m)
+    return out
+
+
 def _dedupe_doc_mentions(
     mentions: List[Dict[str, Any]],
     text_en: str,
@@ -475,7 +674,7 @@ def _dedupe_doc_mentions(
                 eng, rus, text_en, text_ru, _place, doc_align=doc_align,
             )
         )
-    return out
+    return _dedupe_resolved_mentions(out)
 
 
 def _merge_pin_canonical_buckets(

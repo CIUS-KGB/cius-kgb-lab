@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from places.corpus_extract import mention_preview_text
+from places.corpus_extract import mention_preview_text, preview_contains_place
 from places.mention_nav import (
     find_place_span_in_range,
     find_place_span_near_offset,
@@ -14,6 +14,13 @@ from places.mention_nav import (
 )
 
 ROOT = Path(__file__).resolve().parent.parent
+POPUP_VISIBLE_PREFIX = 80
+
+
+def _place_visible_in_popup_prefix(preview: str, place_name: str, max_prefix: int = POPUP_VISIBLE_PREFIX) -> bool:
+    chunk = (preview or "").replace("…", "")
+    pos = chunk.lower().find(place_name.lower())
+    return pos >= 0 and pos <= max_prefix
 
 
 def test_mention_preview_clause_in_stat_list():
@@ -25,6 +32,160 @@ def test_mention_preview_clause_in_stat_list():
     preview = mention_preview_text(text, start, start + len("France"), place_name="France")
     assert "France — 2" in preview
     assert "Lviv — 7" not in preview
+
+
+def test_mention_preview_reanchors_when_offset_points_elsewhere():
+    pad = "x" * 120
+    text = pad + "From the U.S. — 32, France — 2, Canada — 7."
+    off = text.index("Canada")
+    preview = mention_preview_text(text, off, off + len("Canada"), place_name="France")
+    assert "France" in preview
+    assert "France — 2" in preview
+
+
+def test_mention_preview_string_match_munich():
+    text = (
+        "According to information received from the KGB under the "
+        "Council of Ministers of the Ukrainian SSR, in December 1976, a meeting "
+        "took place in Munich between ringleaders."
+    )
+    mi = text.index("Munich")
+    preview = mention_preview_text(text, mi, mi + len("Munich"), place_name="Munich")
+    assert preview_contains_place(preview, "Munich")
+    assert _place_visible_in_popup_prefix(preview, "Munich")
+    assert len(preview.replace("…", "")) < 60
+    assert "in Munich between" in preview.replace("…", "")
+
+
+def test_mention_preview_lutsk_place_count_clause():
+    text = "In Kyiv — 1; P. Roberts, en route to Moscow;\n In Lutsk — 3 persons: Military and Air Attachés."
+    off = text.index("Lutsk")
+    preview = mention_preview_text(text, off, off + 5, place_name="Lutsk")
+    assert "Lutsk" in preview
+    assert "Roberts" not in preview
+    assert "— 3" in preview or "- 3" in preview
+
+
+def test_mention_preview_string_match_ussr_alias():
+    text = "According to data received from the KGB under the USSR Council of Ministers, in November."
+    preview = mention_preview_text(text, text.index("USSR"), text.index("USSR") + 4, place_name="Soviet Union")
+    assert "USSR" in preview
+
+
+def test_mention_preview_reanchors_russian_inflection():
+    text = "Прочее. в Одесском, Ильичёвском, Ренийском и Ждановском портах находились 24 судна"
+    off = text.index("Ильич")
+    preview = mention_preview_text(text, off, off + 8, place_name="Reni")
+    assert "Рений" in preview
+
+
+def test_mention_preview_places_name_early_in_long_prose():
+    """Place name must appear in the popup-visible prefix (CSS max-height 4.5em)."""
+    pad = (
+        "According to operational information received from the KGB under the "
+        "Council of Ministers of the Ukrainian SSR, in December 1976, a meeting "
+        "took place in Munich between ringleaders."
+    )
+    mi = pad.index("Munich")
+    preview = mention_preview_text(pad, mi, mi + len("Munich"), place_name="Munich")
+    assert preview_contains_place(preview, "Munich")
+    assert _place_visible_in_popup_prefix(preview, "Munich")
+
+
+def test_tight_mention_nav_sets_preview_with_place_name():
+    text_en = (
+        "From the KGB under the Council of Ministers of the Ukrainian SSR, "
+        "a meeting took place in Munich between leaders."
+    )
+    text_ru = "в Мюнхене состоялась встреча"
+    seg = {"lang": "eng", "offset": text_en.index("Munich"), "length": 6, "doc_id": "t1"}
+    nav = tight_mention_nav_fields(seg, "Munich", text_en, text_ru)
+    assert "Munich" in nav.get("preview", "")
+    assert preview_contains_place(nav["preview"], "Munich")
+    assert _place_visible_in_popup_prefix(nav["preview"], "Munich")
+
+
+def test_mention_preview_khmelnytskyi_military_unit_doc_1127():
+    """Regression: desertion bulletin must show Khmelnytskyi in the visible popup prefix."""
+    cfg = json.loads((ROOT / "config/pipeline_config.example.json").read_text(encoding="utf-8"))
+    from ingest import run as ingest_run
+
+    doc = next(d for d in ingest_run(cfg, ROOT) if d.get("document_id") == "1127")
+    text_en = doc.get("raw_text_en") or ""
+    text_ru = doc.get("raw_text") or ""
+    off = text_en.find("Khmelnytskyi district")
+    assert off >= 0
+
+    preview = mention_preview_text(
+        text_en, off, off + len("Khmelnytskyi district"), place_name="Khmelnytskyi",
+    )
+    assert preview_contains_place(preview, "Khmelnytskyi")
+    assert _place_visible_in_popup_prefix(preview, "Khmelnytskyi")
+    assert "district" in preview
+    assert len(preview.replace("…", "")) < 60
+    assert "Davydkivtsi" in preview or "village" in preview
+
+    seg = {"lang": "eng", "offset": off, "length": len("Khmelnytskyi district"), "doc_id": "1127"}
+    nav = tight_mention_nav_fields(seg, "Khmelnytskyi", text_en, text_ru)
+    assert preview_contains_place(nav["preview"], "Khmelnytskyi")
+    assert _place_visible_in_popup_prefix(nav["preview"], "Khmelnytskyi")
+
+
+def test_mention_preview_munich_doc_1128():
+    """Regression: Munich meeting note must keep Munich in the visible popup prefix."""
+    cfg = json.loads((ROOT / "config/pipeline_config.example.json").read_text(encoding="utf-8"))
+    from ingest import run as ingest_run
+
+    doc = next(d for d in ingest_run(cfg, ROOT) if d.get("document_id") == "1128")
+    text_en = doc.get("raw_text_en") or ""
+    text_ru = doc.get("raw_text") or ""
+    off = text_en.find("Munich")
+    assert off >= 0
+
+    preview = mention_preview_text(text_en, off, off + len("Munich"), place_name="Munich")
+    assert preview_contains_place(preview, "Munich")
+    assert _place_visible_in_popup_prefix(preview, "Munich")
+    assert not preview.replace("…", "").startswith("ember")
+
+    seg = {"lang": "eng", "offset": off, "length": len("Munich"), "doc_id": "1128"}
+    nav = tight_mention_nav_fields(seg, "Munich", text_en, text_ru)
+    assert preview_contains_place(nav["preview"], "Munich")
+    assert _place_visible_in_popup_prefix(nav["preview"], "Munich")
+
+
+def test_germany_frg_and_full_name_distinct_previews():
+    """FRG stat-line hits and 'Federal Republic of Germany' prose must not collapse."""
+    from places.mention_nav import find_place_span_near_offset, tight_mention_nav_fields
+    from ingest import run as ingest_run
+
+    cfg = json.loads((ROOT / "config/pipeline_config.example.json").read_text(encoding="utf-8"))
+    doc = next(d for d in ingest_run(cfg, ROOT) if d.get("document_id") == "1208")
+    text_en = doc.get("raw_text_en") or ""
+    text_ru = doc.get("raw_text") or ""
+
+    assert find_place_span_near_offset(text_en, "Germany", 782) == (782, 789)
+    assert find_place_span_near_offset(text_en, "Germany", 1706) == (1706, 1709)
+
+    seg_embassy = {"lang": "both", "offset": 782, "offset_eng": 782, "length_eng": 7, "doc_id": "1208"}
+    seg_frg = {"lang": "both", "offset": 1706, "offset_eng": 1706, "length_eng": 3, "doc_id": "1208"}
+    prev_emb = tight_mention_nav_fields(seg_embassy, "Germany", text_en, text_ru)["preview"]
+    prev_frg = tight_mention_nav_fields(seg_frg, "Germany", text_en, text_ru)["preview"]
+    assert prev_emb != prev_frg
+    assert "Albert" in prev_emb
+    assert "FRG" in prev_frg or "—" in prev_frg
+
+
+def test_corpus_extract_dedupes_resolved_germany_offsets():
+    from places.corpus_extract import extract_from_documents
+    from ingest import run as ingest_run
+
+    cfg = json.loads((ROOT / "config/pipeline_config.example.json").read_text(encoding="utf-8"))
+    doc = next(d for d in ingest_run(cfg, ROOT) if d.get("document_id") == "1208")
+    out = extract_from_documents([doc])
+    segs = out["place_segments"].get("Germany", [])
+    keys = {(s["offset_eng"], s["offset_rus"]) for s in segs}
+    assert len(keys) == len(segs)
+    assert sum(1 for s in segs if s["offset_eng"] == 1706) <= 1
 
 
 def test_tight_mention_france_stat_list_preview():

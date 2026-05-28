@@ -226,3 +226,47 @@ def test_get_accepted_segments_shorter_wins():
     assert "arrived" in texts
     assert "delegation arrived" not in texts
 
+
+def test_comparison_table_shows_sequential_section_labels():
+    """Section column shows 1…N for readers; GT sheet line numbers stay internal."""
+    from report import _comparison_table_rows_html
+
+    cat = {"Actors": "#3b82f6"}
+    fram = {"Institutional / Bureaucratic Lingo": "#2563eb"}
+    aligned = [
+        {
+            "section": 45,
+            "entry_eng": "First passage",
+            "entry_rus": "Первый",
+            "llm_category": "Actors",
+            "llm_framing": "Institutional / Bureaucratic Lingo",
+            "human_category": "Actors",
+            "human_framing": "Institutional / Bureaucratic Lingo",
+            "context": "",
+            "category_match": True,
+            "framing_match": True,
+            "both_match": True,
+        },
+        {
+            "section": 17,
+            "entry_eng": "Second passage",
+            "entry_rus": "Второй",
+            "llm_category": "Actors",
+            "llm_framing": "Institutional / Bureaucratic Lingo",
+            "human_category": "Actors",
+            "human_framing": "Institutional / Bureaucratic Lingo",
+            "context": "",
+            "category_match": True,
+            "framing_match": True,
+            "both_match": True,
+        },
+    ]
+    html = _comparison_table_rows_html("d1", aligned, cat, fram)
+    assert 'class="section-click-to-view"' in html
+    assert re.search(r'section-click-to-view[^>]*>1</button>', html)
+    assert re.search(r'section-click-to-view[^>]*>2</button>', html)
+    assert 'data-row-index="0"' in html
+    assert 'data-row-index="1"' in html
+    assert 'data-section="45"' not in html
+    assert 'data-section="17"' not in html
+

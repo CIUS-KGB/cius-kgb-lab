@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-import re
 from typing import Any, Dict, Optional, Tuple
 
-from places.corpus_extract import mention_preview_text
-from places.ru_gazetteer import latin_alias_patterns_for_place, patterns_for_place
+from places.corpus_extract import _preview_patterns_for_place, mention_preview_text, preview_contains_place
 
 # Do not link corpus mentions to comparison rows whose slice is much longer than the snippet.
 MAX_ROW_HINT_LEN = 120
@@ -63,41 +61,6 @@ def paired_search_bounds(
     return other_start, other_end
 
 
-def _alias_patterns_for_place(place_name: str) -> list[re.Pattern[str]]:
-    compiled: list[re.Pattern[str]] = []
-    seen: set[str] = set()
-    for pattern in (
-        *patterns_for_place(place_name),
-        *latin_alias_patterns_for_place(place_name),
-    ):
-        if pattern in seen:
-            continue
-        seen.add(pattern)
-        try:
-            compiled.append(re.compile(pattern, re.IGNORECASE))
-        except re.error:
-            pass
-    return compiled
-
-
-def _latin_patterns_for_place(place_name: str) -> list[re.Pattern[str]]:
-    """Canonical Latin name plus bulletin abbreviations (FRG, U.S., …)."""
-    patterns: list[re.Pattern[str]] = []
-    seen: set[str] = set()
-    for raw in (place_name.strip(), *latin_alias_patterns_for_place(place_name)):
-        if not raw or raw in seen:
-            continue
-        seen.add(raw)
-        try:
-            if " " in raw or "." in raw:
-                patterns.append(re.compile(re.escape(raw), re.IGNORECASE))
-            else:
-                patterns.append(re.compile(rf"\b{re.escape(raw)}\b", re.IGNORECASE))
-        except re.error:
-            pass
-    return patterns
-
-
 def find_place_span_in_range(
     text: str,
     place_name: str,
@@ -113,37 +76,16 @@ def find_place_span_in_range(
     base = max(0, range_start)
     center = prefer_offset if prefer_offset is not None else (range_start + range_end) // 2
 
-    def _best_match(pattern: re.Pattern[str]) -> Optional[Tuple[int, int]]:
-        best: Optional[Tuple[int, int]] = None
-        best_dist = 10**12
-        for m in pattern.finditer(chunk):
+    best: Optional[Tuple[int, int]] = None
+    best_dist = 10**12
+    for pat in _preview_patterns_for_place(place_name):
+        for m in pat.finditer(chunk):
             abs_start = base + m.start()
             dist = abs(abs_start - center)
             if dist < best_dist:
                 best_dist = dist
                 best = (abs_start, base + m.end())
-        return best
-
-    cyr_in_chunk = bool(re.search(r"[\u0400-\u04FF]", chunk))
-    if cyr_in_chunk:
-        for pat_cyr in _alias_patterns_for_place(place_name):
-            hit = _best_match(pat_cyr)
-            if hit:
-                return hit
-        for pat_lat in _latin_patterns_for_place(place_name):
-            hit = _best_match(pat_lat)
-            if hit:
-                return hit
-        return None
-    for pat_lat in _latin_patterns_for_place(place_name):
-        hit = _best_match(pat_lat)
-        if hit:
-            return hit
-    for pat_cyr in _alias_patterns_for_place(place_name):
-        hit = _best_match(pat_cyr)
-        if hit:
-            return hit
-    return None
+    return best
 
 
 def find_place_span_near_offset(
@@ -439,6 +381,14 @@ def tight_mention_nav_fields(
         out["length"] = out["length_rus"]
 
     _apply_mention_previews(out, place_name, text_en, text_ru)
+    eng = (out.get("eng") or "").strip()
+    rus = (out.get("rus") or "").strip()
+    if eng and preview_contains_place(eng, place_name):
+        out["preview"] = eng
+    elif rus and preview_contains_place(rus, place_name):
+        out["preview"] = rus
+    else:
+        out["preview"] = eng or rus
     return out
 
 

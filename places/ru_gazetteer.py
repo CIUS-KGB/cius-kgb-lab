@@ -279,21 +279,34 @@ HISTORICAL_EN_ALIASES: Dict[str, Tuple[str, ...]] = {
 
 
 def latin_alias_patterns_for_place(canonical: str) -> Tuple[str, ...]:
-    """English surface forms that normalize to this canonical (U.S., Zhdanov, U.K., …)."""
+    """Regex pattern strings for English alias tokens (\\bFRG\\b, …)."""
+    patterns: List[str] = []
+    seen: Set[str] = set()
+    for variant in latin_alias_surfaces_for_place(canonical):
+        pat = _latin_regex_for_surface(variant)
+        if pat and pat not in seen:
+            seen.add(pat)
+            patterns.append(pat)
+    return tuple(patterns)
+
+
+def latin_alias_surfaces_for_place(canonical: str) -> Tuple[str, ...]:
+    """Plain Latin alias tokens (FRG, USSR, …) for a canonical place name."""
     name = (canonical or "").strip()
     if not name:
         return ()
-    patterns: List[str] = []
+    surfaces: List[str] = []
     seen: Set[str] = set()
 
     def _add_surface(variant: str) -> None:
         v = variant.strip()
         if not v or len(v) < 2:
             return
-        pat = _latin_regex_for_surface(v)
-        if pat and pat not in seen:
-            seen.add(pat)
-            patterns.append(pat)
+        key = v.lower()
+        if key in seen:
+            return
+        seen.add(key)
+        surfaces.append(v)
 
     for variant in HISTORICAL_EN_ALIASES.get(name, ()):
         _add_surface(variant)
@@ -310,7 +323,19 @@ def latin_alias_patterns_for_place(canonical: str) -> Tuple[str, ...]:
     except Exception:
         pass
 
-    return tuple(patterns)
+    return tuple(surfaces)
+
+
+def compile_place_token_pattern(raw: str) -> re.Pattern[str]:
+    """Compile a place token or pre-built regex fragment for matching."""
+    token = (raw or "").strip()
+    if not token:
+        return re.compile(r"(?!x)x")
+    if token.startswith("\\") or "(:" in token or "(?<" in token or "|" in token:
+        return re.compile(token, re.IGNORECASE)
+    if " " in token or "." in token:
+        return re.compile(re.escape(token), re.IGNORECASE)
+    return re.compile(rf"\b{re.escape(token)}\b", re.IGNORECASE)
 
 
 def patterns_for_place(canonical: str) -> Tuple[str, ...]:
