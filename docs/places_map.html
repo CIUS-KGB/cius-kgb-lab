@@ -21,8 +21,11 @@
     .leaflet-popup-content ul { margin: 0.25rem 0 0 1rem; padding: 0; }
     .leaflet-popup-content li { margin-bottom: 0.25rem; }
     .leaflet-popup-content .popup-historical { font-style: italic; color: #6b7280; margin-top: 0.5rem; font-size: 0.85rem; }
-    .leaflet-popup-content .popup-doc-link { color: #8b0000; text-decoration: none; font-weight: 600; white-space: nowrap; }
-    .leaflet-popup-content .popup-doc-link:hover { text-decoration: underline; }
+    .leaflet-popup-content .popup-doc-link,
+    .leaflet-popup-content .popup-doc-view-btn { color: #8b0000; text-decoration: none; font-weight: 600; white-space: nowrap; font-family: inherit; font-size: inherit; }
+    .leaflet-popup-content .popup-doc-link:hover,
+    .leaflet-popup-content .popup-doc-view-btn:hover { text-decoration: underline; }
+    .leaflet-popup-content .popup-doc-view-btn { background: none; border: none; padding: 0; cursor: pointer; }
     .leaflet-popup-content .popup-segments-table { width: 100%; border-collapse: collapse; margin-top: 0.25rem; font-size: 0.85rem; }
     .leaflet-popup-content .popup-segments-table th { text-align: left; padding: 0.2rem 0.4rem; border-bottom: 1px solid #c4b5a0; color: #4a5568; }
     .leaflet-popup-content .popup-segments-table td { padding: 0.25rem 0.4rem; border-bottom: 1px solid #e8e4dc; vertical-align: top; }
@@ -44,6 +47,40 @@
       var reportFile = places[0] && places[0].report ? places[0].report : 'manual_analysis_report.html';
       var useEmbedded = false;
       function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+      function placesMapLabHost() {
+        var cur = window;
+        for (var depth = 0; depth < 10; depth++) {
+          try {
+            if (cur.placesMapNavigateToSegment && typeof cur.placesMapNavigateToSegment === 'function') return cur;
+          } catch (e) {}
+          if (!cur.parent || cur.parent === cur) break;
+          cur = cur.parent;
+        }
+        try {
+          if (window.top && window.top !== window && window.top.placesMapNavigateToSegment) return window.top;
+        } catch (e2) {}
+        return (window.parent && window.parent !== window) ? window.parent : null;
+      }
+      function placesMapViewClick(anchor) {
+        if (!anchor) return false;
+        var docId = anchor.getAttribute('data-doc-id') || '';
+        var rowIdx = parseInt(anchor.getAttribute('data-row-index'), 10);
+        if (isNaN(rowIdx)) rowIdx = -1;
+        var eng = anchor.getAttribute('data-entry-eng') || '';
+        var rus = anchor.getAttribute('data-entry-rus') || '';
+        try { if (typeof map !== 'undefined' && map && map.closePopup) map.closePopup(); } catch (e) {}
+        var host = placesMapLabHost();
+        if (host && typeof host.placesMapNavigateToSegment === 'function') {
+          host.placesMapNavigateToSegment(docId, rowIdx, eng, rus);
+          return false;
+        }
+        if (useEmbedded && docId && rowIdx >= 0 && host) {
+          try { host.location.hash = '#tab-' + docId + '-row-' + rowIdx; } catch (e3) {}
+          return false;
+        }
+        if (useEmbedded) return false;
+        return true;
+      }
       function popupHtml(p) {
         var h = '<strong>' + esc(p.name) + '</strong><br/>' + p.count + ' segment(s)';
         if (p.segments && p.segments.length > 0) {
@@ -55,11 +92,15 @@
             var docName = (p.doc_counts || []).find(function(d) { return d.doc_id === docId; });
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
-            if (docId && rowIdx >= 0) {
+            if (docId) {
+              var attrs = ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
+                + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
+                + ' onclick="return placesMapViewClick(this);"';
               if (useEmbedded) {
-                link = '<a class="popup-doc-link" href="#" onclick="parent.location.hash=\'#tab-' + esc(docId) + '-row-' + rowIdx + '\'; return false;">View</a>';
+                link = '<button type="button" class="popup-doc-view-btn"' + attrs + '>View</button>';
               } else {
-                link = '<a class="popup-doc-link" href="' + esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx + '" target="_blank" rel="noopener">View</a>';
+                var href = esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx;
+                link = '<a class="popup-doc-link" href="' + href + '" target="_blank" rel="noopener"' + attrs + '>View</a>';
               }
             }
             h += '<tr><td class="segment-text" title="' + text + '">' + text + '</td><td>' + docName + '</td><td>' + link + '</td></tr>';

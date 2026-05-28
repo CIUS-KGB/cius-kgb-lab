@@ -862,7 +862,7 @@ def _cyrillic_keyboard_html(doc_id: str, *, logo_href: Optional[str] = None) -> 
         esc_logo = html_module.escape(logo_href, quote=True)
         logo_cell = (
             '<div class="typewriter-plaque-brand-logo-cell"><img class="typewriter-plaque-logo" '
-            f'src="{esc_logo}" width="72" alt="Canadian Institute of Ukrainian Studies" '
+            f'src="{esc_logo}" width="48" height="40" alt="Canadian Institute of Ukrainian Studies" '
             'loading="lazy" decoding="async"/></div>'
         )
     else:
@@ -1982,9 +1982,10 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
 .illuminator-vignette-opt input { accent-color: #8b0000; cursor: pointer; }
 .typewriter-plaque-logo {
   display: block;
-  max-width: min(100%, 4.35rem);
   width: auto;
   height: auto;
+  max-width: 2.55rem;
+  max-height: 2.05rem;
   margin: 0;
   object-fit: contain;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.14));
@@ -2007,13 +2008,14 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
     0 2px 8px rgba(0,0,0,0.12);
 }
 .typewriter-plaque-brand-top {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0.38rem;
-  width: 100%;
+  gap: 0.28rem;
+  width: auto;
   max-width: 100%;
+  margin: 0 auto;
 }
 .typewriter-plaque-brand--solo .typewriter-plaque-brand-text {
   align-items: center;
@@ -2075,14 +2077,15 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
 }
 .typewriter-plaque-adalet {
   font-family: "Cormorant", "Crimson Text", Georgia, serif;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 600;
-  letter-spacing: 0.26em;
-  padding-inline: 0.13em;
-  line-height: 1.02;
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  line-height: 1;
   color: #251c17;
   font-variant: small-caps;
   text-align: center;
+  white-space: nowrap;
   text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 }
 .typewriter-plaque-mark {
@@ -2119,6 +2122,18 @@ details[id^="doc-section-text-"] { scroll-margin-top: 1rem; }
     text-shadow: none;
     filter: drop-shadow(0 1px 0 rgba(255, 247, 236, 0.92)) drop-shadow(0 2px 5px rgba(90, 42, 22, 0.38));
   }
+}
+.cyrillic-keyboard-popup-wrap .typewriter-plaque-brand-top {
+  gap: 0.24rem;
+}
+.cyrillic-keyboard-popup-wrap .typewriter-plaque-logo {
+  max-width: 2.35rem;
+  max-height: 1.9rem;
+}
+.cyrillic-keyboard-popup-wrap .typewriter-plaque-adalet {
+  font-size: 0.96rem;
+  letter-spacing: 0.18em;
+  padding-left: 0.18em;
 }
 .cyrillic-keyboard-popup-wrap .cyrillic-keyboard .cyrillic-keyboard-frame { padding: 0.48rem 0.52rem 0.56rem; }
 .cyrillic-keyboard-popup-wrap .cyrillic-keyboard .cyrillic-keyboard-row { gap: 0.3rem; margin-bottom: 0.34rem; }
@@ -3314,8 +3329,11 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
     .leaflet-popup-content ul {{ margin: 0.25rem 0 0 1rem; padding: 0; }}
     .leaflet-popup-content li {{ margin-bottom: 0.25rem; }}
     .leaflet-popup-content .popup-historical {{ font-style: italic; color: #6b7280; margin-top: 0.5rem; font-size: 0.85rem; }}
-    .leaflet-popup-content .popup-doc-link {{ color: #8b0000; text-decoration: none; font-weight: 600; white-space: nowrap; }}
-    .leaflet-popup-content .popup-doc-link:hover {{ text-decoration: underline; }}
+    .leaflet-popup-content .popup-doc-link,
+    .leaflet-popup-content .popup-doc-view-btn {{ color: #8b0000; text-decoration: none; font-weight: 600; white-space: nowrap; font-family: inherit; font-size: inherit; }}
+    .leaflet-popup-content .popup-doc-link:hover,
+    .leaflet-popup-content .popup-doc-view-btn:hover {{ text-decoration: underline; }}
+    .leaflet-popup-content .popup-doc-view-btn {{ background: none; border: none; padding: 0; cursor: pointer; }}
     .leaflet-popup-content .popup-segments-table {{ width: 100%; border-collapse: collapse; margin-top: 0.25rem; font-size: 0.85rem; }}
     .leaflet-popup-content .popup-segments-table th {{ text-align: left; padding: 0.2rem 0.4rem; border-bottom: 1px solid #c4b5a0; color: #4a5568; }}
     .leaflet-popup-content .popup-segments-table td {{ padding: 0.25rem 0.4rem; border-bottom: 1px solid #e8e4dc; vertical-align: top; }}
@@ -3337,6 +3355,20 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
       var reportFile = places[0] && places[0].report ? places[0].report : 'manual_analysis_report.html';
       var useEmbedded = {use_embedded};
       function esc(s) {{ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }}
+      function placesMapLabHost() {{
+        var cur = window;
+        for (var depth = 0; depth < 10; depth++) {{
+          try {{
+            if (cur.placesMapNavigateToSegment && typeof cur.placesMapNavigateToSegment === 'function') return cur;
+          }} catch (e) {{}}
+          if (!cur.parent || cur.parent === cur) break;
+          cur = cur.parent;
+        }}
+        try {{
+          if (window.top && window.top !== window && window.top.placesMapNavigateToSegment) return window.top;
+        }} catch (e2) {{}}
+        return (window.parent && window.parent !== window) ? window.parent : null;
+      }}
       function placesMapViewClick(anchor) {{
         if (!anchor) return false;
         var docId = anchor.getAttribute('data-doc-id') || '';
@@ -3344,15 +3376,17 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
         if (isNaN(rowIdx)) rowIdx = -1;
         var eng = anchor.getAttribute('data-entry-eng') || '';
         var rus = anchor.getAttribute('data-entry-rus') || '';
-        var host = window.parent && window.parent !== window ? window.parent : null;
+        try {{ if (typeof map !== 'undefined' && map && map.closePopup) map.closePopup(); }} catch (e) {{}}
+        var host = placesMapLabHost();
         if (host && typeof host.placesMapNavigateToSegment === 'function') {{
           host.placesMapNavigateToSegment(docId, rowIdx, eng, rus);
           return false;
         }}
         if (useEmbedded && docId && rowIdx >= 0 && host) {{
-          host.location.hash = '#tab-' + docId + '-row-' + rowIdx;
+          try {{ host.location.hash = '#tab-' + docId + '-row-' + rowIdx; }} catch (e3) {{}}
           return false;
         }}
+        if (useEmbedded) return false;
         return true;
       }}
       function popupHtml(p) {{
@@ -3367,12 +3401,15 @@ def _build_places_map_html(config: Dict[str, Any], embedded: bool = False, doc_i
             docName = docName ? esc(docName.display_name) : esc(docId);
             var link = '';
             if (docId) {{
-              var href = useEmbedded ? '#' : (esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx);
-              var target = useEmbedded ? '' : ' target="_blank" rel="noopener"';
-              link = '<a class="popup-doc-link" href="' + href + '"' + target
-                + ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
+              var attrs = ' data-doc-id="' + esc(docId) + '" data-row-index="' + rowIdx
                 + '" data-entry-eng="' + esc(s.eng || '') + '" data-entry-rus="' + esc(s.rus || '') + '"'
-                + ' onclick="return placesMapViewClick(this);">View</a>';
+                + ' onclick="return placesMapViewClick(this);"';
+              if (useEmbedded) {{
+                link = '<button type="button" class="popup-doc-view-btn"' + attrs + '>View</button>';
+              }} else {{
+                var href = esc(reportFile) + '#tab-' + esc(docId) + '-row-' + rowIdx;
+                link = '<a class="popup-doc-link" href="' + href + '" target="_blank" rel="noopener"' + attrs + '>View</a>';
+              }}
             }}
             h += '<tr><td class="segment-text" title="' + text + '">' + text + '</td><td>' + docName + '</td><td>' + link + '</td></tr>';
           }});
@@ -6467,6 +6504,10 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus) {
   var tabId = 'tab-' + docId;
   if (!document.getElementById(tabId)) return;
   showTab(tabId);
+  var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
+  if (ri >= 0) {
+    try { window.location.hash = '#tab-' + docId + '-row-' + ri; } catch (e) {}
+  }
   var trigger = null;
   entryEng = entryEng || '';
   entryRus = entryRus || '';
@@ -6479,11 +6520,14 @@ function placesMapNavigateToSegment(docId, rowIndex, entryEng, entryRus) {
       }
     };
   }
-  var ri = (rowIndex !== null && rowIndex !== undefined && !isNaN(rowIndex)) ? parseInt(rowIndex, 10) : -1;
   setTimeout(function() {
+    var textSec = document.getElementById('doc-section-text-' + docId) || document.getElementById('doc-text-view-details-' + docId);
+    if (textSec && textSec.tagName === 'DETAILS') textSec.open = true;
     if (typeof onSectionClickToView === 'function') onSectionClickToView(docId, ri, trigger);
+    if (textSec) textSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 150);
 }
+window.placesMapNavigateToSegment = placesMapNavigateToSegment;
 function onSectionClickToView(tid, rowIndex, triggerEl) {
   var detailsEl = document.getElementById('doc-section-text-' + tid) || document.getElementById('doc-text-view-details-' + tid);
   if (!detailsEl) return;
