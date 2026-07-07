@@ -6481,7 +6481,10 @@ function buildDocumentTextView(tid, comparisonRun) {
   var containerEng = document.getElementById('doc-text-eng-' + tid);
   var containerRus = document.getElementById('doc-text-rus-' + tid);
   if (!containerEng || !containerRus) return;
-  if (illuminatorUsesServerFullText(tid)) return;
+  // Server-rendered illuminators already contain .doc-entry spans, so the
+  // client-side span-building loop below is skipped via hasPreFilled. We must
+  // NOT return early here: the filter dropdowns and their change handlers are
+  // wired at the end of this function and are needed in server-full-text mode too.
   var tbody = comparisonTbodyForHighlight(tid, comparisonRun);
   var catSelect = tabEl.querySelector('select.document-category-filter');
   var framSelect = tabEl.querySelector('select.document-framing-filter');
