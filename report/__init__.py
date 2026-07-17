@@ -4593,7 +4593,7 @@ def _intro_tab() -> str:
     <h3 data-i18n="intro_video_heading">How to use this site (video)</h3>
     <p class="intro-video-note" data-i18n="intro_video_note">A short walkthrough of the site layout and main analytical tools.</p>
     <div class="intro-video-wrap" aria-label="YouTube video player">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/bHzHlSLhtmM?si=ZMpLZY3hgkpKi4tK" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/2-fEzEugKpw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </section>
 </div>
