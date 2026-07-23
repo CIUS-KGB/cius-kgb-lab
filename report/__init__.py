@@ -38,11 +38,15 @@ _LOGO_DIRS = (
     _REPORT_ROOT / "dev" / "Logos",
     _REPORT_ROOT / "docs" / "fixtures",
 )
-# Footer order: CIUS → University of Alberta → SBU
+# Footer order: CIUS → University of Alberta → SBU / SSA archive
 _PARTNER_LOGOS: List[Tuple[str, str, str]] = [
     ("CIUS_Logo_RGB_Blue_EngUkr.png", "Canadian Institute of Ukrainian Studies", "cius"),
-    ("UA_Logo_Stk_Green_RGB.png", "University of Alberta", "ualberta"),
-    ("SSU.png", "Security Service of Ukraine (SBU)", "sbu"),
+    ("UA_Logo.png", "University of Alberta", "ualberta"),
+    (
+        "SSA_Archive_Logo.png",
+        "Sectoral State Archive of the Security Service of Ukraine",
+        "sbu",
+    ),
 ]
 _CUIS_LOGO_REPORT_NAME = "CIUS_Logo_RGB_Blue_EngUkr.png"
 
@@ -1632,22 +1636,14 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
   box-shadow: none;
 }
 .site-partner-footer-logo--cius { height: 7rem; max-width: 28rem; background: transparent; }
-.site-partner-footer-logo--ualberta { height: 7rem; max-width: 11rem; background: transparent; }
-.site-partner-footer-logo--sbu {
-  height: 6.5rem;
-  max-width: 24rem;
-  background: #fffef9;
-  border-radius: 4px;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid rgba(139, 115, 85, 0.28);
-  box-shadow: 0 1px 4px rgba(45, 34, 20, 0.12);
-}
+.site-partner-footer-logo--ualberta { height: 5.75rem; max-width: 26rem; background: transparent; }
+.site-partner-footer-logo--sbu { height: 5.75rem; max-width: 22rem; background: transparent; }
 @media (max-width: 720px) {
   .site-partner-footer { padding: 1.35rem 1rem 1.6rem; }
   .site-partner-footer-inner { gap: 1.35rem 1.75rem; justify-content: flex-start; }
   .site-partner-footer-logo--cius { height: 5rem; max-width: 20rem; }
-  .site-partner-footer-logo--ualberta { height: 5.25rem; max-width: 8.5rem; }
-  .site-partner-footer-logo--sbu { height: 4.75rem; max-width: 18rem; }
+  .site-partner-footer-logo--ualberta { height: 4.25rem; max-width: 18rem; }
+  .site-partner-footer-logo--sbu { height: 4.25rem; max-width: 16rem; }
 }
 .master-header-badge {
   display: inline-block;
