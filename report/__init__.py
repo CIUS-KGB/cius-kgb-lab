@@ -34,19 +34,66 @@ from .viz_lab_html import viz_lab_visualizations_section as _viz_lab_visualizati
 
 # Project root (report/__init__.py -> parent's parent)
 _REPORT_ROOT = Path(__file__).resolve().parent.parent
-_CUIS_LOGO_SRC = _REPORT_ROOT / "docs" / "fixtures" / "CIUS_Logo_RGB_Blue_EngUkr.png"
+_LOGO_DIRS = (
+    _REPORT_ROOT / "dev" / "Logos",
+    _REPORT_ROOT / "docs" / "fixtures",
+)
+# Header order: SBU → CIUS → University of Alberta
+_PARTNER_LOGOS: List[Tuple[str, str]] = [
+    ("SSU.png", "Security Service of Ukraine (SBU)"),
+    ("CIUS_Logo_RGB_Blue_EngUkr.png", "Canadian Institute of Ukrainian Studies"),
+    ("UA_Logo_Stk_Green_RGB.png", "University of Alberta"),
+]
 _CUIS_LOGO_REPORT_NAME = "CIUS_Logo_RGB_Blue_EngUkr.png"
+
+
+def _resolve_partner_logo_src(filename: str) -> Optional[Path]:
+    for base in _LOGO_DIRS:
+        path = base / filename
+        if path.is_file():
+            return path
+    return None
+
+
+def _copy_partner_logos_for_report(out_dir: Path) -> List[Tuple[str, str]]:
+    """Copy partner logos beside generated HTML; return [(filename, alt), ...] that succeeded."""
+    copied: List[Tuple[str, str]] = []
+    for filename, alt in _PARTNER_LOGOS:
+        src = _resolve_partner_logo_src(filename)
+        if src is None:
+            continue
+        try:
+            shutil.copy2(src, out_dir / filename)
+        except OSError:
+            continue
+        copied.append((filename, alt))
+    return copied
 
 
 def _copy_cuis_logo_for_report(out_dir: Path) -> Optional[str]:
     """Copy CIUS logo beside generated HTML; return filename for use as img src, or None."""
-    if not _CUIS_LOGO_SRC.is_file():
+    src = _resolve_partner_logo_src(_CUIS_LOGO_REPORT_NAME)
+    if src is None:
         return None
     try:
-        shutil.copy2(_CUIS_LOGO_SRC, out_dir / _CUIS_LOGO_REPORT_NAME)
+        shutil.copy2(src, out_dir / _CUIS_LOGO_REPORT_NAME)
     except OSError:
         return None
     return _CUIS_LOGO_REPORT_NAME
+
+
+def _partner_logos_bar_html(logos: List[Tuple[str, str]]) -> str:
+    """Header strip: SBU → CIUS → University of Alberta."""
+    if not logos:
+        return ""
+    imgs = "".join(
+        f'<img class="master-header-partner-logo" src="{html_module.escape(src, quote=True)}" '
+        f'alt="{html_module.escape(alt)}" width="120" height="40" loading="lazy" decoding="async"/>'
+        for src, alt in logos
+    )
+    return (
+        f'<div class="master-header-partner-logos" aria-label="Partner institutions">{imgs}</div>'
+    )
 
 
 def _write_html_parts(path: Path, parts: List[str]) -> None:
@@ -1292,7 +1339,11 @@ def run(
         )
     except Exception as exc:
         print(f"Warning: places sync skipped ({exc})", file=sys.stderr)
-    keyboard_logo_href = _copy_cuis_logo_for_report(out_dir.resolve())
+    partner_logos = _copy_partner_logos_for_report(out_dir.resolve())
+    keyboard_logo_href = next(
+        (filename for filename, _alt in partner_logos if filename == _CUIS_LOGO_REPORT_NAME),
+        None,
+    )
     html_name = out_config.get("report_html", "manual_analysis_report.html")
     viz_html_name = out_config.get("lab_visualization_html", "lab_visualization.html")
     out_path = out_dir / html_name
@@ -1387,7 +1438,7 @@ def run(
     )
     parts = [
         _head(body_attrs=body_attrs, build_meta=build_meta),
-        _master_header(**hdr_guide),
+        _master_header(partner_logos=partner_logos, **hdr_guide),
         '<div class="app-container">',
         _sidebar(documents, _feedback_section_html(config)),
         '<div class="main-content" id="tab-contents">',
@@ -1487,7 +1538,12 @@ def run(
 
     standalone_parts = [
         _head(body_attrs='class="standalone-viz-page"', build_meta=build_meta),
-        _master_header(link_href=html_name, link_i18n_key="viz_standalone_full_report", **hdr_guide),
+        _master_header(
+            link_href=html_name,
+            link_i18n_key="viz_standalone_full_report",
+            partner_logos=partner_logos,
+            **hdr_guide,
+        ),
         '<div class="standalone-viz-wrap">',
         '<p class="viz-standalone-subtitle" data-i18n="viz_standalone_subtitle">Single-chart view. Language and chart choice sync with the main lab when possible.</p>',
         _viz_lab_visualizations_section(
@@ -1543,6 +1599,30 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .master-header-links .master-header-link { margin-left: 0; }
 .master-header-brand { display: flex; align-items: center; gap: 0.85rem 1.25rem; flex-wrap: wrap; }
 .master-header h1 { font-family: 'Crimson Text', Georgia, serif; font-weight: 700; letter-spacing: 0.02em; margin: 0; }
+.master-header-partner-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem 1.15rem;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 0.5rem;
+}
+.master-header-partner-logo {
+  display: block;
+  height: 2.4rem;
+  width: auto;
+  max-width: 9.5rem;
+  object-fit: contain;
+  background: rgba(255, 252, 247, 0.94);
+  border-radius: 3px;
+  padding: 0.2rem 0.4rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+@media (max-width: 720px) {
+  .master-header-partner-logo { height: 1.9rem; max-width: 7.25rem; }
+}
 .master-header-badge {
   display: inline-block;
   flex-shrink: 0;
@@ -2779,6 +2859,7 @@ def _master_header(
     link_i18n_key: Optional[str] = None,
     guide_href: Optional[str] = None,
     guide_i18n_key: Optional[str] = None,
+    partner_logos: Optional[List[Tuple[str, str]]] = None,
 ) -> str:
     """Top bar: optional links (e.g. full lab link from standalone viz page). Site guide lives on the Introduction tab."""
     links: List[str] = []
@@ -2793,12 +2874,14 @@ def _master_header(
             f'<span data-i18n="{html_module.escape(link_i18n_key)}"></span></a>'
         )
     extra = f'<span class="master-header-links">{"".join(links)}</span>' if links else ""
+    logos_bar = _partner_logos_bar_html(partner_logos or [])
     return (
         '<div class="master-header">'
         '<div class="master-header-brand">'
         '<h1 data-i18n="site_title">KGB and the Ukrainian Diaspora</h1>'
         '<span class="master-header-badge" data-i18n="declassified">Declassified</span>'
         '</div>'
+        + logos_bar
         + extra
         + '<div class="lang-toggle">'
         '<button type="button" class="lang-btn active" data-lang="en" title="English" aria-label="English">\U0001f1e8\U0001f1e6</button>'
