@@ -38,11 +38,11 @@ _LOGO_DIRS = (
     _REPORT_ROOT / "dev" / "Logos",
     _REPORT_ROOT / "docs" / "fixtures",
 )
-# Header order: SBU → CIUS → University of Alberta
-_PARTNER_LOGOS: List[Tuple[str, str]] = [
-    ("SSU.png", "Security Service of Ukraine (SBU)"),
-    ("CIUS_Logo_RGB_Blue_EngUkr.png", "Canadian Institute of Ukrainian Studies"),
-    ("UA_Logo_Stk_Green_RGB.png", "University of Alberta"),
+# Footer order: CIUS → University of Alberta → SBU
+_PARTNER_LOGOS: List[Tuple[str, str, str]] = [
+    ("CIUS_Logo_RGB_Blue_EngUkr.png", "Canadian Institute of Ukrainian Studies", "cius"),
+    ("UA_Logo_Stk_Green_RGB.png", "University of Alberta", "ualberta"),
+    ("SSU.png", "Security Service of Ukraine (SBU)", "sbu"),
 ]
 _CUIS_LOGO_REPORT_NAME = "CIUS_Logo_RGB_Blue_EngUkr.png"
 
@@ -55,10 +55,10 @@ def _resolve_partner_logo_src(filename: str) -> Optional[Path]:
     return None
 
 
-def _copy_partner_logos_for_report(out_dir: Path) -> List[Tuple[str, str]]:
-    """Copy partner logos beside generated HTML; return [(filename, alt), ...] that succeeded."""
-    copied: List[Tuple[str, str]] = []
-    for filename, alt in _PARTNER_LOGOS:
+def _copy_partner_logos_for_report(out_dir: Path) -> List[Tuple[str, str, str]]:
+    """Copy partner logos beside generated HTML; return [(filename, alt, slug), ...] that succeeded."""
+    copied: List[Tuple[str, str, str]] = []
+    for filename, alt, slug in _PARTNER_LOGOS:
         src = _resolve_partner_logo_src(filename)
         if src is None:
             continue
@@ -66,7 +66,7 @@ def _copy_partner_logos_for_report(out_dir: Path) -> List[Tuple[str, str]]:
             shutil.copy2(src, out_dir / filename)
         except OSError:
             continue
-        copied.append((filename, alt))
+        copied.append((filename, alt, slug))
     return copied
 
 
@@ -82,17 +82,22 @@ def _copy_cuis_logo_for_report(out_dir: Path) -> Optional[str]:
     return _CUIS_LOGO_REPORT_NAME
 
 
-def _partner_logos_bar_html(logos: List[Tuple[str, str]]) -> str:
-    """Header strip: SBU → CIUS → University of Alberta."""
+def _partner_logos_footer_html(logos: List[Tuple[str, str, str]]) -> str:
+    """Bottom page bar: CIUS → University of Alberta → SBU, sized for legibility."""
     if not logos:
         return ""
     imgs = "".join(
-        f'<img class="master-header-partner-logo" src="{html_module.escape(src, quote=True)}" '
-        f'alt="{html_module.escape(alt)}" width="120" height="40" loading="lazy" decoding="async"/>'
-        for src, alt in logos
+        f'<img class="site-partner-footer-logo site-partner-footer-logo--{html_module.escape(slug, quote=True)}" '
+        f'src="{html_module.escape(src, quote=True)}" '
+        f'alt="{html_module.escape(alt)}" loading="lazy" decoding="async"/>'
+        for src, alt, slug in logos
     )
     return (
-        f'<div class="master-header-partner-logos" aria-label="Partner institutions">{imgs}</div>'
+        '<footer class="site-partner-footer" role="contentinfo">'
+        '<div class="site-partner-footer-inner" aria-label="Partner institutions">'
+        f"{imgs}"
+        "</div>"
+        "</footer>"
     )
 
 
@@ -1341,7 +1346,7 @@ def run(
         print(f"Warning: places sync skipped ({exc})", file=sys.stderr)
     partner_logos = _copy_partner_logos_for_report(out_dir.resolve())
     keyboard_logo_href = next(
-        (filename for filename, _alt in partner_logos if filename == _CUIS_LOGO_REPORT_NAME),
+        (filename for filename, _alt, _slug in partner_logos if filename == _CUIS_LOGO_REPORT_NAME),
         None,
     )
     html_name = out_config.get("report_html", "manual_analysis_report.html")
@@ -1438,7 +1443,7 @@ def run(
     )
     parts = [
         _head(body_attrs=body_attrs, build_meta=build_meta),
-        _master_header(partner_logos=partner_logos, **hdr_guide),
+        _master_header(**hdr_guide),
         '<div class="app-container">',
         _sidebar(documents, _feedback_section_html(config)),
         '<div class="main-content" id="tab-contents">',
@@ -1534,6 +1539,7 @@ def run(
         ui_translations=ui_tr,
         taxonomy_definitions=_build_taxonomy_definitions(glossary_categories, glossary_framings),
     ))
+    parts.append(_partner_logos_footer_html(partner_logos))
     parts.append("</body></html>")
 
     standalone_parts = [
@@ -1541,7 +1547,6 @@ def run(
         _master_header(
             link_href=html_name,
             link_i18n_key="viz_standalone_full_report",
-            partner_logos=partner_logos,
             **hdr_guide,
         ),
         '<div class="standalone-viz-wrap">',
@@ -1563,6 +1568,7 @@ def run(
             ui_translations=ui_tr,
             taxonomy_definitions=_build_taxonomy_definitions(glossary_categories, glossary_framings),
         ),
+        _partner_logos_footer_html(partner_logos),
         "</body></html>",
     ]
     _write_html_parts(viz_out_path, standalone_parts)
@@ -1599,29 +1605,49 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
 .master-header-links .master-header-link { margin-left: 0; }
 .master-header-brand { display: flex; align-items: center; gap: 0.85rem 1.25rem; flex-wrap: wrap; }
 .master-header h1 { font-family: 'Crimson Text', Georgia, serif; font-weight: 700; letter-spacing: 0.02em; margin: 0; }
-.master-header-partner-logos {
+.site-partner-footer {
+  background: linear-gradient(180deg, #efe8da 0%, #e6ddcc 100%);
+  border-top: 2px solid #8b7355;
+  padding: 1.85rem 1.5rem 2.15rem;
+  margin-top: 2.5rem;
+}
+.site-partner-footer-inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.85rem 1.15rem;
+  justify-content: flex-start;
+  gap: 2.25rem 3.25rem;
   flex-wrap: wrap;
-  flex: 1 1 auto;
-  min-width: 0;
-  margin: 0 0.5rem;
+  max-width: none;
+  margin: 0;
+  padding: 0 0.5rem;
 }
-.master-header-partner-logo {
+.site-partner-footer-logo {
   display: block;
-  height: 2.4rem;
   width: auto;
-  max-width: 9.5rem;
   object-fit: contain;
-  background: rgba(255, 252, 247, 0.94);
-  border-radius: 3px;
-  padding: 0.2rem 0.4rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+.site-partner-footer-logo--cius { height: 7rem; max-width: 28rem; background: transparent; }
+.site-partner-footer-logo--ualberta { height: 7rem; max-width: 11rem; background: transparent; }
+.site-partner-footer-logo--sbu {
+  height: 6.5rem;
+  max-width: 24rem;
+  background: #fffef9;
+  border-radius: 4px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(139, 115, 85, 0.28);
+  box-shadow: 0 1px 4px rgba(45, 34, 20, 0.12);
 }
 @media (max-width: 720px) {
-  .master-header-partner-logo { height: 1.9rem; max-width: 7.25rem; }
+  .site-partner-footer { padding: 1.35rem 1rem 1.6rem; }
+  .site-partner-footer-inner { gap: 1.35rem 1.75rem; justify-content: flex-start; }
+  .site-partner-footer-logo--cius { height: 5rem; max-width: 20rem; }
+  .site-partner-footer-logo--ualberta { height: 5.25rem; max-width: 8.5rem; }
+  .site-partner-footer-logo--sbu { height: 4.75rem; max-width: 18rem; }
 }
 .master-header-badge {
   display: inline-block;
@@ -2859,7 +2885,6 @@ def _master_header(
     link_i18n_key: Optional[str] = None,
     guide_href: Optional[str] = None,
     guide_i18n_key: Optional[str] = None,
-    partner_logos: Optional[List[Tuple[str, str]]] = None,
 ) -> str:
     """Top bar: optional links (e.g. full lab link from standalone viz page). Site guide lives on the Introduction tab."""
     links: List[str] = []
@@ -2874,14 +2899,12 @@ def _master_header(
             f'<span data-i18n="{html_module.escape(link_i18n_key)}"></span></a>'
         )
     extra = f'<span class="master-header-links">{"".join(links)}</span>' if links else ""
-    logos_bar = _partner_logos_bar_html(partner_logos or [])
     return (
         '<div class="master-header">'
         '<div class="master-header-brand">'
         '<h1 data-i18n="site_title">KGB and the Ukrainian Diaspora</h1>'
         '<span class="master-header-badge" data-i18n="declassified">Declassified</span>'
         '</div>'
-        + logos_bar
         + extra
         + '<div class="lang-toggle">'
         '<button type="button" class="lang-btn active" data-lang="en" title="English" aria-label="English">\U0001f1e8\U0001f1e6</button>'
