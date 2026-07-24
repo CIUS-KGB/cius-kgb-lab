@@ -1635,15 +1635,15 @@ body { font-family: 'Crimson Text', Georgia, serif; line-height: 1.6; color: #4a
   padding: 0;
   box-shadow: none;
 }
-.site-partner-footer-logo--cius { height: 7rem; max-width: 28rem; background: transparent; }
+.site-partner-footer-logo--cius { height: 5.75rem; max-width: 26rem; background: transparent; }
 .site-partner-footer-logo--ualberta { height: 5.75rem; max-width: 26rem; background: transparent; }
-.site-partner-footer-logo--sbu { height: 5.75rem; max-width: 22rem; background: transparent; }
+.site-partner-footer-logo--sbu { height: 5.75rem; max-width: 26rem; background: transparent; }
 @media (max-width: 720px) {
   .site-partner-footer { padding: 1.35rem 1rem 1.6rem; }
   .site-partner-footer-inner { gap: 1.35rem 1.75rem; justify-content: flex-start; }
-  .site-partner-footer-logo--cius { height: 5rem; max-width: 20rem; }
-  .site-partner-footer-logo--ualberta { height: 4.25rem; max-width: 18rem; }
-  .site-partner-footer-logo--sbu { height: 4.25rem; max-width: 16rem; }
+  .site-partner-footer-logo--cius,
+  .site-partner-footer-logo--ualberta,
+  .site-partner-footer-logo--sbu { height: 4.25rem; max-width: 18rem; }
 }
 .master-header-badge {
   display: inline-block;
