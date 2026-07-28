@@ -364,6 +364,7 @@ _UI_TRANSLATIONS = {
     },
     "intro_video_heading": {"en": "How to use this site (video)", "uk": "Як користуватися сайтом (відео)"},
     "intro_video_note": {"en": "A short walkthrough of the site layout and main analytical tools.", "uk": "Короткий огляд структури сайту та основних аналітичних інструментів."},
+    "intro_reading_list_heading": {"en": "Selected Reading List", "uk": "Вибраний список літератури"},
     "intro_cap_f": {"en": "Suggest alternative labels from comparison rows via the “+” button (in-page modal); suggestions are saved in the browser and can be exported as JSON.", "uk": "Альтернативні мітки з таблиці порівняння: кнопка «+»: модальне вікно; пропозиції зберігаються в браузері й експортуються як JSON."},
     "intro_vozmezdie_title": {"en": "KGB and the Ukrainian Diaspora: Operation Vozmezdie", "uk": "KGB and the Ukrainian Diaspora: Operation Vozmezdie"},
     "intro_vozmezdie_welcome": {"en": "Welcome to the Vozmezdie Files", "uk": "Welcome to the Vozmezdie Files"},
@@ -2636,6 +2637,29 @@ body.standalone-viz-page .viz-how-to-read[open] > summary::after {
 .intro-video-section { max-width: 28rem; margin-left: auto; margin-right: auto; }
 .intro-video-wrap { position: relative; width: 100%; max-width: 28rem; margin: 0 auto; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; border: 1px solid #8b7355; background: #1a1a1a; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
 .intro-video-wrap iframe { display: block; width: 100%; height: 100%; border: 0; }
+.intro-reading-list-section { max-width: 46rem; margin: 2.5rem 0 0; text-align: left; }
+.intro-reading-list-subtitle { font-size: 1.05rem; color: #5a5348; margin: 0 0 1.35rem 0; line-height: 1.5; }
+.intro-reading-list-section h4 {
+  color: #4a4038;
+  font-size: 1.08rem;
+  margin: 1.75rem 0 0.85rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(139,115,85,0.28);
+  line-height: 1.4;
+}
+.intro-reading-list-section h4:first-of-type { margin-top: 0.35rem; }
+.intro-reading-list { list-style: none; padding: 0; margin: 0; }
+.intro-reading-list li {
+  margin: 0 0 0.95rem 0;
+  padding: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: #4a4038;
+}
+.intro-reading-list li:last-child { margin-bottom: 0; }
+.intro-reading-list em { font-style: italic; }
+.intro-reading-list a { color: #8b0000; text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+.intro-reading-list a:hover { color: #6b0000; }
 .intro-lead { font-size: 1.28rem; color: #4a4038; line-height: 1.65; margin: 0 0 1.25rem 0; font-weight: 600; }
 #tab-intro .homepage-section p { font-size: 1.12rem; line-height: 1.78; color: #4a4038; margin: 0 0 1.1rem 0; }
 #tab-intro .homepage-section p:last-child { margin-bottom: 0; }
@@ -4658,9 +4682,98 @@ def _analytical_framework_collapsible() -> str:
   </details>"""
 
 
+def _format_reading_list_inline(text: str) -> str:
+    """Escape bibliography prose and restore italics plus bare DOI/URL links."""
+    text = text.replace("\\.", ".")
+    text = re.sub(
+        r"\*(.+?)\*",
+        lambda m: f"\x00EM\x00{m.group(1)}\x00/EM\x00",
+        text,
+    )
+    escaped = html_module.escape(text)
+    escaped = escaped.replace("\x00EM\x00", "<em>").replace("\x00/EM\x00", "</em>")
+
+    def _link(match: re.Match) -> str:
+        url = match.group(0)
+        return (
+            f'<a href="{html_module.escape(url, quote=True)}" '
+            f'target="_blank" rel="noopener noreferrer">{html_module.escape(url)}</a>'
+        )
+
+    escaped = re.sub(r"https?://[^\s<>\"]+", _link, escaped)
+    return escaped
+
+
+def _reading_list_section_html() -> str:
+    """Load Selected Reading List markdown and render HTML for the Introduction tab."""
+    candidates = (
+        _REPORT_ROOT / "docs" / "Vozmezdie_Selected_Reading_List.md",
+        _REPORT_ROOT / "dev" / "Vozmezdie_Selected_Reading_List.md",
+    )
+    path = next((p for p in candidates if p.is_file()), None)
+    if path is None:
+        return ""
+
+    raw = path.read_text(encoding="utf-8")
+    lines = [ln.rstrip() for ln in raw.splitlines()]
+    subtitle = ""
+    sections: List[Tuple[str, List[str]]] = []
+    current_title = ""
+    current_entries: List[str] = []
+    saw_main_title = False
+
+    def _flush() -> None:
+        nonlocal current_title, current_entries
+        if current_title and current_entries:
+            sections.append((current_title, list(current_entries)))
+        current_title = ""
+        current_entries = []
+
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        heading = re.match(r"^#\s+\*\*(.+?)\*\*\s*$", stripped)
+        if heading:
+            title = heading.group(1).strip()
+            if not saw_main_title and title.lower().startswith("selected reading list"):
+                saw_main_title = True
+                continue
+            _flush()
+            current_title = title
+            continue
+        if not current_title and not subtitle and not stripped.startswith("#"):
+            subtitle = stripped.replace("\\.", ".")
+            continue
+        if current_title:
+            current_entries.append(stripped)
+    _flush()
+
+    if not sections:
+        return ""
+
+    parts: List[str] = [
+        '<section class="homepage-section intro-reading-list-section">',
+        '<h3 data-i18n="intro_reading_list_heading">Selected Reading List</h3>',
+    ]
+    if subtitle:
+        parts.append(
+            f'<p class="intro-reading-list-subtitle">{html_module.escape(subtitle)}</p>'
+        )
+    for title, entries in sections:
+        parts.append(f"<h4>{html_module.escape(title)}</h4>")
+        parts.append('<ul class="intro-reading-list">')
+        for entry in entries:
+            parts.append(f"<li>{_format_reading_list_inline(entry)}</li>")
+        parts.append("</ul>")
+    parts.append("</section>")
+    return "\n".join(parts)
+
+
 def _intro_tab() -> str:
     """Sidebar tab: introduction and project context (above Research Lab)."""
-    return """
+    reading_list = _reading_list_section_html()
+    return f"""
 <div class="tab-content active" id="tab-intro">
 <div class="header"><h2 data-i18n="intro_vozmezdie_title">KGB and the Ukrainian Diaspora: Operation Vozmezdie</h2></div>
 <div class="homepage-content">
@@ -4698,6 +4811,7 @@ def _intro_tab() -> str:
       <iframe width="560" height="315" src="https://www.youtube.com/embed/2-fEzEugKpw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </section>
+{reading_list}
 </div>
 </div>"""
 
