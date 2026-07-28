@@ -1,7 +1,5 @@
 # **Selected Reading List**
 
-KGB and the Ukrainian Diaspora: Operation Vozmezdie
-
 # **The KGB and the Ukrainian Diaspora / КГБ та українська діаспора**
 
 Andrew, Christopher, and Vasili Mitrokhin. *The Mitrokhin Archive: The KGB in Europe and the West*. London: Allen Lane, 1999\.
