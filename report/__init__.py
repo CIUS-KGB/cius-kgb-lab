@@ -376,6 +376,23 @@ _UI_TRANSLATIONS = {
     "intro_vozmezdie_p6": {"en": "The sixteen documents presented on this site date primarily from the early 1980s and originate from a single archival fond held at the HDA SBU archive in Ukraine. Each document appears in the original Russian alongside an English translation, with the two texts aligned for parallel reading. We invite you to explore both the documents themselves and the analytical tools developed as part of this project.", "uk": "The sixteen documents presented on this site date primarily from the early 1980s and originate from a single archival fond held at the HDA SBU archive in Ukraine. Each document appears in the original Russian alongside an English translation, with the two texts aligned for parallel reading. We invite you to explore both the documents themselves and the analytical tools developed as part of this project."},
     "intro_vozmezdie_p7": {"en": "This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production.", "uk": "This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production."},
     "intro_vozmezdie_p8": {"en": "Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list.", "uk": "Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list."},
+    "intro_team_heading": {"en": "Team of the Project", "uk": "Команда проєкту"},
+    "intro_team_natalia": {
+        "en": "Natalia Khanenko-Friesen, Principal Investigator. Canadian Institute of Ukrainian Studies (CIUS), University of Alberta, Edmonton.",
+        "uk": "Natalia Khanenko-Friesen, Principal Investigator. Canadian Institute of Ukrainian Studies (CIUS), University of Alberta, Edmonton.",
+    },
+    "intro_team_andriy": {
+        "en": "Andriy Kohut, Director. Sectoral State Archive of the Security Service of Ukraine (HDA SBU), Kyiv.",
+        "uk": "Andriy Kohut, Director. Sectoral State Archive of the Security Service of Ukraine (HDA SBU), Kyiv.",
+    },
+    "intro_team_larysa": {
+        "en": "Larysa Bilous, Research Associate and Project Coordinator. CIUS, University of Alberta, Edmonton.",
+        "uk": "Larysa Bilous, Research Associate and Project Coordinator. CIUS, University of Alberta, Edmonton.",
+    },
+    "intro_team_sean": {
+        "en": "Sean Lis, Research Assistant. CIUS, University of Alberta. Digital humanities: platform, tagging pipeline and visualizations",
+        "uk": "Sean Lis, Research Assistant. CIUS, University of Alberta. Digital humanities: platform, tagging pipeline and visualizations",
+    },
     "intro_open_lab_heading": {"en": "Open the Research Lab", "uk": "Відкрити дослідницьку лабораторію"},
     "intro_go_lab_btn": {"en": "All Documents", "uk": "Усі документи"},
     "intro_go_docs_btn": {"en": "Individual Documents", "uk": "Окремі документи"},
@@ -2661,6 +2678,16 @@ body.standalone-viz-page .viz-how-to-read[open] > summary::after {
 .intro-reading-list a { color: #8b0000; text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
 .intro-reading-list a:hover { color: #6b0000; }
 .intro-lead { font-size: 1.28rem; color: #4a4038; line-height: 1.65; margin: 0 0 1.25rem 0; font-weight: 600; }
+.intro-team-list { list-style: none; padding: 0; margin: 0; }
+.intro-team-list li {
+  margin: 0 0 0.85rem 0;
+  padding: 0;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: #4a4038;
+  text-align: left;
+}
+.intro-team-list li:last-child { margin-bottom: 0; }
 #tab-intro .homepage-section p { font-size: 1.12rem; line-height: 1.78; color: #4a4038; margin: 0 0 1.1rem 0; }
 #tab-intro .homepage-section p:last-child { margin-bottom: 0; }
 .intro-dual-cta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: stretch; margin: 1rem 0 0.5rem; }
@@ -4787,6 +4814,15 @@ def _intro_tab() -> str:
     <p data-i18n="intro_vozmezdie_p6">The sixteen documents presented on this site date primarily from the early 1980s and originate from a single archival fond held at the HDA SBU archive in Ukraine. Each document appears in the original Russian alongside an English translation, with the two texts aligned for parallel reading. We invite you to explore both the documents themselves and the analytical tools developed as part of this project.</p>
     <p data-i18n="intro_vozmezdie_p7">This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production.</p>
     <p data-i18n="intro_vozmezdie_p8">Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list.</p>
+  </section>
+  <section class="homepage-section intro-team-section">
+    <h3 data-i18n="intro_team_heading">Team of the Project</h3>
+    <ul class="intro-team-list">
+      <li data-i18n="intro_team_natalia">Natalia Khanenko-Friesen, Principal Investigator. Canadian Institute of Ukrainian Studies (CIUS), University of Alberta, Edmonton.</li>
+      <li data-i18n="intro_team_andriy">Andriy Kohut, Director. Sectoral State Archive of the Security Service of Ukraine (HDA SBU), Kyiv.</li>
+      <li data-i18n="intro_team_larysa">Larysa Bilous, Research Associate and Project Coordinator. CIUS, University of Alberta, Edmonton.</li>
+      <li data-i18n="intro_team_sean">Sean Lis, Research Assistant. CIUS, University of Alberta. Digital humanities: platform, tagging pipeline and visualizations</li>
+    </ul>
   </section>
   <section class="homepage-section">
     <div class="intro-dual-cta">
