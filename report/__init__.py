@@ -393,8 +393,7 @@ _UI_TRANSLATIONS = {
         "en": "Sean Lis, Research Assistant. CIUS, University of Alberta. Digital humanities: platform, tagging pipeline and visualizations",
         "uk": "Sean Lis, Research Assistant. CIUS, University of Alberta. Digital humanities: platform, tagging pipeline and visualizations",
     },
-    "intro_cite_heading": {"en": "How to cite this site", "uk": "How to cite this site"},
-    "intro_cite_subheading": {"en": "Citing this project", "uk": "Citing this project"},
+    "intro_cite_heading": {"en": "Citing this project", "uk": "Citing this project"},
     "intro_cite_p1": {
         "en": "This site is a research publication of the Canadian Institute of Ukrainian Studies. If you draw on the documents, the translations, or the analytical categories presented here, please cite the project, and the individual document where you refer to one.",
         "uk": "This site is a research publication of the Canadian Institute of Ukrainian Studies. If you draw on the documents, the translations, or the analytical categories presented here, please cite the project, and the individual document where you refer to one.",
@@ -4859,6 +4858,16 @@ def _intro_tab() -> str:
     <p data-i18n="intro_vozmezdie_p7">This site represents an opening step in a broader CIUS initiative that critically re-reads the language of the KGB archives and examines how that language continues to shape contemporary understandings of the people, events, and histories it claimed to describe. Rather than treating archival language as neutral evidence, the project approaches it as part of a broader system of Soviet ideological and epistemic production.</p>
     <p data-i18n="intro_vozmezdie_p8">Read on. Explore the files. To learn more about the project and the questions guiding this work, follow the link below to our article and selected reading list.</p>
   </section>
+  <section class="homepage-section intro-cite-section">
+    <h3 data-i18n="intro_cite_heading">Citing this project</h3>
+    <p data-i18n="intro_cite_p1">This site is a research publication of the Canadian Institute of Ukrainian Studies. If you draw on the documents, the translations, or the analytical categories presented here, please cite the project, and the individual document where you refer to one.</p>
+    <h4 data-i18n="intro_cite_project_h">The project as a whole</h4>
+    <p class="intro-cite-entry" data-i18n-html="intro_cite_project_entry">Khanenko-Friesen, Natalia, Larysa Bilous, Andriy Kohut, and Sean Lis. <em>KGB and the Ukrainian Diaspora: Operation Vozmezdie</em>. Edmonton: Canadian Institute of Ukrainian Studies, University of Alberta, 2026. <a href="https://cius-kgb.com">https://cius-kgb.com</a>.</p>
+    <h4 data-i18n="intro_cite_doc_h">An individual document</h4>
+    <p class="intro-cite-entry" data-i18n-html="intro_cite_doc_entry">"Memorandum, October 1985: Active Measures against the OUN ('Vozmezdie')." <em>KGB and the Ukrainian Diaspora: Operation Vozmezdie</em>. Canadian Institute of Ukrainian Studies, University of Alberta, 2026. Accessed 22 September 2026. [document URL].</p>
+    <p data-i18n="intro_cite_p2">The original records are held at the Sectoral State Archive of the Security Service of Ukraine (HDA SBU) in Kyiv. If you quote the Russian original, give the archival reference together with the reference to this site. The English translations, the category tables, and the comparison of human and machine coding were produced by the project team and should be attributed to it.</p>
+    <p data-i18n="intro_cite_p3">Quotation for research and teaching is welcome with attribution. For reuse of larger portions, or to tell us how you have used the material, please write to us through the feedback form.</p>
+  </section>
   <section class="homepage-section intro-team-section">
     <h3 data-i18n="intro_team_heading">Team of the Project</h3>
     <ul class="intro-team-list">
@@ -4867,17 +4876,6 @@ def _intro_tab() -> str:
       <li data-i18n="intro_team_larysa">Larysa Bilous, Research Associate and Project Coordinator. CIUS, University of Alberta, Edmonton.</li>
       <li data-i18n="intro_team_sean">Sean Lis, Research Assistant. CIUS, University of Alberta. Digital humanities: platform, tagging pipeline and visualizations</li>
     </ul>
-  </section>
-  <section class="homepage-section intro-cite-section">
-    <h3 data-i18n="intro_cite_heading">How to cite this site</h3>
-    <h4 data-i18n="intro_cite_subheading">Citing this project</h4>
-    <p data-i18n="intro_cite_p1">This site is a research publication of the Canadian Institute of Ukrainian Studies. If you draw on the documents, the translations, or the analytical categories presented here, please cite the project, and the individual document where you refer to one.</p>
-    <h4 data-i18n="intro_cite_project_h">The project as a whole</h4>
-    <p class="intro-cite-entry" data-i18n-html="intro_cite_project_entry">Khanenko-Friesen, Natalia, Larysa Bilous, Andriy Kohut, and Sean Lis. <em>KGB and the Ukrainian Diaspora: Operation Vozmezdie</em>. Edmonton: Canadian Institute of Ukrainian Studies, University of Alberta, 2026. <a href="https://cius-kgb.com">https://cius-kgb.com</a>.</p>
-    <h4 data-i18n="intro_cite_doc_h">An individual document</h4>
-    <p class="intro-cite-entry" data-i18n-html="intro_cite_doc_entry">"Memorandum, October 1985: Active Measures against the OUN ('Vozmezdie')." <em>KGB and the Ukrainian Diaspora: Operation Vozmezdie</em>. Canadian Institute of Ukrainian Studies, University of Alberta, 2026. Accessed 22 September 2026. [document URL].</p>
-    <p data-i18n="intro_cite_p2">The original records are held at the Sectoral State Archive of the Security Service of Ukraine (HDA SBU) in Kyiv. If you quote the Russian original, give the archival reference together with the reference to this site. The English translations, the category tables, and the comparison of human and machine coding were produced by the project team and should be attributed to it.</p>
-    <p data-i18n="intro_cite_p3">Quotation for research and teaching is welcome with attribution. For reuse of larger portions, or to tell us how you have used the material, please write to us through the feedback form.</p>
   </section>
   <section class="homepage-section">
     <div class="intro-dual-cta">
