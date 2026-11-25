@@ -2,8 +2,6 @@
 
 Modular pipeline for expert-grounded LLM evaluation on Cold War archival documents. This repo defines the **structure** and **contracts**; implementation can live here or plug in from the main Vozmezdie codebase.
 
-**See [docs/agents/FRAMEWORK.md](docs/agents/FRAMEWORK.md)** for the pipeline overview, data shapes, and module contracts. **See [AGENTS.md](AGENTS.md)** for guidance for AI agents and contributors (workflows, recent work, next priority). All agent guides: [docs/agents/](docs/agents/).
-
 **Source repository:** [github.com/Pivoslav/vozmezdie](https://github.com/Pivoslav/vozmezdie).
 
 ## Pipeline at a glance
@@ -45,7 +43,6 @@ Output: `data/output/manual_analysis_report.html` and `data/output/comparison_re
 
 ```
 vozmezdie_framework/
-├── docs/agents/       # Agent guides (see docs/agents/README.md)
 ├── README.md          # This file
 ├── run.py             # Full pipeline orchestrator
 ├── run_report_only.py # Regenerate report from saved JSON
@@ -56,6 +53,7 @@ vozmezdie_framework/
 ├── compare/           # Align rows + accuracy metrics
 ├── report/            # Build HTML (tabs, table, document text view, glossary)
 ├── original_pdfs/     # PDF scans per document_id (optional public_base URL for hosting)
+├── docs/              # GitHub Pages site (index.html, lab viz, PDFs)
 └── data/
     ├── input/         # Optional: put .txt documents here
     ├── ground_truth/  # Optional: put CSVs here (doc_id in filename)
@@ -65,4 +63,4 @@ vozmezdie_framework/
 ## Status
 
 - **Done**: Full pipeline with stubs and optional Ollama adapter; config (`use_fixture`); document text view and glossary (definitions from `Categories Explained.html`); agent assessments mode (`--agent-assessments`); `export_segments_only.py` for blind assessment; intermediate JSON; `run_report_only.py`; tests (compare, ingest, pipeline smoke).
-- **Next**: See [docs/agents/NEXT_STEPS.md](docs/agents/NEXT_STEPS.md) and [docs/agents/AGENT_HANDOFF.md](docs/agents/AGENT_HANDOFF.md); or point config at real `data/input`; set `use_fixture: false` to run with Ollama.
+- **Next**: Point config at real `data/input`; set `use_fixture: false` to run with Ollama.

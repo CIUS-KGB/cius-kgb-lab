@@ -32,3 +32,10 @@ nul
 !data/output/.gitkeep
 !data/input/.gitkeep
 !data/ground_truth/.gitkeep
+
+# Confidential / internal agent docs — keep locally; never publish
+/AGENTS.md
+/docs/agents/
+/docs/FILTER_DIMMING_INVESTIGATION.md
+/docs/STATISTICS_BRAINSTORM.md
+/docs/R_VISUALIZATIONS.md
